@@ -1,0 +1,56 @@
+name: SleepWell
+options:
+  bundleIdPrefix: com.sleepwell
+  deploymentTarget:
+    iOS: 15.0
+
+targets:
+  SleepWell:
+    type: application
+    platform: iOS
+    sources:
+      - App
+      - Resources
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.sleepwell.app
+        DEVELOPMENT_TEAM: "" # 需要填写您的开发团队 ID
+        CODE_SIGN_ENTITLEMENTS: SleepWell.entitlements
+        INFOPLIST_FILE: Info.plist
+        INFOPLIST_KEY_CFBundleDisplayName: SleepWell
+        INFOPLIST_KEY_CFBundleDevelopmentRegion: $(DEVELOPMENT_LANGUAGE)
+        INFOPLIST_KEY_CFBundleExecutable: $(EXECUTABLE_NAME)
+        INFOPLIST_KEY_CFBundleIdentifier: $(PRODUCT_BUNDLE_IDENTIFIER)
+        INFOPLIST_KEY_CFBundleInfoDictionaryVersion: "6.0"
+        INFOPLIST_KEY_CFBundleName: $(PRODUCT_NAME)
+        INFOPLIST_KEY_CFBundlePackageType: APPL
+        INFOPLIST_KEY_CFBundleShortVersionString: "1.0"
+        INFOPLIST_KEY_CFBundleVersion: "1"
+        INFOPLIST_KEY_NSAppTransportSecurity_NSAllowsArbitraryLoads: true
+        INFOPLIST_KEY_NSHealthShareUsageDescription: "需要访问您的健康数据以记录和分析睡眠情况"
+        INFOPLIST_KEY_NSHealthUpdateUsageDescription: "需要写入睡眠数据到健康应用"
+        INFOPLIST_KEY_UIBackgroundModes: audio,processing,fetch
+        INFOPLIST_KEY_UIStatusBarStyle: UIStatusBarStyleDarkContent
+        INFOPLIST_KEY_UISupportedInterfaceOrientations: UIInterfaceOrientationLandscapeLeft,UIInterfaceOrientationLandscapeRight,UIInterfaceOrientationPortrait
+        INFOPLIST_KEY_UISupportedInterfaceOrientations~ipad: UIInterfaceOrientationPortrait
+        INFOPLIST_KEY_BGTaskSchedulerPermittedIdentifiers: com.han.sleepwell2024.ios.refresh,com.han.sleepwell2024.ios.processing
+        INFOPLIST_KEY_UILaunchStoryboardName: LaunchScreen
+        INFOPLIST_KEY_UIApplicationSceneManifest_UIApplicationSupportsMultipleScenes: false
+        INFOPLIST_KEY_UIApplicationSceneManifest_UISceneConfigurations_UIWindowSceneSessionRoleApplication_0_UISceneConfigurationName: Default Configuration
+        INFOPLIST_KEY_UIApplicationSceneManifest_UISceneConfigurations_UIWindowSceneSessionRoleApplication_0_UISceneDelegateClassName: $(PRODUCT_MODULE_NAME).SceneDelegate
+
+  SleepWellTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - Tests
+    dependencies:
+      - target: SleepWell
+
+  SleepWellUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - Tests
+    dependencies:
+      - target: SleepWell 

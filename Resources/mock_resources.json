@@ -1,0 +1,168 @@
+{
+    "resources": [
+        {
+            "id": "1",
+            "resourceId": "1",
+            "resourceType": "single_track_album",
+            "category": "白噪音",
+            "tags": ["雨声"],
+            "dynamicLoopingVideoUrl": null,
+            "immersiveBackgroundImageUrl": "rain_background",
+            "episodeCount": 1,
+            "totalDurationSeconds": 3600,
+            "globalPlaybackCount": 1000,
+            "createdAt": "2024-03-20T10:00:00Z",
+            "updatedAt": "2024-03-20T10:00:00Z",
+            "localizedContent": {
+                "name": "轻柔雨声",
+                "description": "轻柔的雨声，帮助您放松身心，进入梦乡",
+                "coverImageUrl": "https://lineimg.omusic.com.tw/img/album/5143708.jpg?v=20211120070051"
+            },
+            "audioUrl": "http://uploadttcdn.fuciyuan7.com/music/20250526/6/954611118802590.mp3"
+        },
+        {
+            "id": "2",
+            "resourceId": "2",
+            "resourceType": "multi_episode_series",
+            "category": "冥想",
+            "tags": ["冥想", "平静"],
+            "dynamicLoopingVideoUrl": null,
+            "immersiveBackgroundImageUrl": "wave_background",
+            "episodeCount": 2,
+            "totalDurationSeconds": 7200,
+            "globalPlaybackCount": 800,
+            "createdAt": "2024-03-20T10:00:00Z",
+            "updatedAt": "2024-03-20T10:00:00Z",
+            "localizedContent": {
+                "name": "冥想课程系列",
+                "description": "专业的冥想引导课程，帮助您放松身心",
+                "coverImageUrl": "https://lineimg.omusic.com.tw/img/album/5143708.jpg?v=20211120070051"
+            },
+            "audioUrl": "http://uploadttcdn.fuciyuan7.com/music/20250526/6/954611118802590.mp3",
+            "episodes": [
+                {
+                    "id": "2_1",
+                    "episodeId": "2_1",
+                    "parentResourceId": "2",
+                    "episodeNumber": 1,
+                    "audioUrl": "http://uploadttcdn.fuciyuan7.com/music/20250526/6/954611118802590.mp3",
+                    "videoUrl": null,
+                    "durationSeconds": 3600,
+                    "localizedContent": {
+                        "name": "冥想课程 1",
+                        "description": "第一集冥想课程"
+                    },
+                    "playbackCount": 400,
+                    "createdAt": "2024-03-20T10:00:00Z",
+                    "updatedAt": "2024-03-20T10:00:00Z"
+                },
+                {
+                    "id": "2_2",
+                    "episodeId": "2_2",
+                    "parentResourceId": "2",
+                    "episodeNumber": 2,
+                    "audioUrl": "http://uploadttcdn.fuciyuan7.com/music/20250526/6/954611118802590.mp3",
+                    "videoUrl": null,
+                    "durationSeconds": 3600,
+                    "localizedContent": {
+                        "name": "冥想课程 2",
+                        "description": "第二集冥想课程"
+                    },
+                    "playbackCount": 400,
+                    "createdAt": "2024-03-20T10:00:00Z",
+                    "updatedAt": "2024-03-20T10:00:00Z"
+                }
+            ]
+        },
+        {
+            "id": "3",
+            "resourceId": "3",
+            "resourceType": "single_track_album",
+            "category": "自然",
+            "tags": ["森林", "鸟鸣"],
+            "dynamicLoopingVideoUrl": null,
+            "immersiveBackgroundImageUrl": "forest_background",
+            "episodeCount": 1,
+            "totalDurationSeconds": 3600,
+            "globalPlaybackCount": 1200,
+            "createdAt": "2024-03-20T10:00:00Z",
+            "updatedAt": "2024-03-20T10:00:00Z",
+            "localizedContent": {
+                "name": "森林晨曲",
+                "description": "清晨森林中的鸟鸣声，让您感受大自然的宁静",
+                "coverImageUrl": "https://lineimg.omusic.com.tw/img/album/5143708.jpg?v=20211120070051"
+            },
+            "audioUrl": "http://uploadttcdn.fuciyuan7.com/music/20250526/6/954611118802590.mp3"
+        },
+        {
+            "id": "4",
+            "resourceId": "4",
+            "resourceType": "multi_episode_series",
+            "category": "故事",
+            "tags": ["童话", "睡前故事"],
+            "dynamicLoopingVideoUrl": null,
+            "immersiveBackgroundImageUrl": "story_background",
+            "episodeCount": 3,
+            "totalDurationSeconds": 10800,
+            "globalPlaybackCount": 1500,
+            "createdAt": "2024-03-20T10:00:00Z",
+            "updatedAt": "2024-03-20T10:00:00Z",
+            "localizedContent": {
+                "name": "睡前故事集",
+                "description": "精选的睡前故事，陪伴您进入甜美梦乡",
+                "coverImageUrl": "https://lineimg.omusic.com.tw/img/album/5143708.jpg?v=20211120070051"
+            },
+            "audioUrl": "http://uploadttcdn.fuciyuan7.com/music/20250526/6/954611118802590.mp3",
+            "episodes": [
+                {
+                    "id": "4_1",
+                    "episodeId": "4_1",
+                    "parentResourceId": "4",
+                    "episodeNumber": 1,
+                    "audioUrl": "http://uploadttcdn.fuciyuan7.com/music/20250526/6/954611118802590.mp3",
+                    "videoUrl": null,
+                    "durationSeconds": 3600,
+                    "localizedContent": {
+                        "name": "小王子",
+                        "description": "经典童话故事"
+                    },
+                    "playbackCount": 500,
+                    "createdAt": "2024-03-20T10:00:00Z",
+                    "updatedAt": "2024-03-20T10:00:00Z"
+                },
+                {
+                    "id": "4_2",
+                    "episodeId": "4_2",
+                    "parentResourceId": "4",
+                    "episodeNumber": 2,
+                    "audioUrl": "http://uploadttcdn.fuciyuan7.com/music/20250526/6/954611118802590.mp3",
+                    "videoUrl": null,
+                    "durationSeconds": 3600,
+                    "localizedContent": {
+                        "name": "爱丽丝梦游仙境",
+                        "description": "奇幻冒险故事"
+                    },
+                    "playbackCount": 500,
+                    "createdAt": "2024-03-20T10:00:00Z",
+                    "updatedAt": "2024-03-20T10:00:00Z"
+                },
+                {
+                    "id": "4_3",
+                    "episodeId": "4_3",
+                    "parentResourceId": "4",
+                    "episodeNumber": 3,
+                    "audioUrl": "http://uploadttcdn.fuciyuan7.com/music/20250526/6/954611118802590.mp3",
+                    "videoUrl": null,
+                    "durationSeconds": 3600,
+                    "localizedContent": {
+                        "name": "绿野仙踪",
+                        "description": "经典童话故事"
+                    },
+                    "playbackCount": 500,
+                    "createdAt": "2024-03-20T10:00:00Z",
+                    "updatedAt": "2024-03-20T10:00:00Z"
+                }
+            ]
+        }
+    ]
+} 
