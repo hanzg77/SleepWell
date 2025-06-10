@@ -1,11 +1,10 @@
 import SwiftUI
-import BackgroundTasks
 import AVFoundation
+import BackgroundTasks
 
 @main
 struct SleepWellApp: App {
-    @StateObject private var audioManager = AudioManager.shared
-    @StateObject private var guardianManager = GuardianManager.shared
+    @StateObject private var themeManager = ThemeManager.shared
     
     init() {
         // 设置音频会话
@@ -26,14 +25,14 @@ struct SleepWellApp: App {
     
     var body: some Scene {
         WindowGroup {
-           // Color.yellow.ignoresSafeArea() // 应用 ignoresSafeArea
-
             MainTabView()
-                .environmentObject(audioManager)
-                .environmentObject(guardianManager)
-                .ignoresSafeArea() // Add this line
-         //       .background(Color.yellow.opacity(0.5))
-
+                .environmentObject(themeManager.networkManager)
+                .environmentObject(themeManager.guardianManager)
+                .environmentObject(themeManager.playlistController)
+                .environmentObject(themeManager.dualStreamPlayerController)
+ //               .environmentObject(themeManager.sleepMonitorController)
+                .environmentObject(themeManager.sleepLogManager)
+                .preferredColorScheme(.dark)
         }
     }
     

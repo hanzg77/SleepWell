@@ -11,7 +11,7 @@ enum SleepMode {
     case timer(seconds: Int)
 }
 
-class SleepMonitor: ObservableObject {
+class SleepMonitorController: ObservableObject {
     @Published var currentSession = SleepSession()
     @Published var isMonitoring = false
     @Published var audioPlayer: AVAudioPlayer?

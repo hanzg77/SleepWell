@@ -1,6 +1,6 @@
 import Foundation
 
-struct Resource: Identifiable, Codable {
+struct Resource: Identifiable, Codable, Equatable {
     let id: String
     let resourceId: String
     let resourceType: ResourceType
@@ -11,6 +11,7 @@ struct Resource: Identifiable, Codable {
     let localizedContent: LocalizedContent
     let audioUrl: String
     let videoUrl: String?
+    let videoClipUrl: String?
     let status: String
     let isPublished: Bool
     let episodeCount: Int
@@ -21,7 +22,16 @@ struct Resource: Identifiable, Codable {
     let rating: Double
     let ratingCount: Int
     let metadata: ResourceMetadata
-    var episodes: [Episode]?
+    var episodes: [Episode] {
+        if let _episodes = _episodes, !_episodes.isEmpty {
+            return _episodes
+        } else if isSingleEpisode {
+            return [createSingleEpisode()]
+        } else {
+            return []
+        }
+    }
+    private var _episodes: [Episode]?
     
     var name: String {
         localizedContent.name
@@ -36,7 +46,10 @@ struct Resource: Identifiable, Codable {
     }
     
     var isVideo: Bool {
-        return videoUrl != nil && !videoUrl!.isEmpty
+        if let videoUrl = videoUrl {
+            return !videoUrl.isEmpty
+        }
+        return false
     }
     
     var isSingleEpisode: Bool {
@@ -45,12 +58,13 @@ struct Resource: Identifiable, Codable {
     
     // 创建单集资源时的辅助方法
     func createSingleEpisode() -> Episode {
-        print("🎥 创建单集: id=\(id), resourceId=\(resourceId), videoUrl=\(videoUrl ?? "nil")")
+        print("🎥 创建单集: id=\(id), resourceId=\(resourceId), videoUrl=\(videoUrl ?? "nil"), videoClipUrl=\(videoClipUrl ?? "nil")")
         return Episode(
             id: id,
             episodeNumber: 1,
             audioUrl: audioUrl,
             videoUrl: videoUrl,
+            videoClipUrl: videoClipUrl,
             durationSeconds: totalDurationSeconds,
             localizedContent: EpisodeLocalizedContent(
                 name: name,
@@ -58,6 +72,11 @@ struct Resource: Identifiable, Codable {
             ),
             playbackCount: globalPlaybackCount,
         )
+    }
+    
+    // 实现 Equatable
+    static func == (lhs: Resource, rhs: Resource) -> Bool {
+        lhs.resourceId == rhs.resourceId
     }
 }
 

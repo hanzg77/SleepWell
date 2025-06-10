@@ -1,7 +1,7 @@
 import Foundation
 import Combine
 
-class SleepRecordViewModel: ObservableObject {
+class SleepDataModel: ObservableObject {
     @Published var currentSleepData: SleepData?
     @Published var isLoading = false
     @Published var error: Error?

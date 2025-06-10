@@ -3,6 +3,15 @@ import SwiftUI
 class ThemeManager: ObservableObject {
     static let shared = ThemeManager()
     
+    // MARK: - Controllers
+    let networkManager = NetworkManager.shared
+    let guardianManager = GuardianController.shared
+    let playlistController = PlaylistController.shared
+    let dualStreamPlayerController = DualStreamPlayerController.shared
+ //   let sleepMonitorController = SleepMonitorController.shared
+    let sleepLogManager = SleepLogManager.shared
+    
+    // MARK: - Theme
     // 颜色
     struct Colors {
         static let background = Color.black

@@ -9,7 +9,9 @@ enum NetworkError: Error {
     case serverError(String)
 }
 
-class NetworkManager: NSObject, URLSessionDelegate {
+
+
+class NetworkManager: NSObject, URLSessionDelegate, ObservableObject {
     static let shared = NetworkManager()
     private let baseURL = "https://tripbwh.duoduoipo.com/api"
     //private let baseURL = "http://192.168.31.79:8000/api"
@@ -18,6 +20,7 @@ class NetworkManager: NSObject, URLSessionDelegate {
     private override init() {
         super.init()
         setupCertificateTrust()
+     //   loadCache()
     }
     
     private func setupCertificateTrust() {
@@ -32,10 +35,16 @@ class NetworkManager: NSObject, URLSessionDelegate {
     }
     
     private var session: URLSession!
+    @Published private(set) var resources: [Resource] = []
+    private var currentPage = 1
+    private var isLoading = false
+    private var hasMore = true
+    private var cancellables = Set<AnyCancellable>()
     
     // MARK: - URLSessionDelegate
     
     func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
+        // 接受所有证书
         if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
             if let serverTrust = challenge.protectionSpace.serverTrust {
                 let credential = URLCredential(trust: serverTrust)
@@ -46,29 +55,22 @@ class NetworkManager: NSObject, URLSessionDelegate {
         completionHandler(.performDefaultHandling, nil)
     }
     
-    // 获取资源列表
-    func fetchResources(
-        page: Int = 1,
-        pageSize: Int = 20,
-        category: String? = nil,
-        searchQuery: String? = nil,
-        forceRefresh: Bool = false  // 添加强制刷新参数
-    ) -> AnyPublisher<[Resource], Error> {
+    // MARK: - 健全数据流管理
+    func refreshResources(pageSize: Int = 20, category: String? = nil, searchQuery: String? = nil) {
+        currentPage = 1
+        hasMore = true
+        fetchResources(page: 1, pageSize: pageSize, category: category, searchQuery: searchQuery, isRefresh: true)
+        print("NetworkManager 当前资源数量：", self.resources.count)
+    }
+    
+    func loadMoreResources(pageSize: Int = 20, category: String? = nil, searchQuery: String? = nil) {
+        guard !isLoading, hasMore else { return }
+        fetchResources(page: currentPage + 1, pageSize: pageSize, category: category, searchQuery: searchQuery, isRefresh: false)
+    }
+    
+    private func fetchResources(page: Int, pageSize: Int, category: String?, searchQuery: String?, isRefresh: Bool) {
+        isLoading = true
         let cacheKey = "resources_\(page)_\(pageSize)_\(category ?? "all")_\(searchQuery ?? "")"
-        
-        // 如果不是强制刷新，先检查缓存
-        if !forceRefresh {
-            if let cachedData = UserDefaults.standard.data(forKey: cacheKey),
-               let cachedResources = try? JSONDecoder().decode([Resource].self, from: cachedData),
-               let timestamp = UserDefaults.standard.object(forKey: "\(cacheKey)_timestamp") as? Date,
-               Date().timeIntervalSince(timestamp) < 30 * 24 * 60 * 60 {  // 30天有效期
-                print("📦 使用缓存的资源列表")
-                return Just(cachedResources)
-                    .setFailureType(to: Error.self)
-                    .eraseToAnyPublisher()
-            }
-        }
-        
         var components = URLComponents(string: "\(baseURL)/resources")!
         var queryItems = [
             URLQueryItem(name: "language", value: self.language),
@@ -83,55 +85,39 @@ class NetworkManager: NSObject, URLSessionDelegate {
         }
         components.queryItems = queryItems
 
-        guard let url = components.url else {
-            return Fail(error: NetworkError.invalidURL).eraseToAnyPublisher()
-        }
-
-        return session.dataTaskPublisher(for: url)
-            .map(\.data)
+        guard let url = components.url else { isLoading = false; return }
+        session.dataTaskPublisher(for: url)
+            .map(\ .data)
             .decode(type: APIResponse<[Resource]>.self, decoder: JSONDecoder())
-            .map { response in
-                // 缓存资源内容
-                for resource in response.data {
-                    ResourceCache.shared.cacheContent(
-                        resource.localizedContent,
-                        for: resource.resourceId,
-                        language: self.language
-                    )
-                }
-                
-                // 缓存资源列表
-                if let encodedData = try? JSONEncoder().encode(response.data) {
-                    UserDefaults.standard.set(encodedData, forKey: cacheKey)
-                    UserDefaults.standard.set(Date(), forKey: "\(cacheKey)_timestamp")
-                    print("💾 缓存资源列表")
-                }
-                
-                return response.data
-            }
-            .catch { error in
-                // 如果网络请求失败，且不是强制刷新，尝试使用缓存
-                if !forceRefresh {
-                    if let cachedData = UserDefaults.standard.data(forKey: cacheKey),
-                       let cachedResources = try? JSONDecoder().decode([Resource].self, from: cachedData) {
-                        print("⚠️ 网络请求失败，使用过期的缓存数据")
-                        return Just(cachedResources)
-                            .setFailureType(to: Error.self)
-                            .eraseToAnyPublisher()
-                    }
-                }
-                return Fail(error: error).eraseToAnyPublisher()
-            }
-            .mapError { error in
-                if error is DecodingError {
-                    print("解码错误: \(error)")
-                    return NetworkError.decodingError
+            .map { $0.data }
+            .replaceError(with: [])
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] newResources in
+                guard let self = self else { return }
+                if isRefresh {
+                    self.resources = newResources
                 } else {
-                    print("网络错误: \(error)")
-                    return NetworkError.serverError(error.localizedDescription)
+                    self.resources += newResources
                 }
+                self.currentPage = page
+                self.hasMore = !newResources.isEmpty
+                self.saveCache()
+                self.isLoading = false
             }
-            .eraseToAnyPublisher()
+            .store(in: &cancellables)
+    }
+    
+    // 本地缓存
+    private func saveCache() {
+        if let data = try? JSONEncoder().encode(resources) {
+            UserDefaults.standard.set(data, forKey: "resource_cache")
+        }
+    }
+    private func loadCache() {
+        if let data = UserDefaults.standard.data(forKey: "resource_cache"),
+           let cached = try? JSONDecoder().decode([Resource].self, from: data) {
+            self.resources = cached
+        }
     }
     
     // 获取单个资源
@@ -150,7 +136,7 @@ class NetworkManager: NSObject, URLSessionDelegate {
             .decode(type: APIResponse<Resource>.self, decoder: JSONDecoder())
             .map { response in
                 // 缓存资源内容
-                ResourceCache.shared.cacheContent(
+                ResourceCacheManager.shared.cacheContent(
                     response.data.localizedContent,
                     for: response.data.resourceId,
                     language: self.language
@@ -170,21 +156,22 @@ class NetworkManager: NSObject, URLSessionDelegate {
     }
     
     // 删除资源
-    func deleteResource(resourceId: String) -> AnyPublisher<Void, Error> {
+    func deleteResource(resourceId: String) async throws -> APIResponse<[String: String]> {
         guard let url = URL(string: "\(baseURL)/resources/\(resourceId)") else {
-            return Fail(error: NetworkError.invalidURL).eraseToAnyPublisher()
+            throw NetworkError.invalidURL
         }
         
         var request = URLRequest(url: url)
         request.httpMethod = "DELETE"
         
-        return session.dataTaskPublisher(for: request)
-            .map { _ in () }
-            .mapError { error in
-                print("删除资源失败: \(error)")
-                return NetworkError.serverError(error.localizedDescription)
-            }
-            .eraseToAnyPublisher()
+        let (data, _) = try await session.data(for: request)
+        
+        // 打印原始响应数据
+        if let jsonString = String(data: data, encoding: .utf8) {
+            print("📦 服务端原始响应: \(jsonString)")
+        }
+        
+        return try JSONDecoder().decode(APIResponse<[String: String]>.self, from: data)
     }
     
     // 获取剧集列表

@@ -4,7 +4,7 @@ import SwiftUI
 
 class AudioLibraryViewModel: ObservableObject {
     @Published var resources: [Resource] = []
-   
+    @Published var resourceProgresses: [String: Double] = [:]
     @Published var selectedCategory: String = "全部"
     @Published var searchQuery: String = ""
     @Published var hasMorePages = true
@@ -20,6 +20,18 @@ class AudioLibraryViewModel: ObservableObject {
     private var searchTask: Task<Void, Never>?
     
     init() {
+        NetworkManager.shared.$resources
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] resources in
+                print("AudioLibraryViewModel 收到的资源：", resources.count)
+                self?.resources = resources
+                self?.isLoading = false
+                // 批量获取进度
+                self?.resourceProgresses = PlaybackProgressManager.shared.getProgresses(
+                    for: resources.map { $0.resourceId }
+                )
+            }
+            .store(in: &cancellables)
         loadResources()
     }
     
@@ -33,41 +45,24 @@ class AudioLibraryViewModel: ObservableObject {
     private func loadResources() async {
         isLoading = true
         error = nil
-        
-        NetworkManager.shared.fetchResources(
-            page: currentPage,
+
+        NetworkManager.shared.refreshResources(
+            pageSize: 20,
             category: selectedCategory == "全部" ? nil : selectedCategory,
-            searchQuery: searchQuery.isEmpty ? nil : searchQuery,
-            forceRefresh: true
+            searchQuery: searchQuery.isEmpty ? nil : searchQuery
         )
-        .receive(on: DispatchQueue.main)
-        .sink { [weak self] completion in
-            self?.isLoading = false
-            if case .failure(let error) = completion {
-                print("❌ 加载资源失败: \(error)")
-                self?.error = error
-            } else {
-                print("✅ 加载资源完成")
-            }
-        } receiveValue: { [weak self] resources in
-            print("✅ 收到资源数据: \(resources.count) 个资源")
-            for resource in resources {
-                if let episodes = resource.episodes {
-                    for episode in episodes {
-                        print("episodeNumber:", episode.episodeNumber, "name:", episode.localizedName)
-                    }
-                }
-            }
-            self?.resources = resources
-            self?.hasMorePages = !resources.isEmpty
-        }
-        .store(in: &cancellables)
     }
     
     func refreshResources() {
         Task { @MainActor in
             await loadResources()
         }
+    }
+    
+    func refreshProgresses() {
+        resourceProgresses = PlaybackProgressManager.shared.getProgresses(
+            for: resources.map { $0.resourceId }
+        )
     }
     
     func searchResources(query: String) {
@@ -92,5 +87,28 @@ class AudioLibraryViewModel: ObservableObject {
     func selectResource(_ resource: Resource) {
         selectedResource = resource
         showingResourceDetail = true
+    }
+    
+    // 删除资源
+    func deleteResource(_ resource: Resource) {
+        Task { @MainActor in
+            do {
+                print("🗑️ 开始删除资源: \(resource.name) (ID: \(resource.resourceId))")
+                let response = try await NetworkManager.shared.deleteResource(resourceId: resource.resourceId)
+                print("📦 服务端返回内容: \(response)")
+                
+                if response.success {
+                    // 从本地列表中移除
+                    resources.removeAll { $0.id == resource.id }
+                    print("📋 从本地列表中移除资源")
+                } else {
+                    print("❌ 删除失败: \(response.message)")
+                    self.error = NetworkError.serverError(response.message)
+                }
+            } catch {
+                print("❌ 删除资源失败: \(error)")
+                self.error = error
+            }
+        }
     }
 } 

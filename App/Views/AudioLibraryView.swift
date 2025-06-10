@@ -29,10 +29,11 @@ private enum Constants {
 // MARK: - AudioLibraryView
 struct AudioLibraryView: View {
     @StateObject private var viewModel = AudioLibraryViewModel()
-    @EnvironmentObject private var audioManager: AudioManager
+    @StateObject private var playerController = DualStreamPlayerController.shared
     @Binding var selectedTab: Int
     @State private var showEpisodeList = false
     @State private var guardianViewItem: GuardianViewItem?
+    @State private var guardianModeViewModel: GuardianModeSelectionViewModel?
     
     var body: some View {
         NavigationView {
@@ -57,7 +58,7 @@ struct AudioLibraryView: View {
                         
                         Button(action: {
                             Task {
-                                await viewModel.refreshResources()
+                                viewModel.refreshResources()
                             }
                         }) {
                             Text("重试")
@@ -106,23 +107,29 @@ struct AudioLibraryView: View {
                     }
                 }
             }
-            .navigationBarTitle("音频库", displayMode: .inline)
             .refreshable {
                 print("🔄 正在更新资源列表...")
-                await viewModel.refreshResources()
+                viewModel.refreshResources()
             }
             .sheet(isPresented: $showEpisodeList) {
                 if let resource = viewModel.selectedResource {
                     EpisodeListView(resource: resource, selectedTab: $selectedTab)
-                        .environmentObject(audioManager)
                 }
             }
             .sheet(item: $guardianViewItem) { item in
                 if let resource = viewModel.selectedResource {
-                    GuardianModeSelectionView(resource: resource, episode: nil, selectedTab: $selectedTab)
-                        .environmentObject(GuardianManager.shared)
-                        .environmentObject(AudioManager.shared)
-                        .presentationDetents([.medium])
+                    GuardianModeSelectionView(
+                        resource: resource,
+                        episode: nil,
+                        selectedTab: $selectedTab,
+                        onModeSelected: { mode in
+                            // 设置播放列表并开始播放
+                            PlaylistController.shared.setPlaylist(viewModel.resources)
+                            PlaylistController.shared.play(resource)
+                        }
+                    )
+                    .environmentObject(GuardianController.shared)
+                    .presentationDetents([.medium])
                 }
             }
         }
@@ -141,6 +148,16 @@ struct AudioLibraryView: View {
             viewModel.selectedResource = resource
             showEpisodeList = true
         }
+    }
+    
+    private func onResourceSelected(_ resource: Resource) {
+        viewModel.selectedResource = resource
+        // 创建 GuardianModeSelectionViewModel
+        guardianModeViewModel = GuardianModeSelectionViewModel(
+            resource: resource,
+            episode: nil,
+            guardianManager: GuardianController.shared
+        )
     }
 }
 
@@ -202,8 +219,11 @@ struct ResourceCard: View {
     @State private var image: UIImage?
     @State private var isLoading = true
     @State private var loadError = false
-    @EnvironmentObject private var audioManager: AudioManager
-
+    @StateObject private var playerController = DualStreamPlayerController.shared
+    @State private var showActionSheet = false
+    @StateObject private var viewModel = AudioLibraryViewModel()
+    @State private var showDeleteAlert = false
+    
     var body: some View {
         Button(action: {
             onTap()
@@ -237,54 +257,54 @@ struct ResourceCard: View {
                     Text(resource.name)
                         .font(.headline)
                         .foregroundColor(.white)
+                        .lineLimit(2)
                     
                     Text(resource.description)
                         .font(.subheadline)
                         .foregroundColor(.gray)
                         .lineLimit(2)
                     
-                    HStack {
-                        HStack(spacing: 4) {
-                            Image(systemName: "play.fill")
-                            Text("\(resource.globalPlaybackCount)")
-                        }
-                        .foregroundColor(.gray)
-                        
-                        Spacer()
-                        
-                        HStack(spacing: 4) {
-                            Image(systemName: "list.bullet")
-                            Text(resource.resourceType == .tracklistAlbum ? "\(resource.episodeCount)个音轨" : "\(resource.episodeCount)集")
-                        }
-                        .foregroundColor(.gray)
+                    // 添加进度条
+                    if let progress = viewModel.resourceProgresses[resource.resourceId] {
+                        ProgressView(value: progress, total: Double(resource.totalDurationSeconds))
+                            .progressViewStyle(LinearProgressViewStyle())
+                            .tint(.blue)
                     }
-                    .font(.caption)
                 }
                 .padding()
-                .background(Color(red: 0.1, green: 0.1, blue: 0.1))
-                
-                // 播放进度条（仅对单集资源显示）
-                if resource.isSingleEpisode {
-                    GeometryReader { geometry in
-                        ZStack(alignment: .leading) {
-                            Rectangle()
-                                .fill(Color.gray.opacity(0.3))
-                                .frame(height: 2)
-                            Rectangle()
-                                .fill(Color.red)
-                                .frame(width: geometry.size.width * CGFloat(audioManager.getPlayProgress(for: resource)), height: 2)
-                        }
-                    }
-                    .frame(height: 2)
-                }
+                .background(Constants.Colors.resourceRowBackground)
             }
-            .background(Color(red: 0.1, green: 0.1, blue: 0.1))
-            .cornerRadius(12)
+            .cornerRadius(Constants.Layout.cornerRadius)
             .shadow(radius: 5)
         }
         .buttonStyle(PlainButtonStyle())
         .onAppear {
             loadImage()
+        }
+        .confirmationDialog("管理资源", isPresented: $showActionSheet) {
+            Button("删除资源", role: .destructive) {
+                showDeleteAlert = true
+            }
+            
+            Button("添加标签") {
+                // TODO: 实现添加标签功能
+            }
+            
+            Button("设置 Rank 值") {
+                // TODO: 实现设置 Rank 值功能
+            }
+            
+            Button("取消", role: .cancel) {}
+        } message: {
+            Text(resource.name)
+        }
+        .alert("确认删除", isPresented: $showDeleteAlert) {
+            Button("取消", role: .cancel) {}
+            Button("删除", role: .destructive) {
+                viewModel.deleteResource(resource)
+            }
+        } message: {
+            Text("确定要删除{resource.name}吗？此操作不可撤销。")
         }
     }
     
@@ -333,6 +353,5 @@ struct ResourceCard: View {
 // MARK: - Preview
 #Preview {
     AudioLibraryView(selectedTab: .constant(0))
-        .environmentObject(AudioManager.shared)
-        .environmentObject(GuardianManager.shared)
+        .environmentObject(GuardianController.shared)
 } 

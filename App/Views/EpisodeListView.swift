@@ -8,9 +8,10 @@ struct EpisodeListView: View {
     @State private var isRefreshing = false
     @State private var selectedEpisode: Episode?
     @Binding var selectedTab: Int
-    @EnvironmentObject private var audioManager: AudioManager
-    @State private var scrollToCurrentEpisode = false
     @State private var guardianModeItem: GuardianModeItem?
+    @State private var showingGuardianModeSelection = false
+    @State private var selectModel: GuardianModeSelectionViewModel?
+    @EnvironmentObject private var guardianManager: GuardianController
     
     init(resource: Resource, selectedTab: Binding<Int>) {
         self.resource = resource
@@ -81,13 +82,7 @@ struct EpisodeListView: View {
                         
                         // 剧集列表
                         ForEach(viewModel.episodes) { episode in
-                            EpisodeRow(
-                                episode: episode,
-                                isPlaying: episode.id == audioManager.currentEpisode?.id
-                            ) {
-                                // 只设置当前资源和剧集，不播放
-                                audioManager.currentResource = resource
-                                audioManager.currentEpisode = episode
+                            EpisodeRow(episode: episode) {
                                 selectedEpisode = episode
                                 guardianModeItem = GuardianModeItem()
                             }
@@ -123,8 +118,7 @@ struct EpisodeListView: View {
             .navigationBarTitle(resource.name, displayMode: .inline)
             .sheet(item: $guardianModeItem) { _ in
                 GuardianModeSelectionView(resource: resource, episode: selectedEpisode, selectedTab: $selectedTab)
-                    .environmentObject(GuardianManager.shared)
-                    .environmentObject(AudioManager.shared)
+                    .environmentObject(GuardianController.shared)
                     .presentationDetents([.medium])
                     .onDisappear {
                         // 在守护模式选择界面消失后再关闭当前视图
@@ -132,6 +126,16 @@ struct EpisodeListView: View {
                     }
             }
         }
+    }
+    
+    private func showGuardianModeSelection(for episode: Episode) {
+        selectedEpisode = episode
+        selectModel = GuardianModeSelectionViewModel(
+            resource: resource,
+            episode: episode,
+            guardianManager: GuardianController.shared
+        )
+        showingGuardianModeSelection = true
     }
 }
 
@@ -261,10 +265,7 @@ struct ResourceHeaderView: View {
 
 struct EpisodeRow: View {
     let episode: Episode
-    let isPlaying: Bool
     let onTap: () -> Void
-    @State private var isPressed = false
-    @EnvironmentObject private var audioManager: AudioManager
     
     var body: some View {
         Button(action: {
@@ -274,13 +275,13 @@ struct EpisodeRow: View {
                 // 集数标记
                 Text("\(episode.episodeNumber)")
                     .font(.system(size: 16, weight: .medium))
-                    .foregroundColor(isPlaying ? .white : .white)
+                    .foregroundColor(.white)
                     .frame(width: 24)
                 
                 VStack(alignment: .leading, spacing: 4) {
                     Text(episode.localizedName)
                         .font(.system(size: 16, weight: .medium))
-                        .foregroundColor(isPlaying ? .white : .white)
+                        .foregroundColor(.white)
                     
                     if let description = episode.localizedDescription, !description.isEmpty {
                         Text(description)
@@ -298,16 +299,10 @@ struct EpisodeRow: View {
                 }
                 
                 Spacer()
-                
-                // 播放状态指示器
-                if isPlaying {
-                    Image(systemName: "speaker.wave.2.fill")
-                        .foregroundColor(.white)
-                }
             }
             .padding(.vertical, 8)
             .padding(.horizontal, 16)
-            .background(isPlaying ? Color.accentColor.opacity(0.2) : Color.clear)
+            .background(Color.black)
             .cornerRadius(8)
         }
         .buttonStyle(PlainButtonStyle())

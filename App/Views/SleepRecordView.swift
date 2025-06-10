@@ -1,10 +1,9 @@
 import SwiftUI
 import Charts
-
+/*
 struct SleepRecordView: View {
-    @StateObject private var viewModel = SleepRecordViewModel()
     @State private var selectedDate = Date()
-    
+   
     var body: some View {
         NavigationView {
             ScrollView {
@@ -51,8 +50,9 @@ struct SleepRecordView: View {
             }
         }
     }
+    
 }
-
+*/
 struct SleepOverviewCard: View {
     let sleepData: SleepData
     
@@ -176,5 +176,5 @@ struct HeartRateChart: View {
 }
 
 #Preview {
-    SleepRecordView()
+   
 } 

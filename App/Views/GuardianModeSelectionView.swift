@@ -5,20 +5,20 @@ struct GuardianModeSelectionView: View {
     let episode: Episode?
     @StateObject private var viewModel: GuardianModeSelectionViewModel
     @Environment(\.dismiss) private var dismiss
-    @EnvironmentObject private var guardianManager: GuardianManager
-    @EnvironmentObject private var audioManager: AudioManager
+    @EnvironmentObject private var guardianManager: GuardianController
     @Binding var selectedTab: Int
     @State private var guardianViewItem: GuardianViewItem?
+    var onModeSelected: ((GuardianMode) -> Void)?
     
-    init(resource: Resource, episode: Episode? = nil, selectedTab: Binding<Int>) {
+    init(resource: Resource, episode: Episode? = nil, selectedTab: Binding<Int>, onModeSelected: ((GuardianMode) -> Void)? = nil) {
         self.resource = resource
         self.episode = episode
         self._selectedTab = selectedTab
+        self.onModeSelected = onModeSelected
         _viewModel = StateObject(wrappedValue: GuardianModeSelectionViewModel(
             resource: resource,
             episode: episode,
-            guardianManager: GuardianManager.shared,
-            audioManager: AudioManager.shared
+            guardianManager: GuardianController.shared
         ))
     }
     
@@ -39,32 +39,32 @@ struct GuardianModeSelectionView: View {
             ScrollView {
                 VStack(spacing: 20) {
                     // 模式选择按钮
-                    ForEach(GuardianMode.allModes, id: \.self) { mode in
+                    ForEach(GuardianMode.allCases, id: \.self) { mode in
                         Button(action: {
                             selectedTab = 1  // 切换到守护睡眠页面
                             dismiss()  // 先关闭当前视图
                             DispatchQueue.main.async {
+                                // 先选择模式
                                 viewModel.selectMode(mode)
+                                // 然后触发回调
+                                onModeSelected?(mode)
                             }
                         }) {
                             HStack {
-                                Image(systemName: mode.icon)
+                                // 可选：根据模式显示不同图标
+                                Image(systemName: mode == .smartDetection ? "brain.head.profile" : (mode == .unlimited ? "infinity" : "timer"))
                                     .font(.title2)
                                     .foregroundColor(.white)
                                     .frame(width: 40)
-                                
                                 VStack(alignment: .leading, spacing: 4) {
                                     Text(mode.displayTitle)
                                         .font(.headline)
                                         .foregroundColor(.white)
-                                    
                                     Text(mode.displayDescription)
                                         .font(.subheadline)
                                         .foregroundColor(.gray)
                                 }
-                                
                                 Spacer()
-                                
                                 Image(systemName: "chevron.right")
                                     .foregroundColor(.gray)
                             }
@@ -79,14 +79,14 @@ struct GuardianModeSelectionView: View {
         }
         .background(Color.black)
         .cornerRadius(16, corners: [.topLeft, .topRight])
-        .sheet(item: $guardianViewItem) { _ in
+    /*    .sheet(item: $guardianViewItem) { _ in
             GuardianView()
-                .environmentObject(GuardianManager.shared)
-                .environmentObject(AudioManager.shared)
+                .environmentObject(GuardianController.shared)
         }
+     */
     }
 }
-
+/*
 // 用于设置特定圆角的扩展
 extension View {
     func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
@@ -103,7 +103,7 @@ struct RoundedCorner: Shape {
         return Path(path.cgPath)
     }
 }
-
+*/
 // 选项按钮
 struct GuardianModeButton: View {
     let mode: GuardianMode
@@ -114,11 +114,11 @@ struct GuardianModeButton: View {
         Button(action: action) {
             HStack {
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(mode.title)
+                    Text(mode.displayTitle)
                         .font(.body)
                         .foregroundColor(.primary)
                     
-                    Text(mode.description)
+                    Text(mode.displayDescription)
                         .font(.caption)
                         .foregroundColor(.secondary)
                 }
@@ -135,51 +135,6 @@ struct GuardianModeButton: View {
         }
         .buttonStyle(PlainButtonStyle())
         Divider()
-    }
-}
-
-// 更新 GuardianMode 枚举
-extension GuardianMode {
-    static var allCases: [GuardianMode] {
-        [
-            .smartDetection,
-            .timedClose(60),    // 1分钟
-            .timedClose(1800),  // 30分钟
-            .timedClose(3600),  // 1小时
-            .timedClose(7200)   // 2小时
-        ]
-    }
-    
-    var title: String {
-        switch self {
-        case .smartDetection:
-            return "检测入睡后暂停"
-        case .timedClose(let duration):
-            return "\(formatDuration(duration))后暂停"
-        case .unlimited:
-            return "整夜播放"
-        }
-    }
-    
-    var description: String {
-        switch self {
-        case .smartDetection:
-            return "App 将尝试检测您的入睡状态，并在您睡着后自动暂停播放"
-        case .timedClose:
-            return "音频将在指定时间后自动停止播放"
-        case .unlimited:
-            return "音频将持续播放直到您手动停止"
-        }
-    }
-    
-    private func formatDuration(_ seconds: TimeInterval) -> String {
-        let minutes = Int(seconds / 60)
-        if minutes >= 60 {
-            let hours = minutes / 60
-            return "\(hours)小时"
-        } else {
-            return "\(minutes)分钟"
-        }
     }
 }
 

@@ -5,6 +5,7 @@ struct Episode: Identifiable, Codable {
     let episodeNumber: Int
     let audioUrl: String
     let videoUrl: String?
+    let videoClipUrl: String?
     let durationSeconds: Int
     let localizedContent: EpisodeLocalizedContent
     let playbackCount: Int64
@@ -24,6 +25,7 @@ struct Episode: Identifiable, Codable {
         case episodeNumber
         case audioUrl
         case videoUrl
+        case videoClipUrl
         case durationSeconds
         case localizedContent
         case playbackCount
@@ -31,11 +33,12 @@ struct Episode: Identifiable, Codable {
         case endTime
     }
 
-    init(id: String, episodeNumber: Int, audioUrl: String, videoUrl: String?, durationSeconds: Int, localizedContent: EpisodeLocalizedContent, playbackCount: Int64, startTime: Int? = nil, endTime: Int? = nil) {
+    init(id: String, episodeNumber: Int, audioUrl: String, videoUrl: String?, videoClipUrl: String? = nil, durationSeconds: Int, localizedContent: EpisodeLocalizedContent, playbackCount: Int64, startTime: Int? = nil, endTime: Int? = nil) {
         self.id = id
         self.episodeNumber = episodeNumber
         self.audioUrl = audioUrl
         self.videoUrl = videoUrl
+        self.videoClipUrl = videoClipUrl
         self.durationSeconds = durationSeconds
         self.localizedContent = localizedContent
         self.playbackCount = playbackCount

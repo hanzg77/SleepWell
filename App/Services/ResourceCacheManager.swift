@@ -1,7 +1,7 @@
 import Foundation
 
-class ResourceCache {
-    static let shared = ResourceCache()
+class ResourceCacheManager {
+    static let shared = ResourceCacheManager()
     private var cache: [String: [String: LocalizedContent]] = [:] // resourceId: [language: content]
     
     private init() {}

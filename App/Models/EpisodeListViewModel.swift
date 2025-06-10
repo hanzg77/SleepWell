@@ -28,14 +28,8 @@ class EpisodeListViewModel: ObservableObject {
         isLoading = true
         currentPage = 1
         // 直接从 resource.episodes 获取剧集
-        let allEpisodes: [Episode]
-        if let episodes = resource.episodes, !episodes.isEmpty {
-            allEpisodes = episodes
-        } else if resource.isSingleEpisode {
-            allEpisodes = [resource.createSingleEpisode()]
-        } else {
-            allEpisodes = []
-        }
+        let allEpisodes = resource.episodes
+
         // 分页
         let startIndex = (currentPage - 1) * pageSize
         let endIndex = min(startIndex + pageSize, allEpisodes.count)
@@ -54,14 +48,9 @@ class EpisodeListViewModel: ObservableObject {
         guard !isLoading, hasMorePages else { return }
         isLoading = true
         currentPage += 1
-        let allEpisodes: [Episode]
-        if let episodes = resource.episodes, !episodes.isEmpty {
-            allEpisodes = episodes
-        } else if resource.isSingleEpisode {
-            allEpisodes = [resource.createSingleEpisode()]
-        } else {
-            allEpisodes = []
-        }
+        
+        let allEpisodes = resource.episodes
+
         let startIndex = (currentPage - 1) * pageSize
         let endIndex = min(startIndex + pageSize, allEpisodes.count)
         if startIndex < allEpisodes.count {
