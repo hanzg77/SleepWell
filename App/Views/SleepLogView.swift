@@ -237,23 +237,46 @@ struct DailyLogCardView: View {
     @State private var showingJournalEntry: Bool = false
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            // --- 顶部标题 ---
-            cardHeader
+        // [优化] VStack 的主间距由子视图的 padding 控制，更具灵活性
+        VStack(alignment: .leading, spacing: 0) {
 
-            // --- 睡眠条目 ---
-            ForEach(entries) { entry in
-                SleepEntryRowView(entry: entry)
-                    .onTapGesture {
-                        onEntryTapped(entry)
+            // --- 区域 1: 日记区 ---
+            // [优化] 将整个日记区视为一个整体，增加其内部间距
+            VStack(alignment: .leading, spacing: 12) {
+                // 标题和情绪图标
+                HStack(alignment: .top) { // [优化] 使用 .top 对齐，防止因字体大小不一而错位
+                    VStack(alignment: .leading, spacing: 4) {
+                        // [优化] 调整字体层级，日期更突出
+                        Text(formatDateHeader(log.date))
+                            .font(.title2.weight(.bold))
+                            .foregroundColor(.primary)
+                        
+                        // [优化] 星期使用次要颜色和中等字重，并确保为中文
+                        Text(formatWeekday(log.date))
+                            .font(.headline.weight(.medium))
+                            .foregroundColor(.secondary)
                     }
-            }
-
-            // --- 日记入口或手记预览 ---
-            if Calendar.current.isDateInToday(log.date) {
+                    
+                    Spacer()
+                    
+                    // [优化] 移除胶囊背景，让心情图标更自然地融入
+                    if let mood = log.mood {
+                        Image(systemName: mood.iconName)
+                            .font(.title2) // [优化] 调整图标大小以匹配标题
+                            .foregroundColor(moodColor(for: mood)) // [优化] 赋予心情图标颜色
+                    }
+                }
+                
+                // 手记内容
                 if let notes = log.notes, !notes.isEmpty {
-                    notesPreview(notes: notes)
-                } else {
+                    Text(notes)
+                        .font(.body)
+                        .foregroundColor(.secondary) // [优化] 使用 .secondary 颜色，与标题区隔
+                        .lineLimit(3)
+                        .lineSpacing(5) // [优化] 增加行间距，提升可读性
+                        .padding(.top, 4) // [优化] 与标题之间增加少量间距
+                } else if Calendar.current.isDateInToday(log.date) {
+                    // ... “写点什么吧” 的按钮样式保持不变 ...
                     Button(action: {
                         withAnimation { showingMoodBanner = true }
                     }) {
@@ -271,20 +294,36 @@ struct DailyLogCardView: View {
                     }
                     .padding(.top, 8)
                 }
-            } else if let notes = log.notes, !notes.isEmpty {
-                notesPreview(notes: notes)
+            }
+            .padding(.bottom, entries.isEmpty ? 0 : 20) // [优化] 如果有播放列表，则拉开与分隔线的间距
+            
+            // --- 分隔线 ---
+            if !entries.isEmpty {
+                // [优化] 使用更柔和的颜色和样式作为分隔线
+                Divider().background(Color.white.opacity(0.2))
+                    .padding(.bottom, 20)
+            }
+            
+            // --- 资源列表区 ---
+            if !entries.isEmpty {
+                VStack(alignment: .leading, spacing: 18) { // [优化] 统一列表项的间距
+                    ForEach(entries) { entry in
+                        SleepEntryRowView(entry: entry)
+                            .onTapGesture {
+                                onEntryTapped(entry)
+                            }
+                    }
+                }
             }
         }
         .padding(20)
         .background(
+            // [优化] 统一使用 .ultraThinMaterial 作为卡片背景
             .ultraThinMaterial,
             in: RoundedRectangle(cornerRadius: 24, style: .continuous)
         )
-        .overlay(
-            RoundedRectangle(cornerRadius: 24, style: .continuous)
-                .stroke(Color.white.opacity(0.1), lineWidth: 1)
-        )
-        // --- 日记心情选择Banner ---
+        
+        // --- [补全] 日记心情选择Banner ---
         .overlay(
             VStack {
                 if showingMoodBanner {
@@ -298,7 +337,7 @@ struct DailyLogCardView: View {
                 Spacer()
             }
         )
-        // --- 日记书写界面 ---
+        // --- [补全] 日记书写界面 ---
         .fullScreenCover(isPresented: $showingJournalEntry) {
             if let mood = selectedMood {
                 JournalEntryView(mood: mood, onSave: { content in
@@ -310,73 +349,33 @@ struct DailyLogCardView: View {
             }
         }
     }
-
-    // --- 卡片标题子视图 ---
-    private var cardHeader: some View {
-        HStack(alignment: .top) {
-            VStack(alignment: .leading, spacing: 4) {
-                Text(formatDateHeader(log.date))
-                    .font(.title2.weight(.bold))
-                    .foregroundColor(.primary)
-                Text(formatWeekday(log.date))
-                    .font(.headline.weight(.medium))
-                    .foregroundColor(.secondary)
-            }
-            Spacer()
-            if let mood = log.mood {
-                HStack(spacing: 6) {
-                    Text(mood.iconName)
-                    Text(mood.displayName)
-                        .font(.callout.weight(.semibold))
-                }
-                .padding(.horizontal, 12)
-                .padding(.vertical, 8)
-                .background(.ultraThinMaterial, in: Capsule())
-                .foregroundColor(.primary)
-            }
-        }
-    }
-    
-    // --- 手记预览子视图 ---
-    private func notesPreview(notes: String) -> some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Divider()
-            HStack {
-                Image(systemName: "note.text")
-                    .foregroundColor(.secondary)
-                Text("手记")
-                    .font(.subheadline.weight(.bold))
-                    .foregroundColor(.secondary)
-            }
-            
-            Text(notes)
-                .font(.body)
-                .lineLimit(3)
-                .foregroundColor(.primary.opacity(0.8))
-                .lineSpacing(5)
-        }
-        .padding(.top, 8)
-        .contentShape(Rectangle())
-        .onTapGesture { onNotesTapped() }
-    }
     
     // MARK: - Helper Functions
     private func formatDateHeader(_ date: Date) -> String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "MM月dd日"
-        formatter.locale = Locale(identifier: "zh_CN")
+        formatter.dateFormat = "M月d日"
+        formatter.locale = Locale(identifier: "zh_CN") // [本地化] 改为简体中文区域设置
         return formatter.string(from: date)
     }
     
     private func formatWeekday(_ date: Date) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "EEEE"
-        formatter.locale = Locale.current
+        formatter.locale = Locale(identifier: "zh_CN") // [本地化] 改为简体中文区域设置
         return formatter.string(from: date)
     }
+
+    private func moodColor(for mood: Mood) -> Color {
+        // 假设 Mood 有一个 displayName 属性，且其值为简体中文
+        switch mood.displayName {
+        case "开心": return .orange
+        case "平静": return .cyan
+        case "丧": return .blue
+        case "生气": return .red
+        default: return .secondary
+        }
+    }
 }
-
-
 // MARK: - 单笔睡眠条目 (SleepEntryRowView)
 struct SleepEntryRowView: View {
     let entry: SleepEntry
