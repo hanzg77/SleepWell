@@ -22,7 +22,19 @@ class SleepLogManager: ObservableObject {
                 newLog.entries = log.entries.filter { $0.duration >= 300 }
                 return newLog
             }.filter { !$0.entries.isEmpty } // 只保留有有效 entry 的日志
-            dailyLogs = filteredLogs
+            
+            // 按日期倒序排序
+            let sortedLogs = filteredLogs.sorted(by: { $0.date > $1.date })
+            
+            // 检查第一个记录是否是今天的
+            let today = Calendar.current.startOfDay(for: Date())
+            if let firstLog = sortedLogs.first, Calendar.current.isDate(firstLog.date, inSameDayAs: today) {
+                dailyLogs = sortedLogs
+            } else {
+                // 如果没有今天的记录，添加一个默认的今日记录
+                let defaultLog = DailySleepLog(date: today, entries: [], mood: nil, notes: nil)
+                dailyLogs = [defaultLog] + sortedLogs
+            }
         }
     }
     

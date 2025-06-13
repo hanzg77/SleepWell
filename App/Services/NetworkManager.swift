@@ -283,6 +283,80 @@ class NetworkManager: NSObject, URLSessionDelegate, ObservableObject {
             }
             .eraseToAnyPublisher()
     }
+    
+    // MARK: - 标签管理
+    
+    /// 为资源添加标签
+    /// - Parameters:
+    ///   - resourceId: 资源ID
+    ///   - tags: 要添加的标签数组
+    ///   - completion: 完成回调
+    func addTags(to resourceId: String, tags: [String], completion: @escaping (Result<Void, Error>) -> Void) {
+        guard let url = URL(string: "\(baseURL)/resources/\(resourceId)/tags") else {
+            completion(.failure(NetworkError.invalidURL))
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        request.httpBody = try? JSONSerialization.data(withJSONObject: tags)
+        
+        session.dataTask(with: request) { data, response, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            guard let httpResponse = response as? HTTPURLResponse else {
+                completion(.failure(NetworkError.invalidResponse))
+                return
+            }
+            
+            if (200...299).contains(httpResponse.statusCode) {
+                completion(.success(()))
+            } else {
+                completion(.failure(NetworkError.serverError("\(httpResponse.statusCode)")))
+            }
+        }.resume()
+    }
+    
+    /// 从资源中移除标签
+    /// - Parameters:
+    ///   - resourceId: 资源ID
+    ///   - tags: 要移除的标签数组
+    ///   - completion: 完成回调
+    func removeTags(from resourceId: String, tags: [String], completion: @escaping (Result<Void, Error>) -> Void) {
+        guard let url = URL(string: "\(baseURL)/resources/\(resourceId)/tags") else {
+            completion(.failure(NetworkError.invalidURL))
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "DELETE"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        request.httpBody = try? JSONSerialization.data(withJSONObject: tags)
+        
+        session.dataTask(with: request) { data, response, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            guard let httpResponse = response as? HTTPURLResponse else {
+                completion(.failure(NetworkError.invalidResponse))
+                return
+            }
+            
+            if (200...299).contains(httpResponse.statusCode) {
+                completion(.success(()))
+            } else {
+                completion(.failure(NetworkError.serverError("\(httpResponse.statusCode)")))
+            }
+        }.resume()
+    }
 }
 
 // 删除不再需要的响应模型

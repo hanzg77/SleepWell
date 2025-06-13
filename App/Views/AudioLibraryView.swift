@@ -34,6 +34,8 @@ struct AudioLibraryView: View {
     @State private var showEpisodeList = false
     @State private var guardianViewItem: GuardianViewItem?
     @State private var guardianModeViewModel: GuardianModeSelectionViewModel?
+    @State private var showAdminView = false
+    @State private var selectedResource: Resource?
     
     var body: some View {
         NavigationView {
@@ -132,6 +134,11 @@ struct AudioLibraryView: View {
                     .presentationDetents([.medium])
                 }
             }
+            .sheet(isPresented: $showAdminView) {
+                if let resource = selectedResource {
+                    AdminView(resource: resource)
+                }
+            }
         }
     }
     
@@ -148,16 +155,6 @@ struct AudioLibraryView: View {
             viewModel.selectedResource = resource
             showEpisodeList = true
         }
-    }
-    
-    private func onResourceSelected(_ resource: Resource) {
-        viewModel.selectedResource = resource
-        // 创建 GuardianModeSelectionViewModel
-        guardianModeViewModel = GuardianModeSelectionViewModel(
-            resource: resource,
-            episode: nil,
-            guardianManager: GuardianController.shared
-        )
     }
 }
 
@@ -223,11 +220,10 @@ struct ResourceCard: View {
     @State private var showActionSheet = false
     @StateObject private var viewModel = AudioLibraryViewModel()
     @State private var showDeleteAlert = false
+    @State private var showAdminView = false
     
     var body: some View {
-        Button(action: {
-            onTap()
-        }) {
+        Button(action: onTap) {
             VStack(spacing: 0) {
                 // 封面图
                 ZStack {
@@ -256,13 +252,27 @@ struct ResourceCard: View {
                 VStack(alignment: .leading, spacing: 8) {
                     Text(resource.name)
                         .font(.headline)
-                        .foregroundColor(.white)
-                        .lineLimit(2)
+                        .lineLimit(1)
+                        .onLongPressGesture {
+                            showAdminView = true
+                        }
                     
-                    Text(resource.description)
-                        .font(.subheadline)
-                        .foregroundColor(.gray)
-                        .lineLimit(2)
+                    // 标签列表
+                    if !resource.tags.isEmpty {
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack(spacing: 4) {
+                                ForEach(resource.tags, id: \.self) { tag in
+                                    Text(tag)
+                                        .font(.caption)
+                                        .padding(.horizontal, 8)
+                                        .padding(.vertical, 4)
+                                        .background(Color.blue.opacity(0.1))
+                                        .foregroundColor(.blue)
+                                        .cornerRadius(4)
+                                }
+                            }
+                        }
+                    }
                     
                     // 添加进度条
                     if let progress = viewModel.resourceProgresses[resource.resourceId] {
@@ -305,6 +315,9 @@ struct ResourceCard: View {
             }
         } message: {
             Text("确定要删除{resource.name}吗？此操作不可撤销。")
+        }
+        .sheet(isPresented: $showAdminView) {
+            AdminView(resource: resource)
         }
     }
     
