@@ -74,12 +74,6 @@ struct AudioLibraryView: View {
                 } else {
                     ScrollView {
                         VStack(spacing: Constants.Layout.spacing) {
-                            // 搜索栏
-                            SearchBar(text: $viewModel.searchQuery)
-                                .onChange(of: viewModel.searchQuery) { newValue in
-                                    viewModel.searchResources(query: newValue)
-                                }
-                            
                             // 分类按钮
                             ScrollView(.horizontal, showsIndicators: false) {
                                 HStack(spacing: 12) {
@@ -98,7 +92,9 @@ struct AudioLibraryView: View {
                             
                             // 资源列表
                             LazyVStack(spacing: 20) {
-                                ForEach(viewModel.resources) { resource in
+                                ForEach(viewModel.resources.filter { resource in
+                                    viewModel.selectedCategory == "全部" || resource.tags.contains(viewModel.selectedCategory)
+                                }) { resource in
                                     ResourceCard(resource: resource) {
                                         handleResourceTap(resource)
                                     }

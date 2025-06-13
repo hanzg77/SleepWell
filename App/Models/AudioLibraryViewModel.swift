@@ -13,7 +13,22 @@ class AudioLibraryViewModel: ObservableObject {
     @Published var showingResourceDetail = false
     @Published var selectedResource: Resource?
     
-    let categories = ["全部", "白噪音", "冥想", "故事", "音乐", "自然"]
+    let categories = ["全部", "白噪声", "冥想", "故事", "音乐", "自然"]
+    
+    // 获取所有可用的标签
+    var availableTags: [String] {
+        Array(Set(resources.flatMap { $0.tags })).sorted()
+    }
+    
+    // 根据选中的标签过滤资源
+    func filteredResources(selectedTags: Set<String>) -> [Resource] {
+        if selectedTags.isEmpty {
+            return resources
+        }
+        return resources.filter { resource in
+            !Set(resource.tags).isDisjoint(with: selectedTags)
+        }
+    }
     
     private var currentPage = 1
     private var cancellables = Set<AnyCancellable>()

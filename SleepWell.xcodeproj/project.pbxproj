@@ -37,6 +37,7 @@
 		33BCDF8D2DF7F40100C0236C /* JournalEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BCDF8B2DF7F40100C0236C /* JournalEntryView.swift */; };
 		33BCDF8E2DF7F40100C0236C /* MoodSelectionBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BCDF8C2DF7F40100C0236C /* MoodSelectionBannerView.swift */; };
 		33BCDF912DF813AB00C0236C /* View+CornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BCDF8F2DF813AB00C0236C /* View+CornerRadius.swift */; };
+		33BCDF932DFA973C00C0236C /* AdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BCDF922DFA973C00C0236C /* AdminView.swift */; };
 		3E79184D94636495A1993FC8 /* SleepWellUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0AB2A31314E0E91DEA8B14 /* SleepWellUITestsLaunchTests.swift */; };
 		57DC5A2CB618C358B529E851 /* SleepMonitorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1048C6F8C1751A0E7CC70D2E /* SleepMonitorController.swift */; };
 		759423CEF2EDDD210E63B0B3 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457CEF3713C0BC4B2D86CF33 /* NetworkManager.swift */; };
@@ -101,6 +102,7 @@
 		33BCDF8B2DF7F40100C0236C /* JournalEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntryView.swift; sourceTree = "<group>"; };
 		33BCDF8C2DF7F40100C0236C /* MoodSelectionBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodSelectionBannerView.swift; sourceTree = "<group>"; };
 		33BCDF8F2DF813AB00C0236C /* View+CornerRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+CornerRadius.swift"; sourceTree = "<group>"; };
+		33BCDF922DFA973C00C0236C /* AdminView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminView.swift; sourceTree = "<group>"; };
 		350B7B3EAE512400348C271C /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		457CEF3713C0BC4B2D86CF33 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		458EED220ECC690478C86FDD /* SleepWellTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = SleepWellTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -213,6 +215,7 @@
 		D42AFB08312A5D6881B1A899 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				33BCDF922DFA973C00C0236C /* AdminView.swift */,
 				33BCDF8B2DF7F40100C0236C /* JournalEntryView.swift */,
 				33BCDF8C2DF7F40100C0236C /* MoodSelectionBannerView.swift */,
 				3375CD512DF55D6A008C3559 /* DatePickerView.swift */,
@@ -399,6 +402,7 @@
 				08CC7E520C665C374ACBA903 /* MediaPlayerController.swift in Sources */,
 				759423CEF2EDDD210E63B0B3 /* NetworkManager.swift in Sources */,
 				3375CD442DF30072008C3559 /* DualStreamPlayerView.swift in Sources */,
+				33BCDF932DFA973C00C0236C /* AdminView.swift in Sources */,
 				3375CD4D2DF497CD008C3559 /* SleepLogView.swift in Sources */,
 				3375CD422DF2F8EE008C3559 /* DualStreamPlayerController.swift in Sources */,
 				F0F2655C3B91560F9D07D720 /* Resource.swift in Sources */,
