@@ -1,5 +1,6 @@
 import Foundation
 import SwiftUI
+import Combine
 
 class SleepLogManager: ObservableObject {
     static let shared = SleepLogManager()

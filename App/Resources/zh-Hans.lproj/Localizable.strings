@@ -1,0 +1,126 @@
+/* 
+  Localizable.strings
+  SleepWell
+  
+  Chinese (Simplified) Localization
+*/
+
+// MARK: - Common
+"app.name" = "SleepWell";
+
+// MARK: - Tab Bar
+"tab.library" = "音景库";
+"tab.sleep" = "睡眠";
+"tab.journal" = "睡眠日记";
+"tab.settings" = "设置";
+
+// MARK: - Audio Library
+"library.title" = "睡眠岛";
+"library.search.placeholder" = "搜索";
+"library.empty" = "未找到任何资源";
+"library.loading" = "加载中...";
+"library.error" = "资源加载失败";
+"library.retry" = "重试";
+
+// MARK: - Categories
+"category.all" = "全部";
+"category.white_noise" = "白噪音";
+"category.meditation" = "冥想";
+"category.story" = "故事";
+"category.music" = "音乐";
+"category.nature" = "自然";
+
+// MARK: - Resource Details
+"resource.duration" = "%d 分钟";
+"resource.episodes" = "%d 集";
+"resource.play" = "播放";
+"resource.pause" = "暂停";
+"resource.stop" = "停止";
+"resource.delete" = "删除";
+"resource.delete.confirm" = "您确定要删除“%@”吗？";
+"resource.delete.success" = "资源删除成功";
+"resource.delete.failed" = "资源删除失败";
+
+// MARK: - Episode List
+"episode.title" = "剧集列表";
+"episode.duration" = "%d 分钟";
+"episode.empty" = "暂无剧集";
+
+// MARK: - Guardian Mode
+"guardian.title" = "守护模式";
+"guardian.select.mode" = "选择守护模式";
+"guardian.mode.sleep" = "睡眠模式";
+"guardian.mode.focus" = "专注模式";
+"guardian.mode.relax" = "放松模式";
+"guardian.mode.custom" = "自定义模式";
+"guardian.description.sleep" = "助您安然入睡";
+"guardian.description.focus" = "提高注意力和效率";
+"guardian.description.relax" = "减轻压力和焦虑";
+"guardian.description.custom" = "自定义您的专属体验";
+
+// MARK: - Player
+"player.now_playing" = "正在播放";
+"player.volume" = "音量";
+"player.speed" = "速度";
+"player.timer" = "睡眠定时器";
+"player.timer.off" = "关闭";
+"player.timer.minutes" = "%d 分钟";
+"player.background_volume" = "背景音量";
+"player.voice_volume" = "人声音量";
+
+// MARK: - Sleep Record
+"sleep.title" = "睡眠记录";
+"sleep.start" = "开始睡眠";
+"sleep.end" = "结束睡眠";
+"sleep.duration" = "睡眠时长";
+"sleep.quality" = "睡眠质量";
+"sleep.mood" = "心情";
+"sleep.note" = "备注";
+"sleep.save" = "保存";
+"sleep.history" = "睡眠历史";
+
+// MARK: - Mood
+"mood.great" = "很棒";
+"mood.good" = "不错";
+"mood.okay" = "一般";
+"mood.bad" = "不好";
+"mood.terrible" = "很糟";
+
+// MARK: - Journal
+"journal.title" = "睡眠日记";
+"journal.entry.new" = "新建日记";
+"journal.entry.edit" = "编辑日记";
+"journal.entry.delete" = "删除日记";
+"journal.entry.placeholder" = "写下您的睡眠体验...";
+"journal.empty" = "暂无日记条目";
+
+// MARK: - Settings
+"settings.title" = "设置";
+"settings.language" = "语言";
+"settings.theme" = "主题";
+"settings.theme.light" = "浅色";
+"settings.theme.dark" = "深色";
+"settings.theme.system" = "跟随系统";
+"settings.notification" = "通知";
+"settings.about" = "关于";
+"settings.version" = "版本 %@";
+"settings.privacy" = "隐私政策";
+"settings.terms" = "服务条款";
+
+// MARK: - Errors
+"error.network" = "网络错误";
+"error.server" = "服务器错误";
+"error.unknown" = "未知错误";
+"error.invalid_url" = "无效的URL";
+"error.no_data" = "未收到数据";
+"error.decoding" = "数据解析失败";
+
+// MARK: - Actions
+"action.ok" = "好";
+"action.cancel" = "取消";
+"action.delete" = "删除";
+"action.save" = "保存";
+"action.edit" = "编辑";
+"action.done" = "完成";
+"action.retry" = "重试";
+"action.confirm" = "确认";

@@ -12,6 +12,9 @@
 		1EA7A5517E8D739D9218DE73 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF902225B93ABD32D0673A6D /* ThemeManager.swift */; };
 		2A134E66CF7AE856C42D679E /* SleepWellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3227FB2332E3261A8F9DEEC /* SleepWellTests.swift */; };
 		308AB2FBB472CA269384A1F2 /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60588448336C0F969ECB079E /* Episode.swift */; };
+		3352D4782DFC8602005AA3BA /* LocalizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3352D4772DFC8602005AA3BA /* LocalizationManager.swift */; };
+		3352D4802DFC868C005AA3BA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3352D47E2DFC868C005AA3BA /* Localizable.strings */; };
+		3352D4822DFC8A92005AA3BA /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3352D4812DFC8A92005AA3BA /* SettingsView.swift */; };
 		3375CCE12DEE69EF008C3559 /* AudioLibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3375CCDC2DEE69EF008C3559 /* AudioLibraryView.swift */; };
 		3375CCE22DEE69EF008C3559 /* GuardianModeSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3375CCDE2DEE69EF008C3559 /* GuardianModeSelectionView.swift */; };
 		3375CCE32DEE69EF008C3559 /* GuardianView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3375CCDF2DEE69EF008C3559 /* GuardianView.swift */; };
@@ -76,6 +79,12 @@
 		2A0AB2A31314E0E91DEA8B14 /* SleepWellUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepWellUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		2D20095F3F945C92E9D00AC1 /* SleepWellUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepWellUITests.swift; sourceTree = "<group>"; };
 		2D6A917EE284FA23A2B64C21 /* MediaPlayerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPlayerController.swift; sourceTree = "<group>"; };
+		3352D4772DFC8602005AA3BA /* LocalizationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationManager.swift; sourceTree = "<group>"; };
+		3352D47A2DFC868C005AA3BA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3352D47B2DFC868C005AA3BA /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3352D47C2DFC868C005AA3BA /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		3352D47D2DFC868C005AA3BA /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		3352D4812DFC8A92005AA3BA /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		3375CCDC2DEE69EF008C3559 /* AudioLibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioLibraryView.swift; sourceTree = "<group>"; };
 		3375CCDD2DEE69EF008C3559 /* EpisodeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeListView.swift; sourceTree = "<group>"; };
 		3375CCDE2DEE69EF008C3559 /* GuardianModeSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianModeSelectionView.swift; sourceTree = "<group>"; };
@@ -125,6 +134,7 @@
 		040537A39CCBF1E1F6502A3D /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				3352D4772DFC8602005AA3BA /* LocalizationManager.swift */,
 				33BCDF812DF6E5FA00C0236C /* PlaybackProgressManager.swift */,
 				3375CD492DF4979D008C3559 /* SleepLogManager.swift */,
 				3375CD412DF2F8EE008C3559 /* DualStreamPlayerController.swift */,
@@ -148,6 +158,14 @@
 				2A0AB2A31314E0E91DEA8B14 /* SleepWellUITestsLaunchTests.swift */,
 			);
 			path = Tests;
+			sourceTree = "<group>";
+		};
+		3352D47F2DFC868C005AA3BA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3352D47E2DFC868C005AA3BA /* Localizable.strings */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		3375CD3E2DF03B96008C3559 /* Utils */ = {
@@ -215,6 +233,7 @@
 		D42AFB08312A5D6881B1A899 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3352D4812DFC8A92005AA3BA /* SettingsView.swift */,
 				33BCDF922DFA973C00C0236C /* AdminView.swift */,
 				33BCDF8B2DF7F40100C0236C /* JournalEntryView.swift */,
 				33BCDF8C2DF7F40100C0236C /* MoodSelectionBannerView.swift */,
@@ -236,6 +255,7 @@
 		DE962E97D66FE0C2D59E05F4 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				3352D47F2DFC868C005AA3BA /* Resources */,
 				33BCDF902DF813AB00C0236C /* Extensions */,
 				3375CD3E2DF03B96008C3559 /* Utils */,
 				350B7B3EAE512400348C271C /* App.swift */,
@@ -325,6 +345,9 @@
 			knownRegions = (
 				Base,
 				en,
+				"zh-Hans",
+				"zh-Hant",
+				ja,
 			);
 			mainGroup = D0B473DEC1A7A9A8E6E0E93B;
 			minimizedProjectReferenceProxies = 1;
@@ -344,6 +367,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				33BCDF862DF7729500C0236C /* Assets.xcassets in Resources */,
+				3352D4802DFC868C005AA3BA /* Localizable.strings in Resources */,
 				33BCDF882DF773BE00C0236C /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -387,6 +411,7 @@
 				3375CD402DF03BE2008C3559 /* NotificationNames.swift in Sources */,
 				3375CCEA2DEE6A06008C3559 /* AudioLibraryViewModel.swift in Sources */,
 				3375CCEB2DEE6A06008C3559 /* EpisodeListViewModel.swift in Sources */,
+				3352D4822DFC8A92005AA3BA /* SettingsView.swift in Sources */,
 				3375CCEC2DEE6A06008C3559 /* GuardianModeSelectionViewModel.swift in Sources */,
 				3375CCED2DEE6A06008C3559 /* SleepRecordViewModel.swift in Sources */,
 				3375CD372DF030F7008C3559 /* PlaylistController.swift in Sources */,
@@ -397,6 +422,7 @@
 				3375CD4A2DF4979D008C3559 /* SleepLogManager.swift in Sources */,
 				3375CCE32DEE69EF008C3559 /* GuardianView.swift in Sources */,
 				3375CCE42DEE69EF008C3559 /* EpisodeListView.swift in Sources */,
+				3352D4782DFC8602005AA3BA /* LocalizationManager.swift in Sources */,
 				3375CCE52DEE69EF008C3559 /* SleepRecordView.swift in Sources */,
 				DDE5E3DCC31976352E739645 /* MainTabView.swift in Sources */,
 				08CC7E520C665C374ACBA903 /* MediaPlayerController.swift in Sources */,
@@ -429,6 +455,20 @@
 			targetProxy = 9F9C1113964113C3DBBD0546 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		3352D47E2DFC868C005AA3BA /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3352D47A2DFC868C005AA3BA /* en */,
+				3352D47B2DFC868C005AA3BA /* ja */,
+				3352D47C2DFC868C005AA3BA /* zh-Hans */,
+				3352D47D2DFC868C005AA3BA /* zh-Hant */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		240E547829D840AD9EFC1497 /* Release */ = {

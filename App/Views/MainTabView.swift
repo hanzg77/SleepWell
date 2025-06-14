@@ -1,32 +1,47 @@
 import SwiftUI
-import SleepWell
+import Combine
 
 struct MainTabView: View {
     @State private var selectedTab = 0
     @StateObject private var playerController = DualStreamPlayerController.shared
     @StateObject private var logManager = SleepLogManager.shared
+    @StateObject private var localizationManager = LocalizationManager.shared
+    
+    // 🔥【關鍵修正】1. 新增一個用於觸發刷新的 @State 變數
+    @State private var viewUpdater = UUID()
     
     var body: some View {
         TabView(selection: $selectedTab) {
             AudioLibraryView(selectedTab: $selectedTab)
                 .tabItem {
-                    Label("音景", systemImage: "music.note.list")
+                    Image(systemName: "music.note.list")
+                    Text("tab.library".localized)
                 }
                 .tag(0)
             
             GuardianView()
                 .tabItem {
-                    Label("伴你入眠", systemImage: "moon.stars.fill")
+                    Image(systemName: "moon.stars")
+                    Text("tab.sleep".localized)
                 }
                 .tag(1)
             
             SleepLogView(selectedTab: $selectedTab)
                 .tabItem {
-                    Label("睡眠日记", systemImage: "person.fill")
+                    Image(systemName: "book")
+                    Text("tab.journal".localized)
                 }
                 .tag(2)
+            
+            SettingsView()
+                .tabItem {
+                    Image(systemName: "gearshape")
+                    Text("tab.settings".localized)
+                }
+                .tag(3)
         }
         .environmentObject(logManager)
+        .accentColor(.blue)
         .onAppear {
             updateTabBarAppearance()
         }
@@ -60,6 +75,11 @@ struct MainTabView: View {
         // 🔥【關鍵修正】使用 .toolbar 修饰符控制 TabBar 的显示
         .toolbar(selectedTab == 1 ? (!playerController.showControls ? .visible : .hidden) : .visible, for: .tabBar)
         .animation(.easeInOut(duration: 0.3), value: playerController.showControls)
+        .onReceive(NotificationCenter.default.publisher(for: Notification.Name("LanguageChanged"))) { _ in
+            // 强制刷新视图
+          //  objectWillChange.send()
+            self.viewUpdater = UUID()
+        }
     }
     
     private func updateTabBarAppearance() {

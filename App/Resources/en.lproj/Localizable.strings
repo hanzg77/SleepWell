@@ -1,0 +1,126 @@
+/* 
+  Localizable.strings
+  SleepWell
+  
+  English Localization
+*/
+
+// MARK: - Common
+"app.name" = "SleepWell";
+
+// MARK: - Tab Bar
+"tab.library" = "Library";
+"tab.sleep" = "Sleep";
+"tab.journal" = "Journal";
+"tab.settings" = "Settings";
+
+// MARK: - Audio Library
+"library.title" = "Audio Library";
+"library.search.placeholder" = "Search";
+"library.empty" = "No resources found";
+"library.loading" = "Loading...";
+"library.error" = "Failed to load resources";
+"library.retry" = "Retry";
+
+// MARK: - Categories
+"category.all" = "All";
+"category.white_noise" = "White Noise";
+"category.meditation" = "Meditation";
+"category.story" = "Story";
+"category.music" = "Music";
+"category.nature" = "Nature";
+
+// MARK: - Resource Details
+"resource.duration" = "%d min";
+"resource.episodes" = "%d episodes";
+"resource.play" = "Play";
+"resource.pause" = "Pause";
+"resource.stop" = "Stop";
+"resource.delete" = "Delete";
+"resource.delete.confirm" = "Are you sure you want to delete \"%@\"?";
+"resource.delete.success" = "Resource deleted successfully";
+"resource.delete.failed" = "Failed to delete resource";
+
+// MARK: - Episode List
+"episode.title" = "Episodes";
+"episode.duration" = "%d min";
+"episode.empty" = "No episodes";
+
+// MARK: - Guardian Mode
+"guardian.title" = "Guardian Mode";
+"guardian.select.mode" = "Select Guardian Mode";
+"guardian.mode.sleep" = "Sleep Mode";
+"guardian.mode.focus" = "Focus Mode";
+"guardian.mode.relax" = "Relax Mode";
+"guardian.mode.custom" = "Custom Mode";
+"guardian.description.sleep" = "Helps you fall asleep peacefully";
+"guardian.description.focus" = "Improves concentration and productivity";
+"guardian.description.relax" = "Reduces stress and anxiety";
+"guardian.description.custom" = "Customize your own experience";
+
+// MARK: - Player
+"player.now_playing" = "Now Playing";
+"player.volume" = "Volume";
+"player.speed" = "Speed";
+"player.timer" = "Sleep Timer";
+"player.timer.off" = "Off";
+"player.timer.minutes" = "%d min";
+"player.background_volume" = "Background Volume";
+"player.voice_volume" = "Voice Volume";
+
+// MARK: - Sleep Record
+"sleep.title" = "Sleep Record";
+"sleep.start" = "Start Sleep";
+"sleep.end" = "End Sleep";
+"sleep.duration" = "Sleep Duration";
+"sleep.quality" = "Sleep Quality";
+"sleep.mood" = "Mood";
+"sleep.note" = "Note";
+"sleep.save" = "Save";
+"sleep.history" = "Sleep History";
+
+// MARK: - Mood
+"mood.great" = "Great";
+"mood.good" = "Good";
+"mood.okay" = "Okay";
+"mood.bad" = "Bad";
+"mood.terrible" = "Terrible";
+
+// MARK: - Journal
+"journal.title" = "Sleep Journal";
+"journal.entry.new" = "New Entry";
+"journal.entry.edit" = "Edit Entry";
+"journal.entry.delete" = "Delete Entry";
+"journal.entry.placeholder" = "Write about your sleep experience...";
+"journal.empty" = "No journal entries yet";
+
+// MARK: - Settings
+"settings.title" = "Settings";
+"settings.language" = "Language";
+"settings.theme" = "Theme";
+"settings.theme.light" = "Light";
+"settings.theme.dark" = "Dark";
+"settings.theme.system" = "System";
+"settings.notification" = "Notifications";
+"settings.about" = "About";
+"settings.version" = "Version %@";
+"settings.privacy" = "Privacy Policy";
+"settings.terms" = "Terms of Service";
+
+// MARK: - Errors
+"error.network" = "Network error";
+"error.server" = "Server error";
+"error.unknown" = "Unknown error";
+"error.invalid_url" = "Invalid URL";
+"error.no_data" = "No data received";
+"error.decoding" = "Failed to parse data";
+
+// MARK: - Actions
+"action.ok" = "OK";
+"action.cancel" = "Cancel";
+"action.delete" = "Delete";
+"action.save" = "Save";
+"action.edit" = "Edit";
+"action.done" = "Done";
+"action.retry" = "Retry";
+"action.confirm" = "Confirm"; 

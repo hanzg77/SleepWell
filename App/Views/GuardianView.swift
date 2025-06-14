@@ -92,6 +92,13 @@ struct GuardianView: View {
                     .transition(.opacity)
                     .zIndex(200)
                 }
+                
+                // 标题
+                Text("guardian.title".localized)
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .foregroundColor(.white)
+                    .padding(.top, 50)
             }
             .contentShape(Rectangle())
             .onTapGesture {

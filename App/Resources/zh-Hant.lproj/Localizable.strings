@@ -1,0 +1,126 @@
+/* 
+  Localizable.strings
+  SleepWell
+  
+  Chinese (Traditional) Localization
+*/
+
+// MARK: - Common
+"app.name" = "SleepWell";
+
+// MARK: - Tab Bar
+"tab.library" = "媒體庫";
+"tab.sleep" = "睡眠";
+"tab.journal" = "日記";
+"tab.settings" = "設定";
+
+// MARK: - Audio Library
+"library.title" = "媒體庫";
+"library.search.placeholder" = "搜尋";
+"library.empty" = "找不到任何資源";
+"library.loading" = "載入中...";
+"library.error" = "資源載入失敗";
+"library.retry" = "重試";
+
+// MARK: - Categories
+"category.all" = "全部";
+"category.white_noise" = "白噪音";
+"category.meditation" = "冥想";
+"category.story" = "故事";
+"category.music" = "音樂";
+"category.nature" = "自然";
+
+// MARK: - Resource Details
+"resource.duration" = "%d 分鐘";
+"resource.episodes" = "%d 集";
+"resource.play" = "播放";
+"resource.pause" = "暫停";
+"resource.stop" = "停止";
+"resource.delete" = "刪除";
+"resource.delete.confirm" = "您確定要刪除「%@」嗎？";
+"resource.delete.success" = "資源刪除成功";
+"resource.delete.failed" = "資源刪除失敗";
+
+// MARK: - Episode List
+"episode.title" = "單集列表";
+"episode.duration" = "%d 分鐘";
+"episode.empty" = "暫無單集";
+
+// MARK: - Guardian Mode
+"guardian.title" = "守護模式";
+"guardian.select.mode" = "選取守護模式";
+"guardian.mode.sleep" = "睡眠模式";
+"guardian.mode.focus" = "專注模式";
+"guardian.mode.relax" = "放鬆模式";
+"guardian.mode.custom" = "自訂模式";
+"guardian.description.sleep" = "助您安然入睡";
+"guardian.description.focus" = "提高專注力和效率";
+"guardian.description.relax" = "減輕壓力和焦慮";
+"guardian.description.custom" = "自訂您的專屬體驗";
+
+// MARK: - Player
+"player.now_playing" = "正在播放";
+"player.volume" = "音量";
+"player.speed" = "速度";
+"player.timer" = "睡眠定時器";
+"player.timer.off" = "關閉";
+"player.timer.minutes" = "%d 分鐘";
+"player.background_volume" = "背景音量";
+"player.voice_volume" = "人聲音量";
+
+// MARK: - Sleep Record
+"sleep.title" = "睡眠記錄";
+"sleep.start" = "開始睡眠";
+"sleep.end" = "結束睡眠";
+"sleep.duration" = "睡眠時長";
+"sleep.quality" = "睡眠品質";
+"sleep.mood" = "心情";
+"sleep.note" = "備註";
+"sleep.save" = "儲存";
+"sleep.history" = "睡眠歷史";
+
+// MARK: - Mood
+"mood.great" = "很棒";
+"mood.good" = "不錯";
+"mood.okay" = "一般";
+"mood.bad" = "不好";
+"mood.terrible" = "很糟";
+
+// MARK: - Journal
+"journal.title" = "睡眠日記";
+"journal.entry.new" = "新增日記";
+"journal.entry.edit" = "編輯日記";
+"journal.entry.delete" = "刪除日記";
+"journal.entry.placeholder" = "寫下您的睡眠體驗...";
+"journal.empty" = "尚無日記條目";
+
+// MARK: - Settings
+"settings.title" = "設定";
+"settings.language" = "語言";
+"settings.theme" = "主題";
+"settings.theme.light" = "淺色";
+"settings.theme.dark" = "深色";
+"settings.theme.system" = "跟隨系統";
+"settings.notification" = "通知";
+"settings.about" = "關於";
+"settings.version" = "版本 %@";
+"settings.privacy" = "隱私權政策";
+"settings.terms" = "服務條款";
+
+// MARK: - Errors
+"error.network" = "網路錯誤";
+"error.server" = "伺服器錯誤";
+"error.unknown" = "未知錯誤";
+"error.invalid_url" = "無效的 URL";
+"error.no_data" = "未收到資料";
+"error.decoding" = "資料解析失敗";
+
+// MARK: - Actions
+"action.ok" = "好";
+"action.cancel" = "取消";
+"action.delete" = "刪除";
+"action.save" = "儲存";
+"action.edit" = "編輯";
+"action.done" = "完成";
+"action.retry" = "重試";
+"action.confirm" = "確認";

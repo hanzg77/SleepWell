@@ -1,0 +1,126 @@
+/* 
+  Localizable.strings
+  SleepWell
+  
+  日本語
+*/
+
+// MARK: - Common
+"app.name" = "スリープウェル";
+
+// MARK: - Tab Bar
+"tab.library" = "ライブラリ";
+"tab.sleep" = "睡眠";
+"tab.journal" = "日記";
+"tab.settings" = "設定";
+
+// MARK: - Audio Library
+"library.title" = "オーディオライブラリ";
+"library.search.placeholder" = "検索";
+"library.empty" = "リソースがありません";
+"library.loading" = "読み込み中...";
+"library.error" = "リソースの読み込みに失敗しました";
+"library.retry" = "再試行";
+
+// MARK: - Categories
+"category.all" = "すべて";
+"category.white_noise" = "ホワイトノイズ";
+"category.meditation" = "瞑想";
+"category.story" = "物語";
+"category.music" = "音楽";
+"category.nature" = "自然";
+
+// MARK: - Resource Details
+"resource.duration" = "%d 分";
+"resource.episodes" = "%d エピソード";
+"resource.play" = "再生";
+"resource.pause" = "一時停止";
+"resource.stop" = "停止";
+"resource.delete" = "削除";
+"resource.delete.confirm" = "「%@」を削除してもよろしいですか？";
+"resource.delete.success" = "リソースが正常に削除されました";
+"resource.delete.failed" = "リソースの削除に失敗しました";
+
+// MARK: - Episode List
+"episode.title" = "エピソード一覧";
+"episode.duration" = "%d 分";
+"episode.empty" = "エピソードがありません";
+
+// MARK: - Guardian Mode
+"guardian.title" = "ガーディアンモード";
+"guardian.select.mode" = "ガーディアンモードを選択";
+"guardian.mode.sleep" = "睡眠モード";
+"guardian.mode.focus" = "集中モード";
+"guardian.mode.relax" = "リラックスモード";
+"guardian.mode.custom" = "カスタムモード";
+"guardian.description.sleep" = "安らかな眠りをサポートします";
+"guardian.description.focus" = "集中力と生産性を向上させます";
+"guardian.description.relax" = "ストレスと不安を軽減します";
+"guardian.description.custom" = "あなただけの体験をカスタマイズ";
+
+// MARK: - Player
+"player.now_playing" = "再生中";
+"player.volume" = "音量";
+"player.speed" = "再生速度";
+"player.timer" = "スリープタイマー";
+"player.timer.off" = "オフ";
+"player.timer.minutes" = "%d 分";
+"player.background_volume" = "背景音量";
+"player.voice_volume" = "音声音量";
+
+// MARK: - Sleep Record
+"sleep.title" = "睡眠記録";
+"sleep.start" = "睡眠開始";
+"sleep.end" = "睡眠終了";
+"sleep.duration" = "睡眠時間";
+"sleep.quality" = "睡眠の質";
+"sleep.mood" = "気分";
+"sleep.note" = "メモ";
+"sleep.save" = "保存";
+"sleep.history" = "睡眠履歴";
+
+// MARK: - Mood
+"mood.great" = "とても良い";
+"mood.good" = "良い";
+"mood.okay" = "普通";
+"mood.bad" = "悪い";
+"mood.terrible" = "とても悪い";
+
+// MARK: - Journal
+"journal.title" = "睡眠日記";
+"journal.entry.new" = "新規エントリー";
+"journal.entry.edit" = "エントリーを編集";
+"journal.entry.delete" = "エントリーを削除";
+"journal.entry.placeholder" = "睡眠体験を記録してください...";
+"journal.empty" = "日記エントリーがありません";
+
+// MARK: - Settings
+"settings.title" = "設定";
+"settings.language" = "言語";
+"settings.theme" = "テーマ";
+"settings.theme.light" = "ライト";
+"settings.theme.dark" = "ダーク";
+"settings.theme.system" = "システム";
+"settings.notification" = "通知";
+"settings.about" = "アプリについて";
+"settings.version" = "バージョン %@";
+"settings.privacy" = "プライバシーポリシー";
+"settings.terms" = "利用規約";
+
+// MARK: - Errors
+"error.network" = "ネットワークエラー";
+"error.server" = "サーバーエラー";
+"error.unknown" = "不明なエラー";
+"error.invalid_url" = "無効なURL";
+"error.no_data" = "データを受信できませんでした";
+"error.decoding" = "データの解析に失敗しました";
+
+// MARK: - Actions
+"action.ok" = "OK";
+"action.cancel" = "キャンセル";
+"action.delete" = "削除";
+"action.save" = "保存";
+"action.edit" = "編集";
+"action.done" = "完了";
+"action.retry" = "再試行";
+"action.confirm" = "確認"; 

@@ -5,6 +5,7 @@ import BackgroundTasks
 @main
 struct SleepWellApp: App {
     @StateObject private var themeManager = ThemeManager.shared
+    @StateObject private var localizationManager = LocalizationManager.shared
     
     init() {
         // 设置音频会话
@@ -21,6 +22,9 @@ struct SleepWellApp: App {
         // 确保应用启动时设置音频会话和注册后台任务
         setupAudioSession()
         registerBackgroundTasks()
+        
+        // 初始化本地化管理器
+        _ = LocalizationManager.shared
     }
     
     var body: some Scene {

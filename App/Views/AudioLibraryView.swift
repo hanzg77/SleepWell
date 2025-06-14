@@ -74,12 +74,15 @@ struct AudioLibraryView: View {
                 } else {
                     ScrollView {
                         VStack(spacing: Constants.Layout.spacing) {
+                            // 搜索栏
+                            SearchBar(text: $viewModel.searchQuery)
+                            
                             // 分类按钮
                             ScrollView(.horizontal, showsIndicators: false) {
                                 HStack(spacing: 12) {
                                     ForEach(viewModel.categories, id: \.self) { category in
                                         CategoryButton(
-                                            title: category,
+                                            title: "category.\(category.lowercased())".localized,
                                             isSelected: category == viewModel.selectedCategory
                                         ) {
                                             viewModel.selectedCategory = category
@@ -91,16 +94,33 @@ struct AudioLibraryView: View {
                             }
                             
                             // 资源列表
-                            LazyVStack(spacing: 20) {
-                                ForEach(viewModel.resources.filter { resource in
-                                    viewModel.selectedCategory == "全部" || resource.tags.contains(viewModel.selectedCategory)
-                                }) { resource in
-                                    ResourceCard(resource: resource) {
-                                        handleResourceTap(resource)
+                            if viewModel.isLoading {
+                                ProgressView()
+                                    .scaleEffect(1.5)
+                                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                    .padding(.top, 100)
+                            } else if viewModel.resources.isEmpty {
+                                VStack(spacing: 20) {
+                                    Image(systemName: "music.note.list")
+                                        .font(.system(size: 60))
+                                        .foregroundColor(Constants.Colors.textSecondary)
+                                    
+                                    Text("library.empty".localized)
+                                        .font(.headline)
+                                        .foregroundColor(Constants.Colors.textSecondary)
+                                }
+                                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                .padding(.top, 100)
+                            } else {
+                                LazyVStack(spacing: 20) {
+                                    ForEach(viewModel.resources) { resource in
+                                        ResourceCard(resource: resource) {
+                                            handleResourceTap(resource)
+                                        }
                                     }
                                 }
+                                .padding()
                             }
-                            .padding()
                         }
                     }
                 }
@@ -135,6 +155,7 @@ struct AudioLibraryView: View {
                     AdminView(resource: resource)
                 }
             }
+            .navigationTitle("library.title".localized)
         }
     }
     
@@ -163,7 +184,7 @@ struct SearchBar: View {
             Image(systemName: "magnifyingglass")
                 .foregroundColor(Constants.Colors.textSecondary)
             
-            TextField(Constants.Text.searchPlaceholder, text: $text)
+            TextField("library.search.placeholder".localized, text: $text)
                 .foregroundColor(Constants.Colors.textPrimary)
             
             if !text.isEmpty {
