@@ -261,7 +261,7 @@ struct DualStreamPlayerView: View {
                     Spacer()
                     
                     // 底部播放控制
-                    if playerController.videoPlayer.currentItem != nil && playerController.isPlaying {
+                    if playerController.videoPlayer.currentItem != nil {
                         PlaybackControlsView(playerController: playerController)
                             .padding(.bottom, 60)
                             .frame(width: screenWidth) // 限制宽度为屏幕宽度

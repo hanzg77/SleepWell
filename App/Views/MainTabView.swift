@@ -32,13 +32,6 @@ struct MainTabView: View {
                     Text("tab.journal".localized)
                 }
                 .tag(2)
-            
-            SettingsView()
-                .tabItem {
-                    Image(systemName: "gearshape")
-                    Text("tab.settings".localized)
-                }
-                .tag(3)
         }
         .environmentObject(logManager)
         .accentColor(.blue)

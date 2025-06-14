@@ -84,8 +84,13 @@ struct SleepLogContentView: View {
         .navigationTitle("睡眠日记")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                RefreshButton(logManager: logManager)
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
+                NavigationLink {
+                    SettingsView()
+                } label: {
+                    Image(systemName: "gearshape")
+                }
+                RefreshButton(logManager: logManager) // 保留刷新按钮，或者按需移除
             }
         }
         // STYLE: 让工具栏背景也呈现透明模糊效果，与App风格统一。
@@ -205,23 +210,6 @@ struct SleepLogContentView: View {
             .store(in: &cancellables)
     }
 }
-
-
-// MARK: - 刷新按钮 (RefreshButton)
-private struct RefreshButton: View {
-    @ObservedObject var logManager: SleepLogManager
-
-    var body: some View {
-        Button(action: {
-            logManager.loadLogs()
-        }) {
-            Image(systemName: "arrow.clockwise")
-                // STYLE: 使用 .primary 语义化颜色，在不同模式下表现更好。
-                .foregroundColor(.primary)
-        }
-    }
-}
-
 
 // MARK: - 每日日志卡片 (DailyLogCardView)
 // 注释：这是视觉设计的核心，在这里进行了最多的美化。
@@ -465,6 +453,20 @@ struct NotesDetailView: View {
         formatter.timeStyle = .none
         formatter.locale = Locale(identifier: "zh_CN")
         return formatter.string(from: date)
+    }
+}
+
+// MARK: - 刷新按钮 (RefreshButton)
+private struct RefreshButton: View {
+    @ObservedObject var logManager: SleepLogManager
+
+    var body: some View {
+        Button(action: {
+            logManager.loadLogs()
+        }) {
+            Image(systemName: "arrow.clockwise")
+                .foregroundColor(.primary) // 保持颜色设置
+        }
     }
 }
 
