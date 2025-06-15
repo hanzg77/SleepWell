@@ -58,6 +58,18 @@
 "guardian.description.relax" = "ストレスと不安を軽減します";
 "guardian.description.custom" = "あなただけの体験をカスタマイズ";
 
+"guardian.emptyPrompt.line1" = "澄んだ音、美しい景色\n";
+"guardian.emptyPrompt.brand" = "スリープアイランド";
+"guardian.emptyPrompt.line2Suffix" = "が安眠へ誘う";
+"guardian.status.accompany" = "おやすみのお供";
+"guardian.status.allNight" = "一晩中";
+"guardian.action.cantSleep" = "眠れない？";
+"countdown.format.hms" = "%d時間%02d分%02d秒";
+"countdown.format.ms" = "%d分%02d秒";
+"countdown.format.s" = "%d秒";
+
+
+
 // MARK: - Player
 "player.now_playing" = "再生中";
 "player.volume" = "音量";

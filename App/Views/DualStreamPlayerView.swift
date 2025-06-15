@@ -157,6 +157,9 @@ struct DualStreamPlayerView: View {
     @State private var selectedMood: Mood? = nil
     @State private var showingJournalEntry: Bool = false
     
+    // Timer for auto-hiding controls
+    @State private var autoHideTimer: Timer?
+    
     var body: some View {
         GeometryReader { geometry in
             ZStack(alignment: .leading) {
@@ -204,27 +207,31 @@ struct DualStreamPlayerView: View {
                     HStack(alignment: .center) {
                         // 左上角文字和倒计时
                         VStack(alignment: .leading, spacing: 6) {
-                            if guardianController.currentMode == .smartDetection {
-                                Text("安心入睡")
-                                    .font(.system(size: 24, weight: .light))
-                                    .foregroundColor(.white.opacity(0.9))
-                                Text("睡着就停")
-                                    .font(.system(size: 18, weight: .light))
-                                    .foregroundColor(.white.opacity(0.7))
+                            if playerController.videoPlayer.currentItem == nil {
+                                (Text("guardian.emptyPrompt.line1".localized)
+                                    .font(.system(size: 20, weight: .light)) // 描述部分使用细体
+                                    .foregroundColor(.white.opacity(0.80)) +
+                                 Text("guardian.emptyPrompt.brand".localized + "\n") // 在“睡眠岛”后添加换行
+                                    .font(.system(size: 20, weight: .medium)) // 品牌名使用中等粗细
+                                    .foregroundColor(.white.opacity(0.95)) +
+                                 Text("guardian.emptyPrompt.line2Suffix".localized.trimmingCharacters(in: .whitespacesAndNewlines)) // 移除前导空格，确保在新行正确显示
+                                    .font(.system(size: 20, weight: .regular)) // 结尾部分使用常规体
+                                    .foregroundColor(.white.opacity(0.85)))
+                                .lineSpacing(4)
                             } else if guardianController.currentMode == .unlimited {
-                                Text("伴你入眠")
+                                Text("guardian.status.accompany".localized)
                                     .font(.system(size: 24, weight: .light))
                                     .foregroundColor(.white.opacity(0.9))
-                                Text("一整晚")
+                                Text("guardian.status.allNight".localized)
                                     .font(.system(size: 18, weight: .light))
                                     .foregroundColor(.white.opacity(0.7))
                             } else {
-                                Text("伴你入眠")
+                                Text("guardian.status.accompany".localized)
                                     .font(.system(size: 24, weight: .light))
                                     .foregroundColor(.white.opacity(0.9))
                                 if guardianController.countdown > 0 {
                                     Text(formatCountdown(guardianController.countdown))
-                                        .font(.system(size: 18, weight: .light))
+                                        .font(.system(size: 16, weight: .light)) // 调整字体以适应可能更长的本地化字符串
                                         .foregroundColor(.white.opacity(0.7))
                                 }
                             }
@@ -242,7 +249,7 @@ struct DualStreamPlayerView: View {
                                     showingMoodBanner = true
                                 }
                             }) {
-                                Text("睡不着？")
+                                Text("guardian.action.cantSleep".localized)
                                     .font(.subheadline)
                                     .fontWeight(.medium)
                                     .padding(.horizontal, 12)
@@ -303,12 +310,54 @@ struct DualStreamPlayerView: View {
                 }
             }
         }
+        .onAppear {
+            // If controls are shown on appear and video is ready, start timer
+            if playerController.showControls && playerController.videoPlayer.currentItem != nil {
+                startAutoHideTimer()
+            }
+        }
+        .onDisappear {
+            cancelAutoHideTimer()
+        }
         .ignoresSafeArea(.keyboard)
         .onChange(of: playerController.isVideoReady) { isReady in
             let newOpacity = isReady ? 1.0 : 0.0
             if videoOpacity != newOpacity {
                 withAnimation(.easeOut(duration: 0.5)) {
                     videoOpacity = newOpacity
+                }
+            }
+            // If video becomes ready and controls are supposed to be shown, ensure timer starts
+            if isReady && playerController.showControls {
+                startAutoHideTimer()
+            }
+        }
+        .onChange(of: playerController.showControls) { areControlsShown in
+            if areControlsShown {
+                startAutoHideTimer()
+            } else {
+                // If controls are hidden (e.g., by tap or by timer itself), cancel the timer.
+                cancelAutoHideTimer()
+            }
+        }
+        // Ensure timer restarts if playback starts while controls are visible
+        .onChange(of: playerController.isPlaying) { isPlaying in
+            if isPlaying && playerController.showControls {
+                startAutoHideTimer()
+            }
+        }
+    }
+    
+    private func startAutoHideTimer() {
+        cancelAutoHideTimer() // Invalidate existing timer
+        // Only schedule a new timer if there's a video item
+        if playerController.videoPlayer.currentItem != nil {
+            autoHideTimer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) { [weak playerController] _ in
+                // Only hide if video is currently playing
+                if playerController?.isPlaying == true {
+                    withAnimation(.easeInOut(duration: 0.3)) {
+                        playerController?.showControls = false
+                    }
                 }
             }
         }
@@ -320,11 +369,16 @@ struct DualStreamPlayerView: View {
         let remainingSeconds = seconds % 60
         
         if hours > 0 {
-            return String(format: "%d小时%02d分%02d秒", hours, minutes, remainingSeconds)
+            return String(format: "countdown.format.hms".localized, hours, minutes, remainingSeconds)
         } else if minutes > 0 {
-            return String(format: "%d分%02d秒", minutes, remainingSeconds)
+            return String(format: "countdown.format.ms".localized, minutes, remainingSeconds)
         } else {
-            return String(format: "%d秒", remainingSeconds)
+            return String(format: "countdown.format.s".localized, remainingSeconds)
         }
+    }
+    
+    private func cancelAutoHideTimer() {
+        autoHideTimer?.invalidate()
+        autoHideTimer = nil
     }
 }

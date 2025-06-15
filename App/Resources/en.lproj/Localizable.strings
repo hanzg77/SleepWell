@@ -6,12 +6,12 @@
 */
 
 // MARK: - Common
-"app.name" = "SleepWell";
+"app.name" = "Sleep Island";
 
 // MARK: - Tab Bar
 "tab.library" = "Library";
-"tab.sleep" = "Sleep";
-"tab.journal" = "Journal";
+"tab.sleep" = "Sleepcape";
+"tab.journal" = "Sleep Journal";
 "tab.settings" = "Settings";
 
 // MARK: - Audio Library
@@ -57,6 +57,17 @@
 "guardian.description.focus" = "Improves concentration and productivity";
 "guardian.description.relax" = "Reduces stress and anxiety";
 "guardian.description.custom" = "Customize your own experience";
+
+"guardian.emptyPrompt.line1" = "Calm sounds, peaceful sights\n";
+"guardian.emptyPrompt.brand" = "Sleep Island";
+"guardian.emptyPrompt.line2Suffix" = "Here to help you sleep";
+"guardian.status.accompany" = "Sleep Companion";
+"guardian.status.allNight" = "All night";
+"guardian.action.cantSleep" = "Can't sleep?";
+"countdown.format.hms" = "%dh %02dm %02ds";
+"countdown.format.ms" = "%dm %02ds";
+"countdown.format.s" = "%ds";
+
 
 // MARK: - Player
 "player.now_playing" = "Now Playing";

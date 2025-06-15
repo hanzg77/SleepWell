@@ -58,6 +58,18 @@
 "guardian.description.relax" = "減輕壓力和焦慮";
 "guardian.description.custom" = "自訂您的專屬體驗";
 
+"guardian.emptyPrompt.line1" = "一段清音，一幕良景\n";
+"guardian.emptyPrompt.brand" = "睡眠島";
+"guardian.emptyPrompt.line2Suffix" = "伴你入眠";
+"guardian.status.accompany" = "伴你入眠";
+"guardian.status.allNight" = "一整晚";
+"guardian.action.cantSleep" = "睡不著？";
+"countdown.format.hms" = "%d小時%02d分%02d秒";
+"countdown.format.ms" = "%d分%02d秒";
+"countdown.format.s" = "%d秒";
+
+
+
 // MARK: - Player
 "player.now_playing" = "正在播放";
 "player.volume" = "音量";

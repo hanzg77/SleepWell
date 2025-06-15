@@ -10,7 +10,7 @@
 
 // MARK: - Tab Bar
 "tab.library" = "音景库";
-"tab.sleep" = "睡眠";
+"tab.sleep" = "陪伴睡眠";
 "tab.journal" = "睡眠日记";
 "tab.settings" = "设置";
 
@@ -57,6 +57,17 @@
 "guardian.description.focus" = "提高注意力和效率";
 "guardian.description.relax" = "减轻压力和焦虑";
 "guardian.description.custom" = "自定义您的专属体验";
+
+"guardian.emptyPrompt.line1" = "一段清音，一幕良景\n";
+"guardian.emptyPrompt.brand" = "睡眠岛";
+"guardian.emptyPrompt.line2Suffix" = "伴你入眠";
+"guardian.status.accompany" = "伴你入眠";
+"guardian.status.allNight" = "一整晚";
+"guardian.action.cantSleep" = "睡不着？";
+"countdown.format.hms" = "%d小时%02d分%02d秒";
+"countdown.format.ms" = "%d分%02d秒";
+"countdown.format.s" = "%d秒";
+
 
 // MARK: - Player
 "player.now_playing" = "正在播放";
