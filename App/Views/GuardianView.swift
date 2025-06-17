@@ -62,18 +62,28 @@ struct GuardianView: View {
     @State private var selectedMood: Mood? = nil
     @State private var showingJournalEntry: Bool = false
     
+    @Environment(\.globalSafeAreaInsets) private var globalSafeAreaInsets // 读取环境值
+    
     var body: some View {
         GeometryReader { geometry in
             ZStack {
-                Color.black.edgesIgnoringSafeArea(.all)
+             //   Color.blue.edgesIgnoringSafeArea(.all)
                 
                 // 播放器视图
-                DualStreamPlayerView()
+                DualStreamPlayerView() // 传递 geometry
                     .frame(width: geometry.size.width, height: geometry.size.height)
+                 //   .ignoresSafeArea(.all)
+                
+                // DEBUG: 直接显示 GuardianView 的 GeometryReader 报告的底部安全区域高度
+                Text("Guardian GR Inset: B=\(globalSafeAreaInsets.top, specifier: "%.1f")")
+                    .foregroundColor(.yellow)
+                    .background(Color.black.opacity(0.7))
+                    .position(x: geometry.size.width / 2, y: 60) // 调整位置以便观察
                 
                 // 心情选择Banner
                 if showingMoodBanner {
                     MoodSelectionBannerView(onMoodSelected: { mood in
+                       
                         selectedMood = mood
                         showingJournalEntry = true
                     }, isPresented: $showingMoodBanner)
@@ -93,20 +103,18 @@ struct GuardianView: View {
                     .zIndex(200)
                 }
             }
-            .contentShape(Rectangle())
-            .onTapGesture {
-                withAnimation(.easeInOut(duration: 0.3)) {
-                    playerController.showControls.toggle()
-                }
-            }
+        
         }
-        .onChange(of: playerController.isVideoReady) { isReady in
-            let newOpacity = isReady ? 1.0 : 0.0
-            if videoOpacity != newOpacity {
-                withAnimation(.easeOut(duration: 0.5)) {
-                    videoOpacity = newOpacity
-                }
-            }
-        }
+        .ignoresSafeArea(.all)
+    }
+
+}
+
+// MARK: - SwiftUI 预览
+struct GuardianView_Previews: PreviewProvider {
+    static var previews: some View {
+        GuardianView()
+            .environmentObject(GuardianController.shared) // 如果子视图依赖
+            .environmentObject(DualStreamPlayerController.shared) // 如果子视图依赖
     }
 }

@@ -342,26 +342,30 @@ struct DailyLogCardView: View {
     private func formatDateHeader(_ date: Date) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "M月d日"
-        formatter.locale = Locale(identifier: "zh_CN") // [本地化] 改为简体中文区域设置
+        // Use the app's current locale, assuming LocalizationManager provides it or use Locale.current
+        formatter.locale = Locale(identifier: LocalizationManager.shared.currentLanguage)
         return formatter.string(from: date)
     }
     
     private func formatWeekday(_ date: Date) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "EEEE"
-        formatter.locale = Locale(identifier: "zh_CN") // [本地化] 改为简体中文区域设置
+        // Use the app's current locale
+        formatter.locale = Locale(identifier: LocalizationManager.shared.currentLanguage)
         return formatter.string(from: date)
     }
 
     private func moodColor(for mood: Mood) -> Color {
-        // 假设 Mood 有一个 displayName 属性，且其值为简体中文
-        switch mood.displayName {
-        case "开心": return .orange
-        case "平静": return .cyan
-        case "丧": return .blue
-        case "生气": return .red
-        default: return .secondary
+        // IMPORTANT: This should switch on a non-localized identifier, e.g., mood.id or a mood enum case
+        // For demonstration, assuming Mood has an 'id' property that's stable:
+        switch mood.id { // Example: Assuming mood.id is "happy", "calm", "sad", "angry"
+        case "happy_id": return .orange // Replace "happy_id" with actual stable ID
+        case "calm_id": return .cyan   // Replace "calm_id" with actual stable ID
+        case "sad_id": return .blue     // Replace "sad_id" with actual stable ID
+        case "angry_id": return .red    // Replace "angry_id" with actual stable ID
+        default: return .gray // Use a more distinct default or ensure all moods are covered
         }
+        // Alternatively, if Mood is an enum: switch mood { case .happy: ... }
     }
 }
 // MARK: - 单笔睡眠条目 (SleepEntryRowView)

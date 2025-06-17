@@ -45,9 +45,10 @@ struct PlaybackControlsView: View {
     @State private var isDragging: Bool = false
     
     var body: some View {
-        VStack {
-            Spacer()
-            
+        // PlaybackControlsView is now just the HStack with controls
+        // The outer VStack and Spacer are removed.
+        // The large .padding(.bottom, 100) is removed.
+        // A smaller, fixed bottom padding can be added if needed for aesthetics within the safe area.
             HStack(spacing: 12) {
                 // 播放/暂停按钮
                 Button(action: {
@@ -117,12 +118,12 @@ struct PlaybackControlsView: View {
                         .font(.caption)
                         .foregroundColor(.white)
                 }
-                .frame(width: 100) // 固定时间显示的宽度
+                .frame(width: 105) // 固定时间显示的宽度
             }
             .padding(.horizontal)
             .padding(.vertical, 8)
+            // Consider a smaller fixed bottom padding if desired, e.g., .padding(.bottom, 16)
             .background(Color.black.opacity(0.5))
-        }
     }
     
     private func formatTime(_ time: TimeInterval) -> String {
@@ -149,7 +150,7 @@ struct DualStreamPlayerView: View {
     @StateObject private var guardianController = GuardianController.shared
     
     // 视图内部状态
-    @State private var videoOpacity: Double = 0.0
+    @State private var videoOpacity:Double
     @State private var startPanning: Bool = false
     
     // 日记功能相关状态
@@ -159,19 +160,30 @@ struct DualStreamPlayerView: View {
     
     // Timer for auto-hiding controls
     @State private var autoHideTimer: Timer?
+    @Environment(\.globalSafeAreaInsets) private var globalSafeAreaInsets // 读取环境值
+    
+    init() {
+        // Initialize videoOpacity based on the initial state of isVideoReady
+        let initialIsReady = DualStreamPlayerController.shared.isVideoReady
+        self.videoOpacity =   initialIsReady ? 0.5 : 0.0
+        // For debugging, you can print the initial values:
+        // print("hzg: DualStreamPlayerView init -> isVideoReady: \(initialIsReady), videoOpacity set to: \(self._videoOpacity.wrappedValue)")
+    }
+    
     
     var body: some View {
         GeometryReader { geometry in
-            ZStack(alignment: .leading) {
-                Color.black.edgesIgnoringSafeArea(.all)
-                
+            ZStack (alignment: .topLeading){ // Root ZStack
+           //     Color.red.edgesIgnoringSafeArea(.all)
+                // Video Layer - always full screen
                 let videoWidth = geometry.size.height * 16/9
                 let screenWidth = geometry.size.width
                 let totalDistance = max(0, videoWidth - screenWidth)
                 
                 if playerController.videoPlayer.currentItem != nil {
                     VideoPlayerView(player: playerController.videoPlayer)
-                        .frame(width: max(videoWidth, screenWidth), height: geometry.size.height + 49) // 49 是 TabBar 的高度
+                        .frame(width: max(videoWidth, screenWidth), height: geometry.size.height) // 49 是 TabBar 的高度
+                        .ignoresSafeArea() // Video ignores all safe areas to go full screen
                         .clipped()
                         .opacity(videoOpacity)
                         .offset(x: startPanning ? -totalDistance : 0)
@@ -179,155 +191,127 @@ struct DualStreamPlayerView: View {
                             .linear(duration: 30).repeatForever(autoreverses: true),
                             value: startPanning
                         )
+                    
                         .id(playerController.videoPlayer.currentItem)
+                    
                         .onAppear {
-                            // 重置平移状态
-                            self.startPanning = false
-                            // 延迟一帧后开始平移，确保视图已经完全加载
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                                self.startPanning = true
+                            // .onAppear 主要处理首次加载或视图因 currentItem 存在而出现的情况。
+                            // 如果 currentItem 存在且平移尚未开始，则启动平移。
+                            // 如果已在平移（例如，从隐藏的Tab切回），则不应重置。
+                            if playerController.videoPlayer.currentItem != nil && !self.startPanning {
+                                print("hzg: VideoPlayerView ON_APPEAR (currentItem exists, startPanning was false. Initiating pan.)")
+                                // 使用微小延迟确保视图已准备好动画
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                                    self.startPanning = true
+                                }
+                            } else if playerController.videoPlayer.currentItem != nil && self.startPanning {
+                                print("hzg: VideoPlayerView ON_APPEAR (currentItem exists, startPanning is true. Pan should continue.)")
+                            } else {
+                                print("hzg: VideoPlayerView ON_APPEAR (No currentItem or other state. startPanning: \(self.startPanning))")
                             }
                         }
                         .onDisappear {
-                            self.startPanning = false
-                        }
-                        .onChange(of: playerController.videoPlayer.currentItem) { _ in
-                            // 当视频项改变时，重置平移状态
-                            self.startPanning = false
-                            // 延迟一帧后开始新的平移
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                                self.startPanning = true
-                            }
-                        }
-                }
-                
-                // 内容层
-                VStack {
-                    // 顶部区域
-                    HStack(alignment: .center) {
-                        // 左上角文字和倒计时
-                        VStack(alignment: .leading, spacing: 6) {
+                            // 仅当视图消失是因为没有视频内容时，才停止平移。
+                            // 如果 currentItem 仍然存在，我们假设这可能是Tab切换等临时隐藏，
+                            // 此时保持 startPanning 状态，以便动画可以在视图重新出现时继续。
                             if playerController.videoPlayer.currentItem == nil {
-                                (Text("guardian.emptyPrompt.line1".localized)
-                                    .font(.system(size: 20, weight: .light)) // 描述部分使用细体
-                                    .foregroundColor(.white.opacity(0.80)) +
-                                 Text("guardian.emptyPrompt.brand".localized + "\n") // 在“睡眠岛”后添加换行
-                                    .font(.system(size: 20, weight: .medium)) // 品牌名使用中等粗细
-                                    .foregroundColor(.white.opacity(0.95)) +
-                                 Text("guardian.emptyPrompt.line2Suffix".localized.trimmingCharacters(in: .whitespacesAndNewlines)) // 移除前导空格，确保在新行正确显示
-                                    .font(.system(size: 20, weight: .regular)) // 结尾部分使用常规体
-                                    .foregroundColor(.white.opacity(0.85)))
-                                .lineSpacing(4)
-                            } else if guardianController.currentMode == .unlimited {
-                                Text("guardian.status.accompany".localized)
-                                    .font(.system(size: 24, weight: .light))
-                                    .foregroundColor(.white.opacity(0.9))
-                                Text("guardian.status.allNight".localized)
-                                    .font(.system(size: 18, weight: .light))
-                                    .foregroundColor(.white.opacity(0.7))
+                                self.startPanning = false
+                                print("hzg: VideoPlayerView onDisappear (currentItem is NIL. startPanning set to false)")
                             } else {
-                                Text("guardian.status.accompany".localized)
-                                    .font(.system(size: 24, weight: .light))
-                                    .foregroundColor(.white.opacity(0.9))
-                                if guardianController.countdown > 0 {
-                                    Text(formatCountdown(guardianController.countdown))
-                                        .font(.system(size: 16, weight: .light)) // 调整字体以适应可能更长的本地化字符串
-                                        .foregroundColor(.white.opacity(0.7))
+                                print("hzg: VideoPlayerView onDisappear (currentItem EXISTS. startPanning remains \(self.startPanning) for potential resume)")
+                            }
+                        }
+                        .onChange(of: playerController.videoPlayer.currentItem) { newItem in
+                            // 当视频项实际改变时，这是重置并重新启动平移的主要时机。
+                            self.startPanning = false // 确保旧动画停止，偏移量回到0
+                            print("hzg: VideoPlayerView onChange currentItem (startPanning set to false to reset for new item: \(newItem != nil))")
+                            if newItem != nil {
+                                // 延迟确保视图更新后再启动新动画
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                                    self.startPanning = true
+                                    print("hzg: VideoPlayerView onChange currentItem (startPanning set to true for new item)")
                                 }
                             }
                         }
-                        .padding(.horizontal, 20)
-                        .padding(.top, geometry.safeAreaInsets.top > 0 ? geometry.safeAreaInsets.top : 20)
-                        .opacity(playerController.showControls ? 1 : 0) // 根据控制状态显示/隐藏
-                        
-                        Spacer()
-                        
-                        // "睡不着？"入口
-                        if guardianController.isGuardianModeEnabled {
-                            Button(action: {
-                                withAnimation {
-                                    showingMoodBanner = true
-                                }
-                            }) {
-                                Text("guardian.action.cantSleep".localized)
-                                    .font(.subheadline)
-                                    .fontWeight(.medium)
-                                    .padding(.horizontal, 12)
-                                    .padding(.vertical, 8)
-                                    .foregroundColor(.white.opacity(0.45))
-                                    .background(Color.white.opacity(0.075))
-                                    .clipShape(Capsule())
-                            }
-                            .padding(.trailing, 20)
-                            .padding(.top, geometry.safeAreaInsets.top > 0 ? geometry.safeAreaInsets.top : 20)
-                            .opacity(playerController.showControls ? 1 : 0) // 根据控制状态显示/隐藏
-                        }
-                    }
-                    .frame(width: screenWidth) // 限制顶部区域宽度为屏幕宽度
-                    
-                    Spacer()
-                    
-                    // 底部播放控制
-                    if playerController.videoPlayer.currentItem != nil {
-                        PlaybackControlsView(playerController: playerController)
-                            .padding(.bottom, 60)
-                            .frame(width: screenWidth) // 限制宽度为屏幕宽度
-                            .opacity(playerController.showControls ? 1 : 0) // 根据控制状态显示/隐藏
-                    }
-                }
-                .ignoresSafeArea(.keyboard)
+                } // End of VideoPlayerView conditional
                 
-                // 心情选择Banner
+                // UI Controls Overlay Layer
+               if playerController.showControls {
+                    VStack(spacing: 0) { // Use spacing 0 if elements should touch or manage spacing internally
+                       
+                        // Top Controls Container
+                        HStack(alignment: .top) { // Use .top alignment for elements like status and button
+                            topLeftStatusView(geometry: geometry) // Pass geometry if needed by helper
+                            Spacer()
+                            cantSleepButton(geometry: geometry) // Pass geometry if needed by helper
+                        }
+                        .padding(.top, globalSafeAreaInsets.top + 20) // 使用全局安全区域值
+                        .padding(.horizontal, 20) // Horizontal padding for the group
+                        
+                        Spacer() // Pushes bottom controls down
+                
+                        // Bottom Playback Controls
+                       if playerController.videoPlayer.currentItem != nil {
+                            PlaybackControlsView(playerController: playerController)
+                                .frame(width: screenWidth) // screenWidth from geometry
+                                // 新增这里：为控件本身增加一个额外的底部间距来避开 TabBar
+                                .padding(.bottom, 49) // 49pt 是 TabBar 的标准高度，您可以根据实际情况调整
+                        }
+                    }
+
+                    .padding(.bottom, globalSafeAreaInsets.bottom) // 使用全局安全区域值
+                    .frame(width: geometry.size.width, height: geometry.size.height) // Make VStack fill the screen
+                    .transition(.opacity) // Animate the entire controls VStack
+               }
+
+                // Banners and Journal Entry (positioned absolutely, might need zIndex adjustments)
                 if showingMoodBanner {
                     MoodSelectionBannerView(onMoodSelected: { mood in
                         selectedMood = mood
                         showingJournalEntry = true
                     }, isPresented: $showingMoodBanner)
-                   // .frame(width: geometry.size.width)
-                    .frame(width: screenWidth) // 限制宽度为屏幕宽度
+                    .frame(width: screenWidth)
                     .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
                     .transition(.opacity)
-                    .zIndex(100)
+                    .zIndex(100) // Ensure banners are above controls if they overlap
                 }
                 
-                // 日记书写界面
                 if let mood = selectedMood, showingJournalEntry {
                     JournalEntryView(mood: mood, onSave: { content in
-                        // 保存到 log
                         SleepLogManager.shared.upsertLog(for: Date(), mood: mood, notes: content)
                         showingJournalEntry = false
                         selectedMood = nil
                     }, isPresented: $showingJournalEntry)
                     .transition(.opacity)
-                    .frame(width: screenWidth) // 限制宽度为屏幕宽度
-                    .zIndex(200)
+                    .frame(width: screenWidth)
+                    .zIndex(200) // Ensure journal is above everything
                 }
-            }
-            .contentShape(Rectangle())
+            } // End of Root ZStack
+            .contentShape(Rectangle()) // 保留以便整个区域可点击
             .onTapGesture {
-                withAnimation(.easeInOut(duration: 0.3)) {
+                print(geometry)
+                withAnimation(.easeInOut(duration: 0.3)) { // Keep animation here for the toggle
                     playerController.showControls.toggle()
                 }
             }
         }
         .onAppear {
-            // If controls are shown on appear and video is ready, start timer
             if playerController.showControls && playerController.videoPlayer.currentItem != nil {
                 startAutoHideTimer()
             }
         }
+        .ignoresSafeArea(.keyboard) // Keep this
         .onDisappear {
             cancelAutoHideTimer()
         }
-        .ignoresSafeArea(.keyboard)
         .onChange(of: playerController.isVideoReady) { isReady in
-            let newOpacity = isReady ? 1.0 : 0.0
+            print("hzg: isVideoReady changed to: \(isReady)")
+            let newOpacity = isReady ? 0.5 : 0.0
             if videoOpacity != newOpacity {
                 withAnimation(.easeOut(duration: 0.5)) {
                     videoOpacity = newOpacity
                 }
             }
-            // If video becomes ready and controls are supposed to be shown, ensure timer starts
             if isReady && playerController.showControls {
                 startAutoHideTimer()
             }
@@ -336,15 +320,68 @@ struct DualStreamPlayerView: View {
             if areControlsShown {
                 startAutoHideTimer()
             } else {
-                // If controls are hidden (e.g., by tap or by timer itself), cancel the timer.
                 cancelAutoHideTimer()
             }
         }
-        // Ensure timer restarts if playback starts while controls are visible
         .onChange(of: playerController.isPlaying) { isPlaying in
             if isPlaying && playerController.showControls {
                 startAutoHideTimer()
             }
+        }
+    }
+    // Helper view for top left status text
+    @ViewBuilder
+    private func topLeftStatusView(geometry: GeometryProxy) -> some View {
+        VStack(alignment: .leading, spacing: 6) {
+            if playerController.videoPlayer.currentItem == nil {
+                (
+                Text("guardian.emptyPrompt.line1".localized)
+                    .font(.system(size: 20, weight: .light))
+                    .foregroundColor(.white.opacity(0.80)) +
+                 Text("guardian.emptyPrompt.brand".localized + "\n")
+                    .font(.system(size: 20, weight: .medium))
+                    .foregroundColor(.white.opacity(0.95)) +
+                 Text("guardian.emptyPrompt.line2Suffix".localized.trimmingCharacters(in: .whitespacesAndNewlines))
+                    .font(.system(size: 20, weight: .regular))
+                    .foregroundColor(.white.opacity(0.85)))
+                .lineSpacing(4)
+            } else if guardianController.currentMode == .unlimited {
+                Text("guardian.status.accompany".localized)
+                    .font(.system(size: 24, weight: .light))
+                    .foregroundColor(.white.opacity(0.9))
+                Text("guardian.status.allNight".localized)
+                    .font(.system(size: 18, weight: .light))
+                    .foregroundColor(.white.opacity(0.7))
+            } else {
+                Text("guardian.status.accompany".localized)
+                    .font(.system(size: 24, weight: .light))
+                    .foregroundColor(.white.opacity(0.9))
+                if guardianController.countdown > 0 {
+                    Text(formatCountdown(guardianController.countdown))
+                        .font(.system(size: 16, weight: .light))
+                        .foregroundColor(.white.opacity(0.7))
+                }
+            }
+        }
+    }
+
+    // Helper view for "Can't sleep?" button
+    @ViewBuilder
+    private func cantSleepButton(geometry: GeometryProxy) -> some View {
+        if guardianController.isGuardianModeEnabled {
+            Button(action: {
+                withAnimation { showingMoodBanner = true }
+            }) {
+                Text("guardian.action.cantSleep".localized)
+                    .font(.subheadline)
+                    .fontWeight(.medium)
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 8)
+                    .foregroundColor(.white.opacity(0.45))
+                    .background(Color.white.opacity(0.075))
+                    .clipShape(Capsule())
+            }
+            // Removed top padding here
         }
     }
     
@@ -356,7 +393,8 @@ struct DualStreamPlayerView: View {
                 // Only hide if video is currently playing
                 if playerController?.isPlaying == true {
                     withAnimation(.easeInOut(duration: 0.3)) {
-                        playerController?.showControls = false
+                        //hzg
+                         playerController?.showControls = false
                     }
                 }
             }
@@ -380,5 +418,21 @@ struct DualStreamPlayerView: View {
     private func cancelAutoHideTimer() {
         autoHideTimer?.invalidate()
         autoHideTimer = nil
+    }
+}
+
+
+// MARK: - DualStreamPlayerView 预览
+struct DualStreamPlayerView_Previews: PreviewProvider {
+    static var previews: some View {
+    
+        DualStreamPlayerView()
+            // DualStreamPlayerView uses @StateObject for its controllers,
+            // which are initialized with .shared instances,
+            // so direct environmentObject injection here might not be strictly necessary
+            // unless sub-sub-views expect them via @EnvironmentObject.
+            .environmentObject(DualStreamPlayerController.shared)
+            .environmentObject(GuardianController.shared)
+            .background(Color.gray) // Add a background to see the view against
     }
 }
