@@ -63,10 +63,17 @@
 "guardian.emptyPrompt.line2Suffix" = "伴你入眠";
 "guardian.status.accompany" = "伴你入眠";
 "guardian.status.allNight" = "一整晚";
+"guardian.status.1Min" = "1分钟";
+"guardian.status.30Min" = "30分钟";
+"guardian.status.1Hour" = "1小时";
+"guardian.status.2Hour" = "2小时";
+"guardian.status.3Hour" = "3小时";
+
 "guardian.action.cantSleep" = "睡不着？";
 "countdown.format.hms" = "%d小时%02d分%02d秒";
 "countdown.format.ms" = "%d分%02d秒";
 "countdown.format.s" = "%d秒";
+
 
 
 // MARK: - Player

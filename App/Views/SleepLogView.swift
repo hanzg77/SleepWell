@@ -90,43 +90,7 @@ struct SleepLogContentView: View {
                 } label: {
                     Image(systemName: "gearshape")
                 }
-                RefreshButton(logManager: logManager) // 保留刷新按钮，或者按需移除
-            }
-        }
-        // STYLE: 让工具栏背景也呈现透明模糊效果，与App风格统一。
-        .toolbarBackground(.visible, for: .navigationBar)
-        .toolbarBackground(.black.opacity(0.3), for: .navigationBar)
-        .sheet(isPresented: $showingGuardianModeSheet) {
-            if let resource = selectedResource {
-                GuardianModeSelectionView(
-                    resource: resource,
-                    episode: nil,
-                    selectedTab: $selectedTab,
-                    onModeSelected: { mode in
-                        // 设置新的播放列表（只包含当前资源）
-                        PlaylistController.shared.setPlaylist([resource])
-                        // 播放当前资源
-                        PlaylistController.shared.play(resource)
-                    }
-                )
-                .environmentObject(GuardianController.shared)
-                .presentationDetents([.medium])
-            } else if isLoadingResource {
-                VStack {
-                    ProgressView()
-                    Text("正在加载资源...")
-                        .foregroundColor(.secondary)
-                }
-                .presentationDetents([.medium])
-            } else if resourceLoadError != nil {
-                VStack {
-                    Image(systemName: "exclamationmark.triangle")
-                        .font(.largeTitle)
-                        .foregroundColor(.red)
-                    Text("资源加载失败")
-                        .foregroundColor(.secondary)
-                }
-                .presentationDetents([.medium])
+             //   RefreshButton(logManager: logManager) // 保留刷新按钮，或者按需移除
             }
         }
     }
@@ -190,7 +154,7 @@ struct SleepLogContentView: View {
 
     // 修改获取资源的方法
     private func fetchResourceAndShowSheet(for entry: SleepEntry) {
-        guard let resourceID = entry.resourceID else { return }
+        guard let resourceID = entry.resourceID else { return } // 1. 确保资源ID存在
         isLoadingResource = true
         resourceLoadError = nil
         selectedResource = nil
@@ -206,6 +170,12 @@ struct SleepLogContentView: View {
                 }
             } receiveValue: { resource in
                 self.selectedResource = resource
+                // 2. 直接播放视频
+                PlaylistController.shared.setPlaylist([resource])
+                PlaylistController.shared.play(resource)
+                GuardianController.shared.enableGuardianMode(GuardianController.shared.currentMode)
+                self.selectedTab = 1
+                self.isLoadingResource = false // 加载完成后，取消加载状态
             }
             .store(in: &cancellables)
     }

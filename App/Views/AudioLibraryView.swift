@@ -134,38 +134,27 @@ struct AudioLibraryView: View {
                     EpisodeListView(resource: resource, selectedTab: $selectedTab)
                 }
             }
-            .sheet(item: $guardianViewItem) { item in
-                if let resource = viewModel.selectedResource {
-                    GuardianModeSelectionView(
-                        resource: resource,
-                        episode: nil,
-                        selectedTab: $selectedTab,
-                        onModeSelected: { mode in
-                            // 设置播放列表并开始播放
-                            PlaylistController.shared.setPlaylist(viewModel.resources)
-                            PlaylistController.shared.play(resource)
-                        }
-                    )
-                    .environmentObject(GuardianController.shared)
-                    .presentationDetents([.medium])
-                }
-            }
             .sheet(isPresented: $showAdminView) {
                 if let resource = selectedResource {
                     AdminView(resource: resource)
                 }
             }
             .navigationTitle("library.title".localized)
+            // 移除了 guardianViewItem 的 sheet
         }
     }
     
     private func handleResourceTap(_ resource: Resource) {
         print("资源被点击: \(resource.name)")
+        viewModel.selectedResource = resource // 确保 selectedResource 被设置
         if resource.resourceType == .singleTrackAlbum {
-            // 单集资源显示守护模式选择界面
-            print("是单集资源，准备显示守护模式选择界面")
-            viewModel.selectedResource = resource
-            guardianViewItem = GuardianViewItem()
+            // 单集资源直接播放
+            print("是单集资源，直接播放")
+            PlaylistController.shared.setPlaylist([resource])
+            PlaylistController.shared.play(resource)
+            // 使用 GuardianController 当前的模式（默认或上次选择的）
+            GuardianController.shared.enableGuardianMode(GuardianController.shared.currentMode)
+            selectedTab = 1 // 切换到播放页面
         } else {
             // 多集资源或 tracklist 资源显示剧集列表
             print("是多集资源或 tracklist 资源，准备显示剧集列表")

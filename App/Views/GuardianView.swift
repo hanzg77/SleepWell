@@ -74,11 +74,11 @@ struct GuardianView: View {
                     .frame(width: geometry.size.width, height: geometry.size.height)
                  //   .ignoresSafeArea(.all)
                 
-                // DEBUG: 直接显示 GuardianView 的 GeometryReader 报告的底部安全区域高度
-                Text("Guardian GR Inset: B=\(globalSafeAreaInsets.top, specifier: "%.1f")")
-                    .foregroundColor(.yellow)
-                    .background(Color.black.opacity(0.7))
-                    .position(x: geometry.size.width / 2, y: 60) // 调整位置以便观察
+//                // DEBUG: 直接显示 GuardianView 的 GeometryReader 报告的底部安全区域高度
+//                Text("Guardian GR Inset: B=\(globalSafeAreaInsets.top, specifier: "%.1f")")
+//                    .foregroundColor(.yellow)
+//                    .background(Color.black.opacity(0.7))
+//                    .position(x: geometry.size.width / 2, y: 60) // 调整位置以便观察
                 
                 // 心情选择Banner
                 if showingMoodBanner {

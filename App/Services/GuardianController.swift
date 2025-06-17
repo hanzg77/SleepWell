@@ -14,9 +14,13 @@ enum GuardianMode: Int, CaseIterable, Identifiable, Codable {
 
     var displayTitle: String {
         switch self {
-        case .smartDetection: return "检测入睡后暂停"
-        case .unlimited: return "整夜播放"
-        default: return "\(rawValue / 60)分钟后暂停"
+        case .smartDetection: return "智能检测"
+        case .unlimited: return "guardian.status.allNight".localized
+        case .timedClose60: return "guardian.status.1Min".localized
+        case .timedClose1800: return "guardian.status.30Min".localized
+        case .timedClose3600: return "guardian.status.1Hour".localized
+        case .timedClose7200: return "guardian.status.2Hour".localized
+  //      default: return "\(rawValue / 60)分钟后暂停"
         }
     }
 
@@ -55,6 +59,8 @@ class GuardianController: ObservableObject {
     @Published var currentSessionNotes: String = ""
     @Published var currentSessionMood: Mood? = nil
 
+    private let lastSelectedModeKey = "guardianController_lastSelectedMode"
+
     
     private init() {
         // 监听播放状态变化
@@ -63,6 +69,14 @@ class GuardianController: ObservableObject {
                 self?.handlePlaybackStopped()
             }
             .store(in: &cancellables)
+        
+        // 加载上次选择的模式，如果不存在则默认为1小时
+        if let savedModeRawValue = UserDefaults.standard.object(forKey: lastSelectedModeKey) as? Int,
+           let savedMode = GuardianMode(rawValue: savedModeRawValue) {
+            currentMode = savedMode
+        } else {
+            currentMode = .timedClose3600 // 默认1小时
+        }
     }
     
     // 开启守护模式
@@ -73,9 +87,12 @@ class GuardianController: ObservableObject {
         isGuardianModeEnabled = true
         countdown = mode.duration
         sessionStartTime = Date() // 记录开始时间
+        UserDefaults.standard.set(mode.rawValue, forKey: lastSelectedModeKey) // 保存用户选择
         startTimer()
         print("守护模式已开启，isGuardianModeEnabled: \(isGuardianModeEnabled)")
     }
+    
+    
     
     // 关闭守护模式
     func disableGuardianMode() {
@@ -98,17 +115,29 @@ class GuardianController: ObservableObject {
             SleepLogManager.shared.addEntry(entry)
         }
         
+        sessionStartTime = nil // 重置会话开始时间
+        // 注意：这里不再调用 DualStreamPlayerController.shared.stop()
         // 直接调用 stop，不触发 handlePlaybackStopped
-        DualStreamPlayerController.shared.stop()
+        //DualStreamPlayerController.shared.stop()
     }
     
     // 开始定时器
     private func startTimer() {
+        // 仅当模式不是 .unlimited 且 duration > 0 时才启动定时器
+        guard currentMode != .unlimited, countdown > 0 else {
+            // 如果是 unlimited 模式或 duration 为0 (例如 smartDetection 初始状态)，则不启动定时器
+            // 对于 unlimited，countdown 已经是 0 或负数，不会进入循环
+            // 对于 smartDetection，如果其 duration 为 -1，也不会进入循环
+            print("定时器未启动，模式: \(currentMode.displayTitle), 倒计时: \(countdown)")
+            return
+        }
+        timer?.invalidate() // 先停止任何已存在的定时器
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
             guard let self = self else { return }
             if self.countdown > 0 {
                 self.countdown -= 1
             } else {
+                let modeBeforeDisable = self.currentMode // 记录当前模式以供日记使用
                 self.disableGuardianMode()
                 // 发送通知而不是直接调用 stop
                 NotificationCenter.default.post(name: .guardianModeDidEnd, object: nil)

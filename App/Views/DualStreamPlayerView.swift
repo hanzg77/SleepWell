@@ -61,7 +61,7 @@ struct PlaybackControlsView: View {
                     Image(systemName: playerController.isPlaying ? "pause.circle.fill" : "play.circle.fill")
                         .resizable()
                         .frame(width: 44, height: 44)
-                        .foregroundColor(.white)
+                        .foregroundColor(.white.opacity(0.85)) // 4. 播放按钮颜色调暗
                 }
                 
                 // 进度条
@@ -123,7 +123,7 @@ struct PlaybackControlsView: View {
             .padding(.horizontal)
             .padding(.vertical, 8)
             // Consider a smaller fixed bottom padding if desired, e.g., .padding(.bottom, 16)
-            .background(Color.black.opacity(0.5))
+            .background(Color.black.opacity(0.35)) // 3. 播放控制条透明度降低
     }
     
     private func formatTime(_ time: TimeInterval) -> String {
@@ -165,7 +165,7 @@ struct DualStreamPlayerView: View {
     init() {
         // Initialize videoOpacity based on the initial state of isVideoReady
         let initialIsReady = DualStreamPlayerController.shared.isVideoReady
-        self.videoOpacity =   initialIsReady ? 0.5 : 0.0
+        self.videoOpacity =   initialIsReady ? 0.9 : 0.0
         // For debugging, you can print the initial values:
         // print("hzg: DualStreamPlayerView init -> isVideoReady: \(initialIsReady), videoOpacity set to: \(self._videoOpacity.wrappedValue)")
     }
@@ -237,7 +237,7 @@ struct DualStreamPlayerView: View {
                 
                 // UI Controls Overlay Layer
                if playerController.showControls {
-                    VStack(spacing: 0) { // Use spacing 0 if elements should touch or manage spacing internally
+/*                    VStack(spacing: 0) { // Use spacing 0 if elements should touch or manage spacing internally
                        
                         // Top Controls Container
                         HStack(alignment: .top) { // Use .top alignment for elements like status and button
@@ -262,6 +262,63 @@ struct DualStreamPlayerView: View {
                     .padding(.bottom, globalSafeAreaInsets.bottom) // 使用全局安全区域值
                     .frame(width: geometry.size.width, height: geometry.size.height) // Make VStack fill the screen
                     .transition(.opacity) // Animate the entire controls VStack
+*/
+                    VStack(alignment: .center, spacing: 30) { // 整体顶部控件的 VStack
+                                   
+                        // Top Controls Container
+                        HStack(alignment: .top) { // Use .top alignment for elements like status and button
+                            topLeftStatusView(geometry: geometry) // Pass geometry if needed by helper
+                            Spacer()
+                            cantSleepButton(geometry: geometry) // Pass geometry if needed by helper
+                        }
+                        .padding(.top, 30) // 5. 顶部控件增加额外上边距
+                        .padding(.horizontal, 10) // 5. 顶部控件增加额外上边距
+                                    
+                        // =======================================================================
+                        // Optimized Code (优化后的代码)
+                        // =======================================================================
+                        // 新增：定时器选择条
+                        if playerController.videoPlayer.currentItem != nil { // 仅当有视频播放时显示定时器选项
+                            // MARK: - 优化方案
+                            // 将原本左对齐的HStack改为VStack，使其在水平方向上居中，布局更开阔。
+                            VStack(spacing: 8) { // 优化点 2: 增加了按钮与下方文字的间距，使其不那么拥挤
+                                
+                                // 按钮行
+                                HStack(spacing: 12) { // 优化点 3: 略微增加按钮间的距离
+                                    TimerOptionButton( targetMode: .timedClose1800)
+                                    TimerOptionButton( targetMode: .timedClose3600)
+                                    TimerOptionButton( targetMode: .timedClose7200)
+                                    TimerOptionButton( targetMode: .unlimited)
+                                }
+                                
+                                // 描述文字
+                         /*       Text("选择定时时钟")
+                                    .font(.caption) // 优化点 4: 将字体从 .caption2 提升至 .caption，更清晰
+                                    .foregroundColor(.white.opacity(0.7)) // 优化点 5: 略微提高不透明度，增强可读性
+                          */
+                            }
+                            .padding(.vertical, 10) // 优化点 6: 调整垂直内边距，使其更具呼吸感
+                            .padding(.horizontal, 10)
+                            .frame(maxWidth: .infinity) // 确保VStack横向撑满
+                            .background(.ultraThinMaterial) // 优化点 1: 使用毛玻璃效果背景，更现代且能适应不同视频背景
+                            .cornerRadius(12) // 优化点 7: 增加圆角半径，使其看起来更柔和
+                          //  .padding(.horizontal, 20) // 优化点 8: 在外部增加水平边距，使整个模块悬浮在中间，不紧贴屏幕边缘
+                        }
+
+                        Spacer() // Pushes bottom controls down (PlaybackControlsView)
+                
+                        // Bottom Playback Controls
+                        if playerController.videoPlayer.currentItem != nil {
+                            PlaybackControlsView(playerController: playerController)
+                                .frame(width: screenWidth) // screenWidth from geometry
+                                .padding(.bottom, 50) // 2. 为播放控制条增加额外下边距以避开TabBar
+                        }
+                }
+
+                 .padding(.bottom, globalSafeAreaInsets.bottom) // 使用全局安全区域值
+                 .padding(.top, globalSafeAreaInsets.top) // 使用全局安全区域值 (确保顶部也有安全边距)
+                 .frame(width: geometry.size.width, height: geometry.size.height) // Make VStack fill the screen
+
                }
 
                 // Banners and Journal Entry (positioned absolutely, might need zIndex adjustments)
@@ -306,7 +363,7 @@ struct DualStreamPlayerView: View {
         }
         .onChange(of: playerController.isVideoReady) { isReady in
             print("hzg: isVideoReady changed to: \(isReady)")
-            let newOpacity = isReady ? 0.5 : 0.0
+            let newOpacity = isReady ? 0.9 : 0.0
             if videoOpacity != newOpacity {
                 withAnimation(.easeOut(duration: 0.5)) {
                     videoOpacity = newOpacity
@@ -421,6 +478,30 @@ struct DualStreamPlayerView: View {
     }
 }
 
+// MARK: - Timer Option Button
+struct TimerOptionButton: View {
+    let targetMode: GuardianMode
+    @EnvironmentObject private var guardianController: GuardianController
+
+    private var isSelected: Bool {
+        guardianController.currentMode == targetMode
+    }
+
+    var body: some View {
+        Button(action: {
+            guardianController.enableGuardianMode(targetMode)
+        }) {
+            Text(targetMode.displayTitle)
+                .font(.system(size: 13, weight: isSelected ? .semibold : .regular))
+                .foregroundColor(isSelected ? .black : .white.opacity(0.8))
+                .padding(.horizontal, 12)
+                .padding(.vertical, 8) // 增加了垂直方向的 padding，让按钮更高一点，更有点击感
+                .frame(maxWidth: .infinity) // <<--- 核心优化点：让按钮在HStack中撑满可用空间
+                .background(isSelected ? Color.white.opacity(0.5) : Color.white.opacity(0.15))
+                .clipShape(Capsule())
+        }
+    }
+}
 
 // MARK: - DualStreamPlayerView 预览
 struct DualStreamPlayerView_Previews: PreviewProvider {
@@ -436,3 +517,4 @@ struct DualStreamPlayerView_Previews: PreviewProvider {
             .background(Color.gray) // Add a background to see the view against
     }
 }
+

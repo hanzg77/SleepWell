@@ -81,15 +81,21 @@ struct EpisodeListView: View {
                             .listRowBackground(Color.black)
                         
                         // 剧集列表
-                        ForEach(viewModel.episodes) { episode in
+    /*                    ForEach(viewModel.episodes) { episode in
                             EpisodeRow(episode: episode) {
-                                selectedEpisode = episode
-                                guardianModeItem = GuardianModeItem()
+                                // 直接播放选中的剧集
+                                print("剧集被点击: \(episode.localizedName)")
+                                PlaylistController.shared.setPlaylist(viewModel.episodes.map { $0 as PlayableItem }, currentEpisodeId: episode.id)
+                                PlaylistController.shared.play(episode)
+                                // 使用 GuardianController 当前的模式（默认或上次选择的）
+                                GuardianController.shared.enableGuardianMode(GuardianController.shared.currentMode)
+                                selectedTab = 1 // 切换到播放页面
+                                dismiss() // 关闭剧集列表
                             }
                             .id(episode.id)
                             .listRowBackground(Color.black)
                         }
-                        
+      */
                         if viewModel.hasMorePages {
                             ProgressView()
                                 .frame(maxWidth: .infinity)
@@ -116,15 +122,7 @@ struct EpisodeListView: View {
                 }
             }
             .navigationBarTitle(resource.name, displayMode: .inline)
-            .sheet(item: $guardianModeItem) { _ in
-                GuardianModeSelectionView(resource: resource, episode: selectedEpisode, selectedTab: $selectedTab)
-                    .environmentObject(GuardianController.shared)
-                    .presentationDetents([.medium])
-                    .onDisappear {
-                        // 在守护模式选择界面消失后再关闭当前视图
-                        dismiss()
-                    }
-            }
+            // 移除了 guardianModeItem 的 sheet
         }
     }
     
@@ -319,5 +317,3 @@ struct EpisodeRow: View {
 struct GuardianModeItem: Identifiable {
     let id = UUID()
 }
-
-
