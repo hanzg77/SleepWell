@@ -664,8 +664,8 @@
             filePath = "App/Services/DualStreamPlayerController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "546"
-            endingLineNumber = "546"
+            startingLineNumber = "540"
+            endingLineNumber = "540"
             landmarkName = "play(resource:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -680,10 +680,10 @@
             filePath = "App/Services/DualStreamPlayerController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "552"
-            endingLineNumber = "552"
-            landmarkName = "MinimalPlayerTester"
-            landmarkType = "3">
+            startingLineNumber = "546"
+            endingLineNumber = "546"
+            landmarkName = "play(resource:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -696,8 +696,8 @@
             filePath = "App/Services/DualStreamPlayerController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
             landmarkName = "currentResource"
             landmarkType = "24">
          </BreakpointContent>
@@ -712,8 +712,8 @@
             filePath = "App/Services/DualStreamPlayerController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
             landmarkName = "DualStreamPlayerController"
             landmarkType = "3">
          </BreakpointContent>
@@ -728,10 +728,10 @@
             filePath = "App/Services/DualStreamPlayerController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "554"
-            endingLineNumber = "554"
-            landmarkName = "MinimalPlayerTester"
-            landmarkType = "3">
+            startingLineNumber = "548"
+            endingLineNumber = "548"
+            landmarkName = "play(resource:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -744,9 +744,9 @@
             filePath = "App/Services/DualStreamPlayerController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "566"
-            endingLineNumber = "566"
-            landmarkName = "testPlayback()"
+            startingLineNumber = "560"
+            endingLineNumber = "560"
+            landmarkName = "play(resource:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1000,8 +1000,8 @@
             filePath = "App/Services/DualStreamPlayerController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "124"
-            endingLineNumber = "124"
+            startingLineNumber = "127"
+            endingLineNumber = "127"
             landmarkName = "stop()"
             landmarkType = "7">
          </BreakpointContent>

@@ -36,6 +36,9 @@ final class DualStreamPlayerController: NSObject, ObservableObject {
     
     private var videoItemStatusObserver: NSKeyValueObservation?
     private var audioItemStatusObserver: NSKeyValueObservation?
+    
+    private var lastProgressSaveDate: Date?
+    private let progressSaveInterval: TimeInterval = 10.0 // 每10秒保存一次进度
 
     // MARK: - 资源信息
     public var currentResource: Resource? {
@@ -289,18 +292,45 @@ final class DualStreamPlayerController: NSObject, ObservableObject {
               self.timeObserverPlayer = nil
           }
           
-          let player = forVideo ? videoPlayer : audioPlayer
-          let interval = CMTime(seconds: 0.5, preferredTimescale: 600)
-          
-          timeObserver = player.addPeriodicTimeObserver(forInterval: interval, queue: .main) { [weak self] time in
-              guard let self = self, !self.isSeeking else { return }
-              self.currentTime = time.seconds
-          }
-          
-          // ✨ 关键修正 4: 在"记事本"上记下这把钥匙属于谁
-          timeObserverPlayer = player
-          logger.info("成功添加了一个时间观察者。")
+      let player = forVideo ? videoPlayer : audioPlayer
+        // 这个 interval (0.5秒) 是为了UI上进度条的平滑更新
+        let interval = CMTime(seconds: 0.5, preferredTimescale: 600) 
+        
+        timeObserver = player.addPeriodicTimeObserver(forInterval: interval, queue: .main) { [weak self] time in
+            guard let self = self, !self.isSeeking else { return }
+            
+            let newCurrentTime = time.seconds
+            // 更新UI绑定的 currentTime
+            if abs(newCurrentTime - self.currentTime) > 0.01 || !self.isPlaying {
+                self.currentTime = newCurrentTime
+            }
+
+            // --- 这里是关键的定期保存逻辑 ---
+            if self.isPlaying { // 仅在播放时才执行
+                let now = Date()
+                // 检查是否达到了 progressSaveInterval (例如10秒)
+                if self.lastProgressSaveDate == nil || now.timeIntervalSince(self.lastProgressSaveDate!) >= self.progressSaveInterval {
+                    self.saveCurrentPlaybackProgress() // 调用保存方法
+                    self.lastProgressSaveDate = now    // 更新上次保存时间
+                }
+            }
+            // --- 定期保存逻辑结束 ---
+        }
+        
+        timeObserverPlayer = player
+        logger.info("成功添加了一个时间观察者。")
     }
+
+        // MARK: - 进度保存辅助方法
+    private func saveCurrentPlaybackProgress() {
+        guard let resource = self.currentResource, !resource.resourceId.isEmpty else {
+            // logger.debug("跳过进度保存：无当前资源或资源ID为空。")
+            return
+        }
+        PlaybackProgressManager.shared.saveProgress(self.currentTime, for: resource.resourceId)
+        logger.info("💾 播放进度已保存: \(String(format: "%.2f", self.currentTime))s 资源ID: \(resource.resourceId)")
+    }
+    
     
     private func setupVideoLooping() {
         videoPlayer.actionAtItemEnd = .none

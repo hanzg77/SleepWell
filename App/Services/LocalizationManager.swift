@@ -32,9 +32,9 @@ class LocalizationManager: ObservableObject {
         } else if preferredLanguage.hasPrefix("zh") {
             // 处理中文的不同变体
             if preferredLanguage.contains("Hant") || preferredLanguage.contains("TW") || preferredLanguage.contains("HK") {
-                currentLanguage = "zh-Hant"
+                currentLanguage = "zh-hant"
             } else {
-                currentLanguage = "zh-Hans"
+                currentLanguage = "zh"
             }
         } else {
             // 默认使用英文

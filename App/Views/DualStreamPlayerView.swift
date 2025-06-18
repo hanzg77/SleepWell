@@ -186,10 +186,13 @@ struct DualStreamPlayerView: View {
                         .ignoresSafeArea() // Video ignores all safe areas to go full screen
                         .clipped()
                         .opacity(videoOpacity)
-                        .offset(x: startPanning ? -totalDistance : 0)
-                        .animation(
-                            .linear(duration: 30).repeatForever(autoreverses: true),
-                            value: startPanning
+                        .offset(x: startPanning ? -totalDistance : 0) // Offset depends on startPanning
+                        .animation( // Conditional animation
+                            startPanning ? .linear(duration: 30).repeatForever(autoreverses: true) : .default,
+                            // Animate when startPanning changes.
+                            // If startPanning becomes false, offset goes to 0 with .default animation.
+                            // If startPanning becomes true, offset goes to -totalDistance with repeating animation.
+                            value: startPanning 
                         )
                     
                         .id(playerController.videoPlayer.currentItem)
@@ -223,15 +226,16 @@ struct DualStreamPlayerView: View {
                         }
                         .onChange(of: playerController.videoPlayer.currentItem) { newItem in
                             // 当视频项实际改变时，这是重置并重新启动平移的主要时机。
-                            self.startPanning = false // 确保旧动画停止，偏移量回到0
+                            // Set startPanning to false. This will:
+                            // 1. Change the offset target to 0.
+                            // 2. Trigger the .animation modifier, which will use .default (non-repeating)
+                            //    animation because startPanning is now false.
+                            self.startPanning = false 
                             print("hzg: VideoPlayerView onChange currentItem (startPanning set to false to reset for new item: \(newItem != nil))")
-                            if newItem != nil {
-                                // 延迟确保视图更新后再启动新动画
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
-                                    self.startPanning = true
-                                    print("hzg: VideoPlayerView onChange currentItem (startPanning set to true for new item)")
-                                }
-                            }
+                            // The .onAppear of the new VideoPlayerView (recreated due to .id())
+                            // will handle setting startPanning = true if newItem is not nil,
+                            // initiating the new repeating animation from offset 0.
+                            // No need to set startPanning = true here.
                         }
                 } // End of VideoPlayerView conditional
                 
@@ -518,4 +522,3 @@ struct DualStreamPlayerView_Previews: PreviewProvider {
             .background(Color.gray) // Add a background to see the view against
     }
 }
-
