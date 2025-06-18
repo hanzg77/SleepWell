@@ -18,7 +18,7 @@ struct MoodSelectionBannerView: View {
                 
                 VStack(spacing: 0) {
                     HStack {
-                        Text("心情怎么样？")
+                        Text("moodSelectionBanner.title".localized)
                             .font(.headline)
                             .foregroundColor(.white)
                             .padding(.leading, 16)

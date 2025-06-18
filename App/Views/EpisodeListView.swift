@@ -32,8 +32,8 @@ struct EpisodeListView: View {
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                 } else if let error = viewModel.error {
                     // 错误状态
-                    VStack(spacing: 16) {
-                        Text("加载失败")
+                    VStack(spacing: 16) { // "加载失败" 已在 AudioLibraryView 中处理，可复用 "error.loadFailed.title"
+                        Text("error.loadFailed.title".localized)
                             .font(.headline)
                             .foregroundColor(.white)
                         
@@ -46,7 +46,7 @@ struct EpisodeListView: View {
                         Button(action: {
                             viewModel.refreshEpisodes()
                         }) {
-                            Text("重试")
+                            Text("action.retry".localized)
                                 .foregroundColor(.white)
                                 .padding(.horizontal, 24)
                                 .padding(.vertical, 12)
@@ -57,14 +57,14 @@ struct EpisodeListView: View {
                 } else if viewModel.episodes.isEmpty {
                     // 空状态
                     VStack(spacing: 16) {
-                        Text("暂无剧集")
+                        Text("episodeList.empty.title".localized)
                             .font(.headline)
                             .foregroundColor(.white)
                         
                         Button(action: {
                             viewModel.refreshEpisodes()
                         }) {
-                            Text("刷新")
+                            Text("action.refresh".localized)
                                 .foregroundColor(.white)
                                 .padding(.horizontal, 24)
                                 .padding(.vertical, 12)
@@ -209,7 +209,7 @@ struct ResourceHeaderView: View {
                     
                     HStack(spacing: 4) {
                         Image(systemName: "list.bullet")
-                        Text(resource.resourceType == .tracklistAlbum ? "\(resource.episodeCount)个音轨" : "\(resource.episodeCount)集")
+                        Text(String(format: (resource.resourceType == .tracklistAlbum ? "episodeList.header.trackCount" : "episodeList.header.episodeCount").localized, resource.episodeCount))
                     }
                     .foregroundColor(.white)
                 }

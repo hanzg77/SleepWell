@@ -5,7 +5,12 @@ import SwiftUI
 class AudioLibraryViewModel: ObservableObject {
     @Published var resources: [Resource] = []
     @Published var resourceProgresses: [String: Double] = [:]
-    @Published var selectedCategory: String = "全部"
+    @Published var selectedCategory: String = "all" { // 1. 统一使用 "all" 作为默认/全部的键
+        didSet {
+            // 追踪 selectedCategory 的变化
+            print("AudioLibraryViewModel: selectedCategory DID SET to '\(selectedCategory)'. Old value was '\(oldValue)'")
+        }
+    }
     @Published var searchQuery: String = ""
     @Published var hasMorePages = true
     @Published var isLoading = false
@@ -51,6 +56,8 @@ class AudioLibraryViewModel: ObservableObject {
     }
     
     func loadResources() {
+        // 追踪 public loadResources 的调用
+        print("AudioLibraryViewModel: public loadResources() CALLED.")
         Task { @MainActor in
             await loadResources()
         }
@@ -58,17 +65,26 @@ class AudioLibraryViewModel: ObservableObject {
     
     @MainActor
     private func loadResources() async {
+        // 追踪 private async loadResources 的开始及其状态
+        print("AudioLibraryViewModel: private async loadResources() STARTED. Current selectedCategory: '\(selectedCategory)', searchQuery: '\(searchQuery)', isLoading: \(isLoading)")
+
+        // 防止在已加载时重复执行核心逻辑
+        // isLoading 应该在实际开始网络请求前，且在 guard 之后设置，以准确反映状态。
+        // 但为了防止因快速连续调用 public loadResources() 导致多个 Task 执行此块，
+        // 这里的 isLoading 检查仍然有用。
         isLoading = true
         error = nil
 
-        NetworkManager.shared.refreshResources(
-            pageSize: 20,
-            category: selectedCategory == "全部" ? nil : selectedCategory,
-            searchQuery: searchQuery.isEmpty ? nil : searchQuery
-        )
+        let categoryParam = selectedCategory == "all" ? nil : selectedCategory // 2. 统一使用 "all" 进行比较
+        let searchQueryParam = searchQuery.isEmpty ? nil : searchQuery
+        
+        print("AudioLibraryViewModel: Preparing to call NetworkManager.refreshResources with category: '\(categoryParam ?? "nil")', search: '\(searchQueryParam ?? "nil")'")
+
+        NetworkManager.shared.refreshResources(pageSize: 20, category: categoryParam, searchQuery: searchQueryParam)
     }
     
     func refreshResources() {
+        print("AudioLibraryViewModel: refreshResources() CALLED.")
         Task { @MainActor in
             await loadResources()
         }
@@ -80,20 +96,24 @@ class AudioLibraryViewModel: ObservableObject {
         )
     }
     
-    func searchResources(query: String) {
+    // Renamed and modified to use the ViewModel's searchQuery property directly
+    func triggerSearch() {
         searchTask?.cancel()
         
-        guard !query.isEmpty else {
+        // self.searchQuery is updated by the TextField binding via AudioLibraryView
+        guard !self.searchQuery.isEmpty else {
+            print("AudioLibraryViewModel: Search query is empty. Loading resources without search term.")
             loadResources()  // 清空搜索时重新加载所有资源
             return
         }
         
+        print("AudioLibraryViewModel: Scheduling search for query: '\(self.searchQuery)'")
         searchTask = Task {
             try? await Task.sleep(nanoseconds: 500_000_000) // 500ms 延迟
             guard !Task.isCancelled else { return }
             
             await MainActor.run {
-                self.searchQuery = query
+                print("AudioLibraryViewModel: Debounced search executing for query: '\(self.searchQuery)'")
                 self.loadResources()
             }
         }

@@ -10,7 +10,7 @@ struct SleepRecordView: View {
                 VStack(spacing: 24) {
                     // 日期选择器
                     DatePicker(
-                        "选择日期",
+                        "sleepRecord.selectDate.label".localized,
                         selection: $selectedDate,
                         displayedComponents: [.date]
                     )
@@ -26,7 +26,7 @@ struct SleepRecordView: View {
                     if let sleepData = viewModel.currentSleepData {
                         SleepOverviewCard(sleepData: sleepData)
                     } else {
-                        Text("暂无睡眠数据")
+                        Text("sleepRecord.noData".localized)
                             .foregroundColor(.secondary)
                             .padding()
                     }
@@ -42,7 +42,7 @@ struct SleepRecordView: View {
                     }
                 }
             }
-            .navigationBarTitle("睡眠记录", displayMode: .inline)
+            .navigationBarTitle("sleepRecord.title".localized, displayMode: .inline)
             .onAppear {
                 DispatchQueue.main.async {
                     viewModel.loadSleepData(for: selectedDate)
@@ -58,7 +58,7 @@ struct SleepOverviewCard: View {
     
     var body: some View {
         VStack(spacing: 16) {
-            Text("睡眠概览")
+            Text("sleepRecord.overview.title".localized)
                 .font(.headline)
             
             HStack(spacing: 24) {
@@ -66,25 +66,25 @@ struct SleepOverviewCard: View {
                     Text("\(formatDuration(sleepData.totalSleepDuration))")
                         .font(.title2)
                         .bold()
-                    Text("总睡眠时长")
+                    Text("sleepRecord.overview.totalDuration".localized)
                         .font(.caption)
                         .foregroundColor(.secondary)
                 }
                 
                 VStack {
-                    Text(sleepData.sleepQuality)
+                    Text(sleepData.sleepQuality) // Assuming sleepQuality itself is a localized string or a key
                         .font(.title2)
                         .bold()
-                    Text("睡眠质量")
+                    Text("sleepRecord.overview.quality".localized)
                         .font(.caption)
                         .foregroundColor(.secondary)
                 }
                 
                 VStack {
-                    Text("\(sleepData.deepSleepPercentage)%")
+                    Text(String(format: "sleepRecord.overview.deepSleepPercentage.format".localized, sleepData.deepSleepPercentage))
                         .font(.title2)
                         .bold()
-                    Text("深睡比例")
+                    Text("sleepRecord.overview.deepSleepPercentage.label".localized)
                         .font(.caption)
                         .foregroundColor(.secondary)
                 }
@@ -100,7 +100,7 @@ struct SleepOverviewCard: View {
     private func formatDuration(_ minutes: Int) -> String {
         let hours = minutes / 60
         let remainingMinutes = minutes % 60
-        return "\(hours)小时\(remainingMinutes)分钟"
+        return String(format: "duration.hoursMinutes".localized, hours, remainingMinutes)
     }
 }
 
@@ -109,15 +109,15 @@ struct SleepStageChart: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text("睡眠阶段")
+            Text("sleepRecord.stages.title".localized)
                 .font(.headline)
                 .padding(.horizontal)
             
             Chart {
                 ForEach(sleepData.sleepStages) { stage in
                     BarMark(
-                        x: .value("阶段", stage.name),
-                        y: .value("时长", stage.duration)
+                        x: .value("sleepRecord.chart.stageAxisLabel".localized, "stage.\(stage.name.lowercased())".localized), // Assuming stage.name is a key like "deep_sleep"
+                        y: .value("sleepRecord.chart.durationAxisLabel".localized, stage.duration)
                     )
                     .foregroundStyle(stageColor(for: stage.name))
                 }
@@ -132,14 +132,16 @@ struct SleepStageChart: View {
     }
     
     private func stageColor(for stageName: String) -> Color {
-        switch stageName {
-        case "深睡":
+        // Assuming stageName is a key like "deep_sleep", "light_sleep", etc.
+        // Or, if SleepStage has an enum type, switch on that.
+        switch stageName.lowercased() { // Example if stageName is a key
+        case "deep_sleep":
             return .blue
-        case "浅睡":
+        case "light_sleep":
             return .green
-        case "REM":
+        case "rem":
             return .purple
-        case "清醒":
+        case "awake":
             return .orange
         default:
             return .gray
@@ -152,15 +154,15 @@ struct HeartRateChart: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text("心率趋势")
+            Text("sleepRecord.heartRate.title".localized)
                 .font(.headline)
                 .padding(.horizontal)
             
             Chart {
                 ForEach(sleepData.heartRateData) { data in
                     LineMark(
-                        x: .value("时间", data.timestamp),
-                        y: .value("心率", data.heartRate)
+                        x: .value("sleepRecord.chart.timeAxisLabel".localized, data.timestamp),
+                        y: .value("sleepRecord.chart.heartRateAxisLabel".localized, data.heartRate)
                     )
                     .foregroundStyle(.red)
                 }

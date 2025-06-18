@@ -61,7 +61,7 @@ struct PlaybackControlsView: View {
                     Image(systemName: playerController.isPlaying ? "pause.circle.fill" : "play.circle.fill")
                         .resizable()
                         .frame(width: 44, height: 44)
-                        .foregroundColor(.white.opacity(0.85)) // 4. 播放按钮颜色调暗
+                        .foregroundColor(.white.opacity(0.5)) // 4. 播放按钮颜色调暗
                 }
                 
                 // 进度条
@@ -273,7 +273,8 @@ struct DualStreamPlayerView: View {
                         }
                         .padding(.top, 30) // 5. 顶部控件增加额外上边距
                         .padding(.horizontal, 10) // 5. 顶部控件增加额外上边距
-                                    
+                        
+                        Spacer() // Pushes bottom controls down (PlaybackControlsView)
                         // =======================================================================
                         // Optimized Code (优化后的代码)
                         // =======================================================================
@@ -297,15 +298,15 @@ struct DualStreamPlayerView: View {
                                     .foregroundColor(.white.opacity(0.7)) // 优化点 5: 略微提高不透明度，增强可读性
                           */
                             }
-                            .padding(.vertical, 10) // 优化点 6: 调整垂直内边距，使其更具呼吸感
+                            .padding(.vertical, 5) // 优化点 6: 调整垂直内边距，使其更具呼吸感
                             .padding(.horizontal, 10)
                             .frame(maxWidth: .infinity) // 确保VStack横向撑满
-                            .background(.ultraThinMaterial) // 优化点 1: 使用毛玻璃效果背景，更现代且能适应不同视频背景
+                        //    .background(.ultraThinMaterial) // 优化点 1: 使用毛玻璃效果背景，更现代且能适应不同视频背景
                             .cornerRadius(12) // 优化点 7: 增加圆角半径，使其看起来更柔和
                           //  .padding(.horizontal, 20) // 优化点 8: 在外部增加水平边距，使整个模块悬浮在中间，不紧贴屏幕边缘
                         }
 
-                        Spacer() // Pushes bottom controls down (PlaybackControlsView)
+                       
                 
                         // Bottom Playback Controls
                         if playerController.videoPlayer.currentItem != nil {
@@ -497,7 +498,7 @@ struct TimerOptionButton: View {
                 .padding(.horizontal, 12)
                 .padding(.vertical, 8) // 增加了垂直方向的 padding，让按钮更高一点，更有点击感
                 .frame(maxWidth: .infinity) // <<--- 核心优化点：让按钮在HStack中撑满可用空间
-                .background(isSelected ? Color.white.opacity(0.5) : Color.white.opacity(0.15))
+                .background(isSelected ? Color.white.opacity(0.6) : Color.white.opacity(0.2))
                 .clipShape(Capsule())
         }
     }

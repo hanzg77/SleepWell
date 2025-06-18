@@ -81,7 +81,7 @@ struct SleepLogContentView: View {
                 logListView
             }
         }
-        .navigationTitle("睡眠日记")
+        .navigationTitle("sleepLog.title".localized)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
@@ -143,10 +143,10 @@ struct SleepLogContentView: View {
             Image(systemName: "moon.zzz.fill")
                 .font(.system(size: 60))
                 .foregroundColor(.secondary)
-            Text("还没有睡眠记录")
+            Text("sleepLog.empty.title".localized)
                 .font(.title3)
                 .foregroundColor(.secondary)
-            Text("创造你的第一笔日志吧。")
+            Text("sleepLog.empty.message".localized)
                 .font(.subheadline)
                 .foregroundColor(.secondary)
         }
@@ -415,7 +415,7 @@ struct NotesDetailView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("关闭", action: { dismiss() })
+                    Button("action.close".localized, action: { dismiss() })
                 }
             }
         }

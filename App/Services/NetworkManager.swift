@@ -84,8 +84,9 @@ class NetworkManager: NSObject, URLSessionDelegate, ObservableObject {
             queryItems.append(URLQueryItem(name: "search", value: searchQuery))
         }
         components.queryItems = queryItems
-
+        
         guard let url = components.url else { isLoading = false; return }
+        print("🌐 NetworkManager: Requesting URL: \(url.absoluteString)")
         session.dataTaskPublisher(for: url)
             .map(\ .data)
             .decode(type: APIResponse<[Resource]>.self, decoder: JSONDecoder())

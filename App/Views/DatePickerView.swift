@@ -16,24 +16,24 @@ struct DatePickerView: View {
         NavigationView {
             VStack {
                 DatePicker(
-                    "选择日期",
+                    "datePicker.selectDate.label".localized,
                     selection: $tempDate,
                     displayedComponents: [.date]
                 )
                 .datePickerStyle(.graphical)
                 .padding()
             }
-            .navigationTitle("选择日期")
+            .navigationTitle("datePicker.selectDate.title".localized)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("取消") {
+                    Button("action.cancel".localized) {
                         dismiss()
                     }
                 }
                 
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("确定") {
+                    Button("action.confirm".localized) {
                         onDateSelected(tempDate)
                         dismiss()
                     }

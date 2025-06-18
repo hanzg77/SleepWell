@@ -31,7 +31,7 @@ struct GuardianModeSelectionView: View {
                 .padding(.top, 8)
             
             // 标题
-            Text("选择守护模式")
+            Text("guardianModeSelection.title".localized)
                 .font(.headline)
                 .foregroundColor(.white)
                 .padding(.top, 16)
@@ -142,4 +142,3 @@ struct GuardianModeButton: View {
 struct GuardianViewItem: Identifiable {
     let id = UUID()
 }
-

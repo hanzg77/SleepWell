@@ -142,3 +142,9 @@
 "action.done" = "完成";
 "action.retry" = "重试";
 "action.confirm" = "确认";
+
+"action.close" = "关闭";
+
+"action.done" = "完成";
+"action.refresh" = "刷新";
+"error.loadFailed.title" = "加载失败";

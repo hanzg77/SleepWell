@@ -9,8 +9,8 @@ struct AdminView: View {
     @State private var selectedTags: Set<String> = []
     
     // 假设这些是所有可用的标签
-    let availableTags = ["白噪声", "冥想", "故事", "音乐", "自然", "放松", "睡眠"]
-    
+  //  let availableTags = ["白噪声", "冥想", "故事", "音乐", "自然", "放松", "睡眠"]
+    let availableTags = ["white_noise", "meditation", "story", "music", "nature"]
     var body: some View {
         NavigationView {
             List {
@@ -27,7 +27,7 @@ struct AdminView: View {
                 }
                 
                 // MARK: - 标签管理
-                Section(header: Text("标签")) {
+                Section(header: Text("adminView.section.tags".localized)) {
                     Button(action: {
                         selectedTags = Set(resource.tags)
                         showTagSelection = true
@@ -42,10 +42,10 @@ struct AdminView: View {
                     // 显示当前资源的标签
                     if !resource.tags.isEmpty {
                         ForEach(resource.tags, id: \.self) { tag in
-                            Text(tag)
+                            Text("tag.\(tag)".localized) // 本地化标签显示
                         }
                     } else {
-                        Text("暂无标签")
+                        Text("adminView.noTags".localized)
                             .foregroundColor(.gray)
                     }
                 }
@@ -56,7 +56,7 @@ struct AdminView: View {
                         showDeleteConfirmation = true
                     }) {
                         HStack {
-                            Text("删除资源")
+                            Text("adminView.deleteResource.button".localized)
                                 .foregroundColor(.red)
                             Spacer()
                             Image(systemName: "trash")
@@ -65,23 +65,23 @@ struct AdminView: View {
                     }
                 }
             }
-            .navigationTitle("资源管理")
+            .navigationTitle("adminView.title".localized)
             .navigationBarTitleDisplayMode(.inline)
-            .navigationBarItems(trailing: Button("完成") {
+            .navigationBarItems(trailing: Button("action.done".localized) {
                 dismiss()
             })
             // MARK: - 弹窗与表单
             .confirmationDialog(
-                "确认删除",
+                "adminView.deleteConfirm.title".localized,
                 isPresented: $showDeleteConfirmation,
                 titleVisibility: .visible
             ) {
-                Button("删除", role: .destructive) {
+                Button("adminView.deleteResource.button".localized, role: .destructive) { // 使用与按钮文本相同的键
                     performDelete() // 调用抽离出的方法
                 }
-                Button("取消", role: .cancel) {}
+                Button("action.cancel".localized, role: .cancel) {}
             } message: {
-                Text("确定要删除资源 \"\(resource.name)\" 吗？此操作无法撤销。")
+                Text(String(format: "adminView.deleteConfirm.message".localized, resource.name))
             }
             .sheet(isPresented: $showTagSelection) {
                 tagSelectionView
@@ -93,14 +93,14 @@ struct AdminView: View {
     private var tagSelectionView: some View {
         NavigationView {
             List {
-                // 已选中的标签区域
-                Section(header: Text("当前标签")) {
+                // 已选中的标签区域 (Section header)
+                Section(header: Text("adminView.tagSelection.currentTags".localized)) {
                     ForEach(Array(selectedTags).sorted(), id: \.self) { tag in
                         Button(action: {
                             selectedTags.remove(tag)
                         }) {
                             HStack {
-                                Text(tag)
+                                Text("tag.\(tag)".localized) // 本地化标签显示
                                 Spacer()
                                 Image(systemName: "minus.circle.fill")
                                     .foregroundColor(.red)
@@ -116,15 +116,15 @@ struct AdminView: View {
                     }
                 }
 
-                // 可添加的标签区域
-                Section(header: Text("可用标签")) {
+                // 可添加的标签区域 (Section header)
+                Section(header: Text("adminView.tagSelection.availableTags".localized)) {
                     let unselectedTags = availableTags.filter { !selectedTags.contains($0) }
                     ForEach(unselectedTags, id: \.self) { tag in
                         Button(action: {
                             selectedTags.insert(tag)
                         }) {
                              HStack {
-                                Text(tag)
+                                Text("tag.\(tag)".localized) // 本地化标签显示
                                 Spacer()
                                 Image(systemName: "plus.circle")
                             }
@@ -133,12 +133,12 @@ struct AdminView: View {
                     }
                 }
             }
-            .navigationTitle("管理标签")
+            .navigationTitle("adminView.manageTags.title".localized)
             .navigationBarItems(
-                leading: Button("取消") {
+                leading: Button("action.cancel".localized) {
                     showTagSelection = false
                 },
-                trailing: Button("保存") {
+                trailing: Button("action.save".localized) {
                     saveTagChanges() // 调用抽离出的方法
                 }
             )
@@ -205,4 +205,3 @@ struct AdminView: View {
         }
     }
 }
-

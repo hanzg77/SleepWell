@@ -85,6 +85,8 @@ struct AudioLibraryView: View {
                                             title: "category.\(category.lowercased())".localized,
                                             isSelected: category == viewModel.selectedCategory
                                         ) {
+                                            // 当点击分类按钮时，总是先清空搜索词
+                                            viewModel.searchQuery = ""
                                             viewModel.selectedCategory = category
                                             viewModel.loadResources()
                                         }
@@ -114,13 +116,18 @@ struct AudioLibraryView: View {
                             } else {
                                 LazyVStack(spacing: 20) {
                                     ForEach(viewModel.resources) { resource in
-                                        ResourceCard(resource: resource) {
+                                        ResourceCard(resource: resource, onTap: {
                                             handleResourceTap(resource)
-                                        }
+                                        }, viewModel: viewModel)
+
                                     }
                                 }
                                 .padding()
                             }
+                        }
+                        // 当搜索查询文本变化时，触发viewModel中的搜索逻辑
+                        .onChange(of: viewModel.searchQuery) { _ in
+                            viewModel.triggerSearch()
                         }
                     }
                 }
@@ -223,8 +230,8 @@ struct ResourceCard: View {
     @State private var isLoading = true
     @State private var loadError = false
     @StateObject private var playerController = DualStreamPlayerController.shared
-    @State private var showActionSheet = false
-    @StateObject private var viewModel = AudioLibraryViewModel()
+    @State private var showActionSheet = false // 移除了独立的 viewModel 初始化
+    @ObservedObject var viewModel: AudioLibraryViewModel // 接收从父视图传递的 viewModel
     @State private var showDeleteAlert = false
     @State private var showAdminView = false
     
@@ -268,7 +275,7 @@ struct ResourceCard: View {
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack(spacing: 4) {
                                 ForEach(resource.tags, id: \.self) { tag in
-                                    Text(tag)
+                                    Text("category.\(tag)".localized) // 使用本地化字符串
                                         .font(.caption)
                                         .padding(.horizontal, 8)
                                         .padding(.vertical, 4)

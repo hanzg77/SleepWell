@@ -127,7 +127,7 @@ struct JournalEntryView: View {
     private var textEditorView: some View {
         TextEditor(text: $content)
             .focused($isTextEditorFocused)
-            .scrollContentBackground(.hidden)
+            .scrollContentBackground(.hidden) // For iOS 16+
             .frame(minHeight: 150, maxHeight: 250)
             .foregroundColor(.white)
             .font(.system(.body, design: .serif))
@@ -143,7 +143,7 @@ struct JournalEntryView: View {
             )
             .overlay(alignment: .topLeading) {
                 if content.isEmpty {
-                    Text("写下你的思绪...")
+                    Text("journalEntry.placeholder".localized)
                         .font(.system(.body, design: .serif))
                         .foregroundColor(.white.opacity(0.35))
                         .padding(.horizontal, 21)
@@ -156,7 +156,7 @@ struct JournalEntryView: View {
     /// --- 按钮修正 3: 调整按钮大小 ---
     private var saveButton: some View {
         Button(action: handleSave) {
-            Text("封存思緒")
+            Text("journalEntry.sealThoughts.button".localized)
                 .font(.system(.headline, design: .rounded).weight(.semibold))
                 .foregroundColor(.white) // 文字使用高對比度的純白色
                 .padding(.vertical, 13)
@@ -180,7 +180,7 @@ struct JournalEntryView: View {
     
     private var completionView: some View {
         VStack {
-            Text("都记下啦，晚安。")
+            Text("journalEntry.completion.message".localized)
                 .font(.system(.title2, design: .rounded).weight(.semibold))
                 .foregroundColor(.white)
         }
@@ -203,11 +203,11 @@ struct JournalEntryView: View {
     
     private func journalPrompt(for mood: Mood) -> String {
         switch mood {
-        case .happy: return "今天有什么开心的事？"
-        case .calm: return "是什么让你感到平静？"
-        case .annoyed: return "把烦心事写下来吧。"
-        case .racingThoughts: return "脑子里在想什么？"
-        case .down: return "此刻的心情是..."
+        case .happy: return "journalEntry.prompt.happy".localized
+        case .calm: return "journalEntry.prompt.calm".localized
+        case .annoyed: return "journalEntry.prompt.annoyed".localized
+        case .racingThoughts: return "journalEntry.prompt.racingThoughts".localized
+        case .down: return "journalEntry.prompt.down".localized
         }
     }
 }
