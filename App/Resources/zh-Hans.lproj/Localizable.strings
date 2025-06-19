@@ -6,7 +6,7 @@
 */
 
 // MARK: - Common
-"app.name" = "SleepWell";
+"app.name" = "睡眠岛";
 
 // MARK: - Tab Bar
 "tab.library" = "音景库";
@@ -68,6 +68,7 @@
 "guardian.status.1Hour" = "1小时";
 "guardian.status.2Hour" = "2小时";
 "guardian.status.3Hour" = "3小时";
+"guardian.status.stopAtTimeFormat" = "%@ 停止播放";
 
 "guardian.action.cantSleep" = "睡不着？";
 "countdown.format.hms" = "%d小时%02d分%02d秒";
@@ -111,6 +112,8 @@
 "journal.entry.delete" = "删除日记";
 "journal.entry.placeholder" = "写下您的睡眠体验...";
 "journal.empty" = "暂无日记条目";
+"journal.empty.title" = "睡眠岛";
+"journal.write" = "写点什么吧";
 
 // MARK: - Settings
 "settings.title" = "设置";
@@ -142,9 +145,6 @@
 "action.done" = "完成";
 "action.retry" = "重试";
 "action.confirm" = "确认";
-
 "action.close" = "关闭";
-
-"action.done" = "完成";
 "action.refresh" = "刷新";
 "error.loadFailed.title" = "加载失败";

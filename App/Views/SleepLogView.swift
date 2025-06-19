@@ -81,7 +81,7 @@ struct SleepLogContentView: View {
                 logListView
             }
         }
-        .navigationTitle("sleepLog.title".localized)
+        .navigationTitle("journal.title".localized)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
@@ -143,10 +143,10 @@ struct SleepLogContentView: View {
             Image(systemName: "moon.zzz.fill")
                 .font(.system(size: 60))
                 .foregroundColor(.secondary)
-            Text("sleepLog.empty.title".localized)
+            Text("journal.empty.title".localized)
                 .font(.title3)
                 .foregroundColor(.secondary)
-            Text("sleepLog.empty.message".localized)
+            Text("journal.empty.message".localized)
                 .font(.subheadline)
                 .foregroundColor(.secondary)
         }
@@ -241,7 +241,7 @@ struct DailyLogCardView: View {
                         HStack(spacing: 8) {
                             Image(systemName: "plus.circle.fill")
                                 .font(.title3)
-                            Text("写点什么吧")
+                            Text("journal.write".localized)
                                 .font(.body.weight(.medium))
                         }
                         .foregroundColor(.blue)

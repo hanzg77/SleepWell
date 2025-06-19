@@ -17,6 +17,66 @@ struct VideoPlayerView: UIViewRepresentable {
     }
 }
 
+
+struct PlayerPlaceholderView: View {
+    @State private var isAnimating: Bool = false
+
+    var body: some View {
+        ZStack {
+            // MARK: - 背景
+            // 假設您有一個名為 Playerground 的背景檢視
+            // 如果 Playerground 不存在，可以用 Color.black 或其他檢視替代
+            // Playerground()
+            Image("player_background") // <-- 使用您在 Assets 中的圖片名稱
+                           .resizable()           // 讓圖片可縮放
+                           .scaledToFill()        //
+                           .edgesIgnoringSafeArea(.all) //
+                          // .blur(radius: 5)       // (可選) 加上模糊效果，讓文字更突出
+                           //.overlay(Color.black.opacity(0.3)) // (可選) //疊加一層半透明黑色，讓背景變暗
+
+/*
+            // MARK: - 文字內容佈局
+            VStack {
+                Text("guardian.emptyPrompt.line1".localized)
+                    .font(.system(size: 20, weight: .regular, design: .rounded))
+                    .foregroundColor(.white.opacity(0.8))
+                    .kerning(0.5)
+                    .padding(.top, 60)
+
+                Spacer()
+
+                // MARK: - 主標題
+                Text("guardian.emptyPrompt.brand".localized)
+                    .font(.system(size: 46, weight: .bold, design: .rounded))
+                    .foregroundColor(.white)
+                    .shadow(color: .black.opacity(0.5), radius: 4, x: 0, y: 2)
+                    .scaleEffect(isAnimating ? 1.02 : 1.0) // 應用呼吸動畫的縮放效果
+
+                // MARK: - 副標題
+                Text("guardian.emptyPrompt.line2Suffix".localized)
+                    .font(.system(size: 24, weight: .medium, design: .rounded))
+                    .foregroundColor(.white.opacity(0.9))
+                    .padding(.top, 8) // 在主副標題之間增加一點間距
+
+                Spacer()
+                Spacer() // 使用兩個 Spacer 將文字內容整體稍微向上推，使其在視覺上更居中
+            }
+ */
+        }
+        .onAppear(perform: startBreathingAnimation)
+    }
+
+    /// 啟動一個平滑的、無限重複的呼吸動畫
+    private func startBreathingAnimation() {
+        // 使用 withAnimation 包裹狀態變更
+        // .repeatForever 會讓動畫無限循環
+        withAnimation(.easeInOut(duration: 3.5).repeatForever(autoreverses: true)) {
+            isAnimating = true
+        }
+    }
+}
+
+
 // MARK: - 播放器UI视图
 class PlayerUIView: UIView {
     private var playerLayer: AVPlayerLayer
@@ -174,7 +234,7 @@ struct DualStreamPlayerView: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack (alignment: .topLeading){ // Root ZStack
-           //     Color.red.edgesIgnoringSafeArea(.all)
+
                 // Video Layer - always full screen
                 let videoWidth = geometry.size.height * 16/9
                 let screenWidth = geometry.size.width
@@ -192,7 +252,7 @@ struct DualStreamPlayerView: View {
                             // Animate when startPanning changes.
                             // If startPanning becomes false, offset goes to 0 with .default animation.
                             // If startPanning becomes true, offset goes to -totalDistance with repeating animation.
-                            value: startPanning 
+                            value: startPanning
                         )
                     
                         .id(playerController.videoPlayer.currentItem)
@@ -230,7 +290,7 @@ struct DualStreamPlayerView: View {
                             // 1. Change the offset target to 0.
                             // 2. Trigger the .animation modifier, which will use .default (non-repeating)
                             //    animation because startPanning is now false.
-                            self.startPanning = false 
+                            self.startPanning = false
                             print("hzg: VideoPlayerView onChange currentItem (startPanning set to false to reset for new item: \(newItem != nil))")
                             // The .onAppear of the new VideoPlayerView (recreated due to .id())
                             // will handle setting startPanning = true if newItem is not nil,
@@ -238,37 +298,15 @@ struct DualStreamPlayerView: View {
                             // No need to set startPanning = true here.
                         }
                 } // End of VideoPlayerView conditional
+                else{
+                    PlayerPlaceholderView()
+                        .frame(width: geometry.size.width)
+                }
                 
                 // UI Controls Overlay Layer
-               if playerController.showControls {
-/*                    VStack(spacing: 0) { // Use spacing 0 if elements should touch or manage spacing internally
-                       
-                        // Top Controls Container
-                        HStack(alignment: .top) { // Use .top alignment for elements like status and button
-                            topLeftStatusView(geometry: geometry) // Pass geometry if needed by helper
-                            Spacer()
-                            cantSleepButton(geometry: geometry) // Pass geometry if needed by helper
-                        }
-                        .padding(.top, globalSafeAreaInsets.top + 20) // 使用全局安全区域值
-                        .padding(.horizontal, 20) // Horizontal padding for the group
-                        
-                        Spacer() // Pushes bottom controls down
-                
-                        // Bottom Playback Controls
-                       if playerController.videoPlayer.currentItem != nil {
-                            PlaybackControlsView(playerController: playerController)
-                                .frame(width: screenWidth) // screenWidth from geometry
-                                // 新增这里：为控件本身增加一个额外的底部间距来避开 TabBar
-                                .padding(.bottom, 49) // 49pt 是 TabBar 的标准高度，您可以根据实际情况调整
-                        }
-                    }
-
-                    .padding(.bottom, globalSafeAreaInsets.bottom) // 使用全局安全区域值
-                    .frame(width: geometry.size.width, height: geometry.size.height) // Make VStack fill the screen
-                    .transition(.opacity) // Animate the entire controls VStack
-*/
+                if playerController.showControls {
                     VStack(alignment: .center, spacing: 30) { // 整体顶部控件的 VStack
-                                   
+                        
                         // Top Controls Container
                         HStack(alignment: .top) { // Use .top alignment for elements like status and button
                             topLeftStatusView(geometry: geometry) // Pass geometry if needed by helper
@@ -279,9 +317,6 @@ struct DualStreamPlayerView: View {
                         .padding(.horizontal, 10) // 5. 顶部控件增加额外上边距
                         
                         Spacer() // Pushes bottom controls down (PlaybackControlsView)
-                        // =======================================================================
-                        // Optimized Code (优化后的代码)
-                        // =======================================================================
                         // 新增：定时器选择条
                         if playerController.videoPlayer.currentItem != nil { // 仅当有视频播放时显示定时器选项
                             // MARK: - 优化方案
@@ -295,37 +330,28 @@ struct DualStreamPlayerView: View {
                                     TimerOptionButton( targetMode: .timedClose7200)
                                     TimerOptionButton( targetMode: .unlimited)
                                 }
-                                
-                                // 描述文字
-                         /*       Text("选择定时时钟")
-                                    .font(.caption) // 优化点 4: 将字体从 .caption2 提升至 .caption，更清晰
-                                    .foregroundColor(.white.opacity(0.7)) // 优化点 5: 略微提高不透明度，增强可读性
-                          */
                             }
                             .padding(.vertical, 5) // 优化点 6: 调整垂直内边距，使其更具呼吸感
                             .padding(.horizontal, 10)
                             .frame(maxWidth: .infinity) // 确保VStack横向撑满
-                        //    .background(.ultraThinMaterial) // 优化点 1: 使用毛玻璃效果背景，更现代且能适应不同视频背景
+                            
                             .cornerRadius(12) // 优化点 7: 增加圆角半径，使其看起来更柔和
-                          //  .padding(.horizontal, 20) // 优化点 8: 在外部增加水平边距，使整个模块悬浮在中间，不紧贴屏幕边缘
                         }
-
-                       
-                
+                        
                         // Bottom Playback Controls
                         if playerController.videoPlayer.currentItem != nil {
                             PlaybackControlsView(playerController: playerController)
                                 .frame(width: screenWidth) // screenWidth from geometry
                                 .padding(.bottom, 50) // 2. 为播放控制条增加额外下边距以避开TabBar
                         }
+                    }
+                    
+                    .padding(.bottom, globalSafeAreaInsets.bottom) // 使用全局安全区域值
+                    .padding(.top, globalSafeAreaInsets.top) // 使用全局安全区域值 (确保顶部也有安全边距)
+                    .frame(width: geometry.size.width, height: geometry.size.height) // Make VStack fill the screen
+                    
                 }
-
-                 .padding(.bottom, globalSafeAreaInsets.bottom) // 使用全局安全区域值
-                 .padding(.top, globalSafeAreaInsets.top) // 使用全局安全区域值 (确保顶部也有安全边距)
-                 .frame(width: geometry.size.width, height: geometry.size.height) // Make VStack fill the screen
-
-               }
-
+                
                 // Banners and Journal Entry (positioned absolutely, might need zIndex adjustments)
                 if showingMoodBanner {
                     MoodSelectionBannerView(onMoodSelected: { mood in
@@ -348,6 +374,7 @@ struct DualStreamPlayerView: View {
                     .frame(width: screenWidth)
                     .zIndex(200) // Ensure journal is above everything
                 }
+                
             } // End of Root ZStack
             .contentShape(Rectangle()) // 保留以便整个区域可点击
             .onTapGesture {
@@ -508,17 +535,24 @@ struct TimerOptionButton: View {
     }
 }
 
-// MARK: - DualStreamPlayerView 预览
-struct DualStreamPlayerView_Previews: PreviewProvider {
+// MARK: - SwiftUI 預覽
+struct PlayerPlaceholderView_Previews: PreviewProvider {
     static var previews: some View {
-    
-        DualStreamPlayerView()
-            // DualStreamPlayerView uses @StateObject for its controllers,
-            // which are initialized with .shared instances,
-            // so direct environmentObject injection here might not be strictly necessary
-            // unless sub-sub-views expect them via @EnvironmentObject.
-            .environmentObject(DualStreamPlayerController.shared)
-            .environmentObject(GuardianController.shared)
-            .background(Color.gray) // Add a background to see the view against
+        PlayerPlaceholderView()
     }
 }
+//
+//// MARK: - DualStreamPlayerView 预览
+//struct DualStreamPlayerView_Previews: PreviewProvider {
+//    static var previews: some View {
+//    
+//        DualStreamPlayerView()
+//            // DualStreamPlayerView uses @StateObject for its controllers,
+//            // which are initialized with .shared instances,
+//            // so direct environmentObject injection here might not be strictly necessary
+//            // unless sub-sub-views expect them via @EnvironmentObject.
+//            .environmentObject(DualStreamPlayerController.shared)
+//            .environmentObject(GuardianController.shared)
+//            .background(Color.gray) // Add a background to see the view against
+//    }
+//}

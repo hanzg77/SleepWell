@@ -376,8 +376,8 @@
             filePath = "App/Views/AudioLibraryView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "308"
-            endingLineNumber = "308"
+            startingLineNumber = "309"
+            endingLineNumber = "309"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -520,8 +520,8 @@
             filePath = "App/Views/AudioLibraryView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "220"
-            endingLineNumber = "220"
+            startingLineNumber = "221"
+            endingLineNumber = "221"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -666,8 +666,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "540"
             endingLineNumber = "540"
-            landmarkName = "play(resource:)"
-            landmarkType = "7">
+            landmarkName = "DualStreamPlayerController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -682,7 +682,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "546"
             endingLineNumber = "546"
-            landmarkName = "play(resource:)"
+            landmarkName = "loadMetadataAndSetupNowPlaying(for:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -730,7 +730,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "548"
             endingLineNumber = "548"
-            landmarkName = "play(resource:)"
+            landmarkName = "loadMetadataAndSetupNowPlaying(for:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -746,7 +746,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "560"
             endingLineNumber = "560"
-            landmarkName = "play(resource:)"
+            landmarkName = "loadMetadataAndSetupNowPlaying(for:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -57,6 +57,12 @@
 "guardian.description.focus" = "集中力と生産性を向上させます";
 "guardian.description.relax" = "ストレスと不安を軽減します";
 "guardian.description.custom" = "あなただけの体験をカスタマイズ";
+"guardian.status.1Min" = "1分";
+"guardian.status.30Min" = "30分";
+"guardian.status.1Hour" = "1時間";
+"guardian.status.2Hour" = "2時間";
+"guardian.status.3Hour" = "3時間";
+"guardian.status.stopAtTimeFormat" = "%@ に停止";
 
 "guardian.emptyPrompt.line1" = "澄んだ音、美しい景色\n";
 "guardian.emptyPrompt.brand" = "スリープアイランド";
@@ -105,6 +111,8 @@
 "journal.entry.delete" = "エントリーを削除";
 "journal.entry.placeholder" = "睡眠体験を記録してください...";
 "journal.empty" = "日記エントリーがありません";
+"journal.empty.title" = "スリープアイランド";
+"journal.write" = "何か書きましょう...";
 
 // MARK: - Settings
 "settings.title" = "設定";
@@ -126,6 +134,7 @@
 "error.invalid_url" = "無効なURL";
 "error.no_data" = "データを受信できませんでした";
 "error.decoding" = "データの解析に失敗しました";
+"error.loadFailed.title" = "読み込み失敗";
 
 // MARK: - Actions
 "action.ok" = "OK";
@@ -136,3 +145,5 @@
 "action.done" = "完了";
 "action.retry" = "再試行";
 "action.confirm" = "確認"; 
+"action.close" = "閉じる";
+"action.refresh" = "更新";

@@ -147,6 +147,7 @@ struct AudioLibraryView: View {
                 }
             }
             .navigationTitle("library.title".localized)
+            .navigationBarTitleDisplayMode(.inline)
             // 移除了 guardianViewItem 的 sheet
         }
     }
@@ -304,7 +305,7 @@ struct ResourceCard: View {
         .onAppear {
             loadImage()
         }
-        .confirmationDialog("管理资源", isPresented: $showActionSheet) {
+    /*    .confirmationDialog("管理资源", isPresented: $showActionSheet) {
             Button("删除资源", role: .destructive) {
                 showDeleteAlert = true
             }
@@ -329,6 +330,7 @@ struct ResourceCard: View {
         } message: {
             Text("确定要删除{resource.name}吗？此操作不可撤销。")
         }
+     */
         .sheet(isPresented: $showAdminView) {
             AdminView(resource: resource)
         }

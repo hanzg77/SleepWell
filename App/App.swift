@@ -1,29 +1,18 @@
 import SwiftUI
 import AVFoundation
 import BackgroundTasks
+import UMCommon // 引入友盟公共库
+
 
 @main
 struct SleepWellApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @StateObject private var themeManager = ThemeManager.shared
     @StateObject private var localizationManager = LocalizationManager.shared
     
     init() {
-        // 设置音频会话
-        do {
-            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
-            try AVAudioSession.sharedInstance().setActive(true)
-        } catch {
-            print("Failed to set audio session category: \(error)")
-        }
-        
-        // 注册后台任务
-        UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
-        
-        // 确保应用启动时设置音频会话和注册后台任务
         setupAudioSession()
         registerBackgroundTasks()
-        
-        // 初始化本地化管理器
         _ = LocalizationManager.shared
     }
     
@@ -99,4 +88,21 @@ struct SleepWellApp: App {
             print("无法调度后台处理: \(error)")
         }
     }
-} 
+}
+
+class AppDelegate: NSObject, UIApplicationDelegate {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        // 友盟 SDK 初始化
+        // 请从友盟官网获取您的 AppKey
+        UMConfigure.initWithAppkey("6853bb9179267e02108b9125", channel: "App Store")
+
+        // 根据您集成的其他友盟服务（如统计、推送等）进行相应的初始化配置
+        // 例如，配置 U-APM (如果集成了)
+        // UMConfigure.setAPMEnabled(true)
+
+        print("友盟 SDK 初始化完成")
+        return true
+    }
+
+    // 其他 AppDelegate 方法...
+}

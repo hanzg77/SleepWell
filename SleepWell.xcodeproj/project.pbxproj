@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		08CC7E520C665C374ACBA903 /* MediaPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6A917EE284FA23A2B64C21 /* MediaPlayerController.swift */; };
+		1207EA7AD3AF02B86345D6BE /* Pods_SleepWellTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 863ABBA6921C86FAE72C984F /* Pods_SleepWellTests.framework */; };
 		1A5EC732C35B999DA4E5E34A /* SleepWellUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D20095F3F945C92E9D00AC1 /* SleepWellUITests.swift */; };
 		1EA7A5517E8D739D9218DE73 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF902225B93ABD32D0673A6D /* ThemeManager.swift */; };
 		2A134E66CF7AE856C42D679E /* SleepWellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3227FB2332E3261A8F9DEEC /* SleepWellTests.swift */; };
@@ -42,6 +43,7 @@
 		33BCDF912DF813AB00C0236C /* View+CornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BCDF8F2DF813AB00C0236C /* View+CornerRadius.swift */; };
 		33BCDF932DFA973C00C0236C /* AdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BCDF922DFA973C00C0236C /* AdminView.swift */; };
 		3E79184D94636495A1993FC8 /* SleepWellUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0AB2A31314E0E91DEA8B14 /* SleepWellUITestsLaunchTests.swift */; };
+		452AA20B86CE72B8A221CCDB /* Pods_SleepWell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 301B20DD6BBB530D5803CBF3 /* Pods_SleepWell.framework */; };
 		57DC5A2CB618C358B529E851 /* SleepMonitorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1048C6F8C1751A0E7CC70D2E /* SleepMonitorController.swift */; };
 		759423CEF2EDDD210E63B0B3 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457CEF3713C0BC4B2D86CF33 /* NetworkManager.swift */; };
 		85C4267664A423DE764F245B /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF209DCFA4C4298F5045846 /* Colors.swift */; };
@@ -50,6 +52,7 @@
 		903FAFF347507D53C8BC07D8 /* SleepWellUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D20095F3F945C92E9D00AC1 /* SleepWellUITests.swift */; };
 		907D71C0B827ED246139FF42 /* SleepWellUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0AB2A31314E0E91DEA8B14 /* SleepWellUITestsLaunchTests.swift */; };
 		C1F26D97DB723487BFE54095 /* AudioGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987748141D955A2717B83521 /* AudioGenerator.swift */; };
+		C5502D6038E5EB87F4B04ACA /* Pods_SleepWell_SleepWellUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71D81BF965F194AC6C96AB8B /* Pods_SleepWell_SleepWellUITests.framework */; };
 		D17A0421A8488F250B116A7C /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350B7B3EAE512400348C271C /* App.swift */; };
 		DDE5E3DCC31976352E739645 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C0250197F2B160E1569345 /* MainTabView.swift */; };
 		EFEA8D8A425FA0F1F68DB3DE /* SleepWellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3227FB2332E3261A8F9DEEC /* SleepWellTests.swift */; };
@@ -75,10 +78,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		03E2BCD9E1A389E3F6664964 /* Pods-SleepWell.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepWell.release.xcconfig"; path = "Target Support Files/Pods-SleepWell/Pods-SleepWell.release.xcconfig"; sourceTree = "<group>"; };
 		1048C6F8C1751A0E7CC70D2E /* SleepMonitorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepMonitorController.swift; sourceTree = "<group>"; };
+		16C8695049675D227C5AFFE6 /* Pods-SleepWell-SleepWellUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepWell-SleepWellUITests.debug.xcconfig"; path = "Target Support Files/Pods-SleepWell-SleepWellUITests/Pods-SleepWell-SleepWellUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		2695EF446E904FA69680390E /* Pods-SleepWellTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepWellTests.debug.xcconfig"; path = "Target Support Files/Pods-SleepWellTests/Pods-SleepWellTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2A0AB2A31314E0E91DEA8B14 /* SleepWellUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepWellUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		2D20095F3F945C92E9D00AC1 /* SleepWellUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepWellUITests.swift; sourceTree = "<group>"; };
 		2D6A917EE284FA23A2B64C21 /* MediaPlayerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPlayerController.swift; sourceTree = "<group>"; };
+		301B20DD6BBB530D5803CBF3 /* Pods_SleepWell.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SleepWell.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3352D4772DFC8602005AA3BA /* LocalizationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationManager.swift; sourceTree = "<group>"; };
 		3352D47A2DFC868C005AA3BA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3352D47B2DFC868C005AA3BA /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -119,16 +126,48 @@
 		5B20C54A372A705C6D073B68 /* GuardianController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianController.swift; sourceTree = "<group>"; };
 		60588448336C0F969ECB079E /* Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
 		6A1241839C86554E484A335A /* SleepWellUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = SleepWellUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		71D81BF965F194AC6C96AB8B /* Pods_SleepWell_SleepWellUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SleepWell_SleepWellUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7DA397BF4E160C41E162E423 /* Pods-SleepWell-SleepWellUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepWell-SleepWellUITests.release.xcconfig"; path = "Target Support Files/Pods-SleepWell-SleepWellUITests/Pods-SleepWell-SleepWellUITests.release.xcconfig"; sourceTree = "<group>"; };
+		863ABBA6921C86FAE72C984F /* Pods_SleepWellTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SleepWellTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		94C0250197F2B160E1569345 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		95D6A0D0F7ED7180EC7BDC24 /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
 		987748141D955A2717B83521 /* AudioGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioGenerator.swift; sourceTree = "<group>"; };
+		9B966F3B98FD0C4560284CC1 /* Pods-SleepWell.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepWell.debug.xcconfig"; path = "Target Support Files/Pods-SleepWell/Pods-SleepWell.debug.xcconfig"; sourceTree = "<group>"; };
 		AC2A388D6CB107CA7C0B7066 /* SleepWell.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SleepWell.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3227FB2332E3261A8F9DEEC /* SleepWellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepWellTests.swift; sourceTree = "<group>"; };
 		BA04CFCD2FF81E901145D9F4 /* SleepData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepData.swift; sourceTree = "<group>"; };
+		C84D9AA8244759875091A8D5 /* Pods-SleepWellTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepWellTests.release.xcconfig"; path = "Target Support Files/Pods-SleepWellTests/Pods-SleepWellTests.release.xcconfig"; sourceTree = "<group>"; };
 		DF902225B93ABD32D0673A6D /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		EDF209DCFA4C4298F5045846 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		F4C973E614DF512566C98DEB /* mock_resources.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = mock_resources.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		17F2621DF6C9FE9442F1A61B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				452AA20B86CE72B8A221CCDB /* Pods_SleepWell.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		29D70C401D3BB8E83BDAF848 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1207EA7AD3AF02B86345D6BE /* Pods_SleepWellTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ACC983013D720883EB4C7FD7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C5502D6038E5EB87F4B04ACA /* Pods_SleepWell_SleepWellUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		040537A39CCBF1E1F6502A3D /* Services */ = {
@@ -158,6 +197,16 @@
 				2A0AB2A31314E0E91DEA8B14 /* SleepWellUITestsLaunchTests.swift */,
 			);
 			path = Tests;
+			sourceTree = "<group>";
+		};
+		1DF72E19AD9DC5B4ED1FAF30 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				301B20DD6BBB530D5803CBF3 /* Pods_SleepWell.framework */,
+				71D81BF965F194AC6C96AB8B /* Pods_SleepWell_SleepWellUITests.framework */,
+				863ABBA6921C86FAE72C984F /* Pods_SleepWellTests.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		3352D47F2DFC868C005AA3BA /* Resources */ = {
@@ -218,6 +267,20 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		8D1C85FD1213F29E357B45FB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9B966F3B98FD0C4560284CC1 /* Pods-SleepWell.debug.xcconfig */,
+				03E2BCD9E1A389E3F6664964 /* Pods-SleepWell.release.xcconfig */,
+				16C8695049675D227C5AFFE6 /* Pods-SleepWell-SleepWellUITests.debug.xcconfig */,
+				7DA397BF4E160C41E162E423 /* Pods-SleepWell-SleepWellUITests.release.xcconfig */,
+				2695EF446E904FA69680390E /* Pods-SleepWellTests.debug.xcconfig */,
+				C84D9AA8244759875091A8D5 /* Pods-SleepWellTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		D0B473DEC1A7A9A8E6E0E93B = {
 			isa = PBXGroup;
 			children = (
@@ -227,6 +290,8 @@
 				77F0E6113BA31D1DF9671360 /* Resources */,
 				186D178AF904354521B7F20A /* Tests */,
 				44749C5C6F303BD25572F912 /* Products */,
+				8D1C85FD1213F29E357B45FB /* Pods */,
+				1DF72E19AD9DC5B4ED1FAF30 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -274,7 +339,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 04653CF140B65A74578D20A2 /* Build configuration list for PBXNativeTarget "SleepWellUITests" */;
 			buildPhases = (
+				172AC84E584BC80AD7BA794E /* [CP] Check Pods Manifest.lock */,
 				D6E1B05A7C97B44033393A67 /* Sources */,
+				ACC983013D720883EB4C7FD7 /* Frameworks */,
+				1137D15F780C9E74605AE44D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -282,8 +350,6 @@
 				EDF18158BD63A4FEC3347EBD /* PBXTargetDependency */,
 			);
 			name = SleepWellUITests;
-			packageProductDependencies = (
-			);
 			productName = SleepWellUITests;
 			productReference = 6A1241839C86554E484A335A /* SleepWellUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -292,16 +358,17 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6C6FEC6BF8125E5836189635 /* Build configuration list for PBXNativeTarget "SleepWell" */;
 			buildPhases = (
+				DC2ECF0362963709E5ED3456 /* [CP] Check Pods Manifest.lock */,
 				FA4B2087C5143BF129DE60FF /* Sources */,
 				0EA435D5F615BF7C8E3F191E /* Resources */,
+				17F2621DF6C9FE9442F1A61B /* Frameworks */,
+				3EF2BC853902A3DA8567DC38 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = SleepWell;
-			packageProductDependencies = (
-			);
 			productName = SleepWell;
 			productReference = AC2A388D6CB107CA7C0B7066 /* SleepWell.app */;
 			productType = "com.apple.product-type.application";
@@ -310,7 +377,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F85CFD56A35DA7DEE2F8B23D /* Build configuration list for PBXNativeTarget "SleepWellTests" */;
 			buildPhases = (
+				C83FED8822FCFC9E4D322CF9 /* [CP] Check Pods Manifest.lock */,
 				C11AE99160E29AF1F394470D /* Sources */,
+				29D70C401D3BB8E83BDAF848 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -318,8 +387,6 @@
 				A37F491DCA40FD86E4AFB95C /* PBXTargetDependency */,
 			);
 			name = SleepWellTests;
-			packageProductDependencies = (
-			);
 			productName = SleepWellTests;
 			productReference = 458EED220ECC690478C86FDD /* SleepWellTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -351,6 +418,7 @@
 			);
 			mainGroup = D0B473DEC1A7A9A8E6E0E93B;
 			minimizedProjectReferenceProxies = 1;
+			productRefGroup = 44749C5C6F303BD25572F912 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -373,6 +441,109 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1137D15F780C9E74605AE44D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SleepWell-SleepWellUITests/Pods-SleepWell-SleepWellUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SleepWell-SleepWellUITests/Pods-SleepWell-SleepWellUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SleepWell-SleepWellUITests/Pods-SleepWell-SleepWellUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		172AC84E584BC80AD7BA794E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SleepWell-SleepWellUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3EF2BC853902A3DA8567DC38 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SleepWell/Pods-SleepWell-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SleepWell/Pods-SleepWell-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SleepWell/Pods-SleepWell-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C83FED8822FCFC9E4D322CF9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SleepWellTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DC2ECF0362963709E5ED3456 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SleepWell-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C11AE99160E29AF1F394470D /* Sources */ = {
@@ -473,6 +644,7 @@
 /* Begin XCBuildConfiguration section */
 		240E547829D840AD9EFC1497 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7DA397BF4E160C41E162E423 /* Pods-SleepWell-SleepWellUITests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -545,6 +717,7 @@
 		};
 		36822C36B05CDD1B5A4666E4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C84D9AA8244759875091A8D5 /* Pods-SleepWellTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -561,6 +734,7 @@
 		};
 		64C3EA75C99F7975F5003557 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9B966F3B98FD0C4560284CC1 /* Pods-SleepWell.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SleepWell.entitlements;
@@ -572,7 +746,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sleepwell.ios;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sleepwell.han;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -643,6 +817,7 @@
 		};
 		CBF65E39387D61D252D7F9A2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 16C8695049675D227C5AFFE6 /* Pods-SleepWell-SleepWellUITests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -659,6 +834,7 @@
 		};
 		D5B4B1CC282D8DE3086066E7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 03E2BCD9E1A389E3F6664964 /* Pods-SleepWell.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SleepWell.entitlements;
@@ -670,7 +846,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sleepwell.ios;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sleepwell.han;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -678,6 +854,7 @@
 		};
 		F30FC1280BA47AD097A504F6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2695EF446E904FA69680390E /* Pods-SleepWellTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				LD_RUNPATH_SEARCH_PATHS = (

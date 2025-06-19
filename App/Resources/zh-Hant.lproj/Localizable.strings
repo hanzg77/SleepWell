@@ -1,4 +1,4 @@
-/* 
+/*
   Localizable.strings
   SleepWell
   
@@ -15,7 +15,7 @@
 "tab.settings" = "設定";
 
 // MARK: - Audio Library
-"library.title" = "媒體庫";
+"library.title" = "睡眠島";
 "library.search.placeholder" = "搜尋";
 "library.empty" = "找不到任何資源";
 "library.loading" = "載入中...";
@@ -63,12 +63,17 @@
 "guardian.emptyPrompt.line2Suffix" = "伴你入眠";
 "guardian.status.accompany" = "伴你入眠";
 "guardian.status.allNight" = "一整晚";
+"guardian.status.1Min" = "1 分鐘";
+"guardian.status.30Min" = "30 分鐘";
+"guardian.status.1Hour" = "1 小時";
+"guardian.status.2Hour" = "2 小時";
+"guardian.status.3Hour" = "3 小時";
+"guardian.status.stopAtTimeFormat" = "%@ 停止播放";
+
 "guardian.action.cantSleep" = "睡不著？";
 "countdown.format.hms" = "%d小時%02d分%02d秒";
 "countdown.format.ms" = "%d分%02d秒";
 "countdown.format.s" = "%d秒";
-
-
 
 // MARK: - Player
 "player.now_playing" = "正在播放";
@@ -105,6 +110,8 @@
 "journal.entry.delete" = "刪除日記";
 "journal.entry.placeholder" = "寫下您的睡眠體驗...";
 "journal.empty" = "尚無日記條目";
+"journal.empty.title" = "睡眠島";
+"journal.write" = "寫點什麼吧...";
 
 // MARK: - Settings
 "settings.title" = "設定";
@@ -126,6 +133,7 @@
 "error.invalid_url" = "無效的 URL";
 "error.no_data" = "未收到資料";
 "error.decoding" = "資料解析失敗";
+"error.loadFailed.title" = "載入失敗";
 
 // MARK: - Actions
 "action.ok" = "好";
@@ -136,3 +144,5 @@
 "action.done" = "完成";
 "action.retry" = "重試";
 "action.confirm" = "確認";
+"action.close" = "關閉";
+"action.refresh" = "重新整理";

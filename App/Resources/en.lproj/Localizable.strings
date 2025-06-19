@@ -58,6 +58,13 @@
 "guardian.description.relax" = "Reduces stress and anxiety";
 "guardian.description.custom" = "Customize your own experience";
 
+"guardian.status.1Min" = "1 minute";
+"guardian.status.30Min" = "30 minutes";
+"guardian.status.1Hour" = "1 hour";
+"guardian.status.2Hour" = "2 hours";
+"guardian.status.3Hour" = "3 hours";
+"guardian.status.stopAtTimeFormat" = "Stop at %@";
+
 "guardian.emptyPrompt.line1" = "Calm sounds, peaceful sights\n";
 "guardian.emptyPrompt.brand" = "Sleep Island";
 "guardian.emptyPrompt.line2Suffix" = "Here to help you sleep";
@@ -104,6 +111,8 @@
 "journal.entry.delete" = "Delete Entry";
 "journal.entry.placeholder" = "Write about your sleep experience...";
 "journal.empty" = "No journal entries yet";
+"journal.empty.title" = "Sleep Island";
+"journal.write" = "Write something...";
 
 // MARK: - Settings
 "settings.title" = "Settings";
@@ -125,6 +134,7 @@
 "error.invalid_url" = "Invalid URL";
 "error.no_data" = "No data received";
 "error.decoding" = "Failed to parse data";
+"error.loadFailed.title" = "Load Failed";
 
 // MARK: - Actions
 "action.ok" = "OK";
@@ -134,4 +144,6 @@
 "action.edit" = "Edit";
 "action.done" = "Done";
 "action.retry" = "Retry";
-"action.confirm" = "Confirm"; 
+"action.confirm" = "Confirm";
+"action.close" = "Close";
+"action.refresh" = "Refresh";

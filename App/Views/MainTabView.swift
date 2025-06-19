@@ -15,7 +15,7 @@ extension EnvironmentValues {
 
 
 struct MainTabView: View {
-    @State private var selectedTab = 1
+    @State private var selectedTab = 0
     @StateObject private var playerController = DualStreamPlayerController.shared
     @StateObject private var logManager = SleepLogManager.shared
     @StateObject private var localizationManager = LocalizationManager.shared

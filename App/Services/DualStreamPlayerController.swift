@@ -165,14 +165,35 @@ final class DualStreamPlayerController: NSObject, ObservableObject {
                 self.logger.info("✅ 音频流准备就绪，立即开始播放！")
                 DispatchQueue.main.async {
                     self.isAudioReady = true
-                    if let dur = playerItem.asset.duration.seconds.isFinite ? playerItem.asset.duration.seconds : nil {
+                    let dur = playerItem.asset.duration.seconds
+                    if dur.isFinite, dur > 0 { // 直接使用 dur，因为它不是 Optional
                         self.duration = dur
                     }
-                    self.audioPlayer.play()
-                    self.isPlaying = true
-                    self.setupTimeObserver()
-                    self.setupAudioLooping()
-                    self.loadMetadataAndSetupNowPlaying(for: playerItem)
+
+                    let initialSeekTime = self.currentTime // currentTime 已被 play(resource:) 设置为缓存值
+                    var playImmediately = true
+
+                    // 如果有有效的缓存进度，并且不在非常接近开头或结尾的位置，则尝试跳转
+                    if initialSeekTime > 1.0 && initialSeekTime < (self.duration - 1.0) {
+                        playImmediately = false
+                        self.isSeeking = true
+                        self.logger.info("准备从缓存进度 \(initialSeekTime)s 开始播放音频。")
+                        self.audioPlayer.seek(to: CMTime(seconds: initialSeekTime, preferredTimescale: 600), toleranceBefore: .zero, toleranceAfter: .zero) { [weak self] finished in
+                            guard let self = self else { return }
+                            self.isSeeking = false
+                            if finished {
+                                self.logger.info("音频跳转到 \(initialSeekTime)s 成功。")
+                            } else {
+                                self.logger.warning("音频跳转到 \(initialSeekTime)s 失败，将从头播放。")
+                                self.currentTime = 0 // 跳转失败，重置 currentTime
+                            }
+                            self.startAudioPlayback(playerItem: playerItem)
+                        }
+                    }
+
+                    if playImmediately {
+                        self.startAudioPlayback(playerItem: playerItem)
+                    }
                 }
                 self.audioItemStatusObserver?.invalidate()
             } else if playerItem.status == .failed {
@@ -180,6 +201,16 @@ final class DualStreamPlayerController: NSObject, ObservableObject {
                 self.audioItemStatusObserver?.invalidate()
             }
         }
+    }
+
+    // 辅助方法，用于启动音频播放和相关设置
+    private func startAudioPlayback(playerItem: AVPlayerItem) {
+        self.audioPlayer.play()
+        self.isPlaying = true
+        self.setupTimeObserver() // 为音频流设置时间观察者
+        self.setupAudioLooping()
+        self.loadMetadataAndSetupNowPlaying(for: playerItem)
+        self.handlePlaybackStateChange()
     }
     
     private func prepareVideoAndSyncWhenReady(item: AVPlayerItem) {
@@ -216,13 +247,34 @@ final class DualStreamPlayerController: NSObject, ObservableObject {
                 self.logger.info("✅ 单视频流准备就绪，开始播放。")
                 DispatchQueue.main.async {
                     self.isVideoReady = true
-                    if let dur = playerItem.asset.duration.seconds.isFinite ? playerItem.asset.duration.seconds : nil {
+                    let dur = playerItem.asset.duration.seconds
+                    if dur.isFinite, dur > 0 { // 直接使用 dur，因为它不是 Optional
                         self.duration = dur
                     }
-                    self.videoPlayer.play()
-                    self.isPlaying = true
-                    self.setupTimeObserver(forVideo: true)
-                    self.setupVideoLooping()
+
+                    let initialSeekTime = self.currentTime // currentTime 已被 play(resource:) 设置为缓存值
+                    var playImmediately = true
+
+                    // 如果有有效的缓存进度，并且不在非常接近开头或结尾的位置，则尝试跳转
+                    if initialSeekTime > 1.0 && initialSeekTime < (self.duration - 1.0) {
+                        playImmediately = false
+                        self.isSeeking = true
+                        self.logger.info("准备从缓存进度 \(initialSeekTime)s 开始播放视频。")
+                        self.videoPlayer.seek(to: CMTime(seconds: initialSeekTime, preferredTimescale: 600), toleranceBefore: .zero, toleranceAfter: .zero) { [weak self] finished in
+                            guard let self = self else { return }
+                            self.isSeeking = false
+                            if finished {
+                                self.logger.info("视频跳转到 \(initialSeekTime)s 成功。")
+                            } else {
+                                self.logger.warning("视频跳转到 \(initialSeekTime)s 失败，将从头播放。")
+                                self.currentTime = 0 // 跳转失败，重置 currentTime
+                            }
+                            self.startSingleVideoPlayback(playerItem: playerItem)
+                        }
+                    }
+                    if playImmediately {
+                        self.startSingleVideoPlayback(playerItem: playerItem)
+                    }
                 }
                 self.videoItemStatusObserver?.invalidate()
             } else if playerItem.status == .failed {
@@ -230,6 +282,15 @@ final class DualStreamPlayerController: NSObject, ObservableObject {
                 self.videoItemStatusObserver?.invalidate()
             }
         }
+    }
+
+    // 辅助方法，用于启动单视频播放和相关设置
+    private func startSingleVideoPlayback(playerItem: AVPlayerItem) {
+        self.videoPlayer.play()
+        self.isPlaying = true
+        self.setupTimeObserver(forVideo: true) // 为视频流设置时间观察者
+        self.setupVideoLooping()
+        self.handlePlaybackStateChange() // 确保锁屏信息等被更新
     }
     
     // MARK: - 音频会话设置
@@ -417,10 +478,27 @@ final class DualStreamPlayerController: NSObject, ObservableObject {
             }
             
             // 2. 获取资源信息
+            let baseArtistName = "伴你入眠"
+            var artistSubtitle = ""
+            let currentGuardianMode = GuardianController.shared.currentMode
+            
+            switch currentGuardianMode {
+            case .unlimited:
+                artistSubtitle = " · " + "guardian.status.allNight".localized
+            case .smartDetection:
+                artistSubtitle = " · " + "智能检测" // Assuming "智能检测" is the desired string
+            case _ where currentGuardianMode.duration > 0:
+                let stopTime = Date().addingTimeInterval(TimeInterval(GuardianController.shared.countdown)) // Use countdown for accuracy
+                let timeFormatter = DateFormatter()
+                timeFormatter.dateFormat = "HH:mm"
+                artistSubtitle = " · " + String(format: "guardian.status.stopAtTimeFormat".localized, timeFormatter.string(from: stopTime))
+            default:
+                artistSubtitle = "" // No subtitle for other cases or if duration is not positive
+            }
+            
             let title = resource.name
-            let artist = "伴你入眠"
+            let artist = baseArtistName + artistSubtitle
             let tags = resource.tags.joined(separator: ", ")
-            let duration = resource.totalDurationSeconds
             
             // 3. 在主线程更新 UI
             DispatchQueue.main.async {
@@ -445,7 +523,7 @@ final class DualStreamPlayerController: NSObject, ObservableObject {
                 }
                 
                 // 设置时长信息
-                nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = duration
+                nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = self.duration // Use the player's duration
                 nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = self.currentTime
                 nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = self.isPlaying ? 1.0 : 0.0
                 
@@ -533,16 +611,23 @@ final class DualStreamPlayerController: NSObject, ObservableObject {
 
     // MARK: - 播放控制
     func play(resource: Resource) {
+        stop() // 首先停止当前播放并清理状态
+
         self.currentResource = resource
+        logger.info("开始处理播放资源: \(resource.name)")
+
+        // 从缓存加载此资源的播放进度
+        let savedProgress = PlaybackProgressManager.shared.getProgress(for: resource.resourceId) ?? 0.0
+        self.currentTime = savedProgress // 设置初始 currentTime，UI会立即响应
+        self.duration = TimeInterval(resource.totalDurationSeconds) // 设置初始 duration，UI会立即响应
+        logger.info("资源 \(resource.name) 的缓存进度为: \(savedProgress)s, 总时长: \(self.duration)s")
         
         // 检查是否有双流资源
         if let videoClipUrl = resource.videoClipUrl, !videoClipUrl.isEmpty,
            !resource.audioUrl.isEmpty,
            let videoClipURL = URL(string: videoClipUrl),
            let audioURL = URL(string: resource.audioUrl) {
-            // 双流播放
             logger.info("开始播放双流模式（音频优先）...")
-            stop()
             
             let videoAsset = AVURLAsset(url: videoClipURL)
             let videoPlayerItem = AVPlayerItem(asset: videoAsset)
@@ -565,7 +650,6 @@ final class DualStreamPlayerController: NSObject, ObservableObject {
                   let audioURL = URL(string: resource.audioUrl) {
             // 单音频播放
             logger.info("开始播放单音频模式...")
-            stop()
             
             let asset = AVURLAsset(url: audioURL)
             let playerItem = AVPlayerItem(asset: asset)
