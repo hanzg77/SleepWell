@@ -8,56 +8,59 @@
 
 /* Begin PBXBuildFile section */
 		08CC7E520C665C374ACBA903 /* MediaPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6A917EE284FA23A2B64C21 /* MediaPlayerController.swift */; };
-		1207EA7AD3AF02B86345D6BE /* Pods_SleepWellTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 863ABBA6921C86FAE72C984F /* Pods_SleepWellTests.framework */; };
+		10CBA99003470565F7A6B134 /* EpisodeListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A5C7AD6AB5D6078765DC8A /* EpisodeListViewModel.swift */; };
 		1A5EC732C35B999DA4E5E34A /* SleepWellUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D20095F3F945C92E9D00AC1 /* SleepWellUITests.swift */; };
 		1EA7A5517E8D739D9218DE73 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF902225B93ABD32D0673A6D /* ThemeManager.swift */; };
+		1F95B380EE956783BE243FF4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88FBA0BEDB89ACCA003728B4 /* InfoPlist.strings */; };
+		2495F08D6A89ED0C3AF8ED58 /* PlaybackProgressManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05882E35AA8F7B665602776 /* PlaybackProgressManager.swift */; };
 		2A134E66CF7AE856C42D679E /* SleepWellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3227FB2332E3261A8F9DEEC /* SleepWellTests.swift */; };
+		2D2B0499441FA424A5ACC4E5 /* Pods_SleepWell_SleepWellUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3E10B02E4DD9EF14A6E8179 /* Pods_SleepWell_SleepWellUITests.framework */; };
+		2D6FA53CBC832E0BB0DF96E3 /* MoodSelectionBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1871628495D98AA8F57A0524 /* MoodSelectionBannerView.swift */; };
+		2FF37F7E4FFE404C7F61D9B1 /* GuardianModeSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD02774131F5B01AD7CB773 /* GuardianModeSelectionViewModel.swift */; };
 		308AB2FBB472CA269384A1F2 /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60588448336C0F969ECB079E /* Episode.swift */; };
-		3352D4782DFC8602005AA3BA /* LocalizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3352D4772DFC8602005AA3BA /* LocalizationManager.swift */; };
-		3352D4802DFC868C005AA3BA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3352D47E2DFC868C005AA3BA /* Localizable.strings */; };
-		3352D4822DFC8A92005AA3BA /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3352D4812DFC8A92005AA3BA /* SettingsView.swift */; };
-		3375CCE12DEE69EF008C3559 /* AudioLibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3375CCDC2DEE69EF008C3559 /* AudioLibraryView.swift */; };
-		3375CCE22DEE69EF008C3559 /* GuardianModeSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3375CCDE2DEE69EF008C3559 /* GuardianModeSelectionView.swift */; };
-		3375CCE32DEE69EF008C3559 /* GuardianView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3375CCDF2DEE69EF008C3559 /* GuardianView.swift */; };
-		3375CCE42DEE69EF008C3559 /* EpisodeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3375CCDD2DEE69EF008C3559 /* EpisodeListView.swift */; };
-		3375CCE52DEE69EF008C3559 /* SleepRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3375CCE02DEE69EF008C3559 /* SleepRecordView.swift */; };
-		3375CCEA2DEE6A06008C3559 /* AudioLibraryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3375CCE62DEE6A06008C3559 /* AudioLibraryViewModel.swift */; };
-		3375CCEB2DEE6A06008C3559 /* EpisodeListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3375CCE72DEE6A06008C3559 /* EpisodeListViewModel.swift */; };
-		3375CCEC2DEE6A06008C3559 /* GuardianModeSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3375CCE82DEE6A06008C3559 /* GuardianModeSelectionViewModel.swift */; };
-		3375CCED2DEE6A06008C3559 /* SleepRecordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3375CCE92DEE6A06008C3559 /* SleepRecordViewModel.swift */; };
-		3375CD372DF030F7008C3559 /* PlaylistController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3375CD362DF030F7008C3559 /* PlaylistController.swift */; };
-		3375CD3C2DF0313C008C3559 /* CoverImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3375CD392DF0313C008C3559 /* CoverImageView.swift */; };
-		3375CD402DF03BE2008C3559 /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3375CD3F2DF03BE2008C3559 /* NotificationNames.swift */; };
-		3375CD422DF2F8EE008C3559 /* DualStreamPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3375CD412DF2F8EE008C3559 /* DualStreamPlayerController.swift */; };
-		3375CD442DF30072008C3559 /* DualStreamPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3375CD432DF30072008C3559 /* DualStreamPlayerView.swift */; };
-		3375CD482DF49780008C3559 /* SleepLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3375CD472DF49780008C3559 /* SleepLog.swift */; };
-		3375CD4A2DF4979D008C3559 /* SleepLogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3375CD492DF4979D008C3559 /* SleepLogManager.swift */; };
-		3375CD4D2DF497CD008C3559 /* SleepLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3375CD4C2DF497CD008C3559 /* SleepLogView.swift */; };
-		3375CD502DF55B16008C3559 /* MoodNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3375CD4F2DF55B16008C3559 /* MoodNoteView.swift */; };
-		3375CD522DF55D6A008C3559 /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3375CD512DF55D6A008C3559 /* DatePickerView.swift */; };
-		33BCDF822DF6E5FA00C0236C /* PlaybackProgressManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BCDF812DF6E5FA00C0236C /* PlaybackProgressManager.swift */; };
-		33BCDF862DF7729500C0236C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33BCDF852DF7729500C0236C /* Assets.xcassets */; };
-		33BCDF882DF773BE00C0236C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33BCDF872DF773BE00C0236C /* LaunchScreen.storyboard */; };
-		33BCDF8D2DF7F40100C0236C /* JournalEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BCDF8B2DF7F40100C0236C /* JournalEntryView.swift */; };
-		33BCDF8E2DF7F40100C0236C /* MoodSelectionBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BCDF8C2DF7F40100C0236C /* MoodSelectionBannerView.swift */; };
-		33BCDF912DF813AB00C0236C /* View+CornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BCDF8F2DF813AB00C0236C /* View+CornerRadius.swift */; };
-		33BCDF932DFA973C00C0236C /* AdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BCDF922DFA973C00C0236C /* AdminView.swift */; };
+		33BAD6AA2E05A8B900A88E92 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33BAD6A92E05A8B900A88E92 /* Assets.xcassets */; };
+		38A4652218CB5164223F8857 /* SleepRecordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD602049BD6E068DC48089B /* SleepRecordViewModel.swift */; };
+		3D029B0E95343DD8B0751676 /* AudioLibraryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BA35DD0320F9A2719706CC /* AudioLibraryViewModel.swift */; };
 		3E79184D94636495A1993FC8 /* SleepWellUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0AB2A31314E0E91DEA8B14 /* SleepWellUITestsLaunchTests.swift */; };
-		452AA20B86CE72B8A221CCDB /* Pods_SleepWell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 301B20DD6BBB530D5803CBF3 /* Pods_SleepWell.framework */; };
-		57DC5A2CB618C358B529E851 /* SleepMonitorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1048C6F8C1751A0E7CC70D2E /* SleepMonitorController.swift */; };
+		3EEF8E1681E0F7E16DF8DF55 /* mock_resources.json in Resources */ = {isa = PBXBuildFile; fileRef = F4C973E614DF512566C98DEB /* mock_resources.json */; };
+		53F1F81EA843C4D55DAF713A /* SleepRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD1629FD633B5C7CC69D0C3 /* SleepRecordView.swift */; };
+		54832D552E55DA9307BF365B /* Pods_SleepWell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C128C1B6CE95994E1F8A8F6B /* Pods_SleepWell.framework */; };
+		5CBA06CAFB6BC7A73235AC12 /* SleepLogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80A28BE0A0444D63994DC6E /* SleepLogManager.swift */; };
+		5D3334182E07155CBD5FE067 /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBDC6B828DCFFA9B8719321 /* DatePickerView.swift */; };
+		7474B4C8FD38944BC87261A9 /* DualStreamPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D174B9BF3E16966ADC1342 /* DualStreamPlayerController.swift */; };
+		752954FCDA0947497DEDB747 /* SleepLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598092698FC43E2936601533 /* SleepLogView.swift */; };
 		759423CEF2EDDD210E63B0B3 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457CEF3713C0BC4B2D86CF33 /* NetworkManager.swift */; };
+		7AA307F630185D06C99A5D8B /* GuardianModeSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D5CBA04B9D7537B5AB7881 /* GuardianModeSelectionView.swift */; };
+		7AEBF3DF874541C622A88471 /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA844FBAD5BD36D848EE20A0 /* NotificationNames.swift */; };
+		7B44966C22265CEA92AA83F1 /* AdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2A9EAD9223ACB23FC64A7D /* AdminView.swift */; };
 		85C4267664A423DE764F245B /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF209DCFA4C4298F5045846 /* Colors.swift */; };
-		8E5153DC4B6ED9FA1B2FDB5A /* GuardianController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B20C54A372A705C6D073B68 /* GuardianController.swift */; };
-		8F4B2C7D2419843048425DCB /* ResourceCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3E8EF39BFD856FD103DBBE /* ResourceCacheManager.swift */; };
+		864E9928C86763326C6C2589 /* SleepLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EE2F0B9E16C5171A704D25 /* SleepLog.swift */; };
+		903474CA6574AE0F50FED4E0 /* Pods_SleepWellTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC39FE871EA09B6FEC63DF5A /* Pods_SleepWellTests.framework */; };
 		903FAFF347507D53C8BC07D8 /* SleepWellUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D20095F3F945C92E9D00AC1 /* SleepWellUITests.swift */; };
+		904D97517782E433B497AB6C /* AudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5377884C720F834C87CCD23 /* AudioController.swift */; };
 		907D71C0B827ED246139FF42 /* SleepWellUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0AB2A31314E0E91DEA8B14 /* SleepWellUITestsLaunchTests.swift */; };
+		934E59FA56C5BA8C852218C9 /* PlaylistController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5970CFDCE5908D2E4DCCD51 /* PlaylistController.swift */; };
+		941F787ECFBEAEEB078BF097 /* JournalEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F315D9C7591828C8CB37E8A5 /* JournalEntryView.swift */; };
+		95C5F1AAD6169D91517A3025 /* GuardianController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CC162E0740913C70203AF /* GuardianController.swift */; };
+		A68606212FEBA6E8C6BA6F23 /* ResourceCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27981425AD5668436CEAB71F /* ResourceCacheManager.swift */; };
+		A84FBD3B97E43DBAB57A0D5B /* AudioLibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12FEAC93FF13BE83AC09C34 /* AudioLibraryView.swift */; };
+		A96B8A0DF708FA45F2C34281 /* MoodNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3459CC16F89FC7FD72A5CF10 /* MoodNoteView.swift */; };
+		AE0BB3C2A66545B098257984 /* CoverImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D94F60BE13FED7E5F48375 /* CoverImageView.swift */; };
+		B3949706BE3CB7AB8A56AA1C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 99B20107CECFC17B90E9E8E5 /* Localizable.strings */; };
+		BFCEB36E0CC0F649274209EB /* GuardianView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776C7A5533434CFED94A3AD7 /* GuardianView.swift */; };
 		C1F26D97DB723487BFE54095 /* AudioGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987748141D955A2717B83521 /* AudioGenerator.swift */; };
-		C5502D6038E5EB87F4B04ACA /* Pods_SleepWell_SleepWellUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71D81BF965F194AC6C96AB8B /* Pods_SleepWell_SleepWellUITests.framework */; };
+		C92024D04B5E53684F694637 /* LocalizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FA8D27EF796875AC01D964 /* LocalizationManager.swift */; };
+		CEF896285B2DE11CCDBA68A5 /* DualStreamPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A226722BFAC08D6957EF8F11 /* DualStreamPlayerView.swift */; };
+		CFAAAE6979D68D97D47C0002 /* SleepMonitorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBEDC74AA9EE3414781700E /* SleepMonitorController.swift */; };
 		D17A0421A8488F250B116A7C /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350B7B3EAE512400348C271C /* App.swift */; };
+		D40DC858E4DCE8BC4A9E7250 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03399D5F0C3BAF6FCF62D888 /* LaunchScreen.storyboard */; };
+		D494000F6361E26AA21578E9 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22DAEC78EE48F81CC833680 /* SettingsView.swift */; };
+		DBF44CF47C2E836FAC9F1D0D /* EpisodeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534895FF73BF221C9C61BCE4 /* EpisodeListView.swift */; };
 		DDE5E3DCC31976352E739645 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C0250197F2B160E1569345 /* MainTabView.swift */; };
 		EFEA8D8A425FA0F1F68DB3DE /* SleepWellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3227FB2332E3261A8F9DEEC /* SleepWellTests.swift */; };
 		F0F2655C3B91560F9D07D720 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D6A0D0F7ED7180EC7BDC24 /* Resource.swift */; };
 		F216495586840527EB7A2B8D /* SleepData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA04CFCD2FF81E901145D9F4 /* SleepData.swift */; };
+		F66FA23DDE06B787B6FDF20D /* View+CornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC69E5A2EA36117EC0FF829 /* View+CornerRadius.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,92 +81,96 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		03E2BCD9E1A389E3F6664964 /* Pods-SleepWell.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepWell.release.xcconfig"; path = "Target Support Files/Pods-SleepWell/Pods-SleepWell.release.xcconfig"; sourceTree = "<group>"; };
-		1048C6F8C1751A0E7CC70D2E /* SleepMonitorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepMonitorController.swift; sourceTree = "<group>"; };
-		16C8695049675D227C5AFFE6 /* Pods-SleepWell-SleepWellUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepWell-SleepWellUITests.debug.xcconfig"; path = "Target Support Files/Pods-SleepWell-SleepWellUITests/Pods-SleepWell-SleepWellUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		2695EF446E904FA69680390E /* Pods-SleepWellTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepWellTests.debug.xcconfig"; path = "Target Support Files/Pods-SleepWellTests/Pods-SleepWellTests.debug.xcconfig"; sourceTree = "<group>"; };
+		03399D5F0C3BAF6FCF62D888 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		05EE2F0B9E16C5171A704D25 /* SleepLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepLog.swift; sourceTree = "<group>"; };
+		0CD1629FD633B5C7CC69D0C3 /* SleepRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepRecordView.swift; sourceTree = "<group>"; };
+		143CC162E0740913C70203AF /* GuardianController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianController.swift; sourceTree = "<group>"; };
+		14A1F5BB5912E3A6C7B2FEA1 /* Pods-SleepWell-SleepWellUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepWell-SleepWellUITests.release.xcconfig"; path = "Target Support Files/Pods-SleepWell-SleepWellUITests/Pods-SleepWell-SleepWellUITests.release.xcconfig"; sourceTree = "<group>"; };
+		1871628495D98AA8F57A0524 /* MoodSelectionBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodSelectionBannerView.swift; sourceTree = "<group>"; };
+		1BD02774131F5B01AD7CB773 /* GuardianModeSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianModeSelectionViewModel.swift; sourceTree = "<group>"; };
+		1C68D08D2961424608FD97F7 /* Pods-SleepWell.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepWell.debug.xcconfig"; path = "Target Support Files/Pods-SleepWell/Pods-SleepWell.debug.xcconfig"; sourceTree = "<group>"; };
+		1DA58AE22B8C35BCDD663D24 /* Pods-SleepWellTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepWellTests.release.xcconfig"; path = "Target Support Files/Pods-SleepWellTests/Pods-SleepWellTests.release.xcconfig"; sourceTree = "<group>"; };
+		27981425AD5668436CEAB71F /* ResourceCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceCacheManager.swift; sourceTree = "<group>"; };
+		29BA35DD0320F9A2719706CC /* AudioLibraryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioLibraryViewModel.swift; sourceTree = "<group>"; };
 		2A0AB2A31314E0E91DEA8B14 /* SleepWellUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepWellUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		2CBEDC74AA9EE3414781700E /* SleepMonitorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepMonitorController.swift; sourceTree = "<group>"; };
 		2D20095F3F945C92E9D00AC1 /* SleepWellUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepWellUITests.swift; sourceTree = "<group>"; };
 		2D6A917EE284FA23A2B64C21 /* MediaPlayerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPlayerController.swift; sourceTree = "<group>"; };
-		301B20DD6BBB530D5803CBF3 /* Pods_SleepWell.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SleepWell.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3352D4772DFC8602005AA3BA /* LocalizationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationManager.swift; sourceTree = "<group>"; };
-		3352D47A2DFC868C005AA3BA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		3352D47B2DFC868C005AA3BA /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
-		3352D47C2DFC868C005AA3BA /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		3352D47D2DFC868C005AA3BA /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		3352D4812DFC8A92005AA3BA /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		3375CCDC2DEE69EF008C3559 /* AudioLibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioLibraryView.swift; sourceTree = "<group>"; };
-		3375CCDD2DEE69EF008C3559 /* EpisodeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeListView.swift; sourceTree = "<group>"; };
-		3375CCDE2DEE69EF008C3559 /* GuardianModeSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianModeSelectionView.swift; sourceTree = "<group>"; };
-		3375CCDF2DEE69EF008C3559 /* GuardianView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianView.swift; sourceTree = "<group>"; };
-		3375CCE02DEE69EF008C3559 /* SleepRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepRecordView.swift; sourceTree = "<group>"; };
-		3375CCE62DEE6A06008C3559 /* AudioLibraryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioLibraryViewModel.swift; sourceTree = "<group>"; };
-		3375CCE72DEE6A06008C3559 /* EpisodeListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeListViewModel.swift; sourceTree = "<group>"; };
-		3375CCE82DEE6A06008C3559 /* GuardianModeSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianModeSelectionViewModel.swift; sourceTree = "<group>"; };
-		3375CCE92DEE6A06008C3559 /* SleepRecordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepRecordViewModel.swift; sourceTree = "<group>"; };
-		3375CD362DF030F7008C3559 /* PlaylistController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistController.swift; sourceTree = "<group>"; };
-		3375CD392DF0313C008C3559 /* CoverImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverImageView.swift; sourceTree = "<group>"; };
-		3375CD3F2DF03BE2008C3559 /* NotificationNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNames.swift; sourceTree = "<group>"; };
-		3375CD412DF2F8EE008C3559 /* DualStreamPlayerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DualStreamPlayerController.swift; sourceTree = "<group>"; };
-		3375CD432DF30072008C3559 /* DualStreamPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DualStreamPlayerView.swift; sourceTree = "<group>"; };
-		3375CD472DF49780008C3559 /* SleepLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepLog.swift; sourceTree = "<group>"; };
-		3375CD492DF4979D008C3559 /* SleepLogManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepLogManager.swift; sourceTree = "<group>"; };
-		3375CD4C2DF497CD008C3559 /* SleepLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepLogView.swift; sourceTree = "<group>"; };
-		3375CD4F2DF55B16008C3559 /* MoodNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodNoteView.swift; sourceTree = "<group>"; };
-		3375CD512DF55D6A008C3559 /* DatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
-		33BCDF812DF6E5FA00C0236C /* PlaybackProgressManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackProgressManager.swift; sourceTree = "<group>"; };
-		33BCDF852DF7729500C0236C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		33BCDF872DF773BE00C0236C /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		33BCDF892DF779D900C0236C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		33BCDF8B2DF7F40100C0236C /* JournalEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntryView.swift; sourceTree = "<group>"; };
-		33BCDF8C2DF7F40100C0236C /* MoodSelectionBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodSelectionBannerView.swift; sourceTree = "<group>"; };
-		33BCDF8F2DF813AB00C0236C /* View+CornerRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+CornerRadius.swift"; sourceTree = "<group>"; };
-		33BCDF922DFA973C00C0236C /* AdminView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminView.swift; sourceTree = "<group>"; };
+		33BAD6A92E05A8B900A88E92 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3459CC16F89FC7FD72A5CF10 /* MoodNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodNoteView.swift; sourceTree = "<group>"; };
 		350B7B3EAE512400348C271C /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
+		3989D61AEA4470DC0B9AB63D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		457CEF3713C0BC4B2D86CF33 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		458EED220ECC690478C86FDD /* SleepWellTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = SleepWellTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4D3E8EF39BFD856FD103DBBE /* ResourceCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceCacheManager.swift; sourceTree = "<group>"; };
-		5B20C54A372A705C6D073B68 /* GuardianController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianController.swift; sourceTree = "<group>"; };
+		458EED220ECC690478C86FDD /* SleepWellTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SleepWellTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		47FA8D27EF796875AC01D964 /* LocalizationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationManager.swift; sourceTree = "<group>"; };
+		4C2A9EAD9223ACB23FC64A7D /* AdminView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminView.swift; sourceTree = "<group>"; };
+		534895FF73BF221C9C61BCE4 /* EpisodeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeListView.swift; sourceTree = "<group>"; };
+		598092698FC43E2936601533 /* SleepLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepLogView.swift; sourceTree = "<group>"; };
 		60588448336C0F969ECB079E /* Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
-		6A1241839C86554E484A335A /* SleepWellUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = SleepWellUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		71D81BF965F194AC6C96AB8B /* Pods_SleepWell_SleepWellUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SleepWell_SleepWellUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7DA397BF4E160C41E162E423 /* Pods-SleepWell-SleepWellUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepWell-SleepWellUITests.release.xcconfig"; path = "Target Support Files/Pods-SleepWell-SleepWellUITests/Pods-SleepWell-SleepWellUITests.release.xcconfig"; sourceTree = "<group>"; };
-		863ABBA6921C86FAE72C984F /* Pods_SleepWellTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SleepWellTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6612A314A7C33CE7DD25AEBE /* Pods-SleepWell-SleepWellUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepWell-SleepWellUITests.debug.xcconfig"; path = "Target Support Files/Pods-SleepWell-SleepWellUITests/Pods-SleepWell-SleepWellUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		66D36AB0578233A2C9FE1511 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		6A1241839C86554E484A335A /* SleepWellUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SleepWellUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7077BDB4090F483E1944E08A /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		71D174B9BF3E16966ADC1342 /* DualStreamPlayerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DualStreamPlayerController.swift; sourceTree = "<group>"; };
+		776C7A5533434CFED94A3AD7 /* GuardianView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianView.swift; sourceTree = "<group>"; };
+		7DD602049BD6E068DC48089B /* SleepRecordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepRecordViewModel.swift; sourceTree = "<group>"; };
+		876453832F69D40DA32B59D5 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		94C0250197F2B160E1569345 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		95D6A0D0F7ED7180EC7BDC24 /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
 		987748141D955A2717B83521 /* AudioGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioGenerator.swift; sourceTree = "<group>"; };
-		9B966F3B98FD0C4560284CC1 /* Pods-SleepWell.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepWell.debug.xcconfig"; path = "Target Support Files/Pods-SleepWell/Pods-SleepWell.debug.xcconfig"; sourceTree = "<group>"; };
+		9F363E56A1341BCFDBDED87E /* Pods-SleepWellTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepWellTests.debug.xcconfig"; path = "Target Support Files/Pods-SleepWellTests/Pods-SleepWellTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A05882E35AA8F7B665602776 /* PlaybackProgressManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackProgressManager.swift; sourceTree = "<group>"; };
+		A1267765E31095CE1AC5A730 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		A226722BFAC08D6957EF8F11 /* DualStreamPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DualStreamPlayerView.swift; sourceTree = "<group>"; };
+		A3E10B02E4DD9EF14A6E8179 /* Pods_SleepWell_SleepWellUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SleepWell_SleepWellUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5377884C720F834C87CCD23 /* AudioController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioController.swift; sourceTree = "<group>"; };
+		ABC69E5A2EA36117EC0FF829 /* View+CornerRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+CornerRadius.swift"; sourceTree = "<group>"; };
 		AC2A388D6CB107CA7C0B7066 /* SleepWell.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SleepWell.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3227FB2332E3261A8F9DEEC /* SleepWellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepWellTests.swift; sourceTree = "<group>"; };
+		B3A5C7AD6AB5D6078765DC8A /* EpisodeListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeListViewModel.swift; sourceTree = "<group>"; };
 		BA04CFCD2FF81E901145D9F4 /* SleepData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepData.swift; sourceTree = "<group>"; };
-		C84D9AA8244759875091A8D5 /* Pods-SleepWellTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepWellTests.release.xcconfig"; path = "Target Support Files/Pods-SleepWellTests/Pods-SleepWellTests.release.xcconfig"; sourceTree = "<group>"; };
+		BA33657ED87882556143B972 /* Pods-SleepWell.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepWell.release.xcconfig"; path = "Target Support Files/Pods-SleepWell/Pods-SleepWell.release.xcconfig"; sourceTree = "<group>"; };
+		C128C1B6CE95994E1F8A8F6B /* Pods_SleepWell.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SleepWell.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C12FEAC93FF13BE83AC09C34 /* AudioLibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioLibraryView.swift; sourceTree = "<group>"; };
+		C5970CFDCE5908D2E4DCCD51 /* PlaylistController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistController.swift; sourceTree = "<group>"; };
+		C80A28BE0A0444D63994DC6E /* SleepLogManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepLogManager.swift; sourceTree = "<group>"; };
+		CA844FBAD5BD36D848EE20A0 /* NotificationNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNames.swift; sourceTree = "<group>"; };
+		CE45E5E5D75D2D44D93F5A91 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D22DAEC78EE48F81CC833680 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		DC39FE871EA09B6FEC63DF5A /* Pods_SleepWellTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SleepWellTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF902225B93ABD32D0673A6D /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
+		E3D5CBA04B9D7537B5AB7881 /* GuardianModeSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianModeSelectionView.swift; sourceTree = "<group>"; };
+		E5D94F60BE13FED7E5F48375 /* CoverImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverImageView.swift; sourceTree = "<group>"; };
+		EB71CB0BA346C2B660C361FC /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		EDF209DCFA4C4298F5045846 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		EEBDC6B828DCFFA9B8719321 /* DatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
+		F09FDAFF0473C993395D159E /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		F315D9C7591828C8CB37E8A5 /* JournalEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntryView.swift; sourceTree = "<group>"; };
 		F4C973E614DF512566C98DEB /* mock_resources.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = mock_resources.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		17F2621DF6C9FE9442F1A61B /* Frameworks */ = {
+		57269F1528BB701F75E383AD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				452AA20B86CE72B8A221CCDB /* Pods_SleepWell.framework in Frameworks */,
+				54832D552E55DA9307BF365B /* Pods_SleepWell.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		29D70C401D3BB8E83BDAF848 /* Frameworks */ = {
+		CEAFA5D7BB4BF3F32EF6E62F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1207EA7AD3AF02B86345D6BE /* Pods_SleepWellTests.framework in Frameworks */,
+				903474CA6574AE0F50FED4E0 /* Pods_SleepWellTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		ACC983013D720883EB4C7FD7 /* Frameworks */ = {
+		DFD4E7A266C0C4A09E4ED1F1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C5502D6038E5EB87F4B04ACA /* Pods_SleepWell_SleepWellUITests.framework in Frameworks */,
+				2D2B0499441FA424A5ACC4E5 /* Pods_SleepWell_SleepWellUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -173,20 +180,30 @@
 		040537A39CCBF1E1F6502A3D /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				3352D4772DFC8602005AA3BA /* LocalizationManager.swift */,
-				33BCDF812DF6E5FA00C0236C /* PlaybackProgressManager.swift */,
-				3375CD492DF4979D008C3559 /* SleepLogManager.swift */,
-				3375CD412DF2F8EE008C3559 /* DualStreamPlayerController.swift */,
-				3375CD362DF030F7008C3559 /* PlaylistController.swift */,
+				A5377884C720F834C87CCD23 /* AudioController.swift */,
 				987748141D955A2717B83521 /* AudioGenerator.swift */,
-				5B20C54A372A705C6D073B68 /* GuardianController.swift */,
+				71D174B9BF3E16966ADC1342 /* DualStreamPlayerController.swift */,
+				143CC162E0740913C70203AF /* GuardianController.swift */,
+				47FA8D27EF796875AC01D964 /* LocalizationManager.swift */,
 				2D6A917EE284FA23A2B64C21 /* MediaPlayerController.swift */,
 				457CEF3713C0BC4B2D86CF33 /* NetworkManager.swift */,
-				4D3E8EF39BFD856FD103DBBE /* ResourceCacheManager.swift */,
-				1048C6F8C1751A0E7CC70D2E /* SleepMonitorController.swift */,
+				A05882E35AA8F7B665602776 /* PlaybackProgressManager.swift */,
+				C5970CFDCE5908D2E4DCCD51 /* PlaylistController.swift */,
+				27981425AD5668436CEAB71F /* ResourceCacheManager.swift */,
+				C80A28BE0A0444D63994DC6E /* SleepLogManager.swift */,
+				2CBEDC74AA9EE3414781700E /* SleepMonitorController.swift */,
 				DF902225B93ABD32D0673A6D /* ThemeManager.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		06D433D02941CAE2AB2A409C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				88FBA0BEDB89ACCA003728B4 /* InfoPlist.strings */,
+				99B20107CECFC17B90E9E8E5 /* Localizable.strings */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		186D178AF904354521B7F20A /* Tests */ = {
@@ -197,40 +214,6 @@
 				2A0AB2A31314E0E91DEA8B14 /* SleepWellUITestsLaunchTests.swift */,
 			);
 			path = Tests;
-			sourceTree = "<group>";
-		};
-		1DF72E19AD9DC5B4ED1FAF30 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				301B20DD6BBB530D5803CBF3 /* Pods_SleepWell.framework */,
-				71D81BF965F194AC6C96AB8B /* Pods_SleepWell_SleepWellUITests.framework */,
-				863ABBA6921C86FAE72C984F /* Pods_SleepWellTests.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		3352D47F2DFC868C005AA3BA /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				3352D47E2DFC868C005AA3BA /* Localizable.strings */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
-		3375CD3E2DF03B96008C3559 /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				3375CD3F2DF03BE2008C3559 /* NotificationNames.swift */,
-			);
-			path = Utils;
-			sourceTree = "<group>";
-		};
-		33BCDF902DF813AB00C0236C /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				33BCDF8F2DF813AB00C0236C /* View+CornerRadius.swift */,
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 		44749C5C6F303BD25572F912 /* Products */ = {
@@ -246,16 +229,26 @@
 		5D91EDDB0EB5961358681C79 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				3375CD472DF49780008C3559 /* SleepLog.swift */,
-				3375CCE62DEE6A06008C3559 /* AudioLibraryViewModel.swift */,
-				3375CCE72DEE6A06008C3559 /* EpisodeListViewModel.swift */,
-				3375CCE82DEE6A06008C3559 /* GuardianModeSelectionViewModel.swift */,
-				3375CCE92DEE6A06008C3559 /* SleepRecordViewModel.swift */,
+				29BA35DD0320F9A2719706CC /* AudioLibraryViewModel.swift */,
 				60588448336C0F969ECB079E /* Episode.swift */,
+				B3A5C7AD6AB5D6078765DC8A /* EpisodeListViewModel.swift */,
+				1BD02774131F5B01AD7CB773 /* GuardianModeSelectionViewModel.swift */,
 				95D6A0D0F7ED7180EC7BDC24 /* Resource.swift */,
 				BA04CFCD2FF81E901145D9F4 /* SleepData.swift */,
+				05EE2F0B9E16C5171A704D25 /* SleepLog.swift */,
+				7DD602049BD6E068DC48089B /* SleepRecordViewModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		76770C58EDA3D98CB82637A1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C128C1B6CE95994E1F8A8F6B /* Pods_SleepWell.framework */,
+				A3E10B02E4DD9EF14A6E8179 /* Pods_SleepWell_SleepWellUITests.framework */,
+				DC39FE871EA09B6FEC63DF5A /* Pods_SleepWellTests.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		77F0E6113BA31D1DF9671360 /* Resources */ = {
@@ -267,52 +260,66 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		8D1C85FD1213F29E357B45FB /* Pods */ = {
+		9AB8E9977FA32A7FC33DA5D5 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				9B966F3B98FD0C4560284CC1 /* Pods-SleepWell.debug.xcconfig */,
-				03E2BCD9E1A389E3F6664964 /* Pods-SleepWell.release.xcconfig */,
-				16C8695049675D227C5AFFE6 /* Pods-SleepWell-SleepWellUITests.debug.xcconfig */,
-				7DA397BF4E160C41E162E423 /* Pods-SleepWell-SleepWellUITests.release.xcconfig */,
-				2695EF446E904FA69680390E /* Pods-SleepWellTests.debug.xcconfig */,
-				C84D9AA8244759875091A8D5 /* Pods-SleepWellTests.release.xcconfig */,
+				1C68D08D2961424608FD97F7 /* Pods-SleepWell.debug.xcconfig */,
+				BA33657ED87882556143B972 /* Pods-SleepWell.release.xcconfig */,
+				6612A314A7C33CE7DD25AEBE /* Pods-SleepWell-SleepWellUITests.debug.xcconfig */,
+				14A1F5BB5912E3A6C7B2FEA1 /* Pods-SleepWell-SleepWellUITests.release.xcconfig */,
+				9F363E56A1341BCFDBDED87E /* Pods-SleepWellTests.debug.xcconfig */,
+				1DA58AE22B8C35BCDD663D24 /* Pods-SleepWellTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		9EE9E04D4FDA9F7F572C77CB /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				ABC69E5A2EA36117EC0FF829 /* View+CornerRadius.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		D0B473DEC1A7A9A8E6E0E93B = {
 			isa = PBXGroup;
 			children = (
-				33BCDF892DF779D900C0236C /* Info.plist */,
-				33BCDF852DF7729500C0236C /* Assets.xcassets */,
+				33BAD6A92E05A8B900A88E92 /* Assets.xcassets */,
 				DE962E97D66FE0C2D59E05F4 /* App */,
 				77F0E6113BA31D1DF9671360 /* Resources */,
 				186D178AF904354521B7F20A /* Tests */,
 				44749C5C6F303BD25572F912 /* Products */,
-				8D1C85FD1213F29E357B45FB /* Pods */,
-				1DF72E19AD9DC5B4ED1FAF30 /* Frameworks */,
+				9AB8E9977FA32A7FC33DA5D5 /* Pods */,
+				76770C58EDA3D98CB82637A1 /* Frameworks */,
 			);
+			sourceTree = "<group>";
+		};
+		D21C84DC596B738FD1D30601 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				CA844FBAD5BD36D848EE20A0 /* NotificationNames.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		D42AFB08312A5D6881B1A899 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				3352D4812DFC8A92005AA3BA /* SettingsView.swift */,
-				33BCDF922DFA973C00C0236C /* AdminView.swift */,
-				33BCDF8B2DF7F40100C0236C /* JournalEntryView.swift */,
-				33BCDF8C2DF7F40100C0236C /* MoodSelectionBannerView.swift */,
-				3375CD512DF55D6A008C3559 /* DatePickerView.swift */,
-				3375CD4F2DF55B16008C3559 /* MoodNoteView.swift */,
-				3375CD4C2DF497CD008C3559 /* SleepLogView.swift */,
-				3375CD432DF30072008C3559 /* DualStreamPlayerView.swift */,
-				3375CD392DF0313C008C3559 /* CoverImageView.swift */,
-				3375CCDC2DEE69EF008C3559 /* AudioLibraryView.swift */,
-				3375CCDD2DEE69EF008C3559 /* EpisodeListView.swift */,
-				3375CCDE2DEE69EF008C3559 /* GuardianModeSelectionView.swift */,
-				3375CCDF2DEE69EF008C3559 /* GuardianView.swift */,
-				3375CCE02DEE69EF008C3559 /* SleepRecordView.swift */,
+				4C2A9EAD9223ACB23FC64A7D /* AdminView.swift */,
+				C12FEAC93FF13BE83AC09C34 /* AudioLibraryView.swift */,
+				E5D94F60BE13FED7E5F48375 /* CoverImageView.swift */,
+				EEBDC6B828DCFFA9B8719321 /* DatePickerView.swift */,
+				A226722BFAC08D6957EF8F11 /* DualStreamPlayerView.swift */,
+				534895FF73BF221C9C61BCE4 /* EpisodeListView.swift */,
+				E3D5CBA04B9D7537B5AB7881 /* GuardianModeSelectionView.swift */,
+				776C7A5533434CFED94A3AD7 /* GuardianView.swift */,
+				F315D9C7591828C8CB37E8A5 /* JournalEntryView.swift */,
 				94C0250197F2B160E1569345 /* MainTabView.swift */,
+				3459CC16F89FC7FD72A5CF10 /* MoodNoteView.swift */,
+				1871628495D98AA8F57A0524 /* MoodSelectionBannerView.swift */,
+				D22DAEC78EE48F81CC833680 /* SettingsView.swift */,
+				598092698FC43E2936601533 /* SleepLogView.swift */,
+				0CD1629FD633B5C7CC69D0C3 /* SleepRecordView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -320,14 +327,14 @@
 		DE962E97D66FE0C2D59E05F4 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				3352D47F2DFC868C005AA3BA /* Resources */,
-				33BCDF902DF813AB00C0236C /* Extensions */,
-				3375CD3E2DF03B96008C3559 /* Utils */,
 				350B7B3EAE512400348C271C /* App.swift */,
+				03399D5F0C3BAF6FCF62D888 /* LaunchScreen.storyboard */,
+				9EE9E04D4FDA9F7F572C77CB /* Extensions */,
 				5D91EDDB0EB5961358681C79 /* Models */,
+				06D433D02941CAE2AB2A409C /* Resources */,
 				040537A39CCBF1E1F6502A3D /* Services */,
+				D21C84DC596B738FD1D30601 /* Utils */,
 				D42AFB08312A5D6881B1A899 /* Views */,
-				33BCDF872DF773BE00C0236C /* LaunchScreen.storyboard */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -339,10 +346,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 04653CF140B65A74578D20A2 /* Build configuration list for PBXNativeTarget "SleepWellUITests" */;
 			buildPhases = (
-				172AC84E584BC80AD7BA794E /* [CP] Check Pods Manifest.lock */,
+				9C28BFDBA9469F6191CAF88E /* [CP] Check Pods Manifest.lock */,
 				D6E1B05A7C97B44033393A67 /* Sources */,
-				ACC983013D720883EB4C7FD7 /* Frameworks */,
-				1137D15F780C9E74605AE44D /* [CP] Copy Pods Resources */,
+				DFD4E7A266C0C4A09E4ED1F1 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -358,11 +364,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6C6FEC6BF8125E5836189635 /* Build configuration list for PBXNativeTarget "SleepWell" */;
 			buildPhases = (
-				DC2ECF0362963709E5ED3456 /* [CP] Check Pods Manifest.lock */,
+				4B1801C4EBBC2BA0B8FADAE5 /* [CP] Check Pods Manifest.lock */,
 				FA4B2087C5143BF129DE60FF /* Sources */,
 				0EA435D5F615BF7C8E3F191E /* Resources */,
-				17F2621DF6C9FE9442F1A61B /* Frameworks */,
-				3EF2BC853902A3DA8567DC38 /* [CP] Copy Pods Resources */,
+				57269F1528BB701F75E383AD /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -377,9 +382,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F85CFD56A35DA7DEE2F8B23D /* Build configuration list for PBXNativeTarget "SleepWellTests" */;
 			buildPhases = (
-				C83FED8822FCFC9E4D322CF9 /* [CP] Check Pods Manifest.lock */,
+				E42BFA2D6A32A5AD94963317 /* [CP] Check Pods Manifest.lock */,
 				C11AE99160E29AF1F394470D /* Sources */,
-				29D70C401D3BB8E83BDAF848 /* Frameworks */,
+				CEAFA5D7BB4BF3F32EF6E62F /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -412,9 +417,9 @@
 			knownRegions = (
 				Base,
 				en,
+				ja,
 				"zh-Hans",
 				"zh-Hant",
-				ja,
 			);
 			mainGroup = D0B473DEC1A7A9A8E6E0E93B;
 			minimizedProjectReferenceProxies = 1;
@@ -434,33 +439,40 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				33BCDF862DF7729500C0236C /* Assets.xcassets in Resources */,
-				3352D4802DFC868C005AA3BA /* Localizable.strings in Resources */,
-				33BCDF882DF773BE00C0236C /* LaunchScreen.storyboard in Resources */,
+				1F95B380EE956783BE243FF4 /* InfoPlist.strings in Resources */,
+				D40DC858E4DCE8BC4A9E7250 /* LaunchScreen.storyboard in Resources */,
+				B3949706BE3CB7AB8A56AA1C /* Localizable.strings in Resources */,
+				3EEF8E1681E0F7E16DF8DF55 /* mock_resources.json in Resources */,
+				33BAD6AA2E05A8B900A88E92 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1137D15F780C9E74605AE44D /* [CP] Copy Pods Resources */ = {
+		4B1801C4EBBC2BA0B8FADAE5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SleepWell-SleepWellUITests/Pods-SleepWell-SleepWellUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Copy Pods Resources";
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SleepWell-SleepWellUITests/Pods-SleepWell-SleepWellUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SleepWell-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SleepWell-SleepWellUITests/Pods-SleepWell-SleepWellUITests-resources.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		172AC84E584BC80AD7BA794E /* [CP] Check Pods Manifest.lock */ = {
+		9C28BFDBA9469F6191CAF88E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -482,24 +494,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		3EF2BC853902A3DA8567DC38 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SleepWell/Pods-SleepWell-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SleepWell/Pods-SleepWell-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SleepWell/Pods-SleepWell-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C83FED8822FCFC9E4D322CF9 /* [CP] Check Pods Manifest.lock */ = {
+		E42BFA2D6A32A5AD94963317 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -515,28 +510,6 @@
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-SleepWellTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DC2ECF0362963709E5ED3456 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SleepWell-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -570,45 +543,46 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B44966C22265CEA92AA83F1 /* AdminView.swift in Sources */,
 				D17A0421A8488F250B116A7C /* App.swift in Sources */,
-				33BCDF822DF6E5FA00C0236C /* PlaybackProgressManager.swift in Sources */,
+				904D97517782E433B497AB6C /* AudioController.swift in Sources */,
 				C1F26D97DB723487BFE54095 /* AudioGenerator.swift in Sources */,
+				A84FBD3B97E43DBAB57A0D5B /* AudioLibraryView.swift in Sources */,
+				3D029B0E95343DD8B0751676 /* AudioLibraryViewModel.swift in Sources */,
 				85C4267664A423DE764F245B /* Colors.swift in Sources */,
-				3375CD522DF55D6A008C3559 /* DatePickerView.swift in Sources */,
+				AE0BB3C2A66545B098257984 /* CoverImageView.swift in Sources */,
+				5D3334182E07155CBD5FE067 /* DatePickerView.swift in Sources */,
+				7474B4C8FD38944BC87261A9 /* DualStreamPlayerController.swift in Sources */,
+				CEF896285B2DE11CCDBA68A5 /* DualStreamPlayerView.swift in Sources */,
 				308AB2FBB472CA269384A1F2 /* Episode.swift in Sources */,
-				8E5153DC4B6ED9FA1B2FDB5A /* GuardianController.swift in Sources */,
-				3375CD482DF49780008C3559 /* SleepLog.swift in Sources */,
-				3375CCE12DEE69EF008C3559 /* AudioLibraryView.swift in Sources */,
-				3375CD402DF03BE2008C3559 /* NotificationNames.swift in Sources */,
-				3375CCEA2DEE6A06008C3559 /* AudioLibraryViewModel.swift in Sources */,
-				3375CCEB2DEE6A06008C3559 /* EpisodeListViewModel.swift in Sources */,
-				3352D4822DFC8A92005AA3BA /* SettingsView.swift in Sources */,
-				3375CCEC2DEE6A06008C3559 /* GuardianModeSelectionViewModel.swift in Sources */,
-				3375CCED2DEE6A06008C3559 /* SleepRecordViewModel.swift in Sources */,
-				3375CD372DF030F7008C3559 /* PlaylistController.swift in Sources */,
-				33BCDF8D2DF7F40100C0236C /* JournalEntryView.swift in Sources */,
-				33BCDF8E2DF7F40100C0236C /* MoodSelectionBannerView.swift in Sources */,
-				3375CD502DF55B16008C3559 /* MoodNoteView.swift in Sources */,
-				3375CCE22DEE69EF008C3559 /* GuardianModeSelectionView.swift in Sources */,
-				3375CD4A2DF4979D008C3559 /* SleepLogManager.swift in Sources */,
-				3375CCE32DEE69EF008C3559 /* GuardianView.swift in Sources */,
-				3375CCE42DEE69EF008C3559 /* EpisodeListView.swift in Sources */,
-				3352D4782DFC8602005AA3BA /* LocalizationManager.swift in Sources */,
-				3375CCE52DEE69EF008C3559 /* SleepRecordView.swift in Sources */,
+				DBF44CF47C2E836FAC9F1D0D /* EpisodeListView.swift in Sources */,
+				10CBA99003470565F7A6B134 /* EpisodeListViewModel.swift in Sources */,
+				95C5F1AAD6169D91517A3025 /* GuardianController.swift in Sources */,
+				7AA307F630185D06C99A5D8B /* GuardianModeSelectionView.swift in Sources */,
+				2FF37F7E4FFE404C7F61D9B1 /* GuardianModeSelectionViewModel.swift in Sources */,
+				BFCEB36E0CC0F649274209EB /* GuardianView.swift in Sources */,
+				941F787ECFBEAEEB078BF097 /* JournalEntryView.swift in Sources */,
+				C92024D04B5E53684F694637 /* LocalizationManager.swift in Sources */,
 				DDE5E3DCC31976352E739645 /* MainTabView.swift in Sources */,
 				08CC7E520C665C374ACBA903 /* MediaPlayerController.swift in Sources */,
+				A96B8A0DF708FA45F2C34281 /* MoodNoteView.swift in Sources */,
+				2D6FA53CBC832E0BB0DF96E3 /* MoodSelectionBannerView.swift in Sources */,
 				759423CEF2EDDD210E63B0B3 /* NetworkManager.swift in Sources */,
-				3375CD442DF30072008C3559 /* DualStreamPlayerView.swift in Sources */,
-				33BCDF932DFA973C00C0236C /* AdminView.swift in Sources */,
-				3375CD4D2DF497CD008C3559 /* SleepLogView.swift in Sources */,
-				3375CD422DF2F8EE008C3559 /* DualStreamPlayerController.swift in Sources */,
+				7AEBF3DF874541C622A88471 /* NotificationNames.swift in Sources */,
+				2495F08D6A89ED0C3AF8ED58 /* PlaybackProgressManager.swift in Sources */,
+				934E59FA56C5BA8C852218C9 /* PlaylistController.swift in Sources */,
 				F0F2655C3B91560F9D07D720 /* Resource.swift in Sources */,
-				8F4B2C7D2419843048425DCB /* ResourceCacheManager.swift in Sources */,
+				A68606212FEBA6E8C6BA6F23 /* ResourceCacheManager.swift in Sources */,
+				D494000F6361E26AA21578E9 /* SettingsView.swift in Sources */,
 				F216495586840527EB7A2B8D /* SleepData.swift in Sources */,
-				57DC5A2CB618C358B529E851 /* SleepMonitorController.swift in Sources */,
-				33BCDF912DF813AB00C0236C /* View+CornerRadius.swift in Sources */,
-				3375CD3C2DF0313C008C3559 /* CoverImageView.swift in Sources */,
+				864E9928C86763326C6C2589 /* SleepLog.swift in Sources */,
+				5CBA06CAFB6BC7A73235AC12 /* SleepLogManager.swift in Sources */,
+				752954FCDA0947497DEDB747 /* SleepLogView.swift in Sources */,
+				CFAAAE6979D68D97D47C0002 /* SleepMonitorController.swift in Sources */,
+				53F1F81EA843C4D55DAF713A /* SleepRecordView.swift in Sources */,
+				38A4652218CB5164223F8857 /* SleepRecordViewModel.swift in Sources */,
 				1EA7A5517E8D739D9218DE73 /* ThemeManager.swift in Sources */,
+				F66FA23DDE06B787B6FDF20D /* View+CornerRadius.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -628,13 +602,24 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		3352D47E2DFC868C005AA3BA /* Localizable.strings */ = {
+		88FBA0BEDB89ACCA003728B4 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				3352D47A2DFC868C005AA3BA /* en */,
-				3352D47B2DFC868C005AA3BA /* ja */,
-				3352D47C2DFC868C005AA3BA /* zh-Hans */,
-				3352D47D2DFC868C005AA3BA /* zh-Hant */,
+				3989D61AEA4470DC0B9AB63D /* en */,
+				876453832F69D40DA32B59D5 /* ja */,
+				A1267765E31095CE1AC5A730 /* zh-Hans */,
+				7077BDB4090F483E1944E08A /* zh-Hant */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		99B20107CECFC17B90E9E8E5 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				66D36AB0578233A2C9FE1511 /* en */,
+				EB71CB0BA346C2B660C361FC /* ja */,
+				CE45E5E5D75D2D44D93F5A91 /* zh-Hans */,
+				F09FDAFF0473C993395D159E /* zh-Hant */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -644,7 +629,7 @@
 /* Begin XCBuildConfiguration section */
 		240E547829D840AD9EFC1497 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7DA397BF4E160C41E162E423 /* Pods-SleepWell-SleepWellUITests.release.xcconfig */;
+			baseConfigurationReference = 14A1F5BB5912E3A6C7B2FEA1 /* Pods-SleepWell-SleepWellUITests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -717,7 +702,7 @@
 		};
 		36822C36B05CDD1B5A4666E4 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C84D9AA8244759875091A8D5 /* Pods-SleepWellTests.release.xcconfig */;
+			baseConfigurationReference = 1DA58AE22B8C35BCDD663D24 /* Pods-SleepWellTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -734,19 +719,39 @@
 		};
 		64C3EA75C99F7975F5003557 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9B966F3B98FD0C4560284CC1 /* Pods-SleepWell.debug.xcconfig */;
+			baseConfigurationReference = 1C68D08D2961424608FD97F7 /* Pods-SleepWell.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SleepWell.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = 25CRU63D39;
 				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_KEY_BGTaskSchedulerPermittedIdentifiers = "com.han.sleepwell2024.ios.refresh,com.han.sleepwell2024.ios.processing";
+				INFOPLIST_KEY_CFBundleDevelopmentRegion = "$(DEVELOPMENT_LANGUAGE)";
+				INFOPLIST_KEY_CFBundleExecutable = "$(EXECUTABLE_NAME)";
+				INFOPLIST_KEY_CFBundleIdentifier = "$(PRODUCT_BUNDLE_IDENTIFIER)";
+				INFOPLIST_KEY_CFBundleInfoDictionaryVersion = 6.0;
+				INFOPLIST_KEY_CFBundleName = "$(PRODUCT_NAME)";
+				INFOPLIST_KEY_CFBundlePackageType = APPL;
+				INFOPLIST_KEY_CFBundleShortVersionString = 1.0;
+				INFOPLIST_KEY_CFBundleVersion = 1;
+				INFOPLIST_KEY_NSAppTransportSecurity_NSAllowsArbitraryLoads = YES;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "需要访问您的健康数据以记录和分析睡眠情况";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "需要写入睡眠数据到健康应用";
+				INFOPLIST_KEY_UIApplicationSceneManifest_UIApplicationSupportsMultipleScenes = NO;
+				INFOPLIST_KEY_UIApplicationSceneManifest_UISceneConfigurations_UIWindowSceneSessionRoleApplication_0_UISceneConfigurationName = "Default Configuration";
+				INFOPLIST_KEY_UIApplicationSceneManifest_UISceneConfigurations_UIWindowSceneSessionRoleApplication_0_UISceneDelegateClassName = "$(PRODUCT_MODULE_NAME).SceneDelegate";
+				INFOPLIST_KEY_UIBackgroundModes = "audio,processing,fetch";
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft,UIInterfaceOrientationLandscapeRight,UIInterfaceOrientationPortrait";
+				"INFOPLIST_KEY_UISupportedInterfaceOrientations~ipad" = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sleepwell.han;
+				PRODUCT_BUNDLE_IDENTIFIER = com.han.sleepwell.app;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -817,7 +822,7 @@
 		};
 		CBF65E39387D61D252D7F9A2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 16C8695049675D227C5AFFE6 /* Pods-SleepWell-SleepWellUITests.debug.xcconfig */;
+			baseConfigurationReference = 6612A314A7C33CE7DD25AEBE /* Pods-SleepWell-SleepWellUITests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -834,19 +839,39 @@
 		};
 		D5B4B1CC282D8DE3086066E7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 03E2BCD9E1A389E3F6664964 /* Pods-SleepWell.release.xcconfig */;
+			baseConfigurationReference = BA33657ED87882556143B972 /* Pods-SleepWell.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SleepWell.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = 25CRU63D39;
 				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_KEY_BGTaskSchedulerPermittedIdentifiers = "com.han.sleepwell2024.ios.refresh,com.han.sleepwell2024.ios.processing";
+				INFOPLIST_KEY_CFBundleDevelopmentRegion = "$(DEVELOPMENT_LANGUAGE)";
+				INFOPLIST_KEY_CFBundleExecutable = "$(EXECUTABLE_NAME)";
+				INFOPLIST_KEY_CFBundleIdentifier = "$(PRODUCT_BUNDLE_IDENTIFIER)";
+				INFOPLIST_KEY_CFBundleInfoDictionaryVersion = 6.0;
+				INFOPLIST_KEY_CFBundleName = "$(PRODUCT_NAME)";
+				INFOPLIST_KEY_CFBundlePackageType = APPL;
+				INFOPLIST_KEY_CFBundleShortVersionString = 1.0;
+				INFOPLIST_KEY_CFBundleVersion = 1;
+				INFOPLIST_KEY_NSAppTransportSecurity_NSAllowsArbitraryLoads = YES;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "需要访问您的健康数据以记录和分析睡眠情况";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "需要写入睡眠数据到健康应用";
+				INFOPLIST_KEY_UIApplicationSceneManifest_UIApplicationSupportsMultipleScenes = NO;
+				INFOPLIST_KEY_UIApplicationSceneManifest_UISceneConfigurations_UIWindowSceneSessionRoleApplication_0_UISceneConfigurationName = "Default Configuration";
+				INFOPLIST_KEY_UIApplicationSceneManifest_UISceneConfigurations_UIWindowSceneSessionRoleApplication_0_UISceneDelegateClassName = "$(PRODUCT_MODULE_NAME).SceneDelegate";
+				INFOPLIST_KEY_UIBackgroundModes = "audio,processing,fetch";
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft,UIInterfaceOrientationLandscapeRight,UIInterfaceOrientationPortrait";
+				"INFOPLIST_KEY_UISupportedInterfaceOrientations~ipad" = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sleepwell.han;
+				PRODUCT_BUNDLE_IDENTIFIER = com.han.sleepwell.app;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -854,7 +879,7 @@
 		};
 		F30FC1280BA47AD097A504F6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2695EF446E904FA69680390E /* Pods-SleepWellTests.debug.xcconfig */;
+			baseConfigurationReference = 9F363E56A1341BCFDBDED87E /* Pods-SleepWellTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				LD_RUNPATH_SEARCH_PATHS = (

@@ -28,8 +28,10 @@ final class DualStreamPlayerController: NSObject, ObservableObject {
     // MARK: - 私有属性
     private let logger = Logger(subsystem: "com.sleepwell", category: "DualStreamPlayer")
     private var cancellables = Set<AnyCancellable>()
+    private var notificationCancellables = Set<AnyCancellable>() // 专门管理通知监听器
     private var timeObserver: Any?
     private var isSeeking: Bool = false
+    private var isAppInForeground: Bool = true // 跟踪应用是否在前台
     
     // ✨ 关键修正 1: 引入一个属性来记录时间观察者属于哪个播放器
     private var timeObserverPlayer: AVPlayer?
@@ -68,19 +70,34 @@ final class DualStreamPlayerController: NSObject, ObservableObject {
             .sink { [weak self] _ in
                 self?.handlePlaybackStopped()
             }
-            .store(in: &cancellables)
+            .store(in: &notificationCancellables)
             
         // 监听守护模式结束
         NotificationCenter.default.publisher(for: .guardianModeDidEnd)
             .sink { [weak self] _ in
+                print("📢 DualStreamPlayerController 收到 guardianModeDidEnd 通知，准备停止播放")
+                // 先更新锁屏信息为守护结束状态
+                self?.updateLockScreenForGuardianEnded()
+                // 然后停止播放
                 self?.stop()
             }
-            .store(in: &cancellables)
+            .store(in: &notificationCancellables)
+        
+        // 监听守护模式改变
+        NotificationCenter.default.publisher(for: .guardianModeDidChange)
+            .sink { [weak self] _ in
+                print("📢 DualStreamPlayerController 收到 guardianModeDidChange 通知，更新锁屏信息")
+                if let resource = self?.currentResource {
+                    self?.loadResourceMetadata(resource)
+                }
+            }
+            .store(in: &notificationCancellables)
+        
+        print("🎧 DualStreamPlayerController 初始化完成，通知监听器已设置")
     }
     
     deinit {
-        stop()
-        UIApplication.shared.endReceivingRemoteControlEvents()
+        cleanupLockScreenControls()
     }
     
     // MARK: - 播放控制
@@ -94,13 +111,17 @@ final class DualStreamPlayerController: NSObject, ObservableObject {
     func resume() {
         if isAudioReady || isVideoReady {
             audioPlayer.play()
-            videoPlayer.play()
+            // 只在应用前台时恢复视频播放
+            if isAppInForeground && isVideoReady {
+                videoPlayer.play()
+            }
             isPlaying = true
             handlePlaybackStateChange()
         }
     }
     
     func stop() {
+        logger.info("🛑 开始停止播放")
         videoPlayer.pause()
         audioPlayer.pause()
         videoPlayer.replaceCurrentItem(with: nil)
@@ -114,12 +135,16 @@ final class DualStreamPlayerController: NSObject, ObservableObject {
             player.removeTimeObserver(observer)
             logger.info("成功移除了一个时间观察者。")
         }
-        MPNowPlayingInfoCenter.default().nowPlayingInfo = nil // ✨ 确保清空
+    //    MPNowPlayingInfoCenter.default().nowPlayingInfo = nil // ✨ 确保清空
         timeObserver = nil
         timeObserverPlayer = nil
         
+        // 只取消播放相关的订阅，保留通知监听器
         cancellables.forEach { $0.cancel() }
         cancellables.removeAll()
+        
+        // 注意：不取消 notificationCancellables，保持通知监听器活跃
+        // 这样即使播放停止，仍能接收 guardianModeDidEnd 等通知
         
         isPlaying = false
         currentTime = 0
@@ -128,6 +153,7 @@ final class DualStreamPlayerController: NSObject, ObservableObject {
         isAudioReady = false
         error = nil
         handlePlaybackStateChange()
+        logger.info("🛑 播放已完全停止")
     }
 
     func seek(to time: TimeInterval) {
@@ -335,13 +361,32 @@ final class DualStreamPlayerController: NSObject, ObservableObject {
     
     private func setupNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(handleWillEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleDidEnterBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
+    }
+    
+    @objc private func handleDidEnterBackground() {
+        logger.info("📱 App 进入后台，暂停视频播放以节省电量")
+        isAppInForeground = false
+        // 暂停视频播放，但保持音频播放
+        if isPlaying && isVideoReady {
+            videoPlayer.pause()
+            logger.info("⏸️ 视频已暂停，音频继续播放")
+        }
     }
     
     @objc private func handleWillEnterForeground() {
+        logger.info("📱 App 返回前台，恢复视频播放")
+        isAppInForeground = true
         if self.isPlaying {
-            logger.info("App 返回前台，恢复播放。")
-            self.audioPlayer.play()
-            if self.isVideoReady { self.videoPlayer.play() }
+            // 恢复音频播放（如果被暂停了）
+            if audioPlayer.rate == 0 {
+                audioPlayer.play()
+            }
+            // 恢复视频播放
+            if self.isVideoReady && videoPlayer.rate == 0 {
+                self.videoPlayer.play()
+                logger.info("▶️ 视频已恢复播放")
+            }
         }
     }
     
@@ -397,9 +442,21 @@ final class DualStreamPlayerController: NSObject, ObservableObject {
         videoPlayer.actionAtItemEnd = .none
         NotificationCenter.default.publisher(for: .AVPlayerItemDidPlayToEndTime, object: videoPlayer.currentItem)
             .sink { [weak self] _ in
-                self?.logger.info("视频循环：播放到末尾，跳回开头。")
-                self?.videoPlayer.seek(to: .zero)
-                if self?.isPlaying == true { self?.videoPlayer.play() }
+                self?.logger.info("视频播放到末尾。")
+                
+                // 检查守护模式是否还在进行
+                if GuardianController.shared.isGuardianModeEnabled {
+                    self?.logger.info("🔄 守护模式还在进行，视频自动循环播放")
+                    self?.videoPlayer.seek(to: .zero)
+                    // 重置当前时间
+                    self?.currentTime = 0
+                    if self?.isPlaying == true && self?.isAppInForeground == true {
+                        self?.videoPlayer.play()
+                    }
+                } else {
+                    self?.logger.info("守护模式已结束，视频停止循环")
+                    // 视频停止，但音频可能还在播放
+                }
             }
             .store(in: &cancellables)
     }
@@ -408,7 +465,30 @@ final class DualStreamPlayerController: NSObject, ObservableObject {
         NotificationCenter.default.publisher(for: .AVPlayerItemDidPlayToEndTime, object: audioPlayer.currentItem)
             .sink { [weak self] _ in
                 self?.logger.info("主音频轨播放结束。")
-                self?.stop()
+                
+                // 检查守护模式是否还在进行
+                if GuardianController.shared.isGuardianModeEnabled {
+                    self?.logger.info("🔄 守护模式还在进行，自动循环播放")
+                    // 跳回到开头继续播放
+                    self?.audioPlayer.seek(to: .zero)
+                    // 重置当前时间
+                    self?.currentTime = 0
+                    // 更新锁屏进度信息
+                    self?.updateNowPlayingInfo()
+                    if self?.isPlaying == true {
+                        self?.audioPlayer.play()
+                    }
+                    // 如果有视频，也同步跳转
+                    if self?.isVideoReady == true {
+                        self?.videoPlayer.seek(to: .zero)
+                        if self?.isPlaying == true && self?.isAppInForeground == true {
+                            self?.videoPlayer.play()
+                        }
+                    }
+                } else {
+                    self?.logger.info("守护模式已结束，停止播放")
+                    self?.stop()
+                }
             }
             .store(in: &cancellables)
     }
@@ -435,10 +515,13 @@ final class DualStreamPlayerController: NSObject, ObservableObject {
                   self.isPlaying,
                   self.isVideoReady else { return }
             
-            // 如果视频暂停但音频在播放，则恢复视频播放
-            if self.videoPlayer.rate == 0 && self.audioPlayer.rate > 0 {
-                self.logger.info("检测到视频暂停，正在恢复播放...")
-                self.videoPlayer.play()
+            // 只在应用前台时恢复视频播放
+            if self.isAppInForeground {
+                // 如果视频暂停但音频在播放，则恢复视频播放
+                if self.videoPlayer.rate == 0 && self.audioPlayer.rate > 0 {
+                    self.logger.info("检测到视频暂停，正在恢复播放...")
+                    self.videoPlayer.play()
+                }
             }
         }
     }
@@ -453,7 +536,25 @@ final class DualStreamPlayerController: NSObject, ObservableObject {
         UIApplication.shared.beginReceivingRemoteControlEvents()
         let commandCenter = MPRemoteCommandCenter.shared()
         
-        commandCenter.playCommand.addTarget { [weak self] _ in self?.resume(); return .success }
+        commandCenter.playCommand.addTarget { [weak self] _ in 
+            guard let self = self else { return .commandFailed }
+            
+            // 如果播放器没有准备好但守护模式已结束，重新开始播放
+            if !self.isAudioReady && !self.isVideoReady && !GuardianController.shared.isGuardianModeEnabled {
+                logger.info("🔄 锁屏播放按钮：重新开始播放")
+                if let resource = self.currentResource {
+                    self.play(resource: resource)
+                    // 重新开启守护模式
+                    GuardianController.shared.enableGuardianMode(GuardianController.shared.currentMode)
+                }
+                return .success
+            }
+            
+            // 正常的恢复播放
+            self.resume()
+            return .success 
+        }
+        
         commandCenter.pauseCommand.addTarget { [weak self] _ in self?.pause(); return .success }
         commandCenter.changePlaybackPositionCommand.addTarget { [weak self] event in
             if let event = event as? MPChangePlaybackPositionCommandEvent {
@@ -482,6 +583,8 @@ final class DualStreamPlayerController: NSObject, ObservableObject {
             var artistSubtitle = ""
             let currentGuardianMode = GuardianController.shared.currentMode
             
+            print("🔄 更新锁屏信息 - 当前守护模式: \(currentGuardianMode.displayTitle)")
+            
             switch currentGuardianMode {
             case .unlimited:
                 artistSubtitle = " · " + "guardian.status.allNight".localized
@@ -492,6 +595,7 @@ final class DualStreamPlayerController: NSObject, ObservableObject {
                 let timeFormatter = DateFormatter()
                 timeFormatter.dateFormat = "HH:mm"
                 artistSubtitle = " · " + String(format: "guardian.status.stopAtTimeFormat".localized, timeFormatter.string(from: stopTime))
+                print("⏰ 定时模式 - 停止时间: \(timeFormatter.string(from: stopTime))")
             default:
                 artistSubtitle = "" // No subtitle for other cases or if duration is not positive
             }
@@ -599,14 +703,13 @@ final class DualStreamPlayerController: NSObject, ObservableObject {
 
     // 重新开始播放
     func restart() {
+        logger.info("🔄 重新开始播放")
         stop()
         if let resource = currentResource {
             play(resource: resource)
         }
-        // 如果之前开启了守护模式，重新开启
-        if GuardianController.shared.isGuardianModeEnabled {
-            GuardianController.shared.enableGuardianMode(GuardianController.shared.currentMode)
-        }
+        // 注意：不在这里重新开启守护模式，由 GuardianController 自己处理
+        // 这样可以避免重复开启和计时器冲突
     }
 
     // MARK: - 播放控制
@@ -659,6 +762,36 @@ final class DualStreamPlayerController: NSObject, ObservableObject {
         } else {
             logger.error("资源格式不支持: \(resource.name)")
         }
+    }
+
+    // 完全清理锁屏控制条（在应用退出或用户主动退出时调用）
+    func cleanupLockScreenControls() {
+        logger.info("🧹 清理锁屏控制条")
+        MPNowPlayingInfoCenter.default().nowPlayingInfo = nil
+        UIApplication.shared.endReceivingRemoteControlEvents()
+    }
+
+    // 更新守护结束后的锁屏信息
+    func updateLockScreenForGuardianEnded() {
+        logger.info("📱 更新锁屏信息：守护已结束")
+        
+        guard var nowPlayingInfo = MPNowPlayingInfoCenter.default().nowPlayingInfo else { 
+            logger.warning("⚠️ 没有现有的锁屏信息，无法更新")
+            return 
+        }
+        
+        // 记录更新前的信息
+        let oldArtist = nowPlayingInfo[MPMediaItemPropertyArtist] as? String ?? "未知"
+        logger.info("📱 更新前 artist: \(oldArtist)")
+        
+        // 只更新 artist 信息，保持播放进度不变
+        nowPlayingInfo[MPMediaItemPropertyArtist] = "陪伴已经结束，点击播放重新开始"
+        
+        // 保持播放进度不变，只设置播放状态为暂停
+        nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = 0.0
+        
+        MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
+        logger.info("✅ 锁屏信息已更新为守护结束状态，播放进度保持不变")
     }
 }
 

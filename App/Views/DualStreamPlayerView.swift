@@ -27,13 +27,27 @@ struct PlayerPlaceholderView: View {
             // 假設您有一個名為 Playerground 的背景檢視
             // 如果 Playerground 不存在，可以用 Color.black 或其他檢視替代
             // Playerground()
-            Image("player_background") // <-- 使用您在 Assets 中的圖片名稱
-                           .resizable()           // 讓圖片可縮放
-                           .scaledToFill()        //
-                           .edgesIgnoringSafeArea(.all) //
-                          // .blur(radius: 5)       // (可選) 加上模糊效果，讓文字更突出
-                           //.overlay(Color.black.opacity(0.3)) // (可選) //疊加一層半透明黑色，讓背景變暗
+//            Image("player_background") // <-- 使用您在 Assets 中的圖片名稱
+//                           .resizable()           // 讓圖片可縮放
+//                           .scaledToFill()        //
+//                           .edgesIgnoringSafeArea(.all) //
+//                          // .blur(radius: 5)       // (可選) 加上模糊效果，讓文字更突出
+//                           //.overlay(Color.black.opacity(0.3)) // (可選) //疊加一層半透明黑色，讓背景變暗
 
+            // Background Image Layer
+            // Color.clear 作为覆盖层的基础，它将占据 ZStack 的全部空间。
+            // 下面的 .edgesIgnoringSafeArea(.all) 会使 ZStack 及其内容（包括 Color.clear）全屏。
+            Color.clear
+                .overlay(
+                    Image("player_background") // <-- 使用您在 Assets 中的圖片名稱
+                        .resizable()           // 讓圖片可縮放
+                        .aspectRatio(contentMode: .fill) // 保持图片的宽高比，同时填充整个可用空间。这可能会导致图片部分内容被裁剪。
+                    , alignment: .topTrailing // 将图片对齐到容器（Color.clear）的右上角。
+                    
+                                             // 如果图片填充后比容器大，这将决定裁剪的锚点。
+                )
+                .clipped() // 裁剪掉图片超出 Color.clear 边界的部分。
+                .edgesIgnoringSafeArea(.all)
 /*
             // MARK: - 文字內容佈局
             VStack {

@@ -11,13 +11,13 @@ targets:
     sources:
       - App
       - Resources
+      - Assets.xcassets
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.sleepwell.app
         DEVELOPMENT_TEAM: "" # 需要填写您的开发团队 ID
         CODE_SIGN_ENTITLEMENTS: SleepWell.entitlements
         INFOPLIST_FILE: Info.plist
-        INFOPLIST_KEY_CFBundleDisplayName: SleepWell
         INFOPLIST_KEY_CFBundleDevelopmentRegion: $(DEVELOPMENT_LANGUAGE)
         INFOPLIST_KEY_CFBundleExecutable: $(EXECUTABLE_NAME)
         INFOPLIST_KEY_CFBundleIdentifier: $(PRODUCT_BUNDLE_IDENTIFIER)

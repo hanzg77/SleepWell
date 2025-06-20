@@ -107,10 +107,12 @@ struct JournalEntryView: View {
 
     private var moodPromptView: some View {
         VStack(spacing: 12) {
-            Image(systemName: mood.iconName)
-                .font(.system(size: 36))
-                .foregroundColor(.white)
-                .symbolRenderingMode(.hierarchical)
+//            Image(systemName: mood.iconName)
+//                .font(.system(size: 36))
+//                .foregroundColor(.white)
+//                .symbolRenderingMode(.hierarchical)
+            Text(mood.iconName) // Use the emoji character
+                .font(.system(size: 36)) // Keep the desired size
             
             Text(mood.displayName)
                 .font(.system(.title2, design: .rounded))
@@ -207,7 +209,8 @@ struct JournalEntryView: View {
         case .calm: return "journalEntry.prompt.calm".localized
         case .annoyed: return "journalEntry.prompt.annoyed".localized
         case .racingThoughts: return "journalEntry.prompt.racingThoughts".localized
-        case .down: return "journalEntry.prompt.down".localized
+        case .lonely: return "journalEntry.prompt.lonly".localized
+        case .unhappy: return "journalEntry.prompt.unhappy".localized
         }
     }
 }

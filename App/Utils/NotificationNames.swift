@@ -5,6 +5,7 @@ extension Notification.Name {
     static let playerDidPause = Notification.Name("playerDidPause")
     static let playerDidStop = Notification.Name("playerDidStop")
     static let guardianModeDidEnd = Notification.Name("guardianModeDidEnd")
+    static let guardianModeDidChange = Notification.Name("guardianModeDidChange")
     // 播放进度相关
     static let playbackProgressUpdated = Notification.Name("playbackProgressUpdated")
     static let playbackDidFinish = Notification.Name("playbackDidFinish")

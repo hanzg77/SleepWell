@@ -13,9 +13,13 @@ enum NetworkError: Error {
 
 class NetworkManager: NSObject, URLSessionDelegate, ObservableObject {
     static let shared = NetworkManager()
-    private let baseURL = "https://tripbwh.duoduoipo.com/api"
+    private let baseURL = "https://sleepwell.ciyuans.com/api"
     //private let baseURL = "http://192.168.31.79:8000/api"
-    private let language = "zh" // 固定使用中文
+    
+    // 使用 LocalizationManager 中的当前语言
+    private var language: String {
+        return LocalizationManager.shared.currentLanguage
+    }
     
     private override init() {
         super.init()

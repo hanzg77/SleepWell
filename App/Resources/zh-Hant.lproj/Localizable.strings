@@ -6,7 +6,7 @@
 */
 
 // MARK: - Common
-"app.name" = "SleepWell";
+"app.name" = "睡眠島";
 
 // MARK: - Tab Bar
 "tab.library" = "媒體庫";

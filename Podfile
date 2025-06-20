@@ -14,7 +14,7 @@ target 'SleepWell' do
   # pod 'UMCCommonLog'  # 日志库，统计SDK依赖，必须添加
 
   # U-App 行为分析 (可选，按需添加)
-  pod 'UMCommonLog'   # U-App依赖组件
+#  pod 'UMCommonLog'   # U-App依赖组件
  # pod 'UMAnalyticsOpenCDP' # U-App SDK
 
   # Pods for SleepWell

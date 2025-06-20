@@ -9,29 +9,20 @@
 /* Begin PBXAggregateTarget section */
 		09FABB7D06BB8D3958515FB15B4E7971 /* UMCommon */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = 860857FBF43C3745A45651D13368CB53 /* Build configuration list for PBXAggregateTarget "UMCommon" */;
+			buildConfigurationList = 42D6EA08FE6C06EB7CD52E8DB9DBF3F5 /* Build configuration list for PBXAggregateTarget "UMCommon" */;
 			buildPhases = (
-				48B5BB66536346C549374773E508DFCA /* [CP] Copy XCFrameworks */,
+				230EF4B97541679C9766F175F82FC63E /* [CP] Copy XCFrameworks */,
 			);
 			dependencies = (
-				504657BF00A610A7867453E46A54DB58 /* PBXTargetDependency */,
+				04C457E389ABC6D4868033EA02A134B9 /* PBXTargetDependency */,
 			);
 			name = UMCommon;
 		};
-		0B9AED7CD0D7CCBD4AC30138F058D591 /* UMCommonLog */ = {
-			isa = PBXAggregateTarget;
-			buildConfigurationList = 221BE98DDCAC6A6ECE0C773DFA2D6296 /* Build configuration list for PBXAggregateTarget "UMCommonLog" */;
-			buildPhases = (
-			);
-			dependencies = (
-			);
-			name = UMCommonLog;
-		};
 		CEB9AD2C3CFC208BFBE1F22F5EC3E1FC /* UMDevice */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = 178F781824AD4E1D607E218E3582CF37 /* Build configuration list for PBXAggregateTarget "UMDevice" */;
+			buildConfigurationList = B81B266C5197F964B8D885DFC877EDA5 /* Build configuration list for PBXAggregateTarget "UMDevice" */;
 			buildPhases = (
-				DC092D77C145A7A3654F0D1D1567A18D /* [CP] Copy XCFrameworks */,
+				8D84444B4C56BB1CF746B33CFAB9FAC9 /* [CP] Copy XCFrameworks */,
 			);
 			dependencies = (
 			);
@@ -44,152 +35,132 @@
 				47CF44479ABE0A5C18DEDA0F07935DF1 /* [CP] Copy XCFrameworks */,
 			);
 			dependencies = (
-				7878B8F82725D5CCF41AE7AD4756A3BB /* PBXTargetDependency */,
+				0E7677E8FC48B161C7C0824C733FFBC7 /* PBXTargetDependency */,
 			);
 			name = UMAPM;
 		};
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		1850A5F4E8D1C50EB7430D3B84EF0F47 /* Pods-SleepWell-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C67E41FA6683388B82EA921CA5F48CA5 /* Pods-SleepWell-dummy.m */; };
-		377E151FA9D219C114672EA4B5F11AF7 /* Pods-SleepWell-SleepWellUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 742C9C23076C3C6F328A25C4F07BC44F /* Pods-SleepWell-SleepWellUITests-dummy.m */; };
-		4B611CE5108D25B0583ACC216AC397CA /* Pods-SleepWell-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BF7CEEC9E0E32B4B399D358B4B505543 /* Pods-SleepWell-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		129794D3181424353D5601B58338BACA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 384DDA2CB25005BD6479B5987C619DD4 /* Foundation.framework */; };
+		2E882F42A6CC7E8205B0CF8B59A0B397 /* Pods-SleepWell-SleepWellUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8EB2CA32B2A8E230213CAC1FB6AB3BF6 /* Pods-SleepWell-SleepWellUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		688B737B3E428CF314E59B4888D1C6C2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 384DDA2CB25005BD6479B5987C619DD4 /* Foundation.framework */; };
 		8F91E0275AD4FB0B481C8DA64994EA05 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 384DDA2CB25005BD6479B5987C619DD4 /* Foundation.framework */; };
-		9B3805FF0AC6AF86A943AF6E4C8F0E34 /* Pods-SleepWellTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 27197CA414BBEB985FC045C859C9BA1A /* Pods-SleepWellTests-dummy.m */; };
-		A54296D7BF91100BC2878992F48DF1BA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 384DDA2CB25005BD6479B5987C619DD4 /* Foundation.framework */; };
-		CC865A4088EC431BC6345310579B7561 /* Pods-SleepWellTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A0A9AB3CD54928AAA536009519F0F98 /* Pods-SleepWellTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E115E3E9B8743772FA2C44626AE6784F /* Pods-SleepWell-SleepWellUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 96FEAD1A0864ACCEAAD17F5361464AD0 /* Pods-SleepWell-SleepWellUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		FF3B417251C1B5253571D8CF097B7B34 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 384DDA2CB25005BD6479B5987C619DD4 /* Foundation.framework */; };
+		9B3805FF0AC6AF86A943AF6E4C8F0E34 /* Pods-SleepWellTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 200A2977D839A6D47E88A3B3D6B02590 /* Pods-SleepWellTests-dummy.m */; };
+		A6AD688789E0282AACDE1D9C6EEEB94D /* Pods-SleepWell-SleepWellUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D9C0E80E2B436270C9BE8F4155E033 /* Pods-SleepWell-SleepWellUITests-dummy.m */; };
+		CC0377BBA3DD5158FCB7AA823BB75CEB /* Pods-SleepWell-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1399CCB22D25A2D7F64C13268A1217A5 /* Pods-SleepWell-dummy.m */; };
+		CC865A4088EC431BC6345310579B7561 /* Pods-SleepWellTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F5D016EA166A23C69FBC44847B67982D /* Pods-SleepWellTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EB7CC132C94818D49DB7E470B99AFCB0 /* Pods-SleepWell-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A6DE18991592CAF47B9CEC84223DEBC8 /* Pods-SleepWell-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		0D10A82DA0E0D3E3514EF191C3D75A3E /* PBXContainerItemProxy */ = {
+		19B90B83DE3A74A7EBB8733AE52358F3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 09FABB7D06BB8D3958515FB15B4E7971;
+			remoteInfo = UMCommon;
+		};
+		25C5908607E4710FBA9FD668B795AB5A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = F1E09035B7675D89EC69B16728E2833E;
 			remoteInfo = UMAPM;
 		};
-		2DEC22BADE606F603ECB188EE49D29F7 /* PBXContainerItemProxy */ = {
+		4B6E447EB2B084874A34ABF2465CE6EA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 09FABB7D06BB8D3958515FB15B4E7971;
 			remoteInfo = UMCommon;
 		};
-		344B29C5620B2FB867BC9AD1630A2FA2 /* PBXContainerItemProxy */ = {
+		501A599E1CFAA9BF7C862095A6230969 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 0B9AED7CD0D7CCBD4AC30138F058D591;
-			remoteInfo = UMCommonLog;
+			remoteGlobalIDString = F1E09035B7675D89EC69B16728E2833E;
+			remoteInfo = UMAPM;
 		};
-		831A4C7F3FA2307256B3B25F8AA52A08 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 09FABB7D06BB8D3958515FB15B4E7971;
-			remoteInfo = UMCommon;
-		};
-		88CE50823F56F8EC6CD87D877977C76E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = CEB9AD2C3CFC208BFBE1F22F5EC3E1FC;
-			remoteInfo = UMDevice;
-		};
-		B7155EA4095CC26E10D582E43502A178 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 09FABB7D06BB8D3958515FB15B4E7971;
-			remoteInfo = UMCommon;
-		};
-		BFE07818090BBA143D6C908111665A03 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = CEB9AD2C3CFC208BFBE1F22F5EC3E1FC;
-			remoteInfo = UMDevice;
-		};
-		C413F330710C8C8C18147D3D137E1DBF /* PBXContainerItemProxy */ = {
+		5CC5FAFAEB680FB76E408CE577DD656D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = DF43EDC6CA59934E8EE9E7D82CA24E5C;
 			remoteInfo = "Pods-SleepWell";
 		};
-		CDFA8AD89A0383EAE9B3D4541B73DD85 /* PBXContainerItemProxy */ = {
+		6D2ABF85DAF712E01BDD59D9E3F5E315 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = F1E09035B7675D89EC69B16728E2833E;
-			remoteInfo = UMAPM;
+			remoteGlobalIDString = 09FABB7D06BB8D3958515FB15B4E7971;
+			remoteInfo = UMCommon;
 		};
-		EA8F7E09B370A69581630D95B80FC4DE /* PBXContainerItemProxy */ = {
+		91CE4BB9F18162CE22585C825488A08D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = CEB9AD2C3CFC208BFBE1F22F5EC3E1FC;
 			remoteInfo = UMDevice;
 		};
-		EC0817CF3F0D2102CB20B305B707699D /* PBXContainerItemProxy */ = {
+		9A0AF01242C98E7297517AC9F2843F60 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 0B9AED7CD0D7CCBD4AC30138F058D591;
-			remoteInfo = UMCommonLog;
+			remoteGlobalIDString = CEB9AD2C3CFC208BFBE1F22F5EC3E1FC;
+			remoteInfo = UMDevice;
+		};
+		A495495C4AA1EFC47CC4810E2E9D7CA2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CEB9AD2C3CFC208BFBE1F22F5EC3E1FC;
+			remoteInfo = UMDevice;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		03B1242C10559E330D3D391CDA51A6F7 /* UMAPM.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; name = UMAPM.xcframework; path = UMAPM_2.0.4/UMAPM.xcframework; sourceTree = "<group>"; };
-		04E68D9BA7BE2CBCB7DC17F741DB91DE /* UMCommonLog.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UMCommonLog.framework; path = UMCommonLog/UMCommonLog.framework; sourceTree = "<group>"; };
+		01D9C0E80E2B436270C9BE8F4155E033 /* Pods-SleepWell-SleepWellUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SleepWell-SleepWellUITests-dummy.m"; sourceTree = "<group>"; };
+		09255FE98D427DBAEF326979E72AF97D /* Pods-SleepWell-SleepWellUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SleepWell-SleepWellUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		0A8DEB1DDE8D0E3FA1E393E1A4B8C016 /* Pods-SleepWell-SleepWellUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SleepWell-SleepWellUITests.release.xcconfig"; sourceTree = "<group>"; };
 		0A90A8348A5BBD1A6785DCEF31578828 /* Pods-SleepWell */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-SleepWell"; path = Pods_SleepWell.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		0E586F73246FAC8F459364C358214DA0 /* UMDevice.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; name = UMDevice.xcframework; path = UMDevice_3.4.0/UMDevice.xcframework; sourceTree = "<group>"; };
-		16AF3BA2BC852B333A55FFFB191ADC06 /* Pods-SleepWell-SleepWellUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SleepWell-SleepWellUITests.release.xcconfig"; sourceTree = "<group>"; };
-		27197CA414BBEB985FC045C859C9BA1A /* Pods-SleepWellTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SleepWellTests-dummy.m"; sourceTree = "<group>"; };
-		2A0A9AB3CD54928AAA536009519F0F98 /* Pods-SleepWellTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SleepWellTests-umbrella.h"; sourceTree = "<group>"; };
-		2ABAB5F080FB4D21E99E09C0F2313906 /* Pods-SleepWell.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SleepWell.debug.xcconfig"; sourceTree = "<group>"; };
-		349E4BC2BBA7D7D2C3FF01DD1A2CB958 /* UMCommonLog.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = UMCommonLog.bundle; path = UMCommonLog/UMCommonLog.bundle; sourceTree = "<group>"; };
-		354749DFBE03AD83917B5B94CF02F281 /* Pods-SleepWell-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SleepWell-acknowledgements.markdown"; sourceTree = "<group>"; };
-		376668FFA9D64D221E55F1EC1BA97636 /* Pods-SleepWellTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SleepWellTests.debug.xcconfig"; sourceTree = "<group>"; };
-		37D190104B255CF52B1DC8A2534787FC /* UMCommon.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = UMCommon.debug.xcconfig; sourceTree = "<group>"; };
+		0ED8C75703116C8126826807CA8C8DEB /* Pods-SleepWellTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SleepWellTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		1399CCB22D25A2D7F64C13268A1217A5 /* Pods-SleepWell-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SleepWell-dummy.m"; sourceTree = "<group>"; };
+		148A7CDCBE625561F0FB2C015B9D3B60 /* Pods-SleepWell-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SleepWell-acknowledgements.plist"; sourceTree = "<group>"; };
+		153D97D1914F6D436204DBCAFDBB1EC2 /* UMCommon.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = UMCommon.debug.xcconfig; sourceTree = "<group>"; };
+		1C07B6B1C96F2914B354DBF437113E55 /* UMDevice.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = UMDevice.debug.xcconfig; sourceTree = "<group>"; };
+		200A2977D839A6D47E88A3B3D6B02590 /* Pods-SleepWellTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SleepWellTests-dummy.m"; sourceTree = "<group>"; };
+		2AF284E4D204D1FB70AC42D3ED3114A2 /* Pods-SleepWellTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-SleepWellTests.modulemap"; sourceTree = "<group>"; };
+		2B62CE003F1CD265B843F519C9202660 /* UMCommon-xcframeworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "UMCommon-xcframeworks.sh"; sourceTree = "<group>"; };
 		384DDA2CB25005BD6479B5987C619DD4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		422AF4FCCA331979E8D143F6184053D8 /* UMDevice-xcframeworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "UMDevice-xcframeworks.sh"; sourceTree = "<group>"; };
-		49D71364F610D1F5942FB0FCD4BD74A6 /* Pods-SleepWell-SleepWellUITests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SleepWell-SleepWellUITests-Info.plist"; sourceTree = "<group>"; };
-		57418A7BB31609504999283B9BF7650E /* Pods-SleepWellTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SleepWellTests.release.xcconfig"; sourceTree = "<group>"; };
-		648B8A22F6DFABBC098D821E020EC694 /* Pods-SleepWell-SleepWellUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-SleepWell-SleepWellUITests.modulemap"; sourceTree = "<group>"; };
-		67B34BDB7B4455388E185D6FF1CEB9C1 /* UMCommonLog.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = UMCommonLog.release.xcconfig; sourceTree = "<group>"; };
-		6C30EF69FF9F0B57C57F21ACCD83C988 /* UMDevice.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = UMDevice.release.xcconfig; sourceTree = "<group>"; };
-		6F5CCF1D83CDA6E6F29E6E6D43246C0D /* UMCommon-xcframeworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "UMCommon-xcframeworks.sh"; sourceTree = "<group>"; };
-		742C9C23076C3C6F328A25C4F07BC44F /* Pods-SleepWell-SleepWellUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SleepWell-SleepWellUITests-dummy.m"; sourceTree = "<group>"; };
-		7533E228487484CF14C54D9556C9CE04 /* UMCommonLog.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = UMCommonLog.debug.xcconfig; sourceTree = "<group>"; };
-		82284B3F39BF44C20A6DD2B622C76668 /* UMAPM-xcframeworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "UMAPM-xcframeworks.sh"; sourceTree = "<group>"; };
-		8607E4819CED6A8BF416B3BAB3CE6A31 /* Pods-SleepWellTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-SleepWellTests.modulemap"; sourceTree = "<group>"; };
-		88F231340CD1D23B42A3D452FE2F1A74 /* Pods-SleepWell.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-SleepWell.modulemap"; sourceTree = "<group>"; };
-		8B0AA52C016ADEC52DDD3CF64D881A27 /* Pods-SleepWellTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SleepWellTests-Info.plist"; sourceTree = "<group>"; };
-		8ED1B413AA532F53B6BD99C757A881C3 /* UMDevice.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = UMDevice.debug.xcconfig; sourceTree = "<group>"; };
-		96FEAD1A0864ACCEAAD17F5361464AD0 /* Pods-SleepWell-SleepWellUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SleepWell-SleepWellUITests-umbrella.h"; sourceTree = "<group>"; };
+		516EAAF1082BF6292ED8D76D9295B178 /* Pods-SleepWell-SleepWellUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SleepWell-SleepWellUITests-acknowledgements.plist"; sourceTree = "<group>"; };
+		531D06C0FFB25FFE28DE5927BE960F6D /* UMDevice-xcframeworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "UMDevice-xcframeworks.sh"; sourceTree = "<group>"; };
+		6CA91DD8303D765B4FBE2D95D0C86839 /* Pods-SleepWell-SleepWellUITests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SleepWell-SleepWellUITests-Info.plist"; sourceTree = "<group>"; };
+		77B6A29769227EE91E386A17CA985959 /* Pods-SleepWell-SleepWellUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-SleepWell-SleepWellUITests.modulemap"; sourceTree = "<group>"; };
+		7AF59590C0CC8C9FEE84AEF0397451F7 /* Pods-SleepWell-SleepWellUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SleepWell-SleepWellUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		873EC85E0057D1F526341A3CC6A4EC10 /* UMAPM.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; name = UMAPM.xcframework; path = UMAPM_2.0.4/UMAPM.xcframework; sourceTree = "<group>"; };
+		8AA41296422E0938915AB28E8AFB9524 /* Pods-SleepWell-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SleepWell-Info.plist"; sourceTree = "<group>"; };
+		8D03C886B7A67C94B4D14F9A94C09157 /* UMDevice.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = UMDevice.release.xcconfig; sourceTree = "<group>"; };
+		8EB2CA32B2A8E230213CAC1FB6AB3BF6 /* Pods-SleepWell-SleepWellUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SleepWell-SleepWellUITests-umbrella.h"; sourceTree = "<group>"; };
+		91F446DB902714F299B7DCFDD5AE73F2 /* UMCommon.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; name = UMCommon.xcframework; path = UMCommon_7.5.2/UMCommon.xcframework; sourceTree = "<group>"; };
+		958613E469964D76B65C7C76A529ACAC /* UMDevice.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; name = UMDevice.xcframework; path = UMDevice_3.4.0/UMDevice.xcframework; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		9E365BFD6B5857E7E81E4D478167663D /* UMAPM.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = UMAPM.debug.xcconfig; sourceTree = "<group>"; };
-		9E8FE442F026470F6E3F7570F505A7D6 /* Pods-SleepWell-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SleepWell-resources.sh"; sourceTree = "<group>"; };
-		9EC8711ABB71D77801BD1E5EAD9284EF /* UMAPM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = UMAPM.release.xcconfig; sourceTree = "<group>"; };
-		B42B7D8E303EBD12C1365AE7A47A9C29 /* Pods-SleepWell-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SleepWell-Info.plist"; sourceTree = "<group>"; };
-		BA0C015614B0059333CA80FE790A0CBB /* Pods-SleepWell-SleepWellUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SleepWell-SleepWellUITests-acknowledgements.plist"; sourceTree = "<group>"; };
-		BF7CEEC9E0E32B4B399D358B4B505543 /* Pods-SleepWell-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SleepWell-umbrella.h"; sourceTree = "<group>"; };
-		C2D4C6E79903CC078F65849AE49CF758 /* UMCommon.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; name = UMCommon.xcframework; path = UMCommon_7.5.2/UMCommon.xcframework; sourceTree = "<group>"; };
+		A51D70D05B733AACDB6272A4F565B019 /* Pods-SleepWell.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-SleepWell.modulemap"; sourceTree = "<group>"; };
+		A6DE18991592CAF47B9CEC84223DEBC8 /* Pods-SleepWell-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SleepWell-umbrella.h"; sourceTree = "<group>"; };
+		AC1B09F49949B53F7047E31BCD479F34 /* Pods-SleepWellTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SleepWellTests.release.xcconfig"; sourceTree = "<group>"; };
+		BE75FE9D8DA0300153EB68BA596B5F3B /* Pods-SleepWellTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SleepWellTests-Info.plist"; sourceTree = "<group>"; };
+		C1453C3AE68389A783606C526DB6F16D /* Pods-SleepWell.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SleepWell.debug.xcconfig"; sourceTree = "<group>"; };
 		C47F602A563F77DA9967E3ABB3D3919A /* Pods-SleepWell-SleepWellUITests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-SleepWell-SleepWellUITests"; path = Pods_SleepWell_SleepWellUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C67E41FA6683388B82EA921CA5F48CA5 /* Pods-SleepWell-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SleepWell-dummy.m"; sourceTree = "<group>"; };
-		C71818BFB80D05A8B5752588A7EF1DF0 /* Pods-SleepWellTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SleepWellTests-acknowledgements.plist"; sourceTree = "<group>"; };
-		CE4C6DFB119C139D31398D7E903BB011 /* Pods-SleepWell-SleepWellUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SleepWell-SleepWellUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		CEC792D499368A45B02B85DA22F45C2D /* Pods-SleepWell-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SleepWell-acknowledgements.plist"; sourceTree = "<group>"; };
-		D0BB4F8FE6829EF36D2BD8C37C28F241 /* Pods-SleepWell-SleepWellUITests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SleepWell-SleepWellUITests-resources.sh"; sourceTree = "<group>"; };
-		D8B39F48C0D5D346E3E5302B5CB5E681 /* Pods-SleepWellTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SleepWellTests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		DDD2649537B028C75DFD4658B038F741 /* UMCommon.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = UMCommon.release.xcconfig; sourceTree = "<group>"; };
+		C94BA2F0C9A288B5C9873E139042B4AC /* Pods-SleepWell.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SleepWell.release.xcconfig"; sourceTree = "<group>"; };
+		D75E5B4B96E778680891213B7057BBD4 /* UMAPM-xcframeworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "UMAPM-xcframeworks.sh"; sourceTree = "<group>"; };
 		DF2F54B8D5689A30FC7C607B340D5119 /* Pods-SleepWellTests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-SleepWellTests"; path = Pods_SleepWellTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EB518F51C7B0EAC3BB22FA84D5EF21F9 /* Pods-SleepWell-SleepWellUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SleepWell-SleepWellUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		F7FD8A6BD988BCEA3278898522930BFD /* Pods-SleepWell.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SleepWell.release.xcconfig"; sourceTree = "<group>"; };
+		E1B122A79C44DCF82223BB5D479530E4 /* Pods-SleepWellTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SleepWellTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		E7D70ADE3FCC66A40EDEF4B0A98C5267 /* UMAPM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = UMAPM.release.xcconfig; sourceTree = "<group>"; };
+		ED4E4B314E0D84A60718DDA3FDA64C2F /* UMAPM.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = UMAPM.debug.xcconfig; sourceTree = "<group>"; };
+		F5C2D955BFC44F0CF2B6419942F4C89F /* Pods-SleepWellTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SleepWellTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F5D016EA166A23C69FBC44847B67982D /* Pods-SleepWellTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SleepWellTests-umbrella.h"; sourceTree = "<group>"; };
+		F88D4BEA9297817D2CDEA8980FD1E9AD /* Pods-SleepWell-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SleepWell-acknowledgements.markdown"; sourceTree = "<group>"; };
+		FCADA070166830AD7B7C139A6EB172DC /* UMCommon.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = UMCommon.release.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,99 +172,101 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7153671F5E28F49CFCB49E998CF91F57 /* Frameworks */ = {
+		7D8AA06460E9184B876B188B1FEA87C2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A54296D7BF91100BC2878992F48DF1BA /* Foundation.framework in Frameworks */,
+				688B737B3E428CF314E59B4888D1C6C2 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		88A9497F2BB776924457328E149D92F7 /* Frameworks */ = {
+		DF2BB5699C6F194196B21560657F3526 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FF3B417251C1B5253571D8CF097B7B34 /* Foundation.framework in Frameworks */,
+				129794D3181424353D5601B58338BACA /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1362C292210B24321FA43FC7F00A3DCE /* Pods-SleepWellTests */ = {
+		01C198A4E56033A173F72A957208C02C /* Pods-SleepWellTests */ = {
 			isa = PBXGroup;
 			children = (
-				8607E4819CED6A8BF416B3BAB3CE6A31 /* Pods-SleepWellTests.modulemap */,
-				D8B39F48C0D5D346E3E5302B5CB5E681 /* Pods-SleepWellTests-acknowledgements.markdown */,
-				C71818BFB80D05A8B5752588A7EF1DF0 /* Pods-SleepWellTests-acknowledgements.plist */,
-				27197CA414BBEB985FC045C859C9BA1A /* Pods-SleepWellTests-dummy.m */,
-				8B0AA52C016ADEC52DDD3CF64D881A27 /* Pods-SleepWellTests-Info.plist */,
-				2A0A9AB3CD54928AAA536009519F0F98 /* Pods-SleepWellTests-umbrella.h */,
-				376668FFA9D64D221E55F1EC1BA97636 /* Pods-SleepWellTests.debug.xcconfig */,
-				57418A7BB31609504999283B9BF7650E /* Pods-SleepWellTests.release.xcconfig */,
+				2AF284E4D204D1FB70AC42D3ED3114A2 /* Pods-SleepWellTests.modulemap */,
+				0ED8C75703116C8126826807CA8C8DEB /* Pods-SleepWellTests-acknowledgements.markdown */,
+				E1B122A79C44DCF82223BB5D479530E4 /* Pods-SleepWellTests-acknowledgements.plist */,
+				200A2977D839A6D47E88A3B3D6B02590 /* Pods-SleepWellTests-dummy.m */,
+				BE75FE9D8DA0300153EB68BA596B5F3B /* Pods-SleepWellTests-Info.plist */,
+				F5D016EA166A23C69FBC44847B67982D /* Pods-SleepWellTests-umbrella.h */,
+				F5C2D955BFC44F0CF2B6419942F4C89F /* Pods-SleepWellTests.debug.xcconfig */,
+				AC1B09F49949B53F7047E31BCD479F34 /* Pods-SleepWellTests.release.xcconfig */,
 			);
 			name = "Pods-SleepWellTests";
 			path = "Target Support Files/Pods-SleepWellTests";
 			sourceTree = "<group>";
 		};
-		1CAF86E28C989E69EF50204ECCABC8C3 /* Pods-SleepWell */ = {
+		0789C3DF2DF181D9D53D350A4349398E /* Pods-SleepWell */ = {
 			isa = PBXGroup;
 			children = (
-				88F231340CD1D23B42A3D452FE2F1A74 /* Pods-SleepWell.modulemap */,
-				354749DFBE03AD83917B5B94CF02F281 /* Pods-SleepWell-acknowledgements.markdown */,
-				CEC792D499368A45B02B85DA22F45C2D /* Pods-SleepWell-acknowledgements.plist */,
-				C67E41FA6683388B82EA921CA5F48CA5 /* Pods-SleepWell-dummy.m */,
-				B42B7D8E303EBD12C1365AE7A47A9C29 /* Pods-SleepWell-Info.plist */,
-				9E8FE442F026470F6E3F7570F505A7D6 /* Pods-SleepWell-resources.sh */,
-				BF7CEEC9E0E32B4B399D358B4B505543 /* Pods-SleepWell-umbrella.h */,
-				2ABAB5F080FB4D21E99E09C0F2313906 /* Pods-SleepWell.debug.xcconfig */,
-				F7FD8A6BD988BCEA3278898522930BFD /* Pods-SleepWell.release.xcconfig */,
+				A51D70D05B733AACDB6272A4F565B019 /* Pods-SleepWell.modulemap */,
+				F88D4BEA9297817D2CDEA8980FD1E9AD /* Pods-SleepWell-acknowledgements.markdown */,
+				148A7CDCBE625561F0FB2C015B9D3B60 /* Pods-SleepWell-acknowledgements.plist */,
+				1399CCB22D25A2D7F64C13268A1217A5 /* Pods-SleepWell-dummy.m */,
+				8AA41296422E0938915AB28E8AFB9524 /* Pods-SleepWell-Info.plist */,
+				A6DE18991592CAF47B9CEC84223DEBC8 /* Pods-SleepWell-umbrella.h */,
+				C1453C3AE68389A783606C526DB6F16D /* Pods-SleepWell.debug.xcconfig */,
+				C94BA2F0C9A288B5C9873E139042B4AC /* Pods-SleepWell.release.xcconfig */,
 			);
 			name = "Pods-SleepWell";
 			path = "Target Support Files/Pods-SleepWell";
 			sourceTree = "<group>";
 		};
-		25E677D83C15F1DAD1A5CDAF34E3EA4D /* UMCommon */ = {
+		0A81573B6E3831F0552620C9FD5E5B0E /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				3277AB1F59FA7C47E7BDDF666337ECEC /* Frameworks */,
-				96006C74DF179360026CFE1C604D02AC /* Support Files */,
-			);
-			name = UMCommon;
-			path = UMCommon;
-			sourceTree = "<group>";
-		};
-		2776C6AFA3C916F106933C55A1C1BDD6 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				04E68D9BA7BE2CBCB7DC17F741DB91DE /* UMCommonLog.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		2E775C429A948DF9BDE84B43D9C246C5 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				7533E228487484CF14C54D9556C9CE04 /* UMCommonLog.debug.xcconfig */,
-				67B34BDB7B4455388E185D6FF1CEB9C1 /* UMCommonLog.release.xcconfig */,
+				2B62CE003F1CD265B843F519C9202660 /* UMCommon-xcframeworks.sh */,
+				153D97D1914F6D436204DBCAFDBB1EC2 /* UMCommon.debug.xcconfig */,
+				FCADA070166830AD7B7C139A6EB172DC /* UMCommon.release.xcconfig */,
 			);
 			name = "Support Files";
-			path = "../Target Support Files/UMCommonLog";
+			path = "../Target Support Files/UMCommon";
 			sourceTree = "<group>";
 		};
-		3277AB1F59FA7C47E7BDDF666337ECEC /* Frameworks */ = {
+		0B950BB319B128FCC7DA3B3C34A24CA7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C2D4C6E79903CC078F65849AE49CF758 /* UMCommon.xcframework */,
+				873EC85E0057D1F526341A3CC6A4EC10 /* UMAPM.xcframework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		3EAAD9DFBE1D0EF6B3A6A9C806C910D6 /* UMAPM */ = {
+		11E9CE53EAB99B3A409950837880CC13 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				520B2EA332CE457F671F0499396B20AB /* Frameworks */,
-				C63B247D184D88FD51643D0BB943178B /* Support Files */,
+				1DF2644B884AE1BF97103286138B1175 /* UMAPM */,
+				A2056285C004172744AF0A672FB41DD4 /* UMCommon */,
+				19019F8FDFFAC2D4AEA132E0DC0B8C19 /* UMDevice */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		19019F8FDFFAC2D4AEA132E0DC0B8C19 /* UMDevice */ = {
+			isa = PBXGroup;
+			children = (
+				83E37EDEF5B32FCB98B8102997BABDBB /* Frameworks */,
+				B36F058BF9852B1F45CC8E73214A4B27 /* Support Files */,
+			);
+			name = UMDevice;
+			path = UMDevice;
+			sourceTree = "<group>";
+		};
+		1DF2644B884AE1BF97103286138B1175 /* UMAPM */ = {
+			isa = PBXGroup;
+			children = (
+				0B950BB319B128FCC7DA3B3C34A24CA7 /* Frameworks */,
+				4EA167BC28F9E70CCA17CCE658792F47 /* Support Files */,
 			);
 			name = UMAPM;
 			path = UMAPM;
@@ -309,91 +282,68 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		51EA148893382F1C0DC9E4B660C65628 /* Frameworks */ = {
+		4B5EA9DCD6173B586B5523E4A4874D4E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				0E586F73246FAC8F459364C358214DA0 /* UMDevice.xcframework */,
+				91F446DB902714F299B7DCFDD5AE73F2 /* UMCommon.xcframework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		520B2EA332CE457F671F0499396B20AB /* Frameworks */ = {
+		4EA167BC28F9E70CCA17CCE658792F47 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				03B1242C10559E330D3D391CDA51A6F7 /* UMAPM.xcframework */,
+				D75E5B4B96E778680891213B7057BBD4 /* UMAPM-xcframeworks.sh */,
+				ED4E4B314E0D84A60718DDA3FDA64C2F /* UMAPM.debug.xcconfig */,
+				E7D70ADE3FCC66A40EDEF4B0A98C5267 /* UMAPM.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/UMAPM";
+			sourceTree = "<group>";
+		};
+		83E37EDEF5B32FCB98B8102997BABDBB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				958613E469964D76B65C7C76A529ACAC /* UMDevice.xcframework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		559D2B7598EB08435EFA72F2B4789DB6 /* UMCommonLog */ = {
+		887CE9A64CB4B2E61A6C52389D062805 /* Pods-SleepWell-SleepWellUITests */ = {
 			isa = PBXGroup;
 			children = (
-				2776C6AFA3C916F106933C55A1C1BDD6 /* Frameworks */,
-				FEAAC1034C42BEC15E6C2C971657039C /* Resources */,
-				2E775C429A948DF9BDE84B43D9C246C5 /* Support Files */,
-			);
-			name = UMCommonLog;
-			path = UMCommonLog;
-			sourceTree = "<group>";
-		};
-		5AE15087731D84F377F95DD31ADF588F /* Pods-SleepWell-SleepWellUITests */ = {
-			isa = PBXGroup;
-			children = (
-				648B8A22F6DFABBC098D821E020EC694 /* Pods-SleepWell-SleepWellUITests.modulemap */,
-				EB518F51C7B0EAC3BB22FA84D5EF21F9 /* Pods-SleepWell-SleepWellUITests-acknowledgements.markdown */,
-				BA0C015614B0059333CA80FE790A0CBB /* Pods-SleepWell-SleepWellUITests-acknowledgements.plist */,
-				742C9C23076C3C6F328A25C4F07BC44F /* Pods-SleepWell-SleepWellUITests-dummy.m */,
-				49D71364F610D1F5942FB0FCD4BD74A6 /* Pods-SleepWell-SleepWellUITests-Info.plist */,
-				D0BB4F8FE6829EF36D2BD8C37C28F241 /* Pods-SleepWell-SleepWellUITests-resources.sh */,
-				96FEAD1A0864ACCEAAD17F5361464AD0 /* Pods-SleepWell-SleepWellUITests-umbrella.h */,
-				CE4C6DFB119C139D31398D7E903BB011 /* Pods-SleepWell-SleepWellUITests.debug.xcconfig */,
-				16AF3BA2BC852B333A55FFFB191ADC06 /* Pods-SleepWell-SleepWellUITests.release.xcconfig */,
+				77B6A29769227EE91E386A17CA985959 /* Pods-SleepWell-SleepWellUITests.modulemap */,
+				09255FE98D427DBAEF326979E72AF97D /* Pods-SleepWell-SleepWellUITests-acknowledgements.markdown */,
+				516EAAF1082BF6292ED8D76D9295B178 /* Pods-SleepWell-SleepWellUITests-acknowledgements.plist */,
+				01D9C0E80E2B436270C9BE8F4155E033 /* Pods-SleepWell-SleepWellUITests-dummy.m */,
+				6CA91DD8303D765B4FBE2D95D0C86839 /* Pods-SleepWell-SleepWellUITests-Info.plist */,
+				8EB2CA32B2A8E230213CAC1FB6AB3BF6 /* Pods-SleepWell-SleepWellUITests-umbrella.h */,
+				7AF59590C0CC8C9FEE84AEF0397451F7 /* Pods-SleepWell-SleepWellUITests.debug.xcconfig */,
+				0A8DEB1DDE8D0E3FA1E393E1A4B8C016 /* Pods-SleepWell-SleepWellUITests.release.xcconfig */,
 			);
 			name = "Pods-SleepWell-SleepWellUITests";
 			path = "Target Support Files/Pods-SleepWell-SleepWellUITests";
 			sourceTree = "<group>";
 		};
-		8C7348841699F89C8928FA03C73F1CBD /* Targets Support Files */ = {
+		A2056285C004172744AF0A672FB41DD4 /* UMCommon */ = {
 			isa = PBXGroup;
 			children = (
-				1CAF86E28C989E69EF50204ECCABC8C3 /* Pods-SleepWell */,
-				5AE15087731D84F377F95DD31ADF588F /* Pods-SleepWell-SleepWellUITests */,
-				1362C292210B24321FA43FC7F00A3DCE /* Pods-SleepWellTests */,
+				4B5EA9DCD6173B586B5523E4A4874D4E /* Frameworks */,
+				0A81573B6E3831F0552620C9FD5E5B0E /* Support Files */,
 			);
-			name = "Targets Support Files";
+			name = UMCommon;
+			path = UMCommon;
 			sourceTree = "<group>";
 		};
-		96006C74DF179360026CFE1C604D02AC /* Support Files */ = {
+		B36F058BF9852B1F45CC8E73214A4B27 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				6F5CCF1D83CDA6E6F29E6E6D43246C0D /* UMCommon-xcframeworks.sh */,
-				37D190104B255CF52B1DC8A2534787FC /* UMCommon.debug.xcconfig */,
-				DDD2649537B028C75DFD4658B038F741 /* UMCommon.release.xcconfig */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/UMCommon";
-			sourceTree = "<group>";
-		};
-		C2630115AC204545D86B9B294B5F76F6 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				422AF4FCCA331979E8D143F6184053D8 /* UMDevice-xcframeworks.sh */,
-				8ED1B413AA532F53B6BD99C757A881C3 /* UMDevice.debug.xcconfig */,
-				6C30EF69FF9F0B57C57F21ACCD83C988 /* UMDevice.release.xcconfig */,
+				531D06C0FFB25FFE28DE5927BE960F6D /* UMDevice-xcframeworks.sh */,
+				1C07B6B1C96F2914B354DBF437113E55 /* UMDevice.debug.xcconfig */,
+				8D03C886B7A67C94B4D14F9A94C09157 /* UMDevice.release.xcconfig */,
 			);
 			name = "Support Files";
 			path = "../Target Support Files/UMDevice";
-			sourceTree = "<group>";
-		};
-		C63B247D184D88FD51643D0BB943178B /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				82284B3F39BF44C20A6DD2B622C76668 /* UMAPM-xcframeworks.sh */,
-				9E365BFD6B5857E7E81E4D478167663D /* UMAPM.debug.xcconfig */,
-				9EC8711ABB71D77801BD1E5EAD9284EF /* UMAPM.release.xcconfig */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/UMAPM";
 			sourceTree = "<group>";
 		};
 		CF1408CF629C7361332E53B88F7BD30C = {
@@ -401,20 +351,10 @@
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
 				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
-				D5E0C0797D62DECC3FE440A877DD8637 /* Pods */,
+				11E9CE53EAB99B3A409950837880CC13 /* Pods */,
 				43EBA7AC836BF6CEECF9F734C3A5E5B2 /* Products */,
-				8C7348841699F89C8928FA03C73F1CBD /* Targets Support Files */,
+				FDAB3B9A0B8096F45D9AF3D0AB841E73 /* Targets Support Files */,
 			);
-			sourceTree = "<group>";
-		};
-		D155BA6D17A63E118CC6D4AF5FD63808 /* UMDevice */ = {
-			isa = PBXGroup;
-			children = (
-				51EA148893382F1C0DC9E4B660C65628 /* Frameworks */,
-				C2630115AC204545D86B9B294B5F76F6 /* Support Files */,
-			);
-			name = UMDevice;
-			path = UMDevice;
 			sourceTree = "<group>";
 		};
 		D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */ = {
@@ -425,17 +365,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		D5E0C0797D62DECC3FE440A877DD8637 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				3EAAD9DFBE1D0EF6B3A6A9C806C910D6 /* UMAPM */,
-				25E677D83C15F1DAD1A5CDAF34E3EA4D /* UMCommon */,
-				559D2B7598EB08435EFA72F2B4789DB6 /* UMCommonLog */,
-				D155BA6D17A63E118CC6D4AF5FD63808 /* UMDevice */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		E4801F62A6B08CD9B5410329F1A18FDE /* iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -444,17 +373,27 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		FEAAC1034C42BEC15E6C2C971657039C /* Resources */ = {
+		FDAB3B9A0B8096F45D9AF3D0AB841E73 /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				349E4BC2BBA7D7D2C3FF01DD1A2CB958 /* UMCommonLog.bundle */,
+				0789C3DF2DF181D9D53D350A4349398E /* Pods-SleepWell */,
+				887CE9A64CB4B2E61A6C52389D062805 /* Pods-SleepWell-SleepWellUITests */,
+				01C198A4E56033A173F72A957208C02C /* Pods-SleepWellTests */,
 			);
-			name = Resources;
+			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		0227FCA3CE85420CE944DB3314895724 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EB7CC132C94818D49DB7E470B99AFCB0 /* Pods-SleepWell-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		884E5300D4F00F0BC77D18E9E45A52B2 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -463,19 +402,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A3EC6B728EBC0D5A7FEA05A4B77D8E99 /* Headers */ = {
+		8F57EB0E05D0DE45910A36CF1F0316D8 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B611CE5108D25B0583ACC216AC397CA /* Pods-SleepWell-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C791E32652F810F7074B035540B71AE1 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E115E3E9B8743772FA2C44626AE6784F /* Pods-SleepWell-SleepWellUITests-umbrella.h in Headers */,
+				2E882F42A6CC7E8205B0CF8B59A0B397 /* Pods-SleepWell-SleepWellUITests-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -494,7 +425,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				35B3B713334F76C23E7A745E412CC262 /* PBXTargetDependency */,
+				FF94F7B7F20037B4EE3C00CA30906EEC /* PBXTargetDependency */,
 			);
 			name = "Pods-SleepWellTests";
 			productName = Pods_SleepWellTests;
@@ -503,20 +434,19 @@
 		};
 		33608B50FFDDD91FE11FF10A6D90C437 /* Pods-SleepWell-SleepWellUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 017A764B43E40474D1B289805C17869C /* Build configuration list for PBXNativeTarget "Pods-SleepWell-SleepWellUITests" */;
+			buildConfigurationList = 6F0EBB35041B3BDA7CB742EDDD3CEBEE /* Build configuration list for PBXNativeTarget "Pods-SleepWell-SleepWellUITests" */;
 			buildPhases = (
-				C791E32652F810F7074B035540B71AE1 /* Headers */,
-				4DA2BD116758B0C395CA42892FF1EF28 /* Sources */,
-				7153671F5E28F49CFCB49E998CF91F57 /* Frameworks */,
-				0AADF27938FC96281BE4C8F7719B59C7 /* Resources */,
+				8F57EB0E05D0DE45910A36CF1F0316D8 /* Headers */,
+				A2D1CC65D305776D1829B012036D1B5B /* Sources */,
+				DF2BB5699C6F194196B21560657F3526 /* Frameworks */,
+				6695F28132AF5E4F504C3E9F7E140D00 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				3C2467847015B57F9A7466786D0A9B35 /* PBXTargetDependency */,
-				8A0B62AC9050A3566CDE6D8D4F828501 /* PBXTargetDependency */,
-				86C6AD4F6CC87098B8A45D50F5063E45 /* PBXTargetDependency */,
-				4B46982416440D810E89EBA41457C910 /* PBXTargetDependency */,
+				C3328C41688A6471AEDAE9909BF943BF /* PBXTargetDependency */,
+				2CBABBD50DE8D450E39D466535FDD87D /* PBXTargetDependency */,
+				8B1A37568AED42B62AA65CBC297ABCD8 /* PBXTargetDependency */,
 			);
 			name = "Pods-SleepWell-SleepWellUITests";
 			productName = Pods_SleepWell_SleepWellUITests;
@@ -525,20 +455,19 @@
 		};
 		DF43EDC6CA59934E8EE9E7D82CA24E5C /* Pods-SleepWell */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7EB961AC04A7D7624F5D43468A7B31C0 /* Build configuration list for PBXNativeTarget "Pods-SleepWell" */;
+			buildConfigurationList = 124635258A102C2620F441E1F7115890 /* Build configuration list for PBXNativeTarget "Pods-SleepWell" */;
 			buildPhases = (
-				A3EC6B728EBC0D5A7FEA05A4B77D8E99 /* Headers */,
-				9DADF410B56CB30A7FA1598D0B2FB7A2 /* Sources */,
-				88A9497F2BB776924457328E149D92F7 /* Frameworks */,
-				402B7D6E0897BF9933541049DE0C0694 /* Resources */,
+				0227FCA3CE85420CE944DB3314895724 /* Headers */,
+				9010A14A1D6B16AB2985750CACE454A3 /* Sources */,
+				7D8AA06460E9184B876B188B1FEA87C2 /* Frameworks */,
+				A1B0922CFF7C6C2A9C2F23AD5CCD7939 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				02E41ED3F4924E012B911144A4B6DE90 /* PBXTargetDependency */,
-				E3D3B2E4BD93DFC03A3192CA2C60B676 /* PBXTargetDependency */,
-				88243074601CC89AB5F065C2E1B9089D /* PBXTargetDependency */,
-				31DBE59007C48D18A7C2F10A28982FEA /* PBXTargetDependency */,
+				FD57131D9B3A34AA74706AEC720BD00F /* PBXTargetDependency */,
+				DEBE852AAD3721574D7F8AFF46F5E25A /* PBXTargetDependency */,
+				5A6A1482AC978E99D7807F4A806799D1 /* PBXTargetDependency */,
 			);
 			name = "Pods-SleepWell";
 			productName = Pods_SleepWell;
@@ -574,20 +503,12 @@
 				269ED052C6DF492EE2DEDB624AADA003 /* Pods-SleepWellTests */,
 				F1E09035B7675D89EC69B16728E2833E /* UMAPM */,
 				09FABB7D06BB8D3958515FB15B4E7971 /* UMCommon */,
-				0B9AED7CD0D7CCBD4AC30138F058D591 /* UMCommonLog */,
 				CEB9AD2C3CFC208BFBE1F22F5EC3E1FC /* UMDevice */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		0AADF27938FC96281BE4C8F7719B59C7 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		2BE44FBA2362CD2AB4BF94A2A57BBBB8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -595,7 +516,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		402B7D6E0897BF9933541049DE0C0694 /* Resources */ = {
+		6695F28132AF5E4F504C3E9F7E140D00 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A1B0922CFF7C6C2A9C2F23AD5CCD7939 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -605,6 +533,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		230EF4B97541679C9766F175F82FC63E /* [CP] Copy XCFrameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/UMCommon/UMCommon-xcframeworks-input-files.xcfilelist",
+			);
+			name = "[CP] Copy XCFrameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/UMCommon/UMCommon-xcframeworks-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/UMCommon/UMCommon-xcframeworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		47CF44479ABE0A5C18DEDA0F07935DF1 /* [CP] Copy XCFrameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -622,24 +567,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/UMAPM/UMAPM-xcframeworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		48B5BB66536346C549374773E508DFCA /* [CP] Copy XCFrameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/UMCommon/UMCommon-xcframeworks-input-files.xcfilelist",
-			);
-			name = "[CP] Copy XCFrameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/UMCommon/UMCommon-xcframeworks-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/UMCommon/UMCommon-xcframeworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DC092D77C145A7A3654F0D1D1567A18D /* [CP] Copy XCFrameworks */ = {
+		8D84444B4C56BB1CF746B33CFAB9FAC9 /* [CP] Copy XCFrameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -659,19 +587,19 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		4DA2BD116758B0C395CA42892FF1EF28 /* Sources */ = {
+		9010A14A1D6B16AB2985750CACE454A3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				377E151FA9D219C114672EA4B5F11AF7 /* Pods-SleepWell-SleepWellUITests-dummy.m in Sources */,
+				CC0377BBA3DD5158FCB7AA823BB75CEB /* Pods-SleepWell-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9DADF410B56CB30A7FA1598D0B2FB7A2 /* Sources */ = {
+		A2D1CC65D305776D1829B012036D1B5B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1850A5F4E8D1C50EB7430D3B84EF0F47 /* Pods-SleepWell-dummy.m in Sources */,
+				A6AD688789E0282AACDE1D9C6EEEB94D /* Pods-SleepWell-SleepWellUITests-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -686,169 +614,66 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		02E41ED3F4924E012B911144A4B6DE90 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = UMAPM;
-			target = F1E09035B7675D89EC69B16728E2833E /* UMAPM */;
-			targetProxy = 0D10A82DA0E0D3E3514EF191C3D75A3E /* PBXContainerItemProxy */;
-		};
-		31DBE59007C48D18A7C2F10A28982FEA /* PBXTargetDependency */ = {
+		04C457E389ABC6D4868033EA02A134B9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = UMDevice;
 			target = CEB9AD2C3CFC208BFBE1F22F5EC3E1FC /* UMDevice */;
-			targetProxy = EA8F7E09B370A69581630D95B80FC4DE /* PBXContainerItemProxy */;
+			targetProxy = A495495C4AA1EFC47CC4810E2E9D7CA2 /* PBXContainerItemProxy */;
 		};
-		35B3B713334F76C23E7A745E412CC262 /* PBXTargetDependency */ = {
+		0E7677E8FC48B161C7C0824C733FFBC7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = UMCommon;
+			target = 09FABB7D06BB8D3958515FB15B4E7971 /* UMCommon */;
+			targetProxy = 6D2ABF85DAF712E01BDD59D9E3F5E315 /* PBXContainerItemProxy */;
+		};
+		2CBABBD50DE8D450E39D466535FDD87D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = UMCommon;
+			target = 09FABB7D06BB8D3958515FB15B4E7971 /* UMCommon */;
+			targetProxy = 4B6E447EB2B084874A34ABF2465CE6EA /* PBXContainerItemProxy */;
+		};
+		5A6A1482AC978E99D7807F4A806799D1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = UMDevice;
+			target = CEB9AD2C3CFC208BFBE1F22F5EC3E1FC /* UMDevice */;
+			targetProxy = 91CE4BB9F18162CE22585C825488A08D /* PBXContainerItemProxy */;
+		};
+		8B1A37568AED42B62AA65CBC297ABCD8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = UMDevice;
+			target = CEB9AD2C3CFC208BFBE1F22F5EC3E1FC /* UMDevice */;
+			targetProxy = 9A0AF01242C98E7297517AC9F2843F60 /* PBXContainerItemProxy */;
+		};
+		C3328C41688A6471AEDAE9909BF943BF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = UMAPM;
+			target = F1E09035B7675D89EC69B16728E2833E /* UMAPM */;
+			targetProxy = 25C5908607E4710FBA9FD668B795AB5A /* PBXContainerItemProxy */;
+		};
+		DEBE852AAD3721574D7F8AFF46F5E25A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = UMCommon;
+			target = 09FABB7D06BB8D3958515FB15B4E7971 /* UMCommon */;
+			targetProxy = 19B90B83DE3A74A7EBB8733AE52358F3 /* PBXContainerItemProxy */;
+		};
+		FD57131D9B3A34AA74706AEC720BD00F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = UMAPM;
+			target = F1E09035B7675D89EC69B16728E2833E /* UMAPM */;
+			targetProxy = 501A599E1CFAA9BF7C862095A6230969 /* PBXContainerItemProxy */;
+		};
+		FF94F7B7F20037B4EE3C00CA30906EEC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Pods-SleepWell";
 			target = DF43EDC6CA59934E8EE9E7D82CA24E5C /* Pods-SleepWell */;
-			targetProxy = C413F330710C8C8C18147D3D137E1DBF /* PBXContainerItemProxy */;
-		};
-		3C2467847015B57F9A7466786D0A9B35 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = UMAPM;
-			target = F1E09035B7675D89EC69B16728E2833E /* UMAPM */;
-			targetProxy = CDFA8AD89A0383EAE9B3D4541B73DD85 /* PBXContainerItemProxy */;
-		};
-		4B46982416440D810E89EBA41457C910 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = UMDevice;
-			target = CEB9AD2C3CFC208BFBE1F22F5EC3E1FC /* UMDevice */;
-			targetProxy = BFE07818090BBA143D6C908111665A03 /* PBXContainerItemProxy */;
-		};
-		504657BF00A610A7867453E46A54DB58 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = UMDevice;
-			target = CEB9AD2C3CFC208BFBE1F22F5EC3E1FC /* UMDevice */;
-			targetProxy = 88CE50823F56F8EC6CD87D877977C76E /* PBXContainerItemProxy */;
-		};
-		7878B8F82725D5CCF41AE7AD4756A3BB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = UMCommon;
-			target = 09FABB7D06BB8D3958515FB15B4E7971 /* UMCommon */;
-			targetProxy = 2DEC22BADE606F603ECB188EE49D29F7 /* PBXContainerItemProxy */;
-		};
-		86C6AD4F6CC87098B8A45D50F5063E45 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = UMCommonLog;
-			target = 0B9AED7CD0D7CCBD4AC30138F058D591 /* UMCommonLog */;
-			targetProxy = 344B29C5620B2FB867BC9AD1630A2FA2 /* PBXContainerItemProxy */;
-		};
-		88243074601CC89AB5F065C2E1B9089D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = UMCommonLog;
-			target = 0B9AED7CD0D7CCBD4AC30138F058D591 /* UMCommonLog */;
-			targetProxy = EC0817CF3F0D2102CB20B305B707699D /* PBXContainerItemProxy */;
-		};
-		8A0B62AC9050A3566CDE6D8D4F828501 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = UMCommon;
-			target = 09FABB7D06BB8D3958515FB15B4E7971 /* UMCommon */;
-			targetProxy = B7155EA4095CC26E10D582E43502A178 /* PBXContainerItemProxy */;
-		};
-		E3D3B2E4BD93DFC03A3192CA2C60B676 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = UMCommon;
-			target = 09FABB7D06BB8D3958515FB15B4E7971 /* UMCommon */;
-			targetProxy = 831A4C7F3FA2307256B3B25F8AA52A08 /* PBXContainerItemProxy */;
+			targetProxy = 5CC5FAFAEB680FB76E408CE577DD656D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		1896DE7FDF20E26D5F5B8876A51159FD /* Debug */ = {
+		125DBF78780F82D12F1552D067CF1300 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9E365BFD6B5857E7E81E4D478167663D /* UMAPM.debug.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		25AD05236B99E0CADD1B56875787713D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7533E228487484CF14C54D9556C9CE04 /* UMCommonLog.debug.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		34F50C89F951768846CF9123F303D16E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = CE4C6DFB119C139D31398D7E903BB011 /* Pods-SleepWell-SleepWellUITests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_MODULE_VERIFIER = NO;
-				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				INFOPLIST_FILE = "Target Support Files/Pods-SleepWell-SleepWellUITests/Pods-SleepWell-SleepWellUITests-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-SleepWell-SleepWellUITests/Pods-SleepWell-SleepWellUITests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		392202D1D47AC4105B924855AD00AD84 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 67B34BDB7B4455388E185D6FF1CEB9C1 /* UMCommonLog.release.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		4211ACC895D2325D62E504C88FDE52F4 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9EC8711ABB71D77801BD1E5EAD9284EF /* UMAPM.release.xcconfig */;
+			baseConfigurationReference = 8D03C886B7A67C94B4D14F9A94C09157 /* UMDevice.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -864,9 +689,9 @@
 			};
 			name = Release;
 		};
-		45F4D22F2A12E4C83B5D7B03D67A49D4 /* Release */ = {
+		179E29806AE33A9D469B340DDADA1745 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 57418A7BB31609504999283B9BF7650E /* Pods-SleepWellTests.release.xcconfig */;
+			baseConfigurationReference = F5C2D955BFC44F0CF2B6419942F4C89F /* Pods-SleepWellTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -882,7 +707,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				INFOPLIST_FILE = "Target Support Files/Pods-SleepWellTests/Pods-SleepWellTests-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -898,15 +723,49 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
+			name = Debug;
+		};
+		1896DE7FDF20E26D5F5B8876A51159FD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = ED4E4B314E0D84A60718DDA3FDA64C2F /* UMAPM.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4211ACC895D2325D62E504C88FDE52F4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E7D70ADE3FCC66A40EDEF4B0A98C5267 /* UMAPM.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
 			name = Release;
 		};
-		54A986D70FEF5B17995176A90609B4A5 /* Release */ = {
+		53D4B8C95AB011891CB05D1BE3318D8E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F7FD8A6BD988BCEA3278898522930BFD /* Pods-SleepWell.release.xcconfig */;
+			baseConfigurationReference = C1453C3AE68389A783606C526DB6F16D /* Pods-SleepWell.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -922,7 +781,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				INFOPLIST_FILE = "Target Support Files/Pods-SleepWell/Pods-SleepWell-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -938,15 +797,49 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
+			name = Debug;
+		};
+		5CEED20B8F3A9D95628B40594F701C10 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FCADA070166830AD7B7C139A6EB172DC /* UMCommon.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
 			name = Release;
 		};
-		5784EE28C34C40273E4D892AD77D3386 /* Debug */ = {
+		65575CAC13F83158D175277FD097C32A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 376668FFA9D64D221E55F1EC1BA97636 /* Pods-SleepWellTests.debug.xcconfig */;
+			baseConfigurationReference = 1C07B6B1C96F2914B354DBF437113E55 /* UMDevice.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8215838CFEF7823B40B1943F63C1874D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AC1B09F49949B53F7047E31BCD479F34 /* Pods-SleepWellTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -962,7 +855,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				INFOPLIST_FILE = "Target Support Files/Pods-SleepWellTests/Pods-SleepWellTests-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -978,12 +871,30 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
+			name = Release;
+		};
+		8E53C28F0E82B42F14F8CB07F276D146 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 153D97D1914F6D436204DBCAFDBB1EC2 /* UMCommon.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
 			name = Debug;
 		};
-		5876BC591E4F40CF5CC922202FF9E394 /* Debug */ = {
+		90D4D09BCB6A4660E43ACBE9ECB6FE9A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1036,7 +947,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1049,103 +960,7 @@
 			};
 			name = Debug;
 		};
-		5E2BD354E902A9B5A4675BA2E27289F6 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2ABAB5F080FB4D21E99E09C0F2313906 /* Pods-SleepWell.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_MODULE_VERIFIER = NO;
-				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				INFOPLIST_FILE = "Target Support Files/Pods-SleepWell/Pods-SleepWell-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-SleepWell/Pods-SleepWell.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		85D3817A0F446FC95A43722D50B489C2 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8ED1B413AA532F53B6BD99C757A881C3 /* UMDevice.debug.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		CF2D1369361DB3FF72737A54076ABE47 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 16AF3BA2BC852B333A55FFFB191ADC06 /* Pods-SleepWell-SleepWellUITests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_MODULE_VERIFIER = NO;
-				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				INFOPLIST_FILE = "Target Support Files/Pods-SleepWell-SleepWellUITests/Pods-SleepWell-SleepWellUITests-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-SleepWell-SleepWellUITests/Pods-SleepWell-SleepWellUITests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		D00E4F218292A7B18E4F23A9AF7529F9 /* Release */ = {
+		9553C89E183877A5CB2F3C6801BEC129 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1195,7 +1010,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1207,85 +1022,142 @@
 			};
 			name = Release;
 		};
-		D5448E20A7338375F085FD8933ADB544 /* Release */ = {
+		9C63AE97A86F7676D8C8866064C6D327 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6C30EF69FF9F0B57C57F21ACCD83C988 /* UMDevice.release.xcconfig */;
+			baseConfigurationReference = 0A8DEB1DDE8D0E3FA1E393E1A4B8C016 /* Pods-SleepWell-SleepWellUITests.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = NO;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				INFOPLIST_FILE = "Target Support Files/Pods-SleepWell-SleepWellUITests/Pods-SleepWell-SleepWellUITests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
 				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-SleepWell-SleepWellUITests/Pods-SleepWell-SleepWellUITests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
-		D6BE130807A349F763488EDCD054A5B0 /* Release */ = {
+		AECB4F657DF90C8B43EDB244D491AA5A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DDD2649537B028C75DFD4658B038F741 /* UMCommon.release.xcconfig */;
+			baseConfigurationReference = C94BA2F0C9A288B5C9873E139042B4AC /* Pods-SleepWell.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = NO;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				INFOPLIST_FILE = "Target Support Files/Pods-SleepWell/Pods-SleepWell-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
 				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-SleepWell/Pods-SleepWell.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
-		E1DA1E75988BDC01E9D05FFFD39FA944 /* Debug */ = {
+		D1EEA6A9321028BA500911B437291369 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 37D190104B255CF52B1DC8A2534787FC /* UMCommon.debug.xcconfig */;
+			baseConfigurationReference = 7AF59590C0CC8C9FEE84AEF0397451F7 /* Pods-SleepWell-SleepWellUITests.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = NO;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				INFOPLIST_FILE = "Target Support Files/Pods-SleepWell-SleepWellUITests/Pods-SleepWell-SleepWellUITests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
 				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-SleepWell-SleepWellUITests/Pods-SleepWell-SleepWellUITests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		017A764B43E40474D1B289805C17869C /* Build configuration list for PBXNativeTarget "Pods-SleepWell-SleepWellUITests" */ = {
+		124635258A102C2620F441E1F7115890 /* Build configuration list for PBXNativeTarget "Pods-SleepWell" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				34F50C89F951768846CF9123F303D16E /* Debug */,
-				CF2D1369361DB3FF72737A54076ABE47 /* Release */,
+				53D4B8C95AB011891CB05D1BE3318D8E /* Debug */,
+				AECB4F657DF90C8B43EDB244D491AA5A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		178F781824AD4E1D607E218E3582CF37 /* Build configuration list for PBXAggregateTarget "UMDevice" */ = {
+		42D6EA08FE6C06EB7CD52E8DB9DBF3F5 /* Build configuration list for PBXAggregateTarget "UMCommon" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				85D3817A0F446FC95A43722D50B489C2 /* Debug */,
-				D5448E20A7338375F085FD8933ADB544 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		221BE98DDCAC6A6ECE0C773DFA2D6296 /* Build configuration list for PBXAggregateTarget "UMCommonLog" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				25AD05236B99E0CADD1B56875787713D /* Debug */,
-				392202D1D47AC4105B924855AD00AD84 /* Release */,
+				8E53C28F0E82B42F14F8CB07F276D146 /* Debug */,
+				5CEED20B8F3A9D95628B40594F701C10 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1293,17 +1165,17 @@
 		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				5876BC591E4F40CF5CC922202FF9E394 /* Debug */,
-				D00E4F218292A7B18E4F23A9AF7529F9 /* Release */,
+				90D4D09BCB6A4660E43ACBE9ECB6FE9A /* Debug */,
+				9553C89E183877A5CB2F3C6801BEC129 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7EB961AC04A7D7624F5D43468A7B31C0 /* Build configuration list for PBXNativeTarget "Pods-SleepWell" */ = {
+		6F0EBB35041B3BDA7CB742EDDD3CEBEE /* Build configuration list for PBXNativeTarget "Pods-SleepWell-SleepWellUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				5E2BD354E902A9B5A4675BA2E27289F6 /* Debug */,
-				54A986D70FEF5B17995176A90609B4A5 /* Release */,
+				D1EEA6A9321028BA500911B437291369 /* Debug */,
+				9C63AE97A86F7676D8C8866064C6D327 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1317,20 +1189,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		860857FBF43C3745A45651D13368CB53 /* Build configuration list for PBXAggregateTarget "UMCommon" */ = {
+		8CBCA89923CC4E78349037035C743820 /* Build configuration list for PBXNativeTarget "Pods-SleepWellTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E1DA1E75988BDC01E9D05FFFD39FA944 /* Debug */,
-				D6BE130807A349F763488EDCD054A5B0 /* Release */,
+				179E29806AE33A9D469B340DDADA1745 /* Debug */,
+				8215838CFEF7823B40B1943F63C1874D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8CBCA89923CC4E78349037035C743820 /* Build configuration list for PBXNativeTarget "Pods-SleepWellTests" */ = {
+		B81B266C5197F964B8D885DFC877EDA5 /* Build configuration list for PBXAggregateTarget "UMDevice" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				5784EE28C34C40273E4D892AD77D3386 /* Debug */,
-				45F4D22F2A12E4C83B5D7B03D67A49D4 /* Release */,
+				65575CAC13F83158D175277FD097C32A /* Debug */,
+				125DBF78780F82D12F1552D067CF1300 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

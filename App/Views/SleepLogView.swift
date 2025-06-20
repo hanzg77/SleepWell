@@ -139,16 +139,37 @@ struct SleepLogContentView: View {
     }
 
     private var emptyStateView: some View {
-        VStack(spacing: 16) {
-            Image(systemName: "moon.zzz.fill")
-                .font(.system(size: 60))
-                .foregroundColor(.secondary)
-            Text("journal.empty.title".localized)
-                .font(.title3)
-                .foregroundColor(.secondary)
-            Text("journal.empty.message".localized)
-                .font(.subheadline)
-                .foregroundColor(.secondary)
+        ScrollView {
+            VStack(spacing: 20) {
+                Image(systemName: "moon.zzz.fill") // 保留图标
+                    .font(.system(size: 60))
+                    .foregroundColor(.secondary)
+                    .padding(.top, 40) // 与导航栏的间距
+
+                Text("journal.empty".localized) // "暂无日记条目"
+                    .font(.title3)
+                    .foregroundColor(.secondary)
+
+                Text("journal.empty.addTodayPrompt".localized) // 新增提示: "要记录今天的心情吗？"
+                    .font(.subheadline)
+                    .foregroundColor(.gray)
+                    .padding(.bottom, 10) // 卡片前的间距
+                
+                // 为今天创建一个空的日志对象
+                let todayLog = DailySleepLog(date: Date(), entries: [], mood: nil, notes: nil)
+                
+                // 显示今日卡片，DailyLogCardView 内部会处理 "写点什么吧" 按钮的逻辑
+                DailyLogCardView(
+                    log: todayLog,
+                    entries: todayLog.entries,
+                    onNotesTapped: { /* 对于新条目，此回调暂时无操作，主要交互通过卡片内部按钮 */ },
+                    onEntryTapped: { _ in /* 新条目无历史播放记录可点击 */ }
+                )
+                Spacer() // 如果内容较少，将内容推向顶部
+            }
+            .padding(.horizontal) // 整体内容的水平边距
+            .padding(.vertical)   // 整体内容的垂直边距
+            .frame(maxWidth: .infinity) // 确保 VStack 占据全部宽度以便文本居中
         }
     }
 

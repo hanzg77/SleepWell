@@ -69,7 +69,6 @@
 "guardian.status.2Hour" = "2小时";
 "guardian.status.3Hour" = "3小时";
 "guardian.status.stopAtTimeFormat" = "%@ 停止播放";
-
 "guardian.action.cantSleep" = "睡不着？";
 "countdown.format.hms" = "%d小时%02d分%02d秒";
 "countdown.format.ms" = "%d分%02d秒";
@@ -105,6 +104,14 @@
 "mood.bad" = "不好";
 "mood.terrible" = "很糟";
 
+// MARK: - Mood (New Definition)
+"mood.lonely" = "孤独";
+"mood.annoyed" = "烦";
+"mood.racingThoughts" = "想太多";
+"mood.calm" = "平静";
+"mood.happy" = "快乐";
+"mood.unhappy" = "不开心";
+
 // MARK: - Journal
 "journal.title" = "睡眠日记";
 "journal.entry.new" = "新建日记";
@@ -113,7 +120,21 @@
 "journal.entry.placeholder" = "写下您的睡眠体验...";
 "journal.empty" = "暂无日记条目";
 "journal.empty.title" = "睡眠岛";
+"journal.empty.addTodayPrompt" = "要记录今天的心情吗？";
 "journal.write" = "写点什么吧";
+
+"journalEntry.sealThoughts.button" = "保存";
+"journalEntry.placeholder" = "写点什么";
+"journalEntry.prompt.happy" = "今天有啥好事儿发生？";
+"journalEntry.prompt.calm" = "这会儿，脑子里在想啥？";
+"journalEntry.prompt.annoyed" = "又为啥事儿不爽了？";
+"journalEntry.prompt.racingThoughts" = "脑子很乱？先记下第一个念头。";
+"journalEntry.prompt.lonly" = "这会儿，是不是想起谁了？";
+"journalEntry.prompt.unhappy" = "说吧，心里怎么不痛快了？";
+
+
+// MARK: - Mood Selection Banner
+"moodSelectionBanner.title" = "选个心情吧";
 
 // MARK: - Settings
 "settings.title" = "设置";

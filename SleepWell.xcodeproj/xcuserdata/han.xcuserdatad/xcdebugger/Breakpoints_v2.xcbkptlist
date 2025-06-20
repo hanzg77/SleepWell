@@ -330,8 +330,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "65"
             endingLineNumber = "65"
-            landmarkName = "NetworkManager"
-            landmarkType = "3">
+            landmarkName = "refreshResources(pageSize:category:searchQuery:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -666,8 +666,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "540"
             endingLineNumber = "540"
-            landmarkName = "DualStreamPlayerController"
-            landmarkType = "3">
+            landmarkName = "loadResourceMetadata(_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -682,7 +682,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "546"
             endingLineNumber = "546"
-            landmarkName = "loadMetadataAndSetupNowPlaying(for:)"
+            landmarkName = "loadResourceMetadata(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -730,7 +730,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "548"
             endingLineNumber = "548"
-            landmarkName = "loadMetadataAndSetupNowPlaying(for:)"
+            landmarkName = "loadResourceMetadata(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -746,7 +746,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "560"
             endingLineNumber = "560"
-            landmarkName = "loadMetadataAndSetupNowPlaying(for:)"
+            landmarkName = "loadResourceMetadata(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -794,8 +794,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "158"
             endingLineNumber = "158"
-            landmarkName = "NetworkManager"
-            landmarkType = "3">
+            landmarkName = "fetchResource(resourceId:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -810,8 +810,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "159"
             endingLineNumber = "159"
-            landmarkName = "NetworkManager"
-            landmarkType = "3">
+            landmarkName = "fetchResource(resourceId:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

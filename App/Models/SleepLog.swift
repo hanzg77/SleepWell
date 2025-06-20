@@ -55,31 +55,34 @@ struct DailySleepLog: Identifiable, Codable, Equatable {
 
 // 心情模型
 enum Mood: String, Codable, CaseIterable, Identifiable {
-    case happy
-    case calm
-    case annoyed
-    case racingThoughts
-    case down
+    case lonely // 孤独
+    case annoyed // 烦
+    case racingThoughts // 想太多
+    case calm // 平静
+    case happy // 快乐
+    case unhappy // 不开心
 
     var id: String { rawValue }
 
     var displayName: String {
         switch self {
-        case .happy: return "开心"
-        case .calm: return "平静"
-        case .annoyed: return "烦"
-        case .racingThoughts: return "想太多"
-        case .down: return "丧"
+        case .lonely: return NSLocalizedString("mood.lonely", comment: "Mood: Lonely")
+        case .annoyed: return NSLocalizedString("mood.annoyed", comment: "Mood: Annoyed")
+        case .racingThoughts: return NSLocalizedString("mood.racingThoughts", comment: "Mood: Racing Thoughts")
+        case .calm: return NSLocalizedString("mood.calm", comment: "Mood: Calm")
+        case .happy: return NSLocalizedString("mood.happy", comment: "Mood: Happy")
+        case .unhappy: return NSLocalizedString("mood.unhappy", comment: "Mood: Unhappy")
         }
     }
 
     var iconName: String {
         switch self {
-        case .happy: return "star.fill"           // 可替换为自定义图片名
-        case .calm: return "drop.fill"
-        case .annoyed: return "scribble"
-        case .racingThoughts: return "cloud.fill"
-        case .down: return "moon.stars.fill"
+        case .lonely: return "🥺"
+        case .annoyed: return "😾"
+        case .racingThoughts: return "🤔"
+        case .calm: return "😌"
+        case .happy: return "🥹"
+        case .unhappy: return "😮‍💨"
         }
     }
 } 

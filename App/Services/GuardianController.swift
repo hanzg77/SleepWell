@@ -6,7 +6,7 @@ enum GuardianMode: Int, CaseIterable, Identifiable, Codable {
     case smartDetection = -1   // 智能检测
     case unlimited = 0         // 整夜播放
     case timedClose60 = 60     // 1分钟
-    case timedClose1800 = 1800 // 30分钟
+    case timedClose1800 = 61// 30分钟
     case timedClose3600 = 3600 // 1小时
     case timedClose7200 = 7200 // 2小时
 
@@ -90,6 +90,10 @@ class GuardianController: ObservableObject {
         UserDefaults.standard.set(mode.rawValue, forKey: lastSelectedModeKey) // 保存用户选择
         startTimer()
         print("守护模式已开启，isGuardianModeEnabled: \(isGuardianModeEnabled)")
+        
+        // 发送守护模式改变通知
+        print("📢 发送 guardianModeDidChange 通知")
+        NotificationCenter.default.post(name: .guardianModeDidChange, object: nil)
     }
     
     
@@ -116,6 +120,10 @@ class GuardianController: ObservableObject {
         }
         
         sessionStartTime = nil // 重置会话开始时间
+        
+        // 更新锁屏信息为守护结束状态
+        DualStreamPlayerController.shared.updateLockScreenForGuardianEnded()
+        
         // 注意：这里不再调用 DualStreamPlayerController.shared.stop()
         // 直接调用 stop，不触发 handlePlaybackStopped
         //DualStreamPlayerController.shared.stop()
@@ -140,7 +148,17 @@ class GuardianController: ObservableObject {
                 let modeBeforeDisable = self.currentMode // 记录当前模式以供日记使用
                 self.disableGuardianMode()
                 // 发送通知而不是直接调用 stop
+                print("🕐 定时器结束！模式: \(self.currentMode.displayTitle)")
+                print("📢 准备发送 guardianModeDidEnd 通知")
                 NotificationCenter.default.post(name: .guardianModeDidEnd, object: nil)
+                print("📢 guardianModeDidEnd 通知已发送")
+                
+                // 更新锁屏信息为守护结束状态
+                DualStreamPlayerController.shared.updateLockScreenForGuardianEnded()
+                
+                // 直接调用 stop 方法作为备用
+                //print("🛑 直接调用 DualStreamPlayerController.stop()")
+                //DualStreamPlayerController.shared.stop()
             }
         }
     }
@@ -188,16 +206,15 @@ class GuardianController: ObservableObject {
     
     /// 重新开始守护模式
     func restartGuardianMode() {
-    
+        print("🔄 重新开始守护模式")
         
-        // 重置状态
-        isGuardianModeEnabled = true
-        countdown = 0
+        // 先停止当前守护模式
+        disableGuardianMode()
         
         // 重新开始播放
         DualStreamPlayerController.shared.restart()
         
-        // 重新开始守护
+        // 重新开始守护模式（这会重置计时器）
         enableGuardianMode(currentMode)
     }
 } 

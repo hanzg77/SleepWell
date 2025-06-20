@@ -6,8 +6,8 @@ struct SettingsView: View {
     
     let languages = [
         ("en", "English"),
-        ("zh-Hans", "简体中文"),
-        ("zh-Hant", "繁體中文"),
+        ("zh", "简体中文"),
+        ("zh-hant", "繁體中文"),
         ("ja", "日本語")
     ]
     

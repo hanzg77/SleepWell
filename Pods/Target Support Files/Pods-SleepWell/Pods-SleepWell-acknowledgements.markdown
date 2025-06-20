@@ -11,11 +11,6 @@ Copyright 2011 - 2020 umeng.com. All rights reserved.
 Copyright 2011 - 2021 umeng.com. All rights reserved.
 
 
-## UMCommonLog
-
-Copyright 2011 - 2022 umeng.com. All rights reserved.
-
-
 ## UMDevice
 
 Copyright 2011 - 2021 umeng.com. All rights reserved.
