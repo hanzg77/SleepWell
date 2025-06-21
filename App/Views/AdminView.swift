@@ -1,4 +1,3 @@
-
 import SwiftUI
 struct AdminView: View {
     @Environment(\.dismiss) private var dismiss
@@ -159,6 +158,13 @@ struct AdminView: View {
             NetworkManager.shared.addTags(to: resource.id, tags: Array(tagsToAdd)) { result in
                 if case .failure(let error) = result {
                     print("添加标签失败: \(error.localizedDescription)")
+                    if let networkError = error as? NetworkError {
+                        print("错误类型: \(networkError)")
+                        print("错误描述: \(networkError.errorDescription ?? "未知错误")")
+                        print("失败原因: \(networkError.failureReason ?? "未知原因")")
+                    } else {
+                        print("其他错误: \(error)")
+                    }
                     // 这里可以添加用户提示，例如弹出一个 Alert
                 } else {
                     print("成功添加标签: \(tagsToAdd)")
@@ -172,6 +178,13 @@ struct AdminView: View {
             NetworkManager.shared.removeTags(from: resource.id, tags: Array(tagsToRemove)) { result in
                 if case .failure(let error) = result {
                     print("移除标签失败: \(error.localizedDescription)")
+                    if let networkError = error as? NetworkError {
+                        print("错误类型: \(networkError)")
+                        print("错误描述: \(networkError.errorDescription ?? "未知错误")")
+                        print("失败原因: \(networkError.failureReason ?? "未知原因")")
+                    } else {
+                        print("其他错误: \(error)")
+                    }
                     // 这里可以添加用户提示
                 } else {
                      print("成功移除标签: \(tagsToRemove)")

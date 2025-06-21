@@ -2,11 +2,37 @@ import Foundation
 import Combine
 import Security
 
-enum NetworkError: Error {
+enum NetworkError: Error, LocalizedError {
     case invalidURL
     case invalidResponse
     case decodingError
     case serverError(String)
+    
+    var errorDescription: String? {
+        switch self {
+        case .invalidURL:
+            return "无效的URL地址"
+        case .invalidResponse:
+            return "服务器响应无效"
+        case .decodingError:
+            return "数据解析失败"
+        case .serverError(let message):
+            return "服务器错误: \(message)"
+        }
+    }
+    
+    var failureReason: String? {
+        switch self {
+        case .invalidURL:
+            return "URL格式不正确或无法访问"
+        case .invalidResponse:
+            return "服务器返回了无效的响应格式"
+        case .decodingError:
+            return "无法解析服务器返回的数据"
+        case .serverError(let message):
+            return "服务器返回错误: \(message)"
+        }
+    }
 }
 
 
@@ -19,6 +45,11 @@ class NetworkManager: NSObject, URLSessionDelegate, ObservableObject {
     // 使用 LocalizationManager 中的当前语言
     private var language: String {
         return LocalizationManager.shared.currentLanguage
+    }
+    
+    // 语言代码转换：ja -> jp
+    private var apiLanguage: String {
+        return self.language == "ja" ? "jp" : self.language
     }
     
     private override init() {
@@ -77,7 +108,7 @@ class NetworkManager: NSObject, URLSessionDelegate, ObservableObject {
         let cacheKey = "resources_\(page)_\(pageSize)_\(category ?? "all")_\(searchQuery ?? "")"
         var components = URLComponents(string: "\(baseURL)/resources")!
         var queryItems = [
-            URLQueryItem(name: "language", value: self.language),
+            URLQueryItem(name: "language", value: self.apiLanguage),
             URLQueryItem(name: "page", value: String(page)),
             URLQueryItem(name: "pageSize", value: String(pageSize))
         ]
@@ -129,7 +160,7 @@ class NetworkManager: NSObject, URLSessionDelegate, ObservableObject {
     func fetchResource(resourceId: String) -> AnyPublisher<Resource, Error> {
         var components = URLComponents(string: "\(baseURL)/resources/\(resourceId)")!
         components.queryItems = [
-            URLQueryItem(name: "language", value: self.language)
+            URLQueryItem(name: "language", value: self.apiLanguage)
         ]
         
         guard let url = components.url else {
@@ -144,7 +175,7 @@ class NetworkManager: NSObject, URLSessionDelegate, ObservableObject {
                 ResourceCacheManager.shared.cacheContent(
                     response.data.localizedContent,
                     for: response.data.resourceId,
-                    language: self.language
+                    language: self.apiLanguage
                 )
                 return response.data
             }
@@ -185,7 +216,7 @@ class NetworkManager: NSObject, URLSessionDelegate, ObservableObject {
         
         var components = URLComponents(string: "\(baseURL)/resources/\(resourceId)")!
         components.queryItems = [
-            URLQueryItem(name: "language", value: self.language)
+            URLQueryItem(name: "language", value: self.apiLanguage)
         ]
         
         guard let url = components.url else {
@@ -298,6 +329,7 @@ class NetworkManager: NSObject, URLSessionDelegate, ObservableObject {
     ///   - completion: 完成回调
     func addTags(to resourceId: String, tags: [String], completion: @escaping (Result<Void, Error>) -> Void) {
         guard let url = URL(string: "\(baseURL)/resources/\(resourceId)/tags") else {
+            print("❌ 添加标签失败: 无效的URL")
             completion(.failure(NetworkError.invalidURL))
             return
         }
@@ -308,21 +340,33 @@ class NetworkManager: NSObject, URLSessionDelegate, ObservableObject {
         
         request.httpBody = try? JSONSerialization.data(withJSONObject: tags)
         
+        print("🌐 添加标签请求: \(url.absoluteString), 标签: \(tags)")
+        
         session.dataTask(with: request) { data, response, error in
             if let error = error {
-                completion(.failure(error))
+                print("❌ 添加标签网络错误: \(error.localizedDescription)")
+                completion(.failure(NetworkError.serverError("网络连接错误: \(error.localizedDescription)")))
                 return
             }
             
             guard let httpResponse = response as? HTTPURLResponse else {
+                print("❌ 添加标签失败: 无效的HTTP响应")
                 completion(.failure(NetworkError.invalidResponse))
                 return
             }
             
+            print("📡 添加标签响应状态码: \(httpResponse.statusCode)")
+            
             if (200...299).contains(httpResponse.statusCode) {
+                print("✅ 添加标签成功")
                 completion(.success(()))
             } else {
-                completion(.failure(NetworkError.serverError("\(httpResponse.statusCode)")))
+                let errorMessage = "HTTP \(httpResponse.statusCode)"
+                if let data = data, let responseString = String(data: data, encoding: .utf8) {
+                    print("❌ 服务器错误响应: \(responseString)")
+                }
+                print("❌ 添加标签失败: \(errorMessage)")
+                completion(.failure(NetworkError.serverError(errorMessage)))
             }
         }.resume()
     }
@@ -334,6 +378,7 @@ class NetworkManager: NSObject, URLSessionDelegate, ObservableObject {
     ///   - completion: 完成回调
     func removeTags(from resourceId: String, tags: [String], completion: @escaping (Result<Void, Error>) -> Void) {
         guard let url = URL(string: "\(baseURL)/resources/\(resourceId)/tags") else {
+            print("❌ 移除标签失败: 无效的URL")
             completion(.failure(NetworkError.invalidURL))
             return
         }
@@ -344,21 +389,33 @@ class NetworkManager: NSObject, URLSessionDelegate, ObservableObject {
         
         request.httpBody = try? JSONSerialization.data(withJSONObject: tags)
         
+        print("🌐 移除标签请求: \(url.absoluteString), 标签: \(tags)")
+        
         session.dataTask(with: request) { data, response, error in
             if let error = error {
-                completion(.failure(error))
+                print("❌ 移除标签网络错误: \(error.localizedDescription)")
+                completion(.failure(NetworkError.serverError("网络连接错误: \(error.localizedDescription)")))
                 return
             }
             
             guard let httpResponse = response as? HTTPURLResponse else {
+                print("❌ 移除标签失败: 无效的HTTP响应")
                 completion(.failure(NetworkError.invalidResponse))
                 return
             }
             
+            print("📡 移除标签响应状态码: \(httpResponse.statusCode)")
+            
             if (200...299).contains(httpResponse.statusCode) {
+                print("✅ 移除标签成功")
                 completion(.success(()))
             } else {
-                completion(.failure(NetworkError.serverError("\(httpResponse.statusCode)")))
+                let errorMessage = "HTTP \(httpResponse.statusCode)"
+                if let data = data, let responseString = String(data: data, encoding: .utf8) {
+                    print("❌ 服务器错误响应: \(responseString)")
+                }
+                print("❌ 移除标签失败: \(errorMessage)")
+                completion(.failure(NetworkError.serverError(errorMessage)))
             }
         }.resume()
     }

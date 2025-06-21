@@ -75,7 +75,10 @@ struct AudioLibraryView: View {
                     ScrollView {
                         VStack(spacing: Constants.Layout.spacing) {
                             // 搜索栏
-                            SearchBar(text: $viewModel.searchQuery)
+                            SearchBar(text: $viewModel.searchQuery, onSearch: {
+                                // 只在用户点击确定按钮时才触发搜索
+                                viewModel.loadResources()
+                            })
                             
                             // 分类按钮
                             ScrollView(.horizontal, showsIndicators: false) {
@@ -125,10 +128,7 @@ struct AudioLibraryView: View {
                                 .padding()
                             }
                         }
-                        // 当搜索查询文本变化时，触发viewModel中的搜索逻辑
-                        .onChange(of: viewModel.searchQuery) { _ in
-                            viewModel.triggerSearch()
-                        }
+                        // 移除 onChange 触发搜索，改为在 SearchBar 中处理
                     }
                 }
             }
@@ -175,6 +175,8 @@ struct AudioLibraryView: View {
 // MARK: - SearchBar
 struct SearchBar: View {
     @Binding var text: String
+    @FocusState private var isFocused: Bool
+    let onSearch: () -> Void
     
     var body: some View {
         HStack {
@@ -183,10 +185,18 @@ struct SearchBar: View {
             
             TextField("library.search.placeholder".localized, text: $text)
                 .foregroundColor(Constants.Colors.textPrimary)
+                .focused($isFocused)
+                .submitLabel(.search)
+                .onSubmit {
+                    // 用户点击搜索键时才触发搜索
+                    onSearch()
+                }
             
             if !text.isEmpty {
                 Button(action: {
-                    text = ""
+                    text = ""       // 1. 清空搜索框文本
+                    onSearch()      // 2. 立即触发搜索，此时 searchQuery 为空，会加载完整列表
+                    isFocused = false // 3. (可选) 隐藏键盘，提供更流畅的体验
                 }) {
                     Image(systemName: "xmark.circle.fill")
                         .foregroundColor(Constants.Colors.textSecondary)
@@ -258,6 +268,25 @@ struct ResourceCard: View {
                     if isLoading {
                         ProgressView()
                     }
+                    
+                    // 正在播放的耳机图标
+                    if playerController.currentResource?.resourceId == resource.resourceId && playerController.isPlaying {
+                        VStack {
+                            HStack {
+                                Spacer()
+                                Image(systemName: "headphones")
+                                    .font(.system(size: 16, weight: .medium))
+                                    .foregroundColor(.white)
+                                    .padding(8)
+                                    .background(Color.blue.opacity(0.5))
+                                    .clipShape(Circle())
+                                    .shadow(radius: 2)
+                            }
+                            Spacer()
+                        }
+                        .padding(.top, 8)
+                        .padding(.trailing, 8)
+                    }
                 }
                 .frame(height: 200)
                 .clipped()
@@ -266,7 +295,7 @@ struct ResourceCard: View {
                 VStack(alignment: .leading, spacing: 8) {
                     Text(resource.name)
                         .font(.headline)
-                        .lineLimit(1)
+                        .lineLimit(2)
                         .onLongPressGesture {
                             showAdminView = true
                         }

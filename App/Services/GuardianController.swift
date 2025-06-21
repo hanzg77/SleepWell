@@ -6,7 +6,7 @@ enum GuardianMode: Int, CaseIterable, Identifiable, Codable {
     case smartDetection = -1   // 智能检测
     case unlimited = 0         // 整夜播放
     case timedClose60 = 60     // 1分钟
-    case timedClose1800 = 61// 30分钟
+    case timedClose1800 = 1800// 30分钟
     case timedClose3600 = 3600 // 1小时
     case timedClose7200 = 7200 // 2小时
 

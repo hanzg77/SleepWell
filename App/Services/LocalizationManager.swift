@@ -13,8 +13,8 @@ class LocalizationManager: ObservableObject {
     
     // 支持的语言列表
     static let supportedLanguages = [
-        "zh-Hans",  // 简体中文
-        "zh-Hant",  // 繁体中文
+        "zh",  // 简体中文
+        "zh-hant",  // 繁体中文
         "en",       // 英文
         "ja"        // 日文
     ]
@@ -32,9 +32,9 @@ class LocalizationManager: ObservableObject {
         } else if preferredLanguage.hasPrefix("zh") {
             // 处理中文的不同变体
             if preferredLanguage.contains("Hant") || preferredLanguage.contains("TW") || preferredLanguage.contains("HK") {
-                currentLanguage = "zh-Hant"
+                currentLanguage = "zh-hant"
             } else {
-                currentLanguage = "zh-Hans"
+                currentLanguage = "zh"
             }
         } else {
             // 默认使用英文

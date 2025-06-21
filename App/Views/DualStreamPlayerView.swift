@@ -192,7 +192,7 @@ struct PlaybackControlsView: View {
                         .font(.caption)
                         .foregroundColor(.white)
                 }
-                .frame(width: 105) // 固定时间显示的宽度
+                .frame(width: 115) // 固定时间显示的宽度
             }
             .padding(.horizontal)
             .padding(.vertical, 8)
@@ -478,6 +478,14 @@ struct DualStreamPlayerView: View {
                 Text("guardian.status.accompany".localized)
                     .font(.system(size: 24, weight: .light))
                     .foregroundColor(.white.opacity(0.9))
+                if let resourceName = playerController.currentResource?.name {
+                    Text(resourceName)
+                        .font(.system(size: 18, weight: .light))
+                        .foregroundColor(.white.opacity(0.7))
+                        .lineLimit(1)
+                        .truncationMode(.tail)
+                        .frame(maxWidth: 250)
+                }
                 Text("guardian.status.allNight".localized)
                     .font(.system(size: 18, weight: .light))
                     .foregroundColor(.white.opacity(0.7))
@@ -485,6 +493,14 @@ struct DualStreamPlayerView: View {
                 Text("guardian.status.accompany".localized)
                     .font(.system(size: 24, weight: .light))
                     .foregroundColor(.white.opacity(0.9))
+                if let resourceName = playerController.currentResource?.name {
+                    Text(resourceName)
+                        .font(.system(size: 18, weight: .light))
+                        .foregroundColor(.white.opacity(0.7))
+                        .lineLimit(1)
+                        .truncationMode(.tail)
+                        .frame(maxWidth: 250)
+                }
                 if guardianController.countdown > 0 {
                     Text(formatCountdown(guardianController.countdown))
                         .font(.system(size: 16, weight: .light))

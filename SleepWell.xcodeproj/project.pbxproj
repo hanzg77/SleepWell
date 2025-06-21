@@ -744,7 +744,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SleepWell.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = 25CRU63D39;
+				DEVELOPMENT_TEAM = QR7L82VXPM;
 				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_KEY_BGTaskSchedulerPermittedIdentifiers = "com.han.sleepwell2024.ios.refresh,com.han.sleepwell2024.ios.processing";
 				INFOPLIST_KEY_CFBundleDevelopmentRegion = "$(DEVELOPMENT_LANGUAGE)";
@@ -772,9 +772,14 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.han.sleepwell.app;
+				MARKETING_VERSION = 0.99;
+				PRODUCT_BUNDLE_IDENTIFIER = com.han.sleepwell.ios;
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -865,7 +870,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SleepWell.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = 25CRU63D39;
+				DEVELOPMENT_TEAM = QR7L82VXPM;
 				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_KEY_BGTaskSchedulerPermittedIdentifiers = "com.han.sleepwell2024.ios.refresh,com.han.sleepwell2024.ios.processing";
 				INFOPLIST_KEY_CFBundleDevelopmentRegion = "$(DEVELOPMENT_LANGUAGE)";
@@ -893,9 +898,14 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.han.sleepwell.app;
+				MARKETING_VERSION = 0.99;
+				PRODUCT_BUNDLE_IDENTIFIER = com.han.sleepwell.ios;
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

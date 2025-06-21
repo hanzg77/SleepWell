@@ -238,11 +238,10 @@ struct DailyLogCardView: View {
                     
                     Spacer()
                     
-                    // [优化] 移除胶囊背景，让心情图标更自然地融入
+                    // 心情显示在右上角
                     if let mood = log.mood {
-                        Image(systemName: mood.iconName)
-                            .font(.title2) // [优化] 调整图标大小以匹配标题
-                            .foregroundColor(moodColor(for: mood)) // [优化] 赋予心情图标颜色
+                        Text(mood.iconName)
+                            .font(.title2)
                     }
                 }
                 
@@ -253,12 +252,21 @@ struct DailyLogCardView: View {
                         .lineSpacing(8)
                         .foregroundColor(.primary.opacity(0.9))
                         .padding(20)
+                        .frame(maxWidth: .infinity, alignment: .leading)
                         .background(
                             RoundedRectangle(cornerRadius: 18, style: .continuous)
                                 .fill(Color(.systemGray6).opacity(0.85))
                                 .shadow(color: .black.opacity(0.06), radius: 6, x: 0, y: 2)
                         )
                         .padding(.top, 8)
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            if Calendar.current.isDateInToday(log.date) {
+                                selectedMood = log.mood
+                            } else {
+                                onCardTap(log)
+                            }
+                        }
                 } else if Calendar.current.isDateInToday(log.date) {
                     // ... "写点什么吧" 的按钮样式保持不变 ...
                     Button(action: {
@@ -308,47 +316,26 @@ struct DailyLogCardView: View {
         )
         
         // --- [补全] 日记心情选择Banner ---
-        .overlay(
-            GeometryReader { geometry in
-                VStack {
-                    if showingMoodBanner {
-                        MoodSelectionBannerView(onMoodSelected: { mood in
-                            selectedMood = mood
-                         //   showingJournalEntry = true
-                        }, isPresented: $showingMoodBanner)
-                        .position(x: geometry.size.width / 2, y: geometry.size.height * 2 / 3)
-                        .transition(.opacity)
-                        .zIndex(100)
-                    }
-                    Spacer()
-                }
-            }
-        )
-
+        .fullScreenCover(isPresented: $showingMoodBanner) {
+            MoodSelectionBannerView(onMoodSelected: { mood in
+                selectedMood = mood
+            }, isPresented: $showingMoodBanner)
+        }
         
-        // --- [修改后] ---
+        // --- [日记编辑] ---
         .fullScreenCover(item: $selectedMood) { mood in
-            // 当 selectedMood 不为 nil 时，这个 cover 会自动呈现
-            // 并且 'mood' 参数就是解包后的、安全的值
             JournalEntryView(
                 mood: mood,
                 onSave: { content in
-                    // 保存逻辑
                     SleepLogManager.shared.upsertLog(for: Date(), mood: mood, notes: content)
-                    
-                    // 关闭 cover 的唯一方法：将 item 设为 nil
                     selectedMood = nil
                 },
-                // 记得给 JournalEntryView 传递一个关闭自身的闭包
-                // 如果 JournalEntryView 内部的关闭按钮需要起作用的话
                 onDismiss: {
                     selectedMood = nil
                 },
-                // 如果是编辑现有日记，传递现有内容
                 initialContent: log.notes ?? ""
             )
         }
-        
     }
     
     // MARK: - Helper Functions
@@ -361,7 +348,7 @@ struct DailyLogCardView: View {
         
         // 根据语言设置不同的日期样式
         switch currentLanguage {
-        case "zh-Hans", "zh-Hant":
+        case "zh", "zh-hant":
             formatter.dateFormat = "M月d日"
         case "ja":
             formatter.dateFormat = "M月d日"
@@ -494,7 +481,7 @@ struct NotesDetailView: View {
         
         // 根据语言设置不同的日期样式
         switch currentLanguage {
-        case "zh-Hans", "zh-Hant":
+        case "zh", "zh-hant":
             formatter.dateFormat = "M月d日"
         case "ja":
             formatter.dateFormat = "M月d日"
