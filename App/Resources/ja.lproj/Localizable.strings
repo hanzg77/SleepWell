@@ -6,7 +6,7 @@
 */
 
 // MARK: - Common
-"app.name" = "スリープウェル";
+"app.name" = "ねむりのしま";
 
 // MARK: - Tab Bar
 "tab.library" = "ライブラリ";
@@ -15,7 +15,7 @@
 "tab.settings" = "設定";
 
 // MARK: - Audio Library
-"library.title" = "オーディオライブラリ";
+"library.title" = "ねむりのしま";
 "library.search.placeholder" = "検索";
 "library.empty" = "リソースがありません";
 "library.loading" = "読み込み中...";
@@ -63,6 +63,7 @@
 "guardian.status.2Hour" = "2時間";
 "guardian.status.3Hour" = "3時間";
 "guardian.status.stopAtTimeFormat" = "%@ に停止";
+"guardian.status.restart" = "「再生」を押して再開";
 
 "guardian.emptyPrompt.line1" = "澄んだ音、美しい景色\n";
 "guardian.emptyPrompt.brand" = "スリープアイランド";
@@ -104,6 +105,16 @@
 "mood.bad" = "悪い";
 "mood.terrible" = "とても悪い";
 
+// MARK: - Mood (New Definition)
+"mood.lonely" = "孤独";
+"mood.annoyed" = "イライラ";
+"mood.racingThoughts" = "考えすぎ";
+"mood.calm" = "穏やか";
+"mood.happy" = "嬉しい";
+"mood.unhappy" = "楽しくない";
+// MARK: - Mood Selection Banner
+"moodSelectionBanner.title" = "気分を選んでください";
+
 // MARK: - Journal
 "journal.title" = "睡眠日記";
 "journal.entry.new" = "新規エントリー";
@@ -113,6 +124,19 @@
 "journal.empty" = "日記エントリーがありません";
 "journal.empty.title" = "スリープアイランド";
 "journal.write" = "何か書きましょう...";
+
+// MARK: - Journal
+"journal.empty.addTodayPrompt" = "今日の気分を記録しますか？";
+"journal.write" = "何か書きましょう…"; // 這個鍵值在您的日文檔案中也缺失了
+
+"journalEntry.sealThoughts.button" = "保存";
+"journalEntry.placeholder" = "何か書きましょう";
+"journalEntry.prompt.happy" = "今日、何か良いことはありましたか？";
+"journalEntry.prompt.calm" = "今、何を考えていますか？";
+"journalEntry.prompt.annoyed" = "何にイライラしていますか？";
+"journalEntry.prompt.racingThoughts" = "頭がごちゃごちゃ？まず最初の考えを書き留めてみましょう。";
+"journalEntry.prompt.lonly" = "今、誰かのことを思い出していますか？";
+"journalEntry.prompt.unhappy" = "話してみてください、心のモヤモヤは何ですか？";
 
 // MARK: - Settings
 "settings.title" = "設定";
@@ -135,6 +159,7 @@
 "error.no_data" = "データを受信できませんでした";
 "error.decoding" = "データの解析に失敗しました";
 "error.loadFailed.title" = "読み込み失敗";
+
 
 // MARK: - Actions
 "action.ok" = "OK";

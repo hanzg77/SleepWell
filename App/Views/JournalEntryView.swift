@@ -7,7 +7,9 @@ struct JournalEntryView: View {
     // MARK: - Properties
     let mood: Mood
     let onSave: (String) -> Void
-    @Binding var isPresented: Bool
+   // @Binding var isPresented: Bool
+    let onDismiss: () -> Void // <-- [修改] 将 isPresented 替换为 onDismiss 闭包
+    let initialContent: String // 新增：初始内容，用于编辑现有日记
     
     @State private var content: String = ""
     @State private var isSealing: Bool = false
@@ -23,6 +25,8 @@ struct JournalEntryView: View {
         .padding(.bottom, 60)
          //   .edgesIgnoringSafeArea(.bottom) // 让 safeAreaInset 能控制最底部
         .onAppear {
+            // 初始化内容
+            content = initialContent
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
                 isTextEditorFocused = true
                 print("onAppear")   
@@ -93,7 +97,8 @@ struct JournalEntryView: View {
             Spacer()
             Button(action: {
                 isTextEditorFocused = false
-                isPresented = false
+               // isPresented = false
+                onDismiss()           // <-- [修改后]
             }) {
                 Image(systemName: "xmark")
                     .font(.system(size: 16, weight: .bold))
@@ -198,7 +203,8 @@ struct JournalEntryView: View {
             onSave(content)
             showCompletion = true
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                isPresented = false
+                //isPresented = false
+                onDismiss()           // <-- [修改后]
             }
         }
     }

@@ -59,7 +59,7 @@ struct MoodSelectionBannerView: View {
                 .background(.thinMaterial) // 使用 .thinMaterial 或 .regularMaterial
                 .cornerRadius(20) // 调整圆角
                 .padding(.horizontal, 24) // 卡片与屏幕边缘的间距
-                .transition(.move(edge: .bottom).combined(with: .opacity)) // 更改出现动画
+                .transition(.move(edge: .bottom).combined(with: .opacity)) // 更改出
             }
             .zIndex(100)
         }

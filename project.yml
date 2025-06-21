@@ -1,20 +1,24 @@
 name: SleepWell
 options:
-  bundleIdPrefix: com.sleepwell
+  bundleIdPrefix: com.han.sleepwell
   deploymentTarget:
-    iOS: 15.0
+    iOS: 16.6
 
 targets:
   SleepWell:
     type: application
     platform: iOS
     sources:
-      - App
+      - path: App
+        excludes:
+          - "Widgets/**"
+      - path: Shared
+        optional: true
       - Resources
       - Assets.xcassets
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.sleepwell.app
+        PRODUCT_BUNDLE_IDENTIFIER: com.han.sleepwell.app
         DEVELOPMENT_TEAM: "" # 需要填写您的开发团队 ID
         CODE_SIGN_ENTITLEMENTS: SleepWell.entitlements
         INFOPLIST_FILE: Info.plist
@@ -38,12 +42,17 @@ targets:
         INFOPLIST_KEY_UIApplicationSceneManifest_UIApplicationSupportsMultipleScenes: false
         INFOPLIST_KEY_UIApplicationSceneManifest_UISceneConfigurations_UIWindowSceneSessionRoleApplication_0_UISceneConfigurationName: Default Configuration
         INFOPLIST_KEY_UIApplicationSceneManifest_UISceneConfigurations_UIWindowSceneSessionRoleApplication_0_UISceneDelegateClassName: $(PRODUCT_MODULE_NAME).SceneDelegate
+        INFOPLIST_KEY_NSSupportsLiveActivities: true
+        INFOPLIST_KEY_NSSupportsLiveActivitiesFrequentUpdates: true
 
   SleepWellTests:
     type: bundle.unit-test
     platform: iOS
     sources:
       - Tests
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.han.sleepwell.SleepWellTests
     dependencies:
       - target: SleepWell
 
@@ -52,5 +61,8 @@ targets:
     platform: iOS
     sources:
       - Tests
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.han.sleepwell.SleepWellUITests
     dependencies:
       - target: SleepWell 

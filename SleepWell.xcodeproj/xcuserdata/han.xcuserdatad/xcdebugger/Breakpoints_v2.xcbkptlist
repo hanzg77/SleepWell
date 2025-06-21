@@ -88,10 +88,10 @@
             filePath = "App/Views/GuardianView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
-            landmarkName = "GuardianView_Previews"
-            landmarkType = "14">
+            startingLineNumber = "111"
+            endingLineNumber = "111"
+            landmarkName = "body"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -104,9 +104,9 @@
             filePath = "App/Views/GuardianView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "112"
-            endingLineNumber = "112"
-            landmarkName = "previews"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
+            landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
@@ -666,7 +666,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "540"
             endingLineNumber = "540"
-            landmarkName = "loadResourceMetadata(_:)"
+            landmarkName = "setupRemoteTransportControls()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -682,7 +682,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "546"
             endingLineNumber = "546"
-            landmarkName = "loadResourceMetadata(_:)"
+            landmarkName = "setupRemoteTransportControls()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -730,7 +730,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "548"
             endingLineNumber = "548"
-            landmarkName = "loadResourceMetadata(_:)"
+            landmarkName = "setupRemoteTransportControls()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -746,7 +746,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "560"
             endingLineNumber = "560"
-            landmarkName = "loadResourceMetadata(_:)"
+            landmarkName = "setupRemoteTransportControls()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1016,8 +1016,8 @@
             filePath = "App/Views/SleepLogView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
             landmarkName = "logListView"
             landmarkType = "24">
          </BreakpointContent>

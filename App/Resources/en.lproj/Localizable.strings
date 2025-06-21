@@ -64,6 +64,7 @@
 "guardian.status.2Hour" = "2 hours";
 "guardian.status.3Hour" = "3 hours";
 "guardian.status.stopAtTimeFormat" = "Stop at %@";
+"guardian.status.restart" = "Tap Play to Restart";
 
 "guardian.emptyPrompt.line1" = "Calm sounds, peaceful sights\n";
 "guardian.emptyPrompt.brand" = "Sleep Island";
@@ -103,6 +104,28 @@
 "mood.okay" = "Okay";
 "mood.bad" = "Bad";
 "mood.terrible" = "Terrible";
+
+"mood.lonely" = "Lonely";
+"mood.annoyed" = "Annoyed";
+"mood.racingThoughts" = "Racing Thoughts";
+"mood.calm" = "Calm";
+"mood.happy" = "Happy";
+"mood.unhappy" = "Unhappy";
+
+// MARK: - Mood Selection Banner
+"moodSelectionBanner.title" = "Choose a mood";
+
+// MARK: - Journal
+"journal.empty.addTodayPrompt" = "Record today's mood?";
+"journalEntry.sealThoughts.button" = "Save";
+"journalEntry.placeholder" = "Write something...";
+"journalEntry.prompt.happy" = "What's something good that happened today?";
+"journalEntry.prompt.calm" = "What's on your mind right now?";
+"journalEntry.prompt.annoyed" = "What's bothering you?";
+"journalEntry.prompt.racingThoughts" = "Mind racing? Just write down the first thought.";
+"journalEntry.prompt.lonely" = "Is someone on your mind right now?";
+"journalEntry.prompt.unhappy" = "What's making you feel unhappy?";
+
 
 // MARK: - Journal
 "journal.title" = "Sleep Journal";

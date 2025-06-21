@@ -92,7 +92,7 @@ struct GuardianView: View {
                 }
                 
                 // 日记书写界面
-                if let mood = selectedMood, showingJournalEntry {
+        /*        if let mood = selectedMood, showingJournalEntry {
                     JournalEntryView(mood: mood, onSave: { content in
                         // 保存到 log
                         SleepLogManager.shared.upsertLog(for: Date(), mood: mood, notes: content)
@@ -102,6 +102,7 @@ struct GuardianView: View {
                     .transition(.opacity)
                     .zIndex(200)
                 }
+         */
             }
         
         }

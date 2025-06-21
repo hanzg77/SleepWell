@@ -370,24 +370,50 @@ struct DualStreamPlayerView: View {
                 if showingMoodBanner {
                     MoodSelectionBannerView(onMoodSelected: { mood in
                         selectedMood = mood
-                        showingJournalEntry = true
+                    //    showingJournalEntry = true
                     }, isPresented: $showingMoodBanner)
                     .frame(width: screenWidth)
-                    .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
+                    .position(x: geometry.size.width / 2, y: geometry.size.height *  1 / 3)
                     .transition(.opacity)
                     .zIndex(100) // Ensure banners are above controls if they overlap
                 }
                 
-                if let mood = selectedMood, showingJournalEntry {
+            /*    if let mood = selectedMood {
                     JournalEntryView(mood: mood, onSave: { content in
                         SleepLogManager.shared.upsertLog(for: Date(), mood: mood, notes: content)
-                        showingJournalEntry = false
+                    //    showingJournalEntry = false
                         selectedMood = nil
                     }, isPresented: $showingJournalEntry)
                     .transition(.opacity)
                     .frame(width: screenWidth)
                     .zIndex(200) // Ensure journal is above everything
+ 
                 }
+             */
+                if let mood = selectedMood{
+                    // 当 selectedMood 不为 nil 时，这个 cover 会自动呈现
+                    // 并且 'mood' 参数就是解包后的、安全的值
+                    JournalEntryView(
+                        mood: mood,
+                        onSave: { content in
+                            // 保存逻辑
+                            SleepLogManager.shared.upsertLog(for: Date(), mood: mood, notes: content)
+                            
+                            // 关闭 cover 的唯一方法：将 item 设为 nil
+                            selectedMood = nil
+                        },
+                        // 记得给 JournalEntryView 传递一个关闭自身的闭包
+                        // 如果 JournalEntryView 内部的关闭按钮需要起作用的话
+                        onDismiss: {
+                            selectedMood = nil
+                        },
+                        initialContent: SleepLogManager.shared.getLog(for: Date())?.notes ?? ""
+                    )
+                    .padding(.top, 30) // 5. 顶部控件增加额外上边距
+                    .frame(width: screenWidth)
+                    .zIndex(200) // Ensure journal is above everything
+                }
+                
                 
             } // End of Root ZStack
             .contentShape(Rectangle()) // 保留以便整个区域可点击

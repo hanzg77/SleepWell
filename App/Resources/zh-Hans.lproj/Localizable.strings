@@ -68,7 +68,8 @@
 "guardian.status.1Hour" = "1小时";
 "guardian.status.2Hour" = "2小时";
 "guardian.status.3Hour" = "3小时";
-"guardian.status.stopAtTimeFormat" = "%@ 停止播放";
+"guardian.status.stopAtTimeFormat" = "%@ 停止";
+"guardian.status.restart" = "按下「播放」 重新开始";
 "guardian.action.cantSleep" = "睡不着？";
 "countdown.format.hms" = "%d小时%02d分%02d秒";
 "countdown.format.ms" = "%d分%02d秒";

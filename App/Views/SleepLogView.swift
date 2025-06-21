@@ -1,5 +1,6 @@
 import SwiftUI
 import Combine
+import OSLog
 
 // MARK: - 主视图：睡眠日志 (SleepLogView)
 // 注释：顶层视图保持简洁，只负责组合子视图和传递必要的状态。
@@ -108,11 +109,8 @@ struct SleepLogContentView: View {
                         }, onEntryTapped: { entry in
                             // 点击单条守护记录时
                             fetchResourceAndShowSheet(for: entry)
-                        })
+                        }, onCardTap: onCardTap)
                         .id(dailyLog.id)  // 添加 id 用于滚动定位
-                        .onTapGesture {
-                            onCardTap(dailyLog)
-                        }
                     }
                 }
                 // STYLE: 给予垂直和水平的 padding。
@@ -163,7 +161,8 @@ struct SleepLogContentView: View {
                     log: todayLog,
                     entries: todayLog.entries,
                     onNotesTapped: { /* 对于新条目，此回调暂时无操作，主要交互通过卡片内部按钮 */ },
-                    onEntryTapped: { _ in /* 新条目无历史播放记录可点击 */ }
+                    onEntryTapped: { _ in /* 新条目无历史播放记录可点击 */ },
+                    onCardTap: onCardTap
                 )
                 Spacer() // 如果内容较少，将内容推向顶部
             }
@@ -209,16 +208,17 @@ struct DailyLogCardView: View {
     let entries: [SleepEntry]
     var onNotesTapped: () -> Void
     var onEntryTapped: (SleepEntry) -> Void = { _ in }
+    var onCardTap: (DailySleepLog) -> Void = { _ in }
 
     // 日记功能相关状态
     @State private var showingMoodBanner: Bool = false
     @State private var selectedMood: Mood? = nil
-    @State private var showingJournalEntry: Bool = false
+  //  @State private var showingJournalEntry: Bool = false
 
     var body: some View {
         // [优化] VStack 的主间距由子视图的 padding 控制，更具灵活性
         VStack(alignment: .leading, spacing: 0) {
-
+            
             // --- 区域 1: 日记区 ---
             // [优化] 将整个日记区视为一个整体，增加其内部间距
             VStack(alignment: .leading, spacing: 12) {
@@ -250,12 +250,17 @@ struct DailyLogCardView: View {
                 if let notes = log.notes, !notes.isEmpty {
                     Text(notes)
                         .font(.body)
-                        .foregroundColor(.secondary) // [优化] 使用 .secondary 颜色，与标题区隔
-                        .lineLimit(3)
-                        .lineSpacing(5) // [优化] 增加行间距，提升可读性
-                        .padding(.top, 4) // [优化] 与标题之间增加少量间距
+                        .lineSpacing(8)
+                        .foregroundColor(.primary.opacity(0.9))
+                        .padding(20)
+                        .background(
+                            RoundedRectangle(cornerRadius: 18, style: .continuous)
+                                .fill(Color(.systemGray6).opacity(0.85))
+                                .shadow(color: .black.opacity(0.06), radius: 6, x: 0, y: 2)
+                        )
+                        .padding(.top, 8)
                 } else if Calendar.current.isDateInToday(log.date) {
-                    // ... “写点什么吧” 的按钮样式保持不变 ...
+                    // ... "写点什么吧" 的按钮样式保持不变 ...
                     Button(action: {
                         withAnimation { showingMoodBanner = true }
                     }) {
@@ -304,37 +309,68 @@ struct DailyLogCardView: View {
         
         // --- [补全] 日记心情选择Banner ---
         .overlay(
-            VStack {
-                if showingMoodBanner {
-                    MoodSelectionBannerView(onMoodSelected: { mood in
-                        selectedMood = mood
-                        showingJournalEntry = true
-                    }, isPresented: $showingMoodBanner)
-                    .transition(.move(edge: .top).combined(with: .opacity))
-                    .zIndex(100)
+            GeometryReader { geometry in
+                VStack {
+                    if showingMoodBanner {
+                        MoodSelectionBannerView(onMoodSelected: { mood in
+                            selectedMood = mood
+                         //   showingJournalEntry = true
+                        }, isPresented: $showingMoodBanner)
+                        .position(x: geometry.size.width / 2, y: geometry.size.height * 2 / 3)
+                        .transition(.opacity)
+                        .zIndex(100)
+                    }
+                    Spacer()
                 }
-                Spacer()
             }
         )
-        // --- [补全] 日记书写界面 ---
-        .fullScreenCover(isPresented: $showingJournalEntry) {
-            if let mood = selectedMood {
-                JournalEntryView(mood: mood, onSave: { content in
-                    // 保存到 log
-                    SleepLogManager.shared.upsertLog(for: Date(), mood: mood, notes:content)
-                    showingJournalEntry = false
+
+        
+        // --- [修改后] ---
+        .fullScreenCover(item: $selectedMood) { mood in
+            // 当 selectedMood 不为 nil 时，这个 cover 会自动呈现
+            // 并且 'mood' 参数就是解包后的、安全的值
+            JournalEntryView(
+                mood: mood,
+                onSave: { content in
+                    // 保存逻辑
+                    SleepLogManager.shared.upsertLog(for: Date(), mood: mood, notes: content)
+                    
+                    // 关闭 cover 的唯一方法：将 item 设为 nil
                     selectedMood = nil
-                }, isPresented: $showingJournalEntry)
-            }
+                },
+                // 记得给 JournalEntryView 传递一个关闭自身的闭包
+                // 如果 JournalEntryView 内部的关闭按钮需要起作用的话
+                onDismiss: {
+                    selectedMood = nil
+                },
+                // 如果是编辑现有日记，传递现有内容
+                initialContent: log.notes ?? ""
+            )
         }
+        
     }
     
     // MARK: - Helper Functions
     private func formatDateHeader(_ date: Date) -> String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "M月d日"
-        // Use the app's current locale, assuming LocalizationManager provides it or use Locale.current
-        formatter.locale = Locale(identifier: LocalizationManager.shared.currentLanguage)
+        let currentLanguage = LocalizationManager.shared.currentLanguage
+        
+        // 使用本地化的日期格式
+        formatter.locale = Locale(identifier: currentLanguage)
+        
+        // 根据语言设置不同的日期样式
+        switch currentLanguage {
+        case "zh-Hans", "zh-Hant":
+            formatter.dateFormat = "M月d日"
+        case "ja":
+            formatter.dateFormat = "M月d日"
+        case "en":
+            formatter.dateFormat = "MMM d"
+        default:
+            formatter.dateFormat = "MMM d"
+        }
+        
         return formatter.string(from: date)
     }
     
@@ -397,7 +433,7 @@ struct SleepEntryRowView: View {
         let formatter = DateComponentsFormatter()
         formatter.allowedUnits = [.hour, .minute]
         formatter.unitsStyle = .brief // e.g., "1h 23m"
-        formatter.calendar?.locale = Locale(identifier: "zh_cn")
+        formatter.calendar?.locale = Locale(identifier: LocalizationManager.shared.currentLanguage)
         return formatter.string(from: duration) ?? ""
     }
 }
@@ -426,6 +462,13 @@ struct NotesDetailView: View {
                             .font(.body)
                             .lineSpacing(8)
                             .foregroundColor(.primary.opacity(0.9))
+                            .padding(20)
+                            .background(
+                                RoundedRectangle(cornerRadius: 18, style: .continuous)
+                                    .fill(Color(.systemGray6).opacity(0.85))
+                                    .shadow(color: .black.opacity(0.06), radius: 6, x: 0, y: 2)
+                            )
+                            .padding(.top, 8)
                     }
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -444,9 +487,23 @@ struct NotesDetailView: View {
     
     private func formatDateHeader(_ date: Date) -> String {
         let formatter = DateFormatter()
-        formatter.dateStyle = .full
-        formatter.timeStyle = .none
-        formatter.locale = Locale(identifier: "zh_CN")
+        let currentLanguage = LocalizationManager.shared.currentLanguage
+        
+        // 使用本地化的日期格式
+        formatter.locale = Locale(identifier: currentLanguage)
+        
+        // 根据语言设置不同的日期样式
+        switch currentLanguage {
+        case "zh-Hans", "zh-Hant":
+            formatter.dateFormat = "M月d日"
+        case "ja":
+            formatter.dateFormat = "M月d日"
+        case "en":
+            formatter.dateFormat = "MMM d"
+        default:
+            formatter.dateFormat = "MMM d"
+        }
+        
         return formatter.string(from: date)
     }
 }

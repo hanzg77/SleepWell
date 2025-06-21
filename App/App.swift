@@ -14,6 +14,7 @@ struct SleepWellApp: App {
         setupAudioSession()
         registerBackgroundTasks()
         _ = LocalizationManager.shared
+        _ = DynamicIslandManager.shared // 初始化灵动岛管理器
     }
     
     var body: some Scene {
@@ -91,6 +92,8 @@ struct SleepWellApp: App {
 }
 
 class AppDelegate: NSObject, UIApplicationDelegate {
+    var window: UIWindow?
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         // 友盟 SDK 初始化
         // 请从友盟官网获取您的 AppKey

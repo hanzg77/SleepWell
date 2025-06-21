@@ -579,7 +579,7 @@ final class DualStreamPlayerController: NSObject, ObservableObject {
             }
             
             // 2. 获取资源信息
-            let baseArtistName = "伴你入眠"
+            let baseArtistName = "app.name".localized
             var artistSubtitle = ""
             let currentGuardianMode = GuardianController.shared.currentMode
             
@@ -785,7 +785,7 @@ final class DualStreamPlayerController: NSObject, ObservableObject {
         logger.info("📱 更新前 artist: \(oldArtist)")
         
         // 只更新 artist 信息，保持播放进度不变
-        nowPlayingInfo[MPMediaItemPropertyArtist] = "陪伴已经结束，点击播放重新开始"
+        nowPlayingInfo[MPMediaItemPropertyArtist] = "guardian.status.restart".localized
         
         // 保持播放进度不变，只设置播放状态为暂停
         nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = 0.0

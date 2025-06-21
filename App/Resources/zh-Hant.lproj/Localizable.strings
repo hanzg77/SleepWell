@@ -9,9 +9,9 @@
 "app.name" = "睡眠島";
 
 // MARK: - Tab Bar
-"tab.library" = "媒體庫";
-"tab.sleep" = "睡眠";
-"tab.journal" = "日記";
+"tab.library" = "音景庫";
+"tab.sleep" = "陪伴睡眠";
+"tab.journal" = "睡眠日記";
 "tab.settings" = "設定";
 
 // MARK: - Audio Library
@@ -48,13 +48,13 @@
 
 // MARK: - Guardian Mode
 "guardian.title" = "守護模式";
-"guardian.select.mode" = "選取守護模式";
+"guardian.select.mode" = "選擇守護模式";
 "guardian.mode.sleep" = "睡眠模式";
 "guardian.mode.focus" = "專注模式";
 "guardian.mode.relax" = "放鬆模式";
 "guardian.mode.custom" = "自訂模式";
 "guardian.description.sleep" = "助您安然入睡";
-"guardian.description.focus" = "提高專注力和效率";
+"guardian.description.focus" = "提高注意力和效率";
 "guardian.description.relax" = "減輕壓力和焦慮";
 "guardian.description.custom" = "自訂您的專屬體驗";
 
@@ -63,13 +63,13 @@
 "guardian.emptyPrompt.line2Suffix" = "伴你入眠";
 "guardian.status.accompany" = "伴你入眠";
 "guardian.status.allNight" = "一整晚";
-"guardian.status.1Min" = "1 分鐘";
-"guardian.status.30Min" = "30 分鐘";
-"guardian.status.1Hour" = "1 小時";
-"guardian.status.2Hour" = "2 小時";
-"guardian.status.3Hour" = "3 小時";
-"guardian.status.stopAtTimeFormat" = "%@ 停止播放";
-
+"guardian.status.1Min" = "1分鐘";
+"guardian.status.30Min" = "30分鐘";
+"guardian.status.1Hour" = "1小時";
+"guardian.status.2Hour" = "2小時";
+"guardian.status.3Hour" = "3小時";
+"guardian.status.stopAtTimeFormat" = "%@ 停止";
+"guardian.status.restart" = "按下「播放」以重新開始";
 "guardian.action.cantSleep" = "睡不著？";
 "countdown.format.hms" = "%d小時%02d分%02d秒";
 "countdown.format.ms" = "%d分%02d秒";
@@ -103,15 +103,37 @@
 "mood.bad" = "不好";
 "mood.terrible" = "很糟";
 
+// MARK: - Mood (New Definition)
+"mood.lonely" = "孤獨";
+"mood.annoyed" = "煩躁";
+"mood.racingThoughts" = "思緒紛亂";
+"mood.calm" = "平靜";
+"mood.happy" = "快樂";
+"mood.unhappy" = "不開心";
+
 // MARK: - Journal
 "journal.title" = "睡眠日記";
 "journal.entry.new" = "新增日記";
 "journal.entry.edit" = "編輯日記";
 "journal.entry.delete" = "刪除日記";
 "journal.entry.placeholder" = "寫下您的睡眠體驗...";
-"journal.empty" = "尚無日記條目";
+"journal.empty" = "暫無日記條目";
 "journal.empty.title" = "睡眠島";
-"journal.write" = "寫點什麼吧...";
+"journal.empty.addTodayPrompt" = "要記錄今天的心情嗎？";
+"journal.write" = "寫點什麼吧";
+
+"journalEntry.sealThoughts.button" = "儲存";
+"journalEntry.placeholder" = "寫點什麼";
+"journalEntry.prompt.happy" = "今天發生了什麼好事？";
+"journalEntry.prompt.calm" = "現在，腦子裡在想些什麼？";
+"journalEntry.prompt.annoyed" = "又為了什麼事不開心？";
+"journalEntry.prompt.racingThoughts" = "思緒很亂？先記下第一個念頭。";
+"journalEntry.prompt.lonly" = "現在，是不是想起誰了？";
+"journalEntry.prompt.unhappy" = "說吧，心裡有什麼不痛快？";
+
+
+// MARK: - Mood Selection Banner
+"moodSelectionBanner.title" = "選個心情吧";
 
 // MARK: - Settings
 "settings.title" = "設定";
@@ -130,10 +152,9 @@
 "error.network" = "網路錯誤";
 "error.server" = "伺服器錯誤";
 "error.unknown" = "未知錯誤";
-"error.invalid_url" = "無效的 URL";
+"error.invalid_url" = "無效的URL";
 "error.no_data" = "未收到資料";
 "error.decoding" = "資料解析失敗";
-"error.loadFailed.title" = "載入失敗";
 
 // MARK: - Actions
 "action.ok" = "好";
@@ -146,3 +167,4 @@
 "action.confirm" = "確認";
 "action.close" = "關閉";
 "action.refresh" = "重新整理";
+"error.loadFailed.title" = "載入失敗";

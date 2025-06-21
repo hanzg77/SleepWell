@@ -66,12 +66,12 @@ enum Mood: String, Codable, CaseIterable, Identifiable {
 
     var displayName: String {
         switch self {
-        case .lonely: return NSLocalizedString("mood.lonely", comment: "Mood: Lonely")
-        case .annoyed: return NSLocalizedString("mood.annoyed", comment: "Mood: Annoyed")
-        case .racingThoughts: return NSLocalizedString("mood.racingThoughts", comment: "Mood: Racing Thoughts")
-        case .calm: return NSLocalizedString("mood.calm", comment: "Mood: Calm")
-        case .happy: return NSLocalizedString("mood.happy", comment: "Mood: Happy")
-        case .unhappy: return NSLocalizedString("mood.unhappy", comment: "Mood: Unhappy")
+        case .lonely: return "mood.lonely".localized
+        case .annoyed: return "mood.annoyed".localized
+        case .racingThoughts: return "mood.racingThoughts".localized
+        case .calm: return "mood.calm".localized
+        case .happy: return "mood.happy".localized
+        case .unhappy: return "mood.unhappy".localized
         }
     }
 

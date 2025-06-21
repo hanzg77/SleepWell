@@ -32,9 +32,9 @@ class LocalizationManager: ObservableObject {
         } else if preferredLanguage.hasPrefix("zh") {
             // 处理中文的不同变体
             if preferredLanguage.contains("Hant") || preferredLanguage.contains("TW") || preferredLanguage.contains("HK") {
-                currentLanguage = "zh-hant"
+                currentLanguage = "zh-Hant"
             } else {
-                currentLanguage = "zh"
+                currentLanguage = "zh-Hans"
             }
         } else {
             // 默认使用英文
@@ -46,7 +46,7 @@ class LocalizationManager: ObservableObject {
     func localizedString(_ key: String) -> String {
         let path = Bundle.main.path(forResource: currentLanguage, ofType: "lproj")
         let bundle = path != nil ? Bundle(path: path!) : Bundle.main
-        return NSLocalizedString(key, tableName: nil, bundle: bundle ?? Bundle.main, value: "", comment: "")
+        return NSLocalizedString(key, tableName: nil, bundle: bundle ?? Bundle.main, value: key, comment: "")
     }
     
     // 获取带参数的本地化字符串
