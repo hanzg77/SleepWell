@@ -10,7 +10,7 @@ struct SleepEntry: Identifiable, Codable, Equatable {
     let resourceName: String?
     let resourceCoverImageURL: URL?
     
-    init(id: UUID = UUID(), startTime: Date, duration: TimeInterval, mode: GuardianMode, resource: Resource?) {
+    init(id: UUID = UUID(), startTime: Date, duration: TimeInterval, mode: GuardianMode, resource: DualResource?) {
         self.id = id
         self.startTime = startTime
         self.duration = duration

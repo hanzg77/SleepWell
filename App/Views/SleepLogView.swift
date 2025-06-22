@@ -60,7 +60,7 @@ struct SleepLogContentView: View {
     @State private var cancellables = Set<AnyCancellable>()
     @State private var showingGuardianModeSheet = false
     @State private var selectedEntry: SleepEntry?
-    @State private var selectedResource: Resource?
+    @State private var selectedResource: DualResource?
     @State private var isLoadingResource = false
     @State private var resourceLoadError: Error?
 

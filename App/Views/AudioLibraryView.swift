@@ -35,7 +35,8 @@ struct AudioLibraryView: View {
     @State private var guardianViewItem: GuardianViewItem?
     @State private var guardianModeViewModel: GuardianModeSelectionViewModel?
     @State private var showAdminView = false
-    @State private var selectedResource: Resource?
+    @State private var showSearchView = false
+    @State private var selectedResource: DualResource?
     
     var body: some View {
         NavigationView {
@@ -74,12 +75,23 @@ struct AudioLibraryView: View {
                 } else {
                     ScrollView {
                         VStack(spacing: Constants.Layout.spacing) {
-                            // 搜索栏
-                            SearchBar(text: $viewModel.searchQuery, onSearch: {
-                                // 只在用户点击确定按钮时才触发搜索
-                                viewModel.loadResources()
-                            })
-                            
+                            // Fake Search Bar to navigate to search view
+                            NavigationLink(destination: AudioLibrarySearchView(selectedTab: $selectedTab)) {
+                                HStack {
+                                    Image(systemName: "magnifyingglass")
+                                        .foregroundColor(Constants.Colors.textSecondary)
+                                    Text("library.search.placeholder".localized)
+                                        .foregroundColor(Constants.Colors.textSecondary)
+                                    Spacer()
+                                }
+                                .padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
+                                .frame(height: Constants.Layout.searchBarHeight)
+                                .background(Constants.Colors.searchBarBackground)
+                                .cornerRadius(Constants.Layout.cornerRadius)
+                                .padding(.horizontal)
+                            }
+                            .buttonStyle(PlainButtonStyle())
+
                             // 分类按钮
                             ScrollView(.horizontal, showsIndicators: false) {
                                 HStack(spacing: 12) {
@@ -152,7 +164,7 @@ struct AudioLibraryView: View {
         }
     }
     
-    private func handleResourceTap(_ resource: Resource) {
+    private func handleResourceTap(_ resource: DualResource) {
         print("资源被点击: \(resource.name)")
         viewModel.selectedResource = resource // 确保 selectedResource 被设置
         if resource.resourceType == .singleTrackAlbum {
@@ -169,44 +181,6 @@ struct AudioLibraryView: View {
             viewModel.selectedResource = resource
             showEpisodeList = true
         }
-    }
-}
-
-// MARK: - SearchBar
-struct SearchBar: View {
-    @Binding var text: String
-    @FocusState private var isFocused: Bool
-    let onSearch: () -> Void
-    
-    var body: some View {
-        HStack {
-            Image(systemName: "magnifyingglass")
-                .foregroundColor(Constants.Colors.textSecondary)
-            
-            TextField("library.search.placeholder".localized, text: $text)
-                .foregroundColor(Constants.Colors.textPrimary)
-                .focused($isFocused)
-                .submitLabel(.search)
-                .onSubmit {
-                    // 用户点击搜索键时才触发搜索
-                    onSearch()
-                }
-            
-            if !text.isEmpty {
-                Button(action: {
-                    text = ""       // 1. 清空搜索框文本
-                    onSearch()      // 2. 立即触发搜索，此时 searchQuery 为空，会加载完整列表
-                    isFocused = false // 3. (可选) 隐藏键盘，提供更流畅的体验
-                }) {
-                    Image(systemName: "xmark.circle.fill")
-                        .foregroundColor(Constants.Colors.textSecondary)
-                }
-            }
-        }
-        .padding(8)
-        .background(Constants.Colors.searchBarBackground)
-        .cornerRadius(Constants.Layout.cornerRadius)
-        .padding(.horizontal)
     }
 }
 
@@ -235,14 +209,14 @@ struct CategoryButton: View {
 
 // MARK: - ResourceCard
 struct ResourceCard: View {
-    let resource: Resource
+    let resource: DualResource
     let onTap: () -> Void
     @State private var image: UIImage?
     @State private var isLoading = true
     @State private var loadError = false
     @StateObject private var playerController = DualStreamPlayerController.shared
     @State private var showActionSheet = false // 移除了独立的 viewModel 初始化
-    @ObservedObject var viewModel: AudioLibraryViewModel // 接收从父视图传递的 viewModel
+    let viewModel: AudioLibraryViewModel? // 接收从父视图传递的 viewModel
     @State private var showDeleteAlert = false
     @State private var showAdminView = false
     
@@ -297,7 +271,7 @@ struct ResourceCard: View {
                         .font(.headline)
                         .lineLimit(2)
                         .onLongPressGesture {
-                            showAdminView = true
+                            //   showAdminView = true
                         }
                     
                     // 标签列表
@@ -318,7 +292,7 @@ struct ResourceCard: View {
                     }
                     
                     // 添加进度条
-                    if let progress = viewModel.resourceProgresses[resource.resourceId] {
+                    if let viewModel = viewModel, let progress = viewModel.resourceProgresses[resource.resourceId] {
                         ProgressView(value: progress, total: Double(resource.totalDurationSeconds))
                             .progressViewStyle(LinearProgressViewStyle())
                             .tint(.blue)

@@ -2,7 +2,7 @@ import SwiftUI
 import Combine
 
 struct EpisodeListView: View {
-    let resource: Resource
+    let resource: DualResource
     @StateObject private var viewModel: EpisodeListViewModel
     @Environment(\.dismiss) private var dismiss
     @State private var isRefreshing = false
@@ -13,7 +13,7 @@ struct EpisodeListView: View {
     @State private var selectModel: GuardianModeSelectionViewModel?
     @EnvironmentObject private var guardianManager: GuardianController
     
-    init(resource: Resource, selectedTab: Binding<Int>) {
+    init(resource: DualResource, selectedTab: Binding<Int>) {
         self.resource = resource
         self._selectedTab = selectedTab
         _viewModel = StateObject(wrappedValue: EpisodeListViewModel(resource: resource))
@@ -138,7 +138,7 @@ struct EpisodeListView: View {
 }
 
 struct ResourceHeaderView: View {
-    let resource: Resource
+    let resource: DualResource
     @State private var image: UIImage?
     @State private var isLoading = true
     @State private var loadError = false

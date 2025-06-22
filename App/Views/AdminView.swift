@@ -1,7 +1,7 @@
 import SwiftUI
 struct AdminView: View {
     @Environment(\.dismiss) private var dismiss
-    let resource: Resource
+    let resource: DualResource
     
     @State private var showTagSelection = false
     @State private var showDeleteConfirmation = false

@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct GuardianModeSelectionView: View {
-    let resource: Resource
+    let resource: DualResource
     let episode: Episode?
     @StateObject private var viewModel: GuardianModeSelectionViewModel
     @Environment(\.dismiss) private var dismiss
@@ -10,7 +10,7 @@ struct GuardianModeSelectionView: View {
     @State private var guardianViewItem: GuardianViewItem?
     var onModeSelected: ((GuardianMode) -> Void)?
     
-    init(resource: Resource, episode: Episode? = nil, selectedTab: Binding<Int>, onModeSelected: ((GuardianMode) -> Void)? = nil) {
+    init(resource: DualResource, episode: Episode? = nil, selectedTab: Binding<Int>, onModeSelected: ((GuardianMode) -> Void)? = nil) {
         self.resource = resource
         self.episode = episode
         self._selectedTab = selectedTab
