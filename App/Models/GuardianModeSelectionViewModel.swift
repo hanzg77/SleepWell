@@ -6,7 +6,7 @@ class GuardianModeSelectionViewModel: ObservableObject {
     @Published var selectedMode: GuardianMode?
     @Published var showingGuardianView = false
     
-    private var resource: DualResource
+    private var resource: Resource
     private let episode: Episode?
     private var cancellables = Set<AnyCancellable>()
     private let guardianController: GuardianController
@@ -18,7 +18,7 @@ class GuardianModeSelectionViewModel: ObservableObject {
         GuardianMode.allCases
     }
     
-    init(resource: DualResource, episode: Episode?, guardianManager: GuardianController) {
+    init(resource: Resource, episode: Episode?, guardianManager: GuardianController) {
         self.resource = resource
         self.episode = episode
         self.guardianController = guardianManager

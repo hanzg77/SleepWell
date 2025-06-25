@@ -43,7 +43,7 @@ final class DualStreamPlayerController: NSObject, ObservableObject {
     private let progressSaveInterval: TimeInterval = 10.0 // 每10秒保存一次进度
 
     // MARK: - 资源信息
-    public var currentResource: DualResource? {
+    public var currentResource: Resource? {
         didSet {
             if let resource = currentResource {
                 logger.info("✅ 设置新的资源: \(resource.name)")
@@ -566,7 +566,7 @@ final class DualStreamPlayerController: NSObject, ObservableObject {
     }
     
     // ✨ 1. 新增一个核心方法，专门负责加载元数据并设置初始的锁屏信息
-    private func loadResourceMetadata(_ resource: DualResource) {
+    private func loadResourceMetadata(_ resource: Resource) {
         // 创建异步任务
         let workItem = DispatchWorkItem { [weak self] in
             guard let self = self else { return }
@@ -713,7 +713,7 @@ final class DualStreamPlayerController: NSObject, ObservableObject {
     }
 
     // MARK: - 播放控制
-    func play(resource: DualResource) {
+    func play(resource: Resource) {
         stop() // 首先停止当前播放并清理状态
 
         self.currentResource = resource

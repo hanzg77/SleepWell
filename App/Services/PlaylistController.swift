@@ -5,7 +5,7 @@ class PlaylistController: ObservableObject {
     static let shared = PlaylistController()
     
     // MARK: - Properties
-    @Published private(set) var resources = [DualResource]()
+    @Published private(set) var resources = [Resource]()
     @Published private(set) var currentResourceIndex = 0
     @Published private(set) var currentEpisode: Episode?
     @Published private(set) var playMode = PlayMode.sequential
@@ -27,14 +27,14 @@ class PlaylistController: ObservableObject {
     // MARK: - Public Methods
     
     /// 设置播放列表
-    func setPlaylist(_ resources: [DualResource]) {
+    func setPlaylist(_ resources: [Resource]) {
         self.resources = resources
         self.currentResourceIndex = 0
         refreshProgresses()
     }
     
     /// 播放指定资源
-    func play(_ resource: DualResource, episode: Episode? = nil) {
+    func play(_ resource: Resource, episode: Episode? = nil) {
         // 如果资源不在当前列表中，则创建新列表
         if !resources.contains(where: { $0.resourceId == resource.resourceId }) {
             resources = [resource]
@@ -107,20 +107,20 @@ class PlaylistController: ObservableObject {
     // MARK: - Computed Properties
     
     /// 获取当前播放的资源
-    var currentResource: DualResource? {
+    var currentResource: Resource? {
         guard currentResourceIndex < resources.count else { return nil }
         return resources[currentResourceIndex]
     }
     
     /// 获取下一个资源（用于预览）
-    var nextResource: DualResource? {
+    var nextResource: Resource? {
         guard !resources.isEmpty else { return nil }
         let nextIndex = (currentResourceIndex + 1) % resources.count
         return resources[nextIndex]
     }
     
     /// 获取上一个资源（用于预览）
-    var previousResource: DualResource? {
+    var previousResource: Resource? {
         guard !resources.isEmpty else { return nil }
         let prevIndex = (currentResourceIndex - 1 + resources.count) % resources.count
         return resources[prevIndex]

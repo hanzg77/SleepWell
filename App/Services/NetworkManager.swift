@@ -70,7 +70,7 @@ class NetworkManager: NSObject, URLSessionDelegate, ObservableObject {
     }
     
     private var session: URLSession!
-    @Published private(set) var resources: [DualResource] = []
+    @Published private(set) var resources: [Resource] = []
     private var currentPage = 1
     private var isLoading = false
     private var hasMore = true
@@ -124,7 +124,7 @@ class NetworkManager: NSObject, URLSessionDelegate, ObservableObject {
         print("🌐 NetworkManager: Requesting URL: \(url.absoluteString)")
         session.dataTaskPublisher(for: url)
             .map(\ .data)
-            .decode(type: APIResponse<[DualResource]>.self, decoder: JSONDecoder())
+            .decode(type: APIResponse<[Resource]>.self, decoder: JSONDecoder())
             .map { $0.data }
             .replaceError(with: [])
             .receive(on: DispatchQueue.main)
@@ -151,13 +151,13 @@ class NetworkManager: NSObject, URLSessionDelegate, ObservableObject {
     }
     private func loadCache() {
         if let data = UserDefaults.standard.data(forKey: "resource_cache"),
-           let cached = try? JSONDecoder().decode([DualResource].self, from: data) {
+           let cached = try? JSONDecoder().decode([Resource].self, from: data) {
             self.resources = cached
         }
     }
     
     // 获取单个资源
-    func fetchResource(resourceId: String) -> AnyPublisher<DualResource, Error> {
+    func fetchResource(resourceId: String) -> AnyPublisher<Resource, Error> {
         var components = URLComponents(string: "\(baseURL)/resources/\(resourceId)")!
         components.queryItems = [
             URLQueryItem(name: "language", value: self.apiLanguage)
@@ -169,7 +169,7 @@ class NetworkManager: NSObject, URLSessionDelegate, ObservableObject {
         
         return session.dataTaskPublisher(for: url)
             .map(\.data)
-            .decode(type: APIResponse<DualResource>.self, decoder: JSONDecoder())
+            .decode(type: APIResponse<Resource>.self, decoder: JSONDecoder())
             .map { response in
                 // 缓存资源内容
                 ResourceCacheManager.shared.cacheContent(
@@ -225,7 +225,7 @@ class NetworkManager: NSObject, URLSessionDelegate, ObservableObject {
         
         return session.dataTaskPublisher(for: url)
             .map(\.data)
-            .decode(type: APIResponse<DualResource>.self, decoder: JSONDecoder())
+            .decode(type: APIResponse<Resource>.self, decoder: JSONDecoder())
             .map { response in
                 let resource = response.data
                 print("📦 收到资源数据: id=\(resource.id), resourceId=\(resource.resourceId)")

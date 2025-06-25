@@ -8,12 +8,12 @@ class EpisodeListViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var error: Error?
     
-    private let resource: DualResource
+    private let resource: Resource
     private var currentPage = 1
     private let pageSize = 20
     private var cancellables = Set<AnyCancellable>()
     
-    init(resource: DualResource) {
+    init(resource: Resource) {
         self.resource = resource
         print("初始化 EpisodeListViewModel，资源ID: \(resource.resourceId)")
         loadEpisodes()

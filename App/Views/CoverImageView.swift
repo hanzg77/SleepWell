@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct CoverImageView: View {
-    let resource: DualResource?
+    let resource: Resource?
     @State private var image: UIImage?
     @State private var isLoading = true
     @State private var loadError = false

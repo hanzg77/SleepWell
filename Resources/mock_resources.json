@@ -1,85 +1,168 @@
 {
     "resources": [
         {
-             "id": "6839bee3b9771737ce81203f",
-             "resourceId": "6839bee3b9771737ce81203f",
-             "resourceType": "single_track_album",
-             "category": "Music",
-             "tags": [
-               "music"
-             ],
-             "totalDurationSeconds": 4560,
-             "globalPlaybackCount": 0,
-             "localizedContent": {
-               "name": "1940 年代爵士酒吧 - 復古經典",
-               "description": "以下為翻譯：\n\n回到過去，體驗30、40年代復古爵士經典～懷舊金曲。 感受平滑又令人懷念的氛圍。🎷\n\n訂閱：@barelyjazzmusic\n\n📻 歌單：\n00:00 Midnight’s Not for Me\n01:47 One Last Look in Satin\n03:59 Only the Piano Knows\n06:24 A Suitcase Full of Silence\n09:05 Dancing in Wartime\n11:44 She Wears My Perfume Now\n14:23 The Man Behind the Melody\n15:58 The Kiss Was Just a Favor\n19:19 Ten Cents a Dance\n21:24 The Hotel Knows\n23:53 Gloria in Gold\n26:28 The Waitress Knows My Name\n30:02 The Captain Wrote in Blue\n32:20 Miss Nobody Tonight\n35:11 Rain Checks and Reveries\n🔄\n\nBarely Jazz – 永恆的煙燻爵士旋律和黃金時代搖擺節奏的結合。 古典靈魂與流暢節拍相遇，引導著地下酒吧和舞廳之夜的精神。 用我們的經典爵士嘻哈融合放鬆身心、學習或飄然入睡。🎺🎶✨\n\n----------------\nCopyright © 2025 barely jazz. 保留所有權利。\n----------------\n\n#爵士樂 #復古音樂 #爵士經典",
-               "coverImageUrl": "http://uploadttcdn.fuciyuan7.com/sleep/cover/6839bee3b9771737ce81203f.webp",
-               "rank": 0
-             },
-             "audioUrl": "http://uploadttcdn.fuciyuan7.com/sleep/audio/6839bee3b9771737ce81203f.m4a",
-             "videoUrl": "https://www.youtube.com/watch?v=pHwRrE14cjE",
-             "videoClipUrl": "http://uploadttcdn.fuciyuan7.com/sleep/video_clips/6839bee3b9771737ce81203f_c.mp4",
-             "status": "active",
-             "isPublished": true,
-             "episodeCount": 1,
-             "favoriteCount": 0,
-             "shareCount": 0,
-             "downloadCount": 0,
-             "commentCount": 0,
-             "rating": 0,
-             "ratingCount": 0,
-             "metadata": {
-               "source": "youtube",
-               "video_id": "pHwRrE14cjE",
-               "uploader": "barely jazz",
-               "upload_date": "20250518",
-               "audio_codec": null,
-               "audio_quality": null,
-               "audio_bitrate": null,
-               "audio_channels": null
-             },
-             "episodes": []
-           },
-           {
-             "id": "683c596e419e33a54c364d25",
-             "resourceId": "683c596e419e33a54c364d25",
-             "resourceType": "single_track_album",
-             "category": "Music",
-             "tags": [
-               "nature",
-               "music"
-             ],
-             "totalDurationSeconds": 1823,
-             "globalPlaybackCount": 0,
-             "localizedContent": {
-               "name": "慢活 (靜謐生活歌單)",
-               "description": "Spotify 播放清單：https://open.spotify.com/playlist/3rfhMMBUTReerNLlLTI9fc?si=17318cc688214579\n樂譜（部分樂曲）：https://go.click.ly/eCFac\n\n這麼多人為 Instagram 上的「slow living (a quiet life)」製作了最美的影片，所以這首歌似乎也應該在 YouTube 上擁有自己的播放清單 :)\n\n時間戳記：\n00:00 Ophelia Wilde - slow living (a quiet life)\n01:21 Ophelia Wilde - picnic in the meadow\n02:42 Dennis Korn - sunrays\n04:57 Ophelia Wilde - the bakery\n06:40 Orpheus - her aesthetic\n09:12 Koshun Nakao - waltz\n11:49 Orpheus - romanticizing life\n13:37 Ophelia Wilde - love letters\n14:52 Ophelia Wilde - in the morning\n16:29 Koshun Nakao - country\n18:45 Ophelia Wilde - café conversations\n20:31 Imaginary Poet - tea time\n22:39 Elia lo Monaco - a flower\n26:04 Georg Friedrich Händel, Ophelia Wilde - suite no. 7 in g minor, hwv 432: vi. passacaglia\n29:00 Dennis Korn - a country house\n\n#aesthetic #summer #slowliving #quietlife #peaceful #nature",
-               "coverImageUrl": "http://uploadttcdn.fuciyuan7.com/sleep/cover/683c596e419e33a54c364d25.webp",
-               "rank": 0
-             },
-             "audioUrl": "http://uploadttcdn.fuciyuan7.com/sleep/audio/683c596e419e33a54c364d25.m4a",
-             "videoUrl": "https://www.youtube.com/watch?v=EvPEXA2iH4g",
-             "videoClipUrl": "http://uploadttcdn.fuciyuan7.com/sleep/video_clips/683c596e419e33a54c364d25_c.mp4",
-             "status": "active",
-             "isPublished": true,
-             "episodeCount": 1,
-             "favoriteCount": 0,
-             "shareCount": 0,
-             "downloadCount": 0,
-             "commentCount": 0,
-             "rating": 0,
-             "ratingCount": 0,
-             "metadata": {
-               "source": "youtube",
-               "video_id": "EvPEXA2iH4g",
-               "uploader": "Ophelia Wilde",
-               "upload_date": "20240715",
-               "audio_codec": null,
-               "audio_quality": null,
-               "audio_bitrate": null,
-               "audio_channels": null
-             },
-             "episodes": []
-           
+            "id": "1",
+            "resourceId": "1",
+            "resourceType": "single_track_album",
+            "category": "白噪音",
+            "tags": ["雨声"],
+            "dynamicLoopingVideoUrl": null,
+            "immersiveBackgroundImageUrl": "rain_background",
+            "episodeCount": 1,
+            "totalDurationSeconds": 3600,
+            "globalPlaybackCount": 1000,
+            "createdAt": "2024-03-20T10:00:00Z",
+            "updatedAt": "2024-03-20T10:00:00Z",
+            "localizedContent": {
+                "name": "轻柔雨声",
+                "description": "轻柔的雨声，帮助您放松身心，进入梦乡",
+                "coverImageUrl": "https://lineimg.omusic.com.tw/img/album/5143708.jpg?v=20211120070051"
+            },
+            "audioUrl": "http://uploadttcdn.fuciyuan7.com/music/20250526/6/954611118802590.mp3"
+        },
+        {
+            "id": "2",
+            "resourceId": "2",
+            "resourceType": "multi_episode_series",
+            "category": "冥想",
+            "tags": ["冥想", "平静"],
+            "dynamicLoopingVideoUrl": null,
+            "immersiveBackgroundImageUrl": "wave_background",
+            "episodeCount": 2,
+            "totalDurationSeconds": 7200,
+            "globalPlaybackCount": 800,
+            "createdAt": "2024-03-20T10:00:00Z",
+            "updatedAt": "2024-03-20T10:00:00Z",
+            "localizedContent": {
+                "name": "冥想课程系列",
+                "description": "专业的冥想引导课程，帮助您放松身心",
+                "coverImageUrl": "https://lineimg.omusic.com.tw/img/album/5143708.jpg?v=20211120070051"
+            },
+            "audioUrl": "http://uploadttcdn.fuciyuan7.com/music/20250526/6/954611118802590.mp3",
+            "episodes": [
+                {
+                    "id": "2_1",
+                    "episodeId": "2_1",
+                    "parentResourceId": "2",
+                    "episodeNumber": 1,
+                    "audioUrl": "http://uploadttcdn.fuciyuan7.com/music/20250526/6/954611118802590.mp3",
+                    "videoUrl": null,
+                    "durationSeconds": 3600,
+                    "localizedContent": {
+                        "name": "冥想课程 1",
+                        "description": "第一集冥想课程"
+                    },
+                    "playbackCount": 400,
+                    "createdAt": "2024-03-20T10:00:00Z",
+                    "updatedAt": "2024-03-20T10:00:00Z"
+                },
+                {
+                    "id": "2_2",
+                    "episodeId": "2_2",
+                    "parentResourceId": "2",
+                    "episodeNumber": 2,
+                    "audioUrl": "http://uploadttcdn.fuciyuan7.com/music/20250526/6/954611118802590.mp3",
+                    "videoUrl": null,
+                    "durationSeconds": 3600,
+                    "localizedContent": {
+                        "name": "冥想课程 2",
+                        "description": "第二集冥想课程"
+                    },
+                    "playbackCount": 400,
+                    "createdAt": "2024-03-20T10:00:00Z",
+                    "updatedAt": "2024-03-20T10:00:00Z"
+                }
+            ]
+        },
+        {
+            "id": "3",
+            "resourceId": "3",
+            "resourceType": "single_track_album",
+            "category": "自然",
+            "tags": ["森林", "鸟鸣"],
+            "dynamicLoopingVideoUrl": null,
+            "immersiveBackgroundImageUrl": "forest_background",
+            "episodeCount": 1,
+            "totalDurationSeconds": 3600,
+            "globalPlaybackCount": 1200,
+            "createdAt": "2024-03-20T10:00:00Z",
+            "updatedAt": "2024-03-20T10:00:00Z",
+            "localizedContent": {
+                "name": "森林晨曲",
+                "description": "清晨森林中的鸟鸣声，让您感受大自然的宁静",
+                "coverImageUrl": "https://lineimg.omusic.com.tw/img/album/5143708.jpg?v=20211120070051"
+            },
+            "audioUrl": "http://uploadttcdn.fuciyuan7.com/music/20250526/6/954611118802590.mp3"
+        },
+        {
+            "id": "4",
+            "resourceId": "4",
+            "resourceType": "multi_episode_series",
+            "category": "故事",
+            "tags": ["童话", "睡前故事"],
+            "dynamicLoopingVideoUrl": null,
+            "immersiveBackgroundImageUrl": "story_background",
+            "episodeCount": 3,
+            "totalDurationSeconds": 10800,
+            "globalPlaybackCount": 1500,
+            "createdAt": "2024-03-20T10:00:00Z",
+            "updatedAt": "2024-03-20T10:00:00Z",
+            "localizedContent": {
+                "name": "睡前故事集",
+                "description": "精选的睡前故事，陪伴您进入甜美梦乡",
+                "coverImageUrl": "https://lineimg.omusic.com.tw/img/album/5143708.jpg?v=20211120070051"
+            },
+            "audioUrl": "http://uploadttcdn.fuciyuan7.com/music/20250526/6/954611118802590.mp3",
+            "episodes": [
+                {
+                    "id": "4_1",
+                    "episodeId": "4_1",
+                    "parentResourceId": "4",
+                    "episodeNumber": 1,
+                    "audioUrl": "http://uploadttcdn.fuciyuan7.com/music/20250526/6/954611118802590.mp3",
+                    "videoUrl": null,
+                    "durationSeconds": 3600,
+                    "localizedContent": {
+                        "name": "小王子",
+                        "description": "经典童话故事"
+                    },
+                    "playbackCount": 500,
+                    "createdAt": "2024-03-20T10:00:00Z",
+                    "updatedAt": "2024-03-20T10:00:00Z"
+                },
+                {
+                    "id": "4_2",
+                    "episodeId": "4_2",
+                    "parentResourceId": "4",
+                    "episodeNumber": 2,
+                    "audioUrl": "http://uploadttcdn.fuciyuan7.com/music/20250526/6/954611118802590.mp3",
+                    "videoUrl": null,
+                    "durationSeconds": 3600,
+                    "localizedContent": {
+                        "name": "爱丽丝梦游仙境",
+                        "description": "奇幻冒险故事"
+                    },
+                    "playbackCount": 500,
+                    "createdAt": "2024-03-20T10:00:00Z",
+                    "updatedAt": "2024-03-20T10:00:00Z"
+                },
+                {
+                    "id": "4_3",
+                    "episodeId": "4_3",
+                    "parentResourceId": "4",
+                    "episodeNumber": 3,
+                    "audioUrl": "http://uploadttcdn.fuciyuan7.com/music/20250526/6/954611118802590.mp3",
+                    "videoUrl": null,
+                    "durationSeconds": 3600,
+                    "localizedContent": {
+                        "name": "绿野仙踪",
+                        "description": "经典童话故事"
+                    },
+                    "playbackCount": 500,
+                    "createdAt": "2024-03-20T10:00:00Z",
+                    "updatedAt": "2024-03-20T10:00:00Z"
+                }
+            ]
+        }
     ]
 } 
