@@ -29,6 +29,13 @@
 "category.story" = "物語";
 "category.music" = "音楽";
 "category.nature" = "自然";
+"category.work" = "仕事";
+"category.study" = "勉強";
+"category.calm" = "平静";
+"category.relax" = "リラックス";
+"category.coffee" = "コーヒー";
+"category.yoga" = "ヨガ";
+"category.baby" = "赤ちゃんの寝かしつけ";
 
 // MARK: - Resource Details
 "resource.duration" = "%d 分";
@@ -87,7 +94,13 @@
 "player.background_volume" = "背景音量";
 "player.voice_volume" = "音声音量";
 
-// MARK: - Sleep Record
+/* MARK: - Player Navigation */
+"player.navigation.first_resource" = "最初のリソースに到達しました";
+"player.navigation.last_resource" = "最後のリソースに到達しました";
+"player.navigation.loading_more" = "より多くのリソースを読み込み中...";
+"player.navigation.no_more_resources" = "利用可能なリソースがありません";
+
+/* MARK: - Sleep Record */
 "sleep.title" = "睡眠記録";
 "sleep.start" = "睡眠開始";
 "sleep.end" = "睡眠終了";

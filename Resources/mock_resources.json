@@ -1,168 +1,292 @@
 {
-    "resources": [
-        {
-            "id": "1",
-            "resourceId": "1",
-            "resourceType": "single_track_album",
-            "category": "白噪音",
-            "tags": ["雨声"],
-            "dynamicLoopingVideoUrl": null,
-            "immersiveBackgroundImageUrl": "rain_background",
-            "episodeCount": 1,
-            "totalDurationSeconds": 3600,
-            "globalPlaybackCount": 1000,
-            "createdAt": "2024-03-20T10:00:00Z",
-            "updatedAt": "2024-03-20T10:00:00Z",
-            "localizedContent": {
-                "name": "轻柔雨声",
-                "description": "轻柔的雨声，帮助您放松身心，进入梦乡",
-                "coverImageUrl": "https://lineimg.omusic.com.tw/img/album/5143708.jpg?v=20211120070051"
-            },
-            "audioUrl": "http://uploadttcdn.fuciyuan7.com/music/20250526/6/954611118802590.mp3"
-        },
-        {
-            "id": "2",
-            "resourceId": "2",
-            "resourceType": "multi_episode_series",
-            "category": "冥想",
-            "tags": ["冥想", "平静"],
-            "dynamicLoopingVideoUrl": null,
-            "immersiveBackgroundImageUrl": "wave_background",
-            "episodeCount": 2,
-            "totalDurationSeconds": 7200,
-            "globalPlaybackCount": 800,
-            "createdAt": "2024-03-20T10:00:00Z",
-            "updatedAt": "2024-03-20T10:00:00Z",
-            "localizedContent": {
-                "name": "冥想课程系列",
-                "description": "专业的冥想引导课程，帮助您放松身心",
-                "coverImageUrl": "https://lineimg.omusic.com.tw/img/album/5143708.jpg?v=20211120070051"
-            },
-            "audioUrl": "http://uploadttcdn.fuciyuan7.com/music/20250526/6/954611118802590.mp3",
-            "episodes": [
-                {
-                    "id": "2_1",
-                    "episodeId": "2_1",
-                    "parentResourceId": "2",
-                    "episodeNumber": 1,
-                    "audioUrl": "http://uploadttcdn.fuciyuan7.com/music/20250526/6/954611118802590.mp3",
-                    "videoUrl": null,
-                    "durationSeconds": 3600,
-                    "localizedContent": {
-                        "name": "冥想课程 1",
-                        "description": "第一集冥想课程"
-                    },
-                    "playbackCount": 400,
-                    "createdAt": "2024-03-20T10:00:00Z",
-                    "updatedAt": "2024-03-20T10:00:00Z"
-                },
-                {
-                    "id": "2_2",
-                    "episodeId": "2_2",
-                    "parentResourceId": "2",
-                    "episodeNumber": 2,
-                    "audioUrl": "http://uploadttcdn.fuciyuan7.com/music/20250526/6/954611118802590.mp3",
-                    "videoUrl": null,
-                    "durationSeconds": 3600,
-                    "localizedContent": {
-                        "name": "冥想课程 2",
-                        "description": "第二集冥想课程"
-                    },
-                    "playbackCount": 400,
-                    "createdAt": "2024-03-20T10:00:00Z",
-                    "updatedAt": "2024-03-20T10:00:00Z"
-                }
-            ]
-        },
-        {
-            "id": "3",
-            "resourceId": "3",
-            "resourceType": "single_track_album",
-            "category": "自然",
-            "tags": ["森林", "鸟鸣"],
-            "dynamicLoopingVideoUrl": null,
-            "immersiveBackgroundImageUrl": "forest_background",
-            "episodeCount": 1,
-            "totalDurationSeconds": 3600,
-            "globalPlaybackCount": 1200,
-            "createdAt": "2024-03-20T10:00:00Z",
-            "updatedAt": "2024-03-20T10:00:00Z",
-            "localizedContent": {
-                "name": "森林晨曲",
-                "description": "清晨森林中的鸟鸣声，让您感受大自然的宁静",
-                "coverImageUrl": "https://lineimg.omusic.com.tw/img/album/5143708.jpg?v=20211120070051"
-            },
-            "audioUrl": "http://uploadttcdn.fuciyuan7.com/music/20250526/6/954611118802590.mp3"
-        },
-        {
-            "id": "4",
-            "resourceId": "4",
-            "resourceType": "multi_episode_series",
-            "category": "故事",
-            "tags": ["童话", "睡前故事"],
-            "dynamicLoopingVideoUrl": null,
-            "immersiveBackgroundImageUrl": "story_background",
-            "episodeCount": 3,
-            "totalDurationSeconds": 10800,
-            "globalPlaybackCount": 1500,
-            "createdAt": "2024-03-20T10:00:00Z",
-            "updatedAt": "2024-03-20T10:00:00Z",
-            "localizedContent": {
-                "name": "睡前故事集",
-                "description": "精选的睡前故事，陪伴您进入甜美梦乡",
-                "coverImageUrl": "https://lineimg.omusic.com.tw/img/album/5143708.jpg?v=20211120070051"
-            },
-            "audioUrl": "http://uploadttcdn.fuciyuan7.com/music/20250526/6/954611118802590.mp3",
-            "episodes": [
-                {
-                    "id": "4_1",
-                    "episodeId": "4_1",
-                    "parentResourceId": "4",
-                    "episodeNumber": 1,
-                    "audioUrl": "http://uploadttcdn.fuciyuan7.com/music/20250526/6/954611118802590.mp3",
-                    "videoUrl": null,
-                    "durationSeconds": 3600,
-                    "localizedContent": {
-                        "name": "小王子",
-                        "description": "经典童话故事"
-                    },
-                    "playbackCount": 500,
-                    "createdAt": "2024-03-20T10:00:00Z",
-                    "updatedAt": "2024-03-20T10:00:00Z"
-                },
-                {
-                    "id": "4_2",
-                    "episodeId": "4_2",
-                    "parentResourceId": "4",
-                    "episodeNumber": 2,
-                    "audioUrl": "http://uploadttcdn.fuciyuan7.com/music/20250526/6/954611118802590.mp3",
-                    "videoUrl": null,
-                    "durationSeconds": 3600,
-                    "localizedContent": {
-                        "name": "爱丽丝梦游仙境",
-                        "description": "奇幻冒险故事"
-                    },
-                    "playbackCount": 500,
-                    "createdAt": "2024-03-20T10:00:00Z",
-                    "updatedAt": "2024-03-20T10:00:00Z"
-                },
-                {
-                    "id": "4_3",
-                    "episodeId": "4_3",
-                    "parentResourceId": "4",
-                    "episodeNumber": 3,
-                    "audioUrl": "http://uploadttcdn.fuciyuan7.com/music/20250526/6/954611118802590.mp3",
-                    "videoUrl": null,
-                    "durationSeconds": 3600,
-                    "localizedContent": {
-                        "name": "绿野仙踪",
-                        "description": "经典童话故事"
-                    },
-                    "playbackCount": 500,
-                    "createdAt": "2024-03-20T10:00:00Z",
-                    "updatedAt": "2024-03-20T10:00:00Z"
-                }
-            ]
-        }
-    ]
-} 
+  "success": true,
+  "message": "Resources retrieved successfully",
+  "data": [
+    {
+      "id": "683dcc15c259af71d8ce6601",
+      "resourceId": "683dcc15c259af71d8ce6601",
+      "resourceType": "single_track_album",
+      "category": "Travel & Events",
+      "tags": [
+        "white_noise",
+        "nature"
+      ],
+      "totalDurationSeconds": 10800,
+      "globalPlaybackCount": 0,
+      "localizedContent": {
+        "name": "4K Natural Ambient Sounds / The Sound of a Spring-Fed River Birdsong Birds chirping",
+        "description": "4K  自然環境音 ASMR  湧き水が流れる川の音  鳥のさえずり\n岐阜県山県市　円原川\nこの円原川では春から夏にかけて特徴的な鳥の鳴き声を聞くことが出来る。\n\nこの動画の鳥の声を新しく現地で収録し動画編集、新しい2025年版の動画を見て下さい。\nThe bird sounds in this video have been newly recorded on site and edited, so please take a look at the new 2025 version.\nhttps://youtu.be/uhbNCWn1gqM\nhttps://youtu.be/g0kN1zfVnII\n\n\n4K Natural environmental sounds ASMR \nSounds of rivers with spring water / Chirping birds\nEnbaru River, Yamagata City, Gifu Prefecture\nFrom spring to summer, you can hear the distinctive chirping of birds on the Enbara River.\n\nMAP\nhttps://www.google.com/maps/place/%E5%86%86%E5%8E%9F%E5%B7%9D/@35.6492457,136.7194628,17z/data=!3m1!4b1!4m6!3m5!1s0x60025a43aee6b737:0x13ad082b47bc6b1a!8m2!3d35.6492414!4d136.7216515!16s%2Fg%2F11bwdm6dcc\n\nAll material in this video is original and personally recorded by myself on location.\nCopyright © 2020 kazephoto. All Rights Reserved. The unauthorized reproduction or distribution of this copyrighted work is illegal.\nこのビデオのすべての素材はオリジナルであり、私自身がロケで個人的に記録したものです。\nCopyright © 2020 kazephoto. 全著作権所有。\nこの著作物を無断で複製または配布することは違法です。\n#自然風景 #自然の音 #円原川",
+        "coverImageUrl": "http://uploadttcdn.fuciyuan7.com/sleep/cover/683dcc15c259af71d8ce6601.webp",
+        "rank": 0
+      },
+      "audioUrl": "http://uploadttcdn.fuciyuan7.com/sleep/audio/683dcc15c259af71d8ce6601.m4a",
+      "videoUrl": "https://www.youtube.com/watch?v=SgEQrUIKJ6Y",
+      "videoClipUrl": "http://uploadttcdn.fuciyuan7.com/sleep/video_clips/683dcc15c259af71d8ce6601_c.mp4",
+      "status": "active",
+      "isPublished": true,
+      "episodeCount": 1,
+      "favoriteCount": 0,
+      "shareCount": 0,
+      "downloadCount": 0,
+      "commentCount": 0,
+      "rating": 0,
+      "ratingCount": 0,
+      "metadata": {
+        "source": "youtube",
+        "video_id": "SgEQrUIKJ6Y",
+        "uploader": "kazephoto _ 4 K 癒しの自然風景",
+        "upload_date": "20230319",
+        "audio_codec": null,
+        "audio_quality": null,
+        "audio_bitrate": null,
+        "audio_channels": null
+      },
+      "episodes": []
+    },
+    {
+      "id": "6842b124f6e588687f9badec",
+      "resourceId": "6842b124f6e588687f9badec",
+      "resourceType": "single_track_album",
+      "category": "Music",
+      "tags": [
+        "white_noise",
+        "nature"
+      ],
+      "totalDurationSeconds": 10197,
+      "globalPlaybackCount": 18806688,
+      "localizedContent": {
+        "name": "Listen to the rain on the forest path, relax, reduce anxiety, and sleep deeply",
+        "description": "Natural rain sounds, sleep music, white noise, ASMR, thunderstorm, sleep, rain, rainy days, real rain sounds, learning, work, meditation, insomnia, hypnosis, life records, rain sounds fall asleep...         \n#Rain  #Natural   #ASMR",
+        "coverImageUrl": "http://uploadttcdn.fuciyuan7.com/sleep/cover/6842b124f6e588687f9badec.webp",
+        "rank": 0
+      },
+      "audioUrl": "http://uploadttcdn.fuciyuan7.com/audio/SnUBb-FAlCY.m4a",
+      "videoUrl": "",
+      "videoClipUrl": "http://uploadttcdn.fuciyuan7.com/video_clip/SnUBb-FAlCY.mp4",
+      "status": "active",
+      "isPublished": true,
+      "episodeCount": 1,
+      "favoriteCount": 0,
+      "shareCount": 0,
+      "downloadCount": 0,
+      "commentCount": 0,
+      "rating": 0,
+      "ratingCount": 0,
+      "metadata": {
+        "source": "youtube",
+        "video_id": "SnUBb-FAlCY",
+        "uploader": "Relaxed ASMR",
+        "upload_date": "20221120",
+        "audio_codec": "aac",
+        "audio_quality": "192k",
+        "audio_bitrate": 192000,
+        "audio_channels": "stereo"
+      },
+      "episodes": []
+    },
+    {
+      "id": "6842f725f6e588687f9baece",
+      "resourceId": "6842f725f6e588687f9baece",
+      "resourceType": "single_track_album",
+      "category": "Music",
+      "tags": [
+        "white_noise",
+        "nature"
+      ],
+      "totalDurationSeconds": 10805,
+      "globalPlaybackCount": 7079231,
+      "localizedContent": {
+        "name": "🔥 The Best Burning Fireplace: Cozy Crackling Logs and Soothing Glow for Sleep and Relaxation 4K UHD",
+        "description": "Hi everyone! Let’s gather around and celebrate the timeless allure of the fireplace. More than just a feature in a home, a fireplace is a sanctuary—a place where warmth meets serenity, and stories are born.\n\nThe story of the fireplace goes back centuries, evolving from simple hearths that kept early homes warm and livable to the elegant, beautifully crafted fireplaces we admire today. In those early days, the fireplace was the heart of the home—a source of light, heat, and sustenance. Over time, it became a symbol of comfort and togetherness, embodying the essence of home itself.\n\nWhy do fireplaces hold such a special place in our hearts? The answer lies in the way they make us feel. The crackle of the logs, the gentle dance of the flames, and the radiant heat create a calming environment that’s perfect for relaxation. Fireplaces are scientifically proven to reduce stress, promote mindfulness, and even enhance the quality of your sleep. There’s something about watching those flickering flames that quiets the mind and soothes the soul.\n\nA fireplace transforms any room into a cozy retreat. Imagine curling up with a blanket, sipping a hot cup of cocoa, and watching the snow fall outside while the fire keeps you warm. Or perhaps you picture lively evenings spent with family and friends, the fire providing a glowing backdrop to laughter and conversation. The fireplace creates memories as much as it creates warmth.\n\nWith the holiday season just around the corner, the fireplace becomes even more magical. It’s where holiday traditions come to life—hanging stockings, sipping mulled wine, or simply gazing into the firelight as carols play softly in the background. The fireplace brings people together, making every moment feel special and every memory a little brighter.\n\nAnd let’s not forget its timeless beauty. From rustic stone designs to sleek, modern finishes, a fireplace can complement any decor, adding charm and character to your home. It’s not just functional—it’s a statement piece that reflects your style and makes your house feel like a true home.\n\nIf you love the warmth and wonder of fireplaces as much as we do, don’t forget to like this video and subscribe to our channel. Let’s keep the fire burning—literally and figuratively—and celebrate the joy and comfort it brings to our lives. Stay warm, stay cozy, and thank you for joining us by the fire!\n\nFireplace video for relaxation, Calming fireplace sounds, Fireplace ambience for sleep, Cozy fireplace ASMR, Fireplace white noise 8 hours, Relaxing fireplace crackling sounds, Fireplace video for meditation, Soothing fireplace flames, Fireplace background for studying, Fireplace sounds for bedtime, Fireplace video no music, Fireplace for stress relief, Fireplace ambience 10 hours, Fireplace video loop HD, Fireplace sounds for focus, Fireplace video for cozy atmosphere, Fireplace crackling for anxiety relief, Fireplace sounds without talking, Fireplace video for winter nights, Fireplace ambient noise, Fireplace video for relaxing evening, Fireplace sounds for deep sleep, Fireplace video with rain sounds, Fireplace ambience for reading, Fireplace video for calm mind, Fireplace sounds all night, Fireplace video no ads, Fireplace for peaceful atmosphere, Fireplace video 4K quality, Fireplace sounds for yoga\n\n#fireplace\n#cozyfireplace\n#fireside\n#warmth\n#homeyvibes\n#crackling\n#flames\n#firewood\n#relaxation\n#ambiance\n#comfy\n#winternight\n#cozynook\n#hearth\n#indoorfire\n#fireplaceASMR\n#flamevideo\n#burningwood\n#firesidelounging\n#warmglow\n#homecomfort\n#firelightambience\n#fireplacerelaxation\n#burningfire\n#calmingfire\n#fireplacescene\n#firesiderelax\n#cosyevening\n#fireplaceambience\n#flamedance",
+        "coverImageUrl": "http://uploadttcdn.fuciyuan7.com/sleep/cover/6842f725f6e588687f9baece.webp",
+        "rank": 0
+      },
+      "audioUrl": "http://uploadttcdn.fuciyuan7.com/audio/2wYtJwDkKIk.m4a",
+      "videoUrl": "",
+      "videoClipUrl": "http://uploadttcdn.fuciyuan7.com/video_clip/2wYtJwDkKIk.mp4",
+      "status": "active",
+      "isPublished": true,
+      "episodeCount": 1,
+      "favoriteCount": 0,
+      "shareCount": 0,
+      "downloadCount": 0,
+      "commentCount": 0,
+      "rating": 0,
+      "ratingCount": 0,
+      "metadata": {
+        "source": "youtube",
+        "video_id": "2wYtJwDkKIk",
+        "uploader": "Fireplace 4K",
+        "upload_date": "20241125",
+        "audio_codec": "aac",
+        "audio_quality": "192k",
+        "audio_bitrate": 192000,
+        "audio_channels": "stereo"
+      },
+      "episodes": []
+    },
+    {
+      "id": "68454134f6e588687f9bd24d",
+      "resourceId": "68454134f6e588687f9bd24d",
+      "resourceType": "single_track_album",
+      "category": "Music",
+      "tags": [
+        "nature",
+        "white_noise"
+      ],
+      "totalDurationSeconds": 24142,
+      "globalPlaybackCount": 110,
+      "localizedContent": {
+        "name": "🎧 6 hours of gentle night rain, relaxing rain sounds for sleep, insomnia, meditation",
+        "description": "Soft rain falling at night, continuous, calming rain sounds for 3 hours with a dark screen. The rain is subtly visible, creating a peaceful, non-distracting ambiance. Highly recommended for deep sleep and insomnia relief, ideal for stress reduction, meditation, studying, reading, or background ambience. Enjoy the calming rain 🌧️\n\n🔔 SUBSCRIBE & HIT THE BELL: http://www.youtube.com/@RainBeatsAmbient\n\nThank you for watching 🙂",
+        "coverImageUrl": "http://uploadttcdn.fuciyuan7.com/sleep/cover/68454134f6e588687f9bd24d.webp",
+        "rank": 0
+      },
+      "audioUrl": "http://uploadttcdn.fuciyuan7.com/audio/B2ei-M6W-lE.m4a",
+      "videoUrl": "",
+      "videoClipUrl": "http://uploadttcdn.fuciyuan7.com/video_clip/B2ei-M6W-lE.mp4",
+      "status": "active",
+      "isPublished": true,
+      "episodeCount": 1,
+      "favoriteCount": 0,
+      "shareCount": 0,
+      "downloadCount": 0,
+      "commentCount": 0,
+      "rating": 0,
+      "ratingCount": 0,
+      "metadata": {
+        "source": "youtube",
+        "video_id": "B2ei-M6W-lE",
+        "uploader": "Rain Ambience",
+        "upload_date": "20250604",
+        "audio_codec": "aac",
+        "audio_quality": "192k",
+        "audio_bitrate": 192000,
+        "audio_channels": "2"
+      },
+      "episodes": []
+    },
+    {
+      "id": "684ab3b4cbbee57a39e40a70",
+      "resourceId": "684ab3b4cbbee57a39e40a70",
+      "resourceType": "single_track_album",
+      "category": "Music",
+      "tags": [
+        "nature",
+        "white_noise"
+      ],
+      "totalDurationSeconds": 36010,
+      "globalPlaybackCount": 20583531,
+      "localizedContent": {
+        "name": "Blizzard Sounds for Sleep, Relaxation & Staying Cool | Snowstorm Sounds & Howling Wind in the Forest",
+        "description": "Blizzard sounds for sleep, relaxation, study or staying cool. This snowstorm sounds nature video with arctic howling wind in the forest creates a calming ambience for relaxation and sleeping. This nature sounds sleep aid video provides natural white noise that can help provide insomnia relief and tinnitus relief. The cold strong wind and falling snow through the forest trees can help relieve stress and anxiety. This winter sounds video also acts as a virtual air conditioner which can help you cool down on a hot summers day or night. Tricking your mind and body into believing that the temperature is lower and the air is cooler. We really hope you enjoy the relaxing sounds of this blizzard sounds storm video filmed in the peaceful woods in winter. Please share with family and friends if you enjoy this soothing sleep sounds nature video. Stay cool and chill out with this beautiful snow storm. \n\nStardust Vibes create guided meditations, affirmations, relaxing sounds, and meditation music. 😊 Sean, Elita, & Charlotte\n\n🛑 IMPORTANT PLEASE READ 🛑 \n\nWe are a mental health based channel, we cannot add commentary throughout our relaxing music/nature videos as it would likely annoy people, but we do have affirmations & guided meditations available. Our channel helps provide relief from stress & anxiety. \n\n🎥 Our videos are currently filmed with a GoPro Hero7 & iPhoneX. We edit, mix, and master the audio in Protools & create the video in Premiere Pro. In the past, we sometimes collaborated with other video creators (with legal permission), which we would significantly transform into something new and add our own unique music and sounds.\n\n🎶 We create all our own music with our own instruments. My Mother (Elita) and I are both musicians and have played for many years.\n\n➡️ For more information on how we create our videos please watch: https://youtu.be/4hK9lwdqBJQ\n\n🌀 MP3 DOWNLOADS: https://www.stardustvibes.com\n🌀 FACEBOOK: https://www.facebook.com/stardustvibes/\n🌀 INSTAGRAM: https://www.instagram.com/stardust_vibes/\n🌀 TWITTER: https://twitter.com/StardustVibes\n🌀 GOOGLE+: https://youtu.be/Q68t3RPUwgI\n🌀 YOUTUBE SUBSCRIBE: https://goo.gl/I8guP5\n🌀 THIS VIDEO: https://youtu.be/7BrIJrjxVxA\n\n#blizzard\n#snowstorm\n#sleepsounds\n#relaxingsounds\n#naturesounds\n#winter\n\n© Stardust Vibes, 2017. All rights reserved. Any reproduction or republication of all or part of this video/audio is prohibited.",
+        "coverImageUrl": "http://uploadttcdn.fuciyuan7.com/sleep/cover/684ab3b4cbbee57a39e40a70.webp",
+        "rank": 0
+      },
+      "audioUrl": "http://uploadttcdn.fuciyuan7.com/audio/7BrIJrjxVxA.m4a",
+      "videoUrl": "",
+      "videoClipUrl": "http://uploadttcdn.fuciyuan7.com/video_clip/7BrIJrjxVxA.mp4",
+      "status": "active",
+      "isPublished": true,
+      "episodeCount": 1,
+      "favoriteCount": 0,
+      "shareCount": 0,
+      "downloadCount": 0,
+      "commentCount": 0,
+      "rating": 0,
+      "ratingCount": 0,
+      "metadata": {
+        "source": "youtube",
+        "video_id": "7BrIJrjxVxA",
+        "uploader": "Stardust Vibes - Relaxing Sounds",
+        "upload_date": "20170730",
+        "audio_codec": "aac",
+        "audio_quality": "192k",
+        "audio_bitrate": 192000,
+        "audio_channels": "2"
+      },
+      "episodes": []
+    },
+    {
+      "id": "684b0130cbbee57a39e40f24",
+      "resourceId": "684b0130cbbee57a39e40f24",
+      "resourceType": "single_track_album",
+      "category": "Music",
+      "tags": [
+        "nature",
+        "white_noise"
+      ],
+      "totalDurationSeconds": 10896,
+      "globalPlaybackCount": 223009066,
+      "localizedContent": {
+        "name": "3 Hours of Gentle Night Rain, Rain Sounds for Sleeping - Dark Screen to Beat insomnia, Relax, Study",
+        "description": "Gentle Rain at night for Sleep, Rain Sounds for Sleeping with Black Screen,. Sleep in 2 Minutes to Rain Sounds, Sleep Instantly to Rain Gently Falling. Sleep Fast with the Sound of Gentle Rain. Soothing Rain help for Insomnia, Study, Relax. Gentle Night Rain Sounds (No Music, No Thunder) Gentle Rain for 3 Hours with a Dark Screen - the Rain is just visible. Highly recommended for Sleeping and insomnia. Also ideal for Relaxing or Studying. Light Rain works well for Reducing Stress or Anxiety. Gentle Rain to Block Noise, Help Baby Sleep, Relax Pets, Improve Focus, Meditate, Sleep Instantly, Sleep Immediately, Sleep Fast, Sleep without Waking. Share with family & friends to help them feel better too. Enjoy the Gentle Rain...\n\n\n🇦🇺 Filmed in Springbrook, Australia\n\n\n\n🟢  Join my 2nd Relax channel https://www.youtube.com/@purerelaxation\n\n🔘  Subscribe & Click 🔔: https://www.youtube.com/c/TheRelaxedGuy\n\n🔘  Memberships:  https://www.youtube.com/channel/UCGfgKimGJ4yueKEtFVPpHtw/join\n\n\n\n🙂  Try my Relaxing videos sorted for you:-\n\n🔘  Popular Videos: https://www.youtube.com/watch?v=q76bMs-NwRk&list=PLCrmkN1cdEPT_AoYDJiwmUQy36ZlQR2TI\n\n🔘  Sleep Fast: https://www.youtube.com/watch?v=q76bMs-NwRk&list=PLCrmkN1cdEPRlThiQ0Yg6oQIkYP7aivKC\n\n🔘  Rain: https://www.youtube.com/playlist?list=PLCrmkN1cdEPQO_uNghjw0CD7fAz-l8ZZ-\n\n🔘  Thunder & Rain: https://www.youtube.com/playlist?list=PLCrmkN1cdEPQLUvxKZAAd0FByeI3IiPxU \n\n🔘  Block Noises: https://www.youtube.com/playlist?list=PLCrmkN1cdEPT2Dc9zo56sJ3flr_Osqq3n \n\n🔘  Dark Screen: https://www.youtube.com/playlist?list=PLCrmkN1cdEPQOZuti85RZv0dDw2pC0CAR\n\n🔘  River & Stream: https://www.youtube.com/playlist?list=PLCrmkN1cdEPTWeqxMIPuNBB4si1SwWDcE \n\n🔘  Waterfalls: https://www.youtube.com/playlist?list=PLCrmkN1cdEPR3By--PFUworm3egAWv52r\n\n🔘  Longer Videos: https://www.youtube.com/playlist?list=PLCrmkN1cdEPQHQ3ND1XHwbXIReuvGLukA   \n\n🔘  Medium Videos: https://www.youtube.com/playlist?list=PLCrmkN1cdEPSwfdlat6pMjmevVke9CF6Y\n\n🔘  Shorter Videos: https://www.youtube.com/playlist?list=PLCrmkN1cdEPRdQEHICuInBVe2KFpp3iym\n\n🔘  Live: https://www.youtube.com/playlist?list=PLCrmkN1cdEPT4qNmxQvZLvl2uXSfITmYA\n\n\n\n🙂  Connect with The Relaxed Guy :-\n\n🔘  Instagram:  https://instagram.com/therelaxedguys \n\n🔘  TikTok:  https://www.tiktok.com/@therelaxedguyofficial\n\n🔘  Meta:  https://facebook.com/therelaxedguy\n\n🔘  Twitter:  https://twitter.com/therelaxedguys \n\n🔘  Donate:  https://bit.ly/2rpKUf2\n\n\n\n🔴 PLEASE READ - IMPORTANT \n\nI do not talk in my videos, as it would reduce the health benefits of a Mind Health / Nature Relax channel. \n\nTo see how I create my videos & behind the scenes click link 👉 https://www.youtube.com/playlist?list=PLCrmkN1cdEPST7OjZoEaf_thHUsLx7Vpk\n\n• I also share behind the scenes pics on the Community tab and Stories tab & other Social media\n\nI create all of my own content. Videos and Audio are recorded out in the field by myself. On rare occasions, I transform materials provided by other creators with their approval into a new and unique creation. I am an experienced Nature Videographer & Sound Recordist. I travel the world filming and sound recording beautiful nature scenery for everyone to enjoy and relax. My other Social Media document some of my travels / behind the scenes footage etc.\n\n\nLivestream Chat Rules:-\nNo Political, Religious, Racist, Sexual, Hate, Violence, Swearing, Spam, Promoting a Channel/ Product/ Service. Our community is here to Relax/ Sleep/ Study etc. Family Friendly or you will be BANNED\n\n\nEquipment / Kit (not exhaustive):- \n• VIDEO: Panasonic GH5, Sony ZV-1, GoPro Hero 8, Osmo Pocket Mobile, DJI Phantom 4 Pro, iPhone 12 Pro Max, Lumix G 12-35mm I f/2.8 Lens, Hoya 58mm HD UV Filter\n• AUDIO: Sennheiser Binaural, Roland Binaural, Rode Stereo Video Mic X, Sony PCMD-100 and windjammers,  XLR Mic interface, Windshields\n• EQUIPMENT: Manfrotto and ProMaster Professional Tripods, Multiple Joby Grips / Stands\n• SOFTWARE: Adobe Premiere Pro 2021, After Effects, Davinci Resolve 16 Studio, Fairlight, Fusion Studio 16, Final Cut ProX, Motion\n\n\n\nDisclaimer:-\nThe Relaxed Guy YouTube channel is for entertainment purposes only, and should never be used to replace any medical advice or treatment. If you have a serious medical condition, please consult your medical practitioner immediately. By using this channel you do so at your own risk. The Relaxed Guy YouTube channel accepts no liability in part or in full for any damages or injury caused by the use of any content provided. Do not drive or operate heavy machinery while using The Relaxed Guy channels audio/video recordings.\n\n\n\n#rain\n#rainsounds\n#3hoursrain\n#gentlerain\n\n© The Relaxed Guy 2014. All rights reserved. Any reproduction or republication of all or part of this video/audio is prohibited.",
+        "coverImageUrl": "http://uploadttcdn.fuciyuan7.com/sleep/cover/684b0130cbbee57a39e40f24.webp",
+        "rank": 0
+      },
+      "audioUrl": "http://uploadttcdn.fuciyuan7.com/audio/q76bMs-NwRk.m4a",
+      "videoUrl": "",
+      "videoClipUrl": "http://uploadttcdn.fuciyuan7.com/video_clip/q76bMs-NwRk.mp4",
+      "status": "active",
+      "isPublished": true,
+      "episodeCount": 1,
+      "favoriteCount": 0,
+      "shareCount": 0,
+      "downloadCount": 0,
+      "commentCount": 0,
+      "rating": 0,
+      "ratingCount": 0,
+      "metadata": {
+        "source": "youtube",
+        "video_id": "q76bMs-NwRk",
+        "uploader": "The Relaxed Guy",
+        "upload_date": "20141126",
+        "audio_codec": "aac",
+        "audio_quality": "192k",
+        "audio_bitrate": 192000,
+        "audio_channels": "stereo"
+      },
+      "episodes": []
+    },
+    {
+      "id": "684b0bcbcbbee57a39e40f61",
+      "resourceId": "684b0bcbcbbee57a39e40f61",
+      "resourceType": "single_track_album",
+      "category": "Music",
+      "tags": [
+        "white_noise"
+      ],
+      "totalDurationSeconds": 36000,
+      "globalPlaybackCount": 3694196,
+      "localizedContent": {
+        "name": "►10 hours of Sleep Pink Noise ~ Tinnitus Sound Therapy. Pink noise for deep sleep and relaxation",
+        "description": "This week let's enjoy 10 hours of pink noise sounds for sleeping or studying. Yes, that really is a thing and I swear I'm not making it up. In fact, this is actually the sound I listen too at night. I like this noise much better than white noise because I feel it sounds less harsh and a bit more soothing. Different types of noises like this are often used for Tinnitus sound therapy by masking out the effects. If you like color noise for sleeping, give this one a try. \n\n \n#SleepDroid \n\n-----------------\n\n\n💚DONATE:  Thank you for your support. https://www.paypal.com/donate?hosted_button_id=JJVEXS6M3FTMY\n\n💚SUBSCRIBE:  Get notified of new videos.  https://www.youtube.com/c/SleepdroidStudios?sub_confirmation=1\n\n\n*Listening to ambient sounds, like rain or white noise, are not a cure for hearing problems or tinnitus. You should consult a doctor if you are having issues with your hearing. These sounds and videos are commonly used to mask the effects, for some people, of tinnitus, or for masking the ambient noises in an area allowing someone to sleep more peacefully. Please listen responsibly and at a safe volume.\n\n☯ Click here to my MP3 downloads. http://www.sleepdroidstudios.com\n\n\n\nCopyrighted © 2019 SleepDroid Studios LLC. All rights reserved. Any reproduction or republication of all or part of this video/audio is strictly prohibited.\n231",
+        "coverImageUrl": "http://uploadttcdn.fuciyuan7.com/sleep/cover/684b0bcbcbbee57a39e40f61.webp",
+        "rank": 0
+      },
+      "audioUrl": "http://uploadttcdn.fuciyuan7.com/audio/RA8gajb1KOU.m4a",
+      "videoUrl": "",
+      "videoClipUrl": "http://uploadttcdn.fuciyuan7.com/video_clip/RA8gajb1KOU.mp4",
+      "status": "active",
+      "isPublished": true,
+      "episodeCount": 1,
+      "favoriteCount": 0,
+      "shareCount": 0,
+      "downloadCount": 0,
+      "commentCount": 0,
+      "rating": 0,
+      "ratingCount": 0,
+      "metadata": {
+        "source": "youtube",
+        "video_id": "RA8gajb1KOU",
+        "uploader": "SleepDroid Studios Sleep Sounds",
+        "upload_date": "20190303",
+        "audio_codec": "aac",
+        "audio_quality": "192k",
+        "audio_bitrate": 192000,
+        "audio_channels": "stereo"
+      },
+      "episodes": []
+    }
+  ]
+}

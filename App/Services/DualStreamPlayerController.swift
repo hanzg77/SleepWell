@@ -19,6 +19,9 @@ final class DualStreamPlayerController: NSObject, ObservableObject {
     @Published var showControls: Bool = true
     @Published var isInitialShow: Bool = true
     
+    private var audioLoaderDelegate: CacheResourceLoaderDelegate?
+    private var videoLoaderDelegate: CacheResourceLoaderDelegate?
+    
     let videoPlayer = AVPlayer()
     let audioPlayer = AVPlayer()
     
@@ -725,40 +728,70 @@ final class DualStreamPlayerController: NSObject, ObservableObject {
         self.duration = TimeInterval(resource.totalDurationSeconds) // 设置初始 duration，UI会立即响应
         logger.info("资源 \(resource.name) 的缓存进度为: \(savedProgress)s, 总时长: \(self.duration)s")
         
+        // 1. 在创建新 delegate 之前，先取消旧 delegate 的所有请求
+//        self.audioLoaderDelegate?.cancelAllRequests()
+//        self.videoLoaderDelegate?.cancelAllRequests() // 如果您也有视频的话
+        
+        // 缓存文件路径
+        let cacheDir = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!
+        let audioCacheFile = cacheDir.appendingPathComponent("audio_\(resource.resourceId)")
+        let videoCacheFile = cacheDir.appendingPathComponent("video_\(resource.resourceId)")
+        
         // 检查是否有双流资源
         if let videoClipUrl = resource.videoClipUrl, !videoClipUrl.isEmpty,
            !resource.audioUrl.isEmpty,
-           let videoClipURL = URL(string: videoClipUrl),
+           let videoClipURL = URL(string: resource.videoClipUrl!),
            let audioURL = URL(string: resource.audioUrl) {
             logger.info("开始播放双流模式（音频优先）...")
             
-            let videoAsset = AVURLAsset(url: videoClipURL)
-            let videoPlayerItem = AVPlayerItem(asset: videoAsset)
-            videoPlayerItem.preferredForwardBufferDuration = 10
-            videoPlayer.replaceCurrentItem(with: videoPlayerItem)
-            videoPlayer.volume = 0
-            videoPlayer.automaticallyWaitsToMinimizeStalling = false
-            
-            let audioAsset = AVURLAsset(url: audioURL)
-            let audioPlayerItem = AVPlayerItem(asset: audioAsset)
-            audioPlayer.replaceCurrentItem(with: audioPlayerItem)
-            
-            // 分别启动音频和视频的准备流程
-            prepareAudioAndPlayWhenReady(item: audioPlayerItem)
-            prepareVideoAndSyncWhenReady(item: videoPlayerItem)
-            
-            // 添加视频播放状态监控
-            setupVideoPlaybackMonitoring()
+            // 音频
+            if let scheme = audioURL.scheme {
+                let audioCustomURL = URL(string: "cacheproxy://" + audioURL.absoluteString.replacingOccurrences(of: scheme + "://", with: ""))!
+                let audioAsset = AVURLAsset(url: audioCustomURL)
+                let audioLoader = CacheResourceLoaderDelegate(originalURL: audioURL)
+                audioAsset.resourceLoader.setDelegate(audioLoader, queue: DispatchQueue(label: "audio.cache.loader"))
+                self.audioLoaderDelegate = audioLoader
+                let audioPlayerItem = AVPlayerItem(asset: audioAsset)
+                audioPlayer.replaceCurrentItem(with: audioPlayerItem)
+                // 视频
+                if let videoScheme = videoClipURL.scheme {
+                    let videoCustomURL = URL(string: "cacheproxy://" + videoClipURL.absoluteString.replacingOccurrences(of: videoScheme + "://", with: ""))!
+                    let videoAsset = AVURLAsset(url: videoCustomURL)
+                    let videoLoader = CacheResourceLoaderDelegate(originalURL: videoClipURL)
+                    videoAsset.resourceLoader.setDelegate(videoLoader, queue: DispatchQueue(label: "video.cache.loader"))
+                    self.videoLoaderDelegate = videoLoader
+                    let videoPlayerItem = AVPlayerItem(asset: videoAsset)
+                    videoPlayerItem.preferredForwardBufferDuration = 10
+                    videoPlayer.replaceCurrentItem(with: videoPlayerItem)
+                    videoPlayer.volume = 0
+                    videoPlayer.automaticallyWaitsToMinimizeStalling = false
+                    // 分别启动音频和视频的准备流程
+                    prepareAudioAndPlayWhenReady(item: audioPlayerItem)
+                    prepareVideoAndSyncWhenReady(item: videoPlayerItem)
+                    // 添加视频播放状态监控
+                    setupVideoPlaybackMonitoring()
+                } else {
+                    logger.error("视频URL无scheme: \\(videoClipURL)")
+                }
+            } else {
+                logger.error("音频URL无scheme: \\(audioURL)")
+            }
         } else if !resource.audioUrl.isEmpty,
                   let audioURL = URL(string: resource.audioUrl) {
             // 单音频播放
             logger.info("开始播放单音频模式...")
-            
-            let asset = AVURLAsset(url: audioURL)
-            let playerItem = AVPlayerItem(asset: asset)
-            audioPlayer.replaceCurrentItem(with: playerItem)
-            
-            prepareAudioAndPlayWhenReady(item: playerItem)
+            if let scheme = audioURL.scheme {
+                let audioCustomURL = URL(string: "cacheproxy://" + audioURL.absoluteString.replacingOccurrences(of: scheme + "://", with: ""))!
+                let audioAsset = AVURLAsset(url: audioCustomURL)
+                let audioLoader = CacheResourceLoaderDelegate(originalURL: audioURL)
+                audioAsset.resourceLoader.setDelegate(audioLoader, queue: DispatchQueue(label: "audio.cache.loader"))
+                self.audioLoaderDelegate = audioLoader
+                let playerItem = AVPlayerItem(asset: audioAsset)
+                audioPlayer.replaceCurrentItem(with: playerItem)
+                prepareAudioAndPlayWhenReady(item: playerItem)
+            } else {
+                logger.error("音频URL无scheme: \\(audioURL)")
+            }
         } else {
             logger.error("资源格式不支持: \(resource.name)")
         }

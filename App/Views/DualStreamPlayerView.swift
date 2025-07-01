@@ -3,87 +3,51 @@ import AVKit
 import AVFoundation
 import MediaPlayer
 
-// MARK: - 视频播放器视图
+// MARK: - VideoPlayerView (UIViewRepresentable)
+// Wraps a UIKit AVPlayerLayer in a SwiftUI View.
 struct VideoPlayerView: UIViewRepresentable {
     let player: AVPlayer
-    
-    func makeUIView(context: Context) -> UIView {
-        let view = PlayerUIView(player: player)
-        return view
+
+    func makeUIView(context: Context) -> PlayerUIView {
+        return PlayerUIView(player: player)
     }
-    
-    func updateUIView(_ uiView: UIView, context: Context) {
-        // 更新逻辑（如果需要）
+
+    func updateUIView(_ uiView: PlayerUIView, context: Context) {
+        // This can be used to update the view from SwiftUI state changes if needed.
     }
 }
 
-
+// MARK: - PlayerPlaceholderView
+// A placeholder view displayed when no video is loaded.
 struct PlayerPlaceholderView: View {
     @State private var isAnimating: Bool = false
 
     var body: some View {
         ZStack {
-            // MARK: - 背景
-            // 假設您有一個名為 Playerground 的背景檢視
-            // 如果 Playerground 不存在，可以用 Color.black 或其他檢視替代
-            // Playerground()
-//            Image("player_background") // <-- 使用您在 Assets 中的圖片名稱
-//                           .resizable()           // 讓圖片可縮放
-//                           .scaledToFill()        //
-//                           .edgesIgnoringSafeArea(.all) //
-//                          // .blur(radius: 5)       // (可選) 加上模糊效果，讓文字更突出
-//                           //.overlay(Color.black.opacity(0.3)) // (可選) //疊加一層半透明黑色，讓背景變暗
-
             // Background Image Layer
-            // Color.clear 作为覆盖层的基础，它将占据 ZStack 的全部空间。
-            // 下面的 .edgesIgnoringSafeArea(.all) 会使 ZStack 及其内容（包括 Color.clear）全屏。
             Color.clear
                 .overlay(
-                    Image("player_background") // <-- 使用您在 Assets 中的圖片名稱
-                        .resizable()           // 讓圖片可縮放
-                        .aspectRatio(contentMode: .fill) // 保持图片的宽高比，同时填充整个可用空间。这可能会导致图片部分内容被裁剪。
-                    , alignment: .topTrailing // 将图片对齐到容器（Color.clear）的右上角。
-                    
-                                             // 如果图片填充后比容器大，这将决定裁剪的锚点。
+                    Image("player_background") // <-- Make sure you have this image in your Assets
+                        .resizable()
+                        .aspectRatio(contentMode: .fill),
+                    alignment: .topTrailing
                 )
-                .clipped() // 裁剪掉图片超出 Color.clear 边界的部分。
+                .clipped()
                 .edgesIgnoringSafeArea(.all)
-/*
-            // MARK: - 文字內容佈局
+
+            // You can re-add your text content here if you want it on the placeholder
+            /*
             VStack {
                 Text("guardian.emptyPrompt.line1".localized)
-                    .font(.system(size: 20, weight: .regular, design: .rounded))
-                    .foregroundColor(.white.opacity(0.8))
-                    .kerning(0.5)
-                    .padding(.top, 60)
-
-                Spacer()
-
-                // MARK: - 主標題
-                Text("guardian.emptyPrompt.brand".localized)
-                    .font(.system(size: 46, weight: .bold, design: .rounded))
-                    .foregroundColor(.white)
-                    .shadow(color: .black.opacity(0.5), radius: 4, x: 0, y: 2)
-                    .scaleEffect(isAnimating ? 1.02 : 1.0) // 應用呼吸動畫的縮放效果
-
-                // MARK: - 副標題
-                Text("guardian.emptyPrompt.line2Suffix".localized)
-                    .font(.system(size: 24, weight: .medium, design: .rounded))
-                    .foregroundColor(.white.opacity(0.9))
-                    .padding(.top, 8) // 在主副標題之間增加一點間距
-
-                Spacer()
-                Spacer() // 使用兩個 Spacer 將文字內容整體稍微向上推，使其在視覺上更居中
+                // ... other text elements
             }
- */
+            */
         }
         .onAppear(perform: startBreathingAnimation)
     }
 
-    /// 啟動一個平滑的、無限重複的呼吸動畫
+    /// Starts a smooth, infinitely repeating breathing animation for the placeholder.
     private func startBreathingAnimation() {
-        // 使用 withAnimation 包裹狀態變更
-        // .repeatForever 會讓動畫無限循環
         withAnimation(.easeInOut(duration: 3.5).repeatForever(autoreverses: true)) {
             isAnimating = true
         }
@@ -91,121 +55,104 @@ struct PlayerPlaceholderView: View {
 }
 
 
-// MARK: - 播放器UI视图
+// MARK: - PlayerUIView (Backing UIView for VideoPlayerView)
 class PlayerUIView: UIView {
     private var playerLayer: AVPlayerLayer
-    
+
     init(player: AVPlayer) {
         self.playerLayer = AVPlayerLayer(player: player)
-        self.playerLayer.videoGravity = .resizeAspectFill // 改回 resizeAspectFill 以填充整个视图
-        
+        self.playerLayer.videoGravity = .resizeAspectFill // Fills the entire view bounds.
         super.init(frame: .zero)
         layer.addSublayer(playerLayer)
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
         playerLayer.frame = bounds
     }
 }
 
-// MARK: - 播放控制视图
+// MARK: - PlaybackControlsView
+// The bottom bar with play/pause, progress slider, and time display.
 struct PlaybackControlsView: View {
     @ObservedObject var playerController: DualStreamPlayerController
     @State private var isDragging: Bool = false
-    
+
     var body: some View {
-        // PlaybackControlsView is now just the HStack with controls
-        // The outer VStack and Spacer are removed.
-        // The large .padding(.bottom, 100) is removed.
-        // A smaller, fixed bottom padding can be added if needed for aesthetics within the safe area.
-            HStack(spacing: 12) {
-                // 播放/暂停按钮
-                Button(action: {
-                    if playerController.isPlaying {
-                        playerController.pause()
-                    } else {
-                        playerController.resume()
-                    }
-                }) {
-                    Image(systemName: playerController.isPlaying ? "pause.circle.fill" : "play.circle.fill")
-                        .resizable()
-                        .frame(width: 44, height: 44)
-                        .foregroundColor(.white.opacity(0.5)) // 4. 播放按钮颜色调暗
-                }
-                
-                // 进度条
-                if playerController.duration > 0 {
-                    GeometryReader { geometry in
-                        ZStack(alignment: .leading) {
-                            // 背景轨道
-                            Rectangle()
-                                .fill(Color.gray.opacity(0.3))
-                                .frame(height: 4)
-                            
-                            // 进度轨道
-                            Rectangle()
-                                .fill(Color.white)
-                                .frame(width: geometry.size.width * CGFloat(playerController.currentTime / playerController.duration), height: 4)
-                            
-                            // 拖动区域
-                            Rectangle()
-                                .fill(Color.clear)
-                                .frame(height: 44)
-                                .contentShape(Rectangle())
-                                .gesture(
-                                    DragGesture(minimumDistance: 0)
-                                        .onChanged { value in
-                                            let percentage = value.location.x / geometry.size.width
-                                            let newValue = Double(percentage) * playerController.duration
-                                            playerController.seek(to: newValue)
-                                            if !isDragging {
-                                                isDragging = true
-                                            }
-                                        }
-                                        .onEnded { _ in
-                                            isDragging = false
-                                        }
-                                )
-                        }
-                    }
-                    .frame(height: 44)
-                } else {
-                    Rectangle()
-                        .fill(Color.gray.opacity(0.3))
-                        .frame(height: 4)
-                }
-                
-                // 时间显示
-                HStack(spacing: 4) {
-                    Text(formatTime(playerController.currentTime))
-                        .font(.caption)
-                        .foregroundColor(.white)
-                    Text("/")
-                        .font(.caption)
-                        .foregroundColor(.white)
-                    Text(formatTime(playerController.duration))
-                        .font(.caption)
-                        .foregroundColor(.white)
-                }
-                .frame(width: 115) // 固定时间显示的宽度
+        HStack(spacing: 12) {
+            // Play/Pause Button
+            // FIX: Extracted the action to a private method to resolve compiler issues.
+            Button(action: togglePlayPause) {
+                Image(systemName: playerController.isPlaying ? "pause.circle.fill" : "play.circle.fill")
+                    .resizable()
+                    .frame(width: 44, height: 44)
+                    .foregroundColor(.white.opacity(0.5))
             }
-            .padding(.horizontal)
-            .padding(.vertical, 8)
-            // Consider a smaller fixed bottom padding if desired, e.g., .padding(.bottom, 16)
-            .background(Color.black.opacity(0.35)) // 3. 播放控制条透明度降低
+
+            // Progress Slider
+            if playerController.duration > 0 {
+                GeometryReader { geometry in
+                    ZStack(alignment: .leading) {
+                        // Background track
+                        Rectangle().fill(Color.gray.opacity(0.3)).frame(height: 4)
+                        // Progress track
+                        Rectangle().fill(Color.white).frame(width: geometry.size.width * CGFloat(playerController.currentTime / playerController.duration), height: 4)
+                        // Drag area
+                        Rectangle().fill(Color.clear)
+                            .contentShape(Rectangle())
+                            .gesture(
+                                DragGesture(minimumDistance: 0)
+                                    .onChanged { value in
+                                        handleDragChange(value: value, geometry: geometry)
+                                    }
+                                    .onEnded { _ in isDragging = false }
+                            )
+                    }
+                    .frame(height: 44) // Make the draggable area larger
+                }
+                .frame(height: 44)
+            } else {
+                Rectangle().fill(Color.gray.opacity(0.3)).frame(height: 4)
+            }
+
+            // Time Display
+            HStack(spacing: 4) {
+                Text(formatTime(playerController.currentTime))
+                Text("/")
+                Text(formatTime(playerController.duration))
+            }
+            .font(.caption)
+            .foregroundColor(.white)
+            .frame(width: 115) // Fixed width for consistent layout
+        }
+        .padding(.horizontal)
+        .padding(.vertical, 8)
+        .background(Color.black.opacity(0.35))
     }
     
-    private func formatTime(_ time: TimeInterval) -> String {
-        guard time.isFinite else {
-            return "00:00"
+    private func togglePlayPause() {
+        if playerController.isPlaying {
+            playerController.pause()
+        } else {
+            playerController.resume()
         }
-        
-        let totalSeconds = Int(max(0, time))
+        //playerController.togglePlayPause()
+    }
+    
+    private func handleDragChange(value: DragGesture.Value, geometry: GeometryProxy) {
+        if !isDragging { isDragging = true }
+        let percentage = max(0, min(1, value.location.x / geometry.size.width))
+        let newTime = Double(percentage) * playerController.duration
+        playerController.seek(to: newTime)
+    }
+
+    private func formatTime(_ time: TimeInterval) -> String {
+        guard time.isFinite, time > 0 else { return "00:00" }
+        let totalSeconds = Int(time)
         let hours = totalSeconds / 3600
         let minutes = (totalSeconds % 3600) / 60
         let seconds = totalSeconds % 60
@@ -218,334 +165,331 @@ struct PlaybackControlsView: View {
     }
 }
 
-// MARK: - 主界面 (DualStreamPlayerView) - 集成手记入口
+// MARK: - DualStreamPlayerView (Main View)
 struct DualStreamPlayerView: View {
     @StateObject private var playerController = DualStreamPlayerController.shared
     @StateObject private var guardianController = GuardianController.shared
-    
-    // 视图内部状态
-    @State private var videoOpacity:Double
+    @StateObject private var playlistController = PlaylistController.shared
+
+    // Internal View State
+    @State private var videoOpacity: Double
     @State private var startPanning: Bool = false
-    
-    // 日记功能相关状态
+    @State private var dragOffset: CGFloat = 0
+    @State private var autoHideTimer: Timer?
+
+    // Journaling State
     @State private var showingMoodBanner: Bool = false
     @State private var selectedMood: Mood? = nil
-    @State private var showingJournalEntry: Bool = false
-    
-    // Timer for auto-hiding controls
-    @State private var autoHideTimer: Timer?
-    @Environment(\.globalSafeAreaInsets) private var globalSafeAreaInsets // 读取环境值
-    
+
+    @Environment(\.globalSafeAreaInsets) private var globalSafeAreaInsets
+
     init() {
-        // Initialize videoOpacity based on the initial state of isVideoReady
-        let initialIsReady = DualStreamPlayerController.shared.isVideoReady
-        self.videoOpacity =   initialIsReady ? 0.9 : 0.0
-        // For debugging, you can print the initial values:
-        // print("hzg: DualStreamPlayerView init -> isVideoReady: \(initialIsReady), videoOpacity set to: \(self._videoOpacity.wrappedValue)")
+        // Initialize videoOpacity based on the player's initial state.
+        _videoOpacity = State(initialValue: DualStreamPlayerController.shared.isVideoReady ? 0.9 : 0.0)
     }
-    
-    
+
+    // MARK: - Body (Refactored)
     var body: some View {
         GeometryReader { geometry in
-            ZStack (alignment: .topLeading){ // Root ZStack
+            ZStack(alignment: .topLeading) {
+                // Layer 1: Video or Placeholder background
+                videoLayer(geometry: geometry)
 
-                // Video Layer - always full screen
-                let videoWidth = geometry.size.height * 16/9
-                let screenWidth = geometry.size.width
-                let totalDistance = max(0, videoWidth - screenWidth)
+                // Layer 2: UI Controls (only shows when toggled)
+                controlsOverlay(geometry: geometry)
+
+                // Layer 3: Navigation Messages (e.g., "No more videos")
+                navigationMessageOverlay(geometry: geometry)
                 
-                if playerController.videoPlayer.currentItem != nil {
-                    VideoPlayerView(player: playerController.videoPlayer)
-                        .frame(width: max(videoWidth, screenWidth), height: geometry.size.height) // 49 是 TabBar 的高度
-                        .ignoresSafeArea() // Video ignores all safe areas to go full screen
-                        .clipped()
-                        .opacity(videoOpacity)
-                        .offset(x: startPanning ? -totalDistance : 0) // Offset depends on startPanning
-                        .animation( // Conditional animation
-                            startPanning ? .linear(duration: 30).repeatForever(autoreverses: true) : .default,
-                            // Animate when startPanning changes.
-                            // If startPanning becomes false, offset goes to 0 with .default animation.
-                            // If startPanning becomes true, offset goes to -totalDistance with repeating animation.
-                            value: startPanning
-                        )
-                    
-                        .id(playerController.videoPlayer.currentItem)
-                    
-                        .onAppear {
-                            // .onAppear 主要处理首次加载或视图因 currentItem 存在而出现的情况。
-                            // 如果 currentItem 存在且平移尚未开始，则启动平移。
-                            // 如果已在平移（例如，从隐藏的Tab切回），则不应重置。
-                            if playerController.videoPlayer.currentItem != nil && !self.startPanning {
-                                print("hzg: VideoPlayerView ON_APPEAR (currentItem exists, startPanning was false. Initiating pan.)")
-                                // 使用微小延迟确保视图已准备好动画
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
-                                    self.startPanning = true
-                                }
-                            } else if playerController.videoPlayer.currentItem != nil && self.startPanning {
-                                print("hzg: VideoPlayerView ON_APPEAR (currentItem exists, startPanning is true. Pan should continue.)")
-                            } else {
-                                print("hzg: VideoPlayerView ON_APPEAR (No currentItem or other state. startPanning: \(self.startPanning))")
-                            }
-                        }
-                        .onDisappear {
-                            // 仅当视图消失是因为没有视频内容时，才停止平移。
-                            // 如果 currentItem 仍然存在，我们假设这可能是Tab切换等临时隐藏，
-                            // 此时保持 startPanning 状态，以便动画可以在视图重新出现时继续。
-                            if playerController.videoPlayer.currentItem == nil {
-                                self.startPanning = false
-                                print("hzg: VideoPlayerView onDisappear (currentItem is NIL. startPanning set to false)")
-                            } else {
-                                print("hzg: VideoPlayerView onDisappear (currentItem EXISTS. startPanning remains \(self.startPanning) for potential resume)")
-                            }
-                        }
-                        .onChange(of: playerController.videoPlayer.currentItem) { newItem in
-                            // 当视频项实际改变时，这是重置并重新启动平移的主要时机。
-                            // Set startPanning to false. This will:
-                            // 1. Change the offset target to 0.
-                            // 2. Trigger the .animation modifier, which will use .default (non-repeating)
-                            //    animation because startPanning is now false.
-                            self.startPanning = false
-                            print("hzg: VideoPlayerView onChange currentItem (startPanning set to false to reset for new item: \(newItem != nil))")
-                            // The .onAppear of the new VideoPlayerView (recreated due to .id())
-                            // will handle setting startPanning = true if newItem is not nil,
-                            // initiating the new repeating animation from offset 0.
-                            // No need to set startPanning = true here.
-                        }
-                } // End of VideoPlayerView conditional
-                else{
-                    PlayerPlaceholderView()
-                        .frame(width: geometry.size.width)
-                }
-                
-                // UI Controls Overlay Layer
-                if playerController.showControls {
-                    VStack(alignment: .center, spacing: 30) { // 整体顶部控件的 VStack
-                        
-                        // Top Controls Container
-                        HStack(alignment: .top) { // Use .top alignment for elements like status and button
-                            topLeftStatusView(geometry: geometry) // Pass geometry if needed by helper
-                            Spacer()
-                            cantSleepButton(geometry: geometry) // Pass geometry if needed by helper
-                        }
-                        .padding(.top, 30) // 5. 顶部控件增加额外上边距
-                        .padding(.horizontal, 10) // 5. 顶部控件增加额外上边距
-                        
-                        Spacer() // Pushes bottom controls down (PlaybackControlsView)
-                        // 新增：定时器选择条
-                        if playerController.videoPlayer.currentItem != nil { // 仅当有视频播放时显示定时器选项
-                            // MARK: - 优化方案
-                            // 将原本左对齐的HStack改为VStack，使其在水平方向上居中，布局更开阔。
-                            VStack(spacing: 8) { // 优化点 2: 增加了按钮与下方文字的间距，使其不那么拥挤
-                                
-                                // 按钮行
-                                HStack(spacing: 12) { // 优化点 3: 略微增加按钮间的距离
-                                    TimerOptionButton( targetMode: .timedClose1800)
-                                    TimerOptionButton( targetMode: .timedClose3600)
-                                    TimerOptionButton( targetMode: .timedClose7200)
-                                    TimerOptionButton( targetMode: .unlimited)
-                                }
-                            }
-                            .padding(.vertical, 5) // 优化点 6: 调整垂直内边距，使其更具呼吸感
-                            .padding(.horizontal, 10)
-                            .frame(maxWidth: .infinity) // 确保VStack横向撑满
-                            
-                            .cornerRadius(12) // 优化点 7: 增加圆角半径，使其看起来更柔和
-                        }
-                        
-                        // Bottom Playback Controls
-                        if playerController.videoPlayer.currentItem != nil {
-                            PlaybackControlsView(playerController: playerController)
-                                .frame(width: screenWidth) // screenWidth from geometry
-                                .padding(.bottom, 50) // 2. 为播放控制条增加额外下边距以避开TabBar
-                        }
-                    }
-                    
-                    .padding(.bottom, globalSafeAreaInsets.bottom) // 使用全局安全区域值
-                    .padding(.top, globalSafeAreaInsets.top) // 使用全局安全区域值 (确保顶部也有安全边距)
-                    .frame(width: geometry.size.width, height: geometry.size.height) // Make VStack fill the screen
-                    
-                }
-                
-                // Banners and Journal Entry (positioned absolutely, might need zIndex adjustments)
-                if showingMoodBanner {
-                    MoodSelectionBannerView(onMoodSelected: { mood in
-                        selectedMood = mood
-                    //    showingJournalEntry = true
-                    }, isPresented: $showingMoodBanner)
-                    .frame(width: screenWidth)
-                    .position(x: geometry.size.width / 2, y: geometry.size.height *  1 / 3)
-                    .transition(.opacity)
-                    .zIndex(100) // Ensure banners are above controls if they overlap
-                }
-                
-            /*    if let mood = selectedMood {
-                    JournalEntryView(mood: mood, onSave: { content in
-                        SleepLogManager.shared.upsertLog(for: Date(), mood: mood, notes: content)
-                    //    showingJournalEntry = false
-                        selectedMood = nil
-                    }, isPresented: $showingJournalEntry)
-                    .transition(.opacity)
-                    .frame(width: screenWidth)
-                    .zIndex(200) // Ensure journal is above everything
- 
-                }
-             */
-                if let mood = selectedMood{
-                    // 当 selectedMood 不为 nil 时，这个 cover 会自动呈现
-                    // 并且 'mood' 参数就是解包后的、安全的值
-                    JournalEntryView(
-                        mood: mood,
-                        onSave: { content in
-                            // 保存逻辑
-                            SleepLogManager.shared.upsertLog(for: Date(), mood: mood, notes: content)
-                            
-                            // 关闭 cover 的唯一方法：将 item 设为 nil
-                            selectedMood = nil
-                        },
-                        // 记得给 JournalEntryView 传递一个关闭自身的闭包
-                        // 如果 JournalEntryView 内部的关闭按钮需要起作用的话
-                        onDismiss: {
-                            selectedMood = nil
-                        },
-                        initialContent: SleepLogManager.shared.getLog(for: Date())?.notes ?? ""
-                    )
-                    .padding(.top, 30) // 5. 顶部控件增加额外上边距
-                    .frame(width: screenWidth)
-                    .zIndex(200) // Ensure journal is above everything
-                }
-                
-                
-            } // End of Root ZStack
-            .contentShape(Rectangle()) // 保留以便整个区域可点击
-            .onTapGesture {
-                print(geometry)
-                withAnimation(.easeInOut(duration: 0.3)) { // Keep animation here for the toggle
-                    playerController.showControls.toggle()
-                }
+                // Layer 4: Journaling UI (mood selection, etc.)
+                journalOverlay(geometry: geometry)
             }
-        }
-        .onAppear {
-            if playerController.showControls && playerController.videoPlayer.currentItem != nil {
-                startAutoHideTimer()
-            }
-        }
-        .ignoresSafeArea(.keyboard) // Keep this
-        .onDisappear {
-            cancelAutoHideTimer()
-        }
-        .onChange(of: playerController.isVideoReady) { isReady in
-            print("hzg: isVideoReady changed to: \(isReady)")
-            let newOpacity = isReady ? 0.9 : 0.0
-            if videoOpacity != newOpacity {
-                withAnimation(.easeOut(duration: 0.5)) {
-                    videoOpacity = newOpacity
-                }
-            }
-            if isReady && playerController.showControls {
-                startAutoHideTimer()
-            }
-        }
-        .onChange(of: playerController.showControls) { areControlsShown in
-            if areControlsShown {
-                startAutoHideTimer()
-            } else {
-                cancelAutoHideTimer()
-            }
-        }
-        .onChange(of: playerController.isPlaying) { isPlaying in
-            if isPlaying && playerController.showControls {
-                startAutoHideTimer()
-            }
+            .contentShape(Rectangle()) // Makes the entire area responsive to gestures
+            .gesture(swipeGesture)
+            .onTapGesture(perform: toggleControls)
+            .onAppear(perform: viewDidAppear)
+            .onDisappear(perform: cancelAutoHideTimer)
+            .ignoresSafeArea(.keyboard)
+            .onChange(of: playerController.isVideoReady, perform: handleVideoReadyChange)
+            .onChange(of: playerController.showControls, perform: handleShowControlsChange)
+            .onChange(of: playerController.isPlaying, perform: handleIsPlayingChange)
         }
     }
-    // Helper view for top left status text
+}
+
+// MARK: - DualStreamPlayerView: Sub-views (Refactored Helpers)
+extension DualStreamPlayerView {
+    
+    /// **REFACTOR REASON:** This helper contains the logic for displaying either the video player
+    /// or the placeholder, keeping the main `body` clean.
     @ViewBuilder
-    private func topLeftStatusView(geometry: GeometryProxy) -> some View {
+    private func videoLayer(geometry: GeometryProxy) -> some View {
+        let screenWidth = geometry.size.width
+        let screenHeight = geometry.size.height
+        
+        if playerController.videoPlayer.currentItem != nil {
+            let videoWidth = screenHeight * (16/9)
+            let totalPanDistance = max(0, videoWidth - screenWidth)
+            
+            VideoPlayerView(player: playerController.videoPlayer)
+                .frame(width: max(videoWidth, screenWidth), height: screenHeight)
+                .ignoresSafeArea()
+                .clipped()
+                .opacity(videoOpacity)
+                .offset(x: startPanning ? -totalPanDistance : 0)
+                .animation(
+                    startPanning ? .linear(duration: 30).repeatForever(autoreverses: true) : .default,
+                    value: startPanning
+                )
+                .id(playerController.videoPlayer.currentItem) // Recreates view on item change
+                .onAppear {
+                    // Start panning animation if it's not already running
+                    if !self.startPanning {
+                        DispatchQueue.main.async { self.startPanning = true }
+                    }
+                }
+                .onChange(of: playerController.videoPlayer.currentItem) { _ in
+                    // Reset animation when video changes
+                    self.startPanning = false
+                }
+        } else {
+            PlayerPlaceholderView()
+                .frame(width: screenWidth, height: screenHeight)
+                .onAppear {
+                    // Ensure panning is stopped when there's no video
+                    if self.startPanning {
+                       self.startPanning = false
+                    }
+                }
+        }
+    }
+
+    /// **REFACTOR REASON:** This helper centralizes all UI controls that appear and disappear,
+    /// such as buttons, sliders, and status text.
+    @ViewBuilder
+    private func controlsOverlay(geometry: GeometryProxy) -> some View {
+        if playerController.showControls {
+            VStack(alignment: .center, spacing: 0) {
+                // Top controls (status text and "Can't Sleep?" button)
+                HStack(alignment: .top) {
+                    topLeftStatusView
+                    Spacer()
+                    cantSleepButton
+                }
+                .padding(.horizontal, 10)
+                .padding(.top, 30)
+
+                Spacer()
+
+                // Timer selection buttons
+                timerSelectionView
+                
+                // Bottom playback controls
+                if playerController.videoPlayer.currentItem != nil {
+                    PlaybackControlsView(playerController: playerController)
+                        .padding(.bottom, 50) // Avoid TabBar overlap
+                }
+            }
+            .padding(.top, globalSafeAreaInsets.top)
+            .padding(.bottom, globalSafeAreaInsets.bottom)
+            .frame(width: geometry.size.width, height: geometry.size.height)
+            .transition(.opacity.animation(.easeInOut(duration: 0.3)))
+        }
+    }
+
+    /// **REFACTOR REASON:** Encapsulates the logic for the playlist navigation messages.
+    @ViewBuilder
+    private func navigationMessageOverlay(geometry: GeometryProxy) -> some View {
+        if let message = playlistController.navigationMessage {
+            VStack {
+                Spacer()
+                Text(message)
+                    .font(.system(size: 16, weight: .medium))
+                    .foregroundColor(.white)
+                    .padding(.horizontal, 20)
+                    .padding(.vertical, 12)
+                    .background(Color.black.opacity(0.7))
+                    .cornerRadius(20)
+                    .padding(.bottom, 100)
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .zIndex(300)
+        }
+    }
+    
+    /// **REFACTOR REASON:** Contains the logic for showing the mood banner and the journal entry view.
+    @ViewBuilder
+    private func journalOverlay(geometry: GeometryProxy) -> some View {
+        // Mood Selection Banner
+        if showingMoodBanner {
+            MoodSelectionBannerView(onMoodSelected: { mood in
+                selectedMood = mood
+            }, isPresented: $showingMoodBanner)
+            .position(x:  UIScreen.main.bounds.width / 2, y: geometry.size.height / 3)
+            .frame(width: UIScreen.main.bounds.width)
+            .transition(.opacity)
+            .zIndex(100)
+        }
+        
+        // Journal Entry View (using if-let for presentation)
+        if let mood = selectedMood {
+            JournalEntryView(
+                mood: mood,
+                onSave: { content in
+                    SleepLogManager.shared.upsertLog(for: Date(), mood: mood, notes: content)
+                    selectedMood = nil // Dismiss
+                },
+                onDismiss: {
+                    selectedMood = nil // Dismiss
+                },
+                initialContent: SleepLogManager.shared.getLog(for: Date())?.notes ?? ""
+            )
+            .frame(width: UIScreen.main.bounds.width)
+            .padding(.top, 30)
+            .zIndex(200)
+        }
+    }
+}
+
+// MARK: - DualStreamPlayerView: Gestures (Refactored)
+extension DualStreamPlayerView {
+    
+    /// **REFACTOR REASON:** Extracts the complex drag gesture logic into a separate computed property.
+    private var swipeGesture: some Gesture {
+        DragGesture()
+            .onChanged { value in
+                // Only process vertical swipes
+                if abs(value.translation.height) > abs(value.translation.width) {
+                    self.dragOffset = value.translation.height
+                }
+            }
+            .onEnded { value in
+                let threshold: CGFloat = 100 // Swipe threshold
+                if abs(value.translation.height) > threshold {
+                    if value.translation.height > 0 {
+                        playlistController.playPrev() // Swipe down
+                    } else {
+                        playlistController.playNext() // Swipe up
+                    }
+                }
+                self.dragOffset = 0 // Reset drag offset
+            }
+    }
+}
+
+// MARK: - DualStreamPlayerView: Helper Views & Actions
+extension DualStreamPlayerView {
+    
+    // --- Helper Views ---
+    @ViewBuilder
+    private var topLeftStatusView: some View {
         VStack(alignment: .leading, spacing: 6) {
             if playerController.videoPlayer.currentItem == nil {
-                (
+                // Use a single Text view with AttributedString for different styles if needed,
+                // or a VStack for simplicity.
                 Text("guardian.emptyPrompt.line1".localized)
                     .font(.system(size: 20, weight: .light))
-                    .foregroundColor(.white.opacity(0.80)) +
-                 Text("guardian.emptyPrompt.brand".localized + "\n")
+                    .foregroundColor(.white.opacity(0.80))
+                Text("guardian.emptyPrompt.brand".localized)
                     .font(.system(size: 20, weight: .medium))
-                    .foregroundColor(.white.opacity(0.95)) +
-                 Text("guardian.emptyPrompt.line2Suffix".localized.trimmingCharacters(in: .whitespacesAndNewlines))
+                    .foregroundColor(.white.opacity(0.95))
+                Text("guardian.emptyPrompt.line2Suffix".localized)
                     .font(.system(size: 20, weight: .regular))
-                    .foregroundColor(.white.opacity(0.85)))
-                .lineSpacing(4)
+                    .foregroundColor(.white.opacity(0.85))
+                
             } else if guardianController.currentMode == .unlimited {
                 Text("guardian.status.accompany".localized)
                     .font(.system(size: 24, weight: .light))
-                    .foregroundColor(.white.opacity(0.9))
-                if let resourceName = playerController.currentResource?.name {
-                    Text(resourceName)
-                        .font(.system(size: 18, weight: .light))
-                        .foregroundColor(.white.opacity(0.7))
-                        .lineLimit(1)
-                        .truncationMode(.tail)
-                        .frame(maxWidth: 250)
-                }
+                if let name = playerController.currentResource?.name { Text(name).lineLimit(1).truncationMode(.tail) }
                 Text("guardian.status.allNight".localized)
-                    .font(.system(size: 18, weight: .light))
-                    .foregroundColor(.white.opacity(0.7))
             } else {
                 Text("guardian.status.accompany".localized)
                     .font(.system(size: 24, weight: .light))
-                    .foregroundColor(.white.opacity(0.9))
-                if let resourceName = playerController.currentResource?.name {
-                    Text(resourceName)
-                        .font(.system(size: 18, weight: .light))
-                        .foregroundColor(.white.opacity(0.7))
-                        .lineLimit(1)
-                        .truncationMode(.tail)
-                        .frame(maxWidth: 250)
-                }
-                if guardianController.countdown > 0 {
-                    Text(formatCountdown(guardianController.countdown))
-                        .font(.system(size: 16, weight: .light))
-                        .foregroundColor(.white.opacity(0.7))
-                }
+                if let name = playerController.currentResource?.name { Text(name).lineLimit(1).truncationMode(.tail) }
+                if guardianController.countdown > 0 { Text(formatCountdown(guardianController.countdown)) }
             }
         }
+        .font(.system(size: 18, weight: .light))
+        .foregroundColor(.white.opacity(0.7))
     }
 
-    // Helper view for "Can't sleep?" button
     @ViewBuilder
-    private func cantSleepButton(geometry: GeometryProxy) -> some View {
+    private var cantSleepButton: some View {
         if guardianController.isGuardianModeEnabled {
-            Button(action: {
-                withAnimation { showingMoodBanner = true }
-            }) {
+            Button(action: { withAnimation { showingMoodBanner = true } }) {
                 Text("guardian.action.cantSleep".localized)
-                    .font(.subheadline)
-                    .fontWeight(.medium)
-                    .padding(.horizontal, 12)
-                    .padding(.vertical, 8)
+                    .font(.subheadline.weight(.medium))
+                    .padding(.horizontal, 12).padding(.vertical, 8)
                     .foregroundColor(.white.opacity(0.45))
                     .background(Color.white.opacity(0.075))
                     .clipShape(Capsule())
             }
-            // Removed top padding here
+        }
+    }
+
+    @ViewBuilder
+    private var timerSelectionView: some View {
+        if playerController.videoPlayer.currentItem != nil {
+            HStack(spacing: 12) {
+                TimerOptionButton(targetMode: .timedClose1800)
+                TimerOptionButton(targetMode: .timedClose3600)
+                TimerOptionButton(targetMode: .timedClose7200)
+                TimerOptionButton(targetMode: .unlimited)
+            }
+            .padding(.vertical, 5)
+            .padding(.horizontal, 10)
         }
     }
     
+    // --- Actions & Handlers ---
+    private func toggleControls() {
+        withAnimation {
+            playerController.showControls.toggle()
+        }
+    }
+
+    private func viewDidAppear() {
+        if playerController.showControls && playerController.videoPlayer.currentItem != nil {
+            startAutoHideTimer()
+        }
+    }
+    
+    private func handleVideoReadyChange(isReady: Bool) {
+        withAnimation(.easeOut(duration: 0.5)) {
+            videoOpacity = isReady ? 0.9 : 0.0
+        }
+        if isReady && playerController.showControls {
+            startAutoHideTimer()
+        }
+    }
+
+    private func handleShowControlsChange(areShown: Bool) {
+        if areShown { startAutoHideTimer() }
+        else { cancelAutoHideTimer() }
+    }
+    
+    private func handleIsPlayingChange(isPlaying: Bool) {
+        if isPlaying && playerController.showControls {
+            startAutoHideTimer()
+        }
+    }
+
     private func startAutoHideTimer() {
-        cancelAutoHideTimer() // Invalidate existing timer
-        // Only schedule a new timer if there's a video item
-        if playerController.videoPlayer.currentItem != nil {
-            autoHideTimer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) { [weak playerController] _ in
-                // Only hide if video is currently playing
-                if playerController?.isPlaying == true {
-                    withAnimation(.easeInOut(duration: 0.3)) {
-                        //hzg
-                         playerController?.showControls = false
-                    }
-                }
+        cancelAutoHideTimer()
+        guard playerController.videoPlayer.currentItem != nil else { return }
+        
+        autoHideTimer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) { _ in
+            if self.playerController.isPlaying {
+                self.toggleControls()
             }
         }
     }
     
+    private func cancelAutoHideTimer() {
+        autoHideTimer?.invalidate()
+        autoHideTimer = nil
+    }
+
     private func formatCountdown(_ seconds: Int) -> String {
         let hours = seconds / 3600
         let minutes = (seconds % 3600) / 60
@@ -559,56 +503,32 @@ struct DualStreamPlayerView: View {
             return String(format: "countdown.format.s".localized, remainingSeconds)
         }
     }
-    
-    private func cancelAutoHideTimer() {
-        autoHideTimer?.invalidate()
-        autoHideTimer = nil
-    }
 }
 
-// MARK: - Timer Option Button
+
+// MARK: - TimerOptionButton
 struct TimerOptionButton: View {
     let targetMode: GuardianMode
     @EnvironmentObject private var guardianController: GuardianController
 
-    private var isSelected: Bool {
-        guardianController.currentMode == targetMode
-    }
+    private var isSelected: Bool { guardianController.currentMode == targetMode }
 
     var body: some View {
-        Button(action: {
-            guardianController.enableGuardianMode(targetMode)
-        }) {
+        Button(action: { guardianController.enableGuardianMode(targetMode) }) {
             Text(targetMode.displayTitle)
                 .font(.system(size: 13, weight: isSelected ? .semibold : .regular))
                 .foregroundColor(isSelected ? .black : .white.opacity(0.8))
-                .padding(.horizontal, 12)
-                .padding(.vertical, 8) // 增加了垂直方向的 padding，让按钮更高一点，更有点击感
-                .frame(maxWidth: .infinity) // <<--- 核心优化点：让按钮在HStack中撑满可用空间
+                .padding(.horizontal, 12).padding(.vertical, 8)
+                .frame(maxWidth: .infinity)
                 .background(isSelected ? Color.white.opacity(0.6) : Color.white.opacity(0.2))
                 .clipShape(Capsule())
         }
     }
 }
 
-// MARK: - SwiftUI 預覽
+// MARK: - Previews
 struct PlayerPlaceholderView_Previews: PreviewProvider {
     static var previews: some View {
-        PlayerPlaceholderView()
+        PlayerPlaceholderView().preferredColorScheme(.dark)
     }
 }
-//
-//// MARK: - DualStreamPlayerView 预览
-//struct DualStreamPlayerView_Previews: PreviewProvider {
-//    static var previews: some View {
-//    
-//        DualStreamPlayerView()
-//            // DualStreamPlayerView uses @StateObject for its controllers,
-//            // which are initialized with .shared instances,
-//            // so direct environmentObject injection here might not be strictly necessary
-//            // unless sub-sub-views expect them via @EnvironmentObject.
-//            .environmentObject(DualStreamPlayerController.shared)
-//            .environmentObject(GuardianController.shared)
-//            .background(Color.gray) // Add a background to see the view against
-//    }
-//}

@@ -10,8 +10,11 @@ class PlaylistController: ObservableObject {
     @Published private(set) var currentEpisode: Episode?
     @Published private(set) var playMode = PlayMode.sequential
     @Published private(set) var resourceProgresses = [String: Double]()
+    @Published var isLoadingMore = false
+    @Published var navigationMessage: String?
     
     private var cancellables = Set<AnyCancellable>()
+    private var hasMoreResources = true
     
     // MARK: - Play Mode
     enum PlayMode {
@@ -30,6 +33,7 @@ class PlaylistController: ObservableObject {
     func setPlaylist(_ resources: [Resource]) {
         self.resources = resources
         self.currentResourceIndex = 0
+        self.hasMoreResources = true
         refreshProgresses()
     }
     
@@ -50,15 +54,82 @@ class PlaylistController: ObservableObject {
     /// 播放下一首
     func playNext() {
         guard !resources.isEmpty else { return }
-        currentResourceIndex = (currentResourceIndex + 1) % resources.count
-        play(resources[currentResourceIndex])
+        
+        if currentResourceIndex < resources.count - 1 {
+            // 还有下一个资源
+            currentResourceIndex += 1
+            play(resources[currentResourceIndex])
+        } else {
+            // 到达列表末尾，尝试加载更多
+            loadMoreResources()
+        }
     }
     
     /// 播放上一首
     func playPrev() {
         guard !resources.isEmpty else { return }
-        currentResourceIndex = (currentResourceIndex - 1 + resources.count) % resources.count
-        play(resources[currentResourceIndex])
+        
+        if currentResourceIndex > 0 {
+            // 还有上一个资源
+            currentResourceIndex -= 1
+            play(resources[currentResourceIndex])
+        } else {
+            // 到达列表开头
+            showNavigationMessage("player.navigation.first_resource".localized)
+        }
+    }
+    
+    /// 加载更多资源
+    private func loadMoreResources() {
+        guard hasMoreResources && !isLoadingMore else { return }
+        
+        isLoadingMore = true
+        showNavigationMessage("player.navigation.loading_more".localized)
+        
+        // 获取当前资源的分类信息
+        let currentCategory = currentResource?.category
+        
+        // 记录当前资源数量
+        let currentResourceCount = resources.count
+        
+        NetworkManager.shared.loadMoreResources(pageSize: 20, category: currentCategory, searchQuery: nil)
+        
+        // 使用一次性监听器来监听资源更新
+        var resourceUpdateCancellable: AnyCancellable?
+        resourceUpdateCancellable = NetworkManager.shared.$resources
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] newResources in
+                guard let self = self else { return }
+                
+                // 取消订阅，避免重复处理
+                resourceUpdateCancellable?.cancel()
+                
+                if newResources.count > currentResourceCount {
+                    // 有新资源加载
+                    self.resources = newResources
+                    self.currentResourceIndex += 1
+                    self.play(self.resources[self.currentResourceIndex])
+                    self.hasMoreResources = newResources.count >= 20 // 假设每页20个资源
+                } else {
+                    // 没有更多资源
+                    self.hasMoreResources = false
+                    self.showNavigationMessage("player.navigation.no_more_resources".localized)
+                }
+                
+                self.isLoadingMore = false
+            }
+    }
+    
+    /// 显示导航消息
+    private func showNavigationMessage(_ message: String) {
+        navigationMessage = message
+        
+        // 2秒后自动清除消息
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            if self.navigationMessage == message {
+                self.navigationMessage = nil
+            }
+        }
     }
     
     /// 设置播放模式

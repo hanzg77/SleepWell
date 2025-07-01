@@ -1,141 +1,80 @@
 import SwiftUI
 import Combine
 
-// MARK: - Constants
+// MARK: - 常量
 private enum Constants {
     enum Colors {
         static let background = Color.black
-        static let searchBarBackground = Color(white: 0.2)
-        static let resourceRowBackground = Color(white: 0.1)
+        static let searchBarBackground = Color(white: 0.15)
+        static let resourceRowBackground = Color(white: 0.12)
+        static let categoryUnselected = Color(white: 0.2)
         static let textPrimary = Color.white
         static let textSecondary = Color.gray
+        static let accent = Color.blue
     }
     
     enum Layout {
         static let spacing: CGFloat = 16
-        static let cornerRadius: CGFloat = 12
+        static let cornerRadius: CGFloat = 16
         static let searchBarHeight: CGFloat = 44
         static let categoryButtonHeight: CGFloat = 36
-        static let resourceImageSize: CGFloat = 80
-    }
-    
-    enum Text {
-        static let searchPlaceholder = "搜索"
-        static let emptyEpisodes = "暂无剧集"
-        static let episodeCount = "%d 集"
     }
 }
 
 // MARK: - AudioLibraryView
 struct AudioLibraryView: View {
+    // MARK: - 屬性
     @StateObject private var viewModel = AudioLibraryViewModel()
     @StateObject private var playerController = DualStreamPlayerController.shared
     @Binding var selectedTab: Int
     @State private var showEpisodeList = false
-    @State private var guardianViewItem: GuardianViewItem?
-    @State private var guardianModeViewModel: GuardianModeSelectionViewModel?
     @State private var showAdminView = false
     @State private var selectedResource: Resource?
     
+    // 用於智慧型 Header 的狀態變數
+    @State private var headerHeight: CGFloat = 0
+    @State private var headerOffset: CGFloat = 0
+    @State private var lastScrollOffset: CGFloat = 0
+
     var body: some View {
         NavigationView {
-            ZStack {
-                // 背景
+            ZStack(alignment: .top) {
                 Color.black.edgesIgnoringSafeArea(.all)
                 
-                if viewModel.isLoading {
-                    ProgressView()
-                        .scaleEffect(1.5)
-                } else if let error = viewModel.error {
-                    VStack(spacing: 16) {
-                        Text("加载失败")
-                            .font(.headline)
-                            .foregroundColor(.white)
-                        
-                        Text(error.localizedDescription)
-                            .font(.subheadline)
-                            .foregroundColor(.gray)
-                            .multilineTextAlignment(.center)
-                            .padding(.horizontal)
-                        
-                        Button(action: {
-                            Task {
-                                viewModel.refreshResources()
-                            }
-                        }) {
-                            Text("重试")
-                                .foregroundColor(.white)
-                                .padding(.horizontal, 24)
-                                .padding(.vertical, 12)
-                                .background(Color.blue)
-                                .cornerRadius(20)
+                ScrollView {
+                    GeometryReader { proxy -> Color in
+                        let currentOffset = proxy.frame(in: .global).minY
+                        DispatchQueue.main.async {
+                            self.updateHeaderOffset(currentOffset: currentOffset)
                         }
+                        return Color.clear
                     }
-                } else {
-                    ScrollView {
-                        VStack(spacing: Constants.Layout.spacing) {
-                            // 搜索栏
-                            SearchBar(text: $viewModel.searchQuery, onSearch: {
-                                // 只在用户点击确定按钮时才触发搜索
-                                viewModel.loadResources()
-                            })
-                            
-                            // 分类按钮
-                            ScrollView(.horizontal, showsIndicators: false) {
-                                HStack(spacing: 12) {
-                                    ForEach(viewModel.categories, id: \.self) { category in
-                                        CategoryButton(
-                                            title: "category.\(category.lowercased())".localized,
-                                            isSelected: category == viewModel.selectedCategory
-                                        ) {
-                                            // 当点击分类按钮时，总是先清空搜索词
-                                            viewModel.searchQuery = ""
-                                            viewModel.selectedCategory = category
-                                            viewModel.loadResources()
-                                        }
-                                    }
-                                }
-                                .padding(.horizontal)
-                            }
-                            
-                            // 资源列表
-                            if viewModel.isLoading {
-                                ProgressView()
-                                    .scaleEffect(1.5)
-                                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                                    .padding(.top, 100)
-                            } else if viewModel.resources.isEmpty {
-                                VStack(spacing: 20) {
-                                    Image(systemName: "music.note.list")
-                                        .font(.system(size: 60))
-                                        .foregroundColor(Constants.Colors.textSecondary)
-                                    
-                                    Text("library.empty".localized)
-                                        .font(.headline)
-                                        .foregroundColor(Constants.Colors.textSecondary)
-                                }
-                                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                                .padding(.top, 100)
-                            } else {
-                                LazyVStack(spacing: 20) {
-                                    ForEach(viewModel.resources) { resource in
-                                        ResourceCard(resource: resource, onTap: {
-                                            handleResourceTap(resource)
-                                        }, viewModel: viewModel)
+                    .frame(height: 0)
+                    
+                    VStack(spacing: 0) {
+                        contentView
+                    }
+                    .padding(.top, headerHeight)
+                }
+                .refreshable {
+                    print("🔄 正在更新資源列表...")
+                    viewModel.refreshResources()
+                }
 
-                                    }
-                                }
-                                .padding()
-                            }
-                        }
-                        // 移除 onChange 触发搜索，改为在 SearchBar 中处理
+                HeaderView(
+                    searchQuery: $viewModel.searchQuery,
+                    categories: viewModel.categories,
+                    selectedCategory: $viewModel.selectedCategory,
+                    onSearch: { viewModel.loadResources() }
+                )
+                .readSize { size in
+                    if self.headerHeight == 0 {
+                        self.headerHeight = size.height
                     }
                 }
+                .offset(y: headerOffset)
             }
-            .refreshable {
-                print("🔄 正在更新资源列表...")
-                viewModel.refreshResources()
-            }
+            .edgesIgnoringSafeArea(.top)
             .sheet(isPresented: $showEpisodeList) {
                 if let resource = viewModel.selectedResource {
                     EpisodeListView(resource: resource, selectedTab: $selectedTab)
@@ -146,33 +85,134 @@ struct AudioLibraryView: View {
                     AdminView(resource: resource)
                 }
             }
-            .navigationTitle("library.title".localized)
-            .navigationBarTitleDisplayMode(.inline)
-            // 移除了 guardianViewItem 的 sheet
+            .navigationTitle("")
+            .navigationBarHidden(true)
+        }
+        .navigationViewStyle(StackNavigationViewStyle())
+    }
+    
+    // MARK: - Header 位移計算邏輯
+    private func updateHeaderOffset(currentOffset: CGFloat) {
+        if currentOffset > 0 {
+            self.headerOffset = currentOffset
+            self.lastScrollOffset = 0
+            return
+        }
+
+        let delta = currentOffset - self.lastScrollOffset
+        var newOffset = self.headerOffset + delta
+        newOffset = max(-self.headerHeight, newOffset)
+        newOffset = min(0, newOffset)
+        self.headerOffset = newOffset
+        self.lastScrollOffset = currentOffset
+    }
+
+    // MARK: - 子视图和事件处理
+    @ViewBuilder
+    private var contentView: some View {
+        if viewModel.isLoading {
+            ProgressView()
+                .scaleEffect(1.5)
+                .frame(maxWidth: .infinity)
+                .padding(.top, 100)
+        } else if viewModel.resources.isEmpty {
+            emptyStateView
+                .padding(.top, 100)
+        } else {
+            LazyVStack(spacing: 24) {
+                ForEach(viewModel.resources) { resource in
+                    ResourceCard(resource: resource, onTap: {
+                        handleResourceTap(resource)
+                    }, viewModel: viewModel)
+                }
+            }
+            .padding()
         }
     }
     
+    private var emptyStateView: some View {
+        VStack(spacing: 20) {
+            Image(systemName: "music.note.list")
+                .font(.system(size: 60))
+                .foregroundColor(Constants.Colors.textSecondary)
+            Text("library.empty".localized)
+                .font(.headline)
+                .foregroundColor(Constants.Colors.textSecondary)
+            Button(action: { Task { viewModel.refreshResources() } }) {
+                HStack(spacing: 8) {
+                    Image(systemName: "arrow.clockwise")
+                    Text("library.retry".localized)
+                }
+                .font(.system(size: 16, weight: .medium))
+                .foregroundColor(.white)
+                .padding(.horizontal, 24)
+                .padding(.vertical, 12)
+                .background(Constants.Colors.accent)
+                .cornerRadius(24)
+            }
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+
     private func handleResourceTap(_ resource: Resource) {
         print("资源被点击: \(resource.name)")
-        viewModel.selectedResource = resource // 确保 selectedResource 被设置
+        viewModel.selectedResource = resource
         if resource.resourceType == .singleTrackAlbum {
-            // 单集资源直接播放
             print("是单集资源，直接播放")
             PlaylistController.shared.setPlaylist([resource])
             PlaylistController.shared.play(resource)
-            // 使用 GuardianController 当前的模式（默认或上次选择的）
             GuardianController.shared.enableGuardianMode(GuardianController.shared.currentMode)
-            selectedTab = 1 // 切换到播放页面
+            selectedTab = 1
         } else {
-            // 多集资源或 tracklist 资源显示剧集列表
             print("是多集资源或 tracklist 资源，准备显示剧集列表")
-            viewModel.selectedResource = resource
             showEpisodeList = true
         }
     }
 }
 
-// MARK: - SearchBar
+
+// MARK: - HeaderView (浮動的Header)
+struct HeaderView: View {
+    @Binding var searchQuery: String
+    let categories: [String]
+    @Binding var selectedCategory: String
+    let onSearch: () -> Void
+    
+    var body: some View {
+        VStack(spacing: 0) {
+            Text("library.title".localized)
+                .font(.title2)
+                .fontWeight(.bold)
+                .foregroundColor(.white)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.horizontal)
+                .padding(.top, (UIApplication.shared.windows.first?.safeAreaInsets.top ?? 0) + 10)
+                .padding(.bottom, 12)
+            
+            SearchBar(text: $searchQuery, onSearch: onSearch)
+            
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 12) {
+                    ForEach(categories, id: \.self) { category in
+                        CategoryButton(
+                            title: "category.\(category.lowercased())".localized,
+                            isSelected: category == selectedCategory
+                        ) {
+                            searchQuery = ""
+                            selectedCategory = category
+                            onSearch()
+                        }
+                    }
+                }
+                .padding(.horizontal)
+                .padding(.vertical, 12)
+            }
+        }
+        .background(Constants.Colors.background.edgesIgnoringSafeArea(.top))
+    }
+}
+
+// MARK: - 搜索栏
 struct SearchBar: View {
     @Binding var text: String
     @FocusState private var isFocused: Bool
@@ -183,34 +223,31 @@ struct SearchBar: View {
             Image(systemName: "magnifyingglass")
                 .foregroundColor(Constants.Colors.textSecondary)
             
-            TextField("library.search.placeholder".localized, text: $text)
+            TextField("搜索", text: $text)
                 .foregroundColor(Constants.Colors.textPrimary)
                 .focused($isFocused)
                 .submitLabel(.search)
-                .onSubmit {
-                    // 用户点击搜索键时才触发搜索
-                    onSearch()
-                }
+                .onSubmit(onSearch)
             
             if !text.isEmpty {
                 Button(action: {
-                    text = ""       // 1. 清空搜索框文本
-                    onSearch()      // 2. 立即触发搜索，此时 searchQuery 为空，会加载完整列表
-                    isFocused = false // 3. (可选) 隐藏键盘，提供更流畅的体验
+                    text = ""
+                    onSearch()
+                    isFocused = false
                 }) {
                     Image(systemName: "xmark.circle.fill")
                         .foregroundColor(Constants.Colors.textSecondary)
                 }
             }
         }
-        .padding(8)
+        .padding(12)
         .background(Constants.Colors.searchBarBackground)
         .cornerRadius(Constants.Layout.cornerRadius)
         .padding(.horizontal)
     }
 }
 
-// MARK: - CategoryButton
+// MARK: - 分类按钮
 struct CategoryButton: View {
     let title: String
     let isSelected: Bool
@@ -219,196 +256,248 @@ struct CategoryButton: View {
     var body: some View {
         Button(action: action) {
             Text(title)
-                .font(.system(size: 14, weight: .medium))
-                .foregroundColor(isSelected ? Constants.Colors.background : Constants.Colors.textPrimary)
+                .font(.system(size: 14, weight: .semibold))
+                .foregroundColor(isSelected ? .black : .white)
                 .padding(.horizontal, 16)
-                .padding(.vertical, 8)
-                .background(isSelected ? Constants.Colors.textPrimary : Color.clear)
+                .frame(height: Constants.Layout.categoryButtonHeight)
+                .background(isSelected ? .white : Constants.Colors.categoryUnselected)
                 .cornerRadius(Constants.Layout.categoryButtonHeight / 2)
-                .overlay(
-                    RoundedRectangle(cornerRadius: Constants.Layout.categoryButtonHeight / 2)
-                        .stroke(Constants.Colors.textPrimary, lineWidth: 1)
-                )
         }
     }
 }
 
-// MARK: - ResourceCard
+
+// MARK: - 资源卡片
 struct ResourceCard: View {
     let resource: Resource
     let onTap: () -> Void
-    @State private var image: UIImage?
-    @State private var isLoading = true
-    @State private var loadError = false
+    @StateObject private var imageLoader = ImageLoader()
     @StateObject private var playerController = DualStreamPlayerController.shared
-    @State private var showActionSheet = false // 移除了独立的 viewModel 初始化
-    @ObservedObject var viewModel: AudioLibraryViewModel // 接收从父视图传递的 viewModel
-    @State private var showDeleteAlert = false
+    @ObservedObject var viewModel: AudioLibraryViewModel
     @State private var showAdminView = false
     
     var body: some View {
         Button(action: onTap) {
-            VStack(spacing: 0) {
-                // 封面图
-                ZStack {
-                    if let image = image {
-                        Image(uiImage: image)
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                    } else if loadError {
-                        Color.gray.opacity(0.2)
-                            .overlay(
-                                Image(systemName: "photo")
-                                    .foregroundColor(.gray)
-                            )
-                    } else {
-                        Color.gray.opacity(0.2)
+            VStack(alignment: .leading, spacing: 0) {
+                ZStack(alignment: .bottom) {
+                    coverImage
+                    if let progress = viewModel.resourceProgresses[resource.resourceId] {
+                        progressOverlay(progress: progress)
                     }
-                    
-                    if isLoading {
-                        ProgressView()
-                    }
-                    
-                    // 正在播放的耳机图标
                     if playerController.currentResource?.resourceId == resource.resourceId && playerController.isPlaying {
-                        VStack {
-                            HStack {
-                                Spacer()
-                                Image(systemName: "headphones")
-                                    .font(.system(size: 16, weight: .medium))
-                                    .foregroundColor(.white)
-                                    .padding(8)
-                                    .background(Color.blue.opacity(0.5))
-                                    .clipShape(Circle())
-                                    .shadow(radius: 2)
-                            }
-                            Spacer()
-                        }
-                        .padding(.top, 8)
-                        .padding(.trailing, 8)
+                        playingIndicator
                     }
                 }
-                .frame(height: 200)
+                .aspectRatio(16/9, contentMode: .fill)
+                .cornerRadius(Constants.Layout.cornerRadius)
                 .clipped()
                 
-                // 资源信息
-                VStack(alignment: .leading, spacing: 8) {
+                VStack(alignment: .leading, spacing: 10) {
                     Text(resource.name)
                         .font(.headline)
+                        .fontWeight(.bold)
+                        .foregroundColor(Constants.Colors.textPrimary)
                         .lineLimit(2)
-                        .onLongPressGesture {
-                            showAdminView = true
-                        }
+                        .onLongPressGesture { showAdminView = true }
                     
-                    // 标签列表
                     if !resource.tags.isEmpty {
-                        ScrollView(.horizontal, showsIndicators: false) {
-                            HStack(spacing: 4) {
-                                ForEach(resource.tags, id: \.self) { tag in
-                                    Text("category.\(tag)".localized) // 使用本地化字符串
-                                        .font(.caption)
-                                        .padding(.horizontal, 8)
-                                        .padding(.vertical, 4)
-                                        .background(Color.blue.opacity(0.1))
-                                        .foregroundColor(.blue)
-                                        .cornerRadius(4)
-                                }
+                        FlowLayout(spacing: 8) {
+                            ForEach(resource.tags, id: \.self) { tag in
+                                TagView(text: "category.\(tag)".localized)
                             }
                         }
-                    }
-                    
-                    // 添加进度条
-                    if let progress = viewModel.resourceProgresses[resource.resourceId] {
-                        ProgressView(value: progress, total: Double(resource.totalDurationSeconds))
-                            .progressViewStyle(LinearProgressViewStyle())
-                            .tint(.blue)
+                        .frame(maxHeight: 50, alignment: .top)
+                        .clipped()
                     }
                 }
                 .padding()
-                .background(Constants.Colors.resourceRowBackground)
             }
+            .background(Constants.Colors.resourceRowBackground)
             .cornerRadius(Constants.Layout.cornerRadius)
-            .shadow(radius: 5)
+            .shadow(color: .black.opacity(0.4), radius: 8, x: 0, y: 4)
         }
         .buttonStyle(PlainButtonStyle())
         .onAppear {
-            loadImage()
+            imageLoader.loadImage(from: resource.coverImageUrl)
         }
-    /*    .confirmationDialog("管理资源", isPresented: $showActionSheet) {
-            Button("删除资源", role: .destructive) {
-                showDeleteAlert = true
-            }
-            
-            Button("添加标签") {
-                // TODO: 实现添加标签功能
-            }
-            
-            Button("设置 Rank 值") {
-                // TODO: 实现设置 Rank 值功能
-            }
-            
-            Button("取消", role: .cancel) {}
-        } message: {
-            Text(resource.name)
-        }
-        .alert("确认删除", isPresented: $showDeleteAlert) {
-            Button("取消", role: .cancel) {}
-            Button("删除", role: .destructive) {
-                viewModel.deleteResource(resource)
-            }
-        } message: {
-            Text("确定要删除{resource.name}吗？此操作不可撤销。")
-        }
-     */
         .sheet(isPresented: $showAdminView) {
             AdminView(resource: resource)
         }
     }
     
-    private func loadImage() {
-        guard let url = URL(string: resource.coverImageUrl) else {
-            print("❌ 无效的封面图片URL: \(resource.coverImageUrl)")
-            DispatchQueue.main.async {
-                self.isLoading = false
-                self.loadError = true
-            }
-            return
+    // MARK: ResourceCard 的子视图
+    @ViewBuilder
+    private var coverImage: some View {
+        if let image = imageLoader.image {
+            Image(uiImage: image)
+                .resizable()
+                .transition(.opacity.animation(.easeInOut))
+        } else {
+            Rectangle()
+                .fill(Constants.Colors.searchBarBackground)
+                .overlay {
+                    if imageLoader.isLoading { ProgressView() }
+                }
         }
-        
-        print("📸 开始加载封面图片: \(url)")
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            if let error = error {
-                print("❌ 加载封面图片失败: \(error.localizedDescription)")
-                DispatchQueue.main.async {
-                    self.isLoading = false
-                    self.loadError = true
-                }
-                return
+    }
+    
+    private func progressOverlay(progress: Double) -> some View {
+        VStack {
+            Spacer()
+            ZStack(alignment: .leading) {
+                Rectangle()
+                    .fill(LinearGradient(colors: [.clear, .black.opacity(0.8)], startPoint: .top, endPoint: .bottom))
+                    .frame(height: 50)
+                ProgressView(value: progress, total: Double(resource.totalDurationSeconds))
+                    .progressViewStyle(LinearProgressViewStyle())
+                    .tint(Constants.Colors.accent)
+                    .padding()
             }
-            
-            if let httpResponse = response as? HTTPURLResponse {
-                print("📡 封面图片响应状态码: \(httpResponse.statusCode)")
+        }
+    }
+    
+    private var playingIndicator: some View {
+        HStack {
+            Spacer()
+            VStack {
+                Image(systemName: "headphones")
+                    .font(.system(size: 14, weight: .bold))
+                    .foregroundColor(.white)
+                    .padding(8)
+                    .background(.ultraThinMaterial)
+                    .clipShape(Circle())
+                Spacer()
             }
-            
-            if let data = data, let image = UIImage(data: data) {
-                print("✅ 成功加载封面图片")
-                DispatchQueue.main.async {
-                    self.image = image
-                    self.isLoading = false
-                }
-            } else {
-                print("❌ 无法从数据创建图片")
-                DispatchQueue.main.async {
-                    self.isLoading = false
-                    self.loadError = true
-                }
-            }
-        }.resume()
+        }
+        .padding(8)
     }
 }
 
-// MARK: - Preview
+// MARK: - 标签视图
+struct TagView: View {
+    let text: String
+    var body: some View {
+        Text(text)
+            .font(.caption2)
+            .fontWeight(.medium)
+            .padding(.horizontal, 8)
+            .padding(.vertical, 4)
+            .background(Constants.Colors.accent.opacity(0.2))
+            .foregroundColor(Constants.Colors.accent)
+            .cornerRadius(8)
+    }
+}
+
+// MARK: - FlowLayout 自动换行布局 (需要 iOS 16+)
+struct FlowLayout: Layout {
+    var spacing: CGFloat
+    
+    init(spacing: CGFloat) {
+        self.spacing = spacing
+    }
+    
+    func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) -> CGSize {
+        let width = proposal.width ?? 0
+        let rows = generateRows(maxWidth: width, subviews: subviews)
+        
+        let height = rows.map { $0.maxHeight }.reduce(0, +) + CGFloat(max(0, rows.count - 1)) * spacing
+        
+        return CGSize(width: width, height: height)
+    }
+    
+    func placeSubviews(in bounds: CGRect, proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) {
+        let rows = generateRows(maxWidth: bounds.width, subviews: subviews)
+        var origin = bounds.origin
+        
+        for row in rows {
+            origin.x = bounds.origin.x
+            for view in row.views {
+                // 修正 #1：明确指定 ProposedViewSize.unspecified
+                let viewSize = view.sizeThatFits(ProposedViewSize.unspecified)
+                view.place(at: origin, proposal: .unspecified)
+                origin.x += viewSize.width + spacing
+            }
+            origin.y += row.maxHeight + spacing
+        }
+    }
+    
+    private func generateRows(maxWidth: CGFloat, subviews: Subviews) -> [Row] {
+        var rows: [Row] = []
+        var currentRow = Row()
+        
+        for view in subviews {
+            // 修正 #2：明确指定 ProposedViewSize.unspecified
+            let viewSize = view.sizeThatFits(ProposedViewSize.unspecified)
+            
+            if currentRow.width + viewSize.width + (currentRow.views.isEmpty ? 0 : spacing) <= maxWidth {
+                currentRow.views.append(view)
+                currentRow.width += viewSize.width + (currentRow.views.isEmpty ? 0 : spacing)
+                currentRow.maxHeight = max(currentRow.maxHeight, viewSize.height)
+            } else {
+                rows.append(currentRow)
+                currentRow = Row(views: [view], width: viewSize.width, maxHeight: viewSize.height)
+            }
+        }
+        
+        if !currentRow.views.isEmpty {
+            rows.append(currentRow)
+        }
+        
+        return rows
+    }
+    
+    // 辅助结构体：代表布局中的“一行”
+    private struct Row {
+        // 修正 #3：使用正确的 'Layout.Subviews.Element' 类型
+        var views: [Layout.Subviews.Element] = []
+        var width: CGFloat = 0
+        var maxHeight: CGFloat = 0
+    }
+}
+
+
+// MARK: - 辅助工具：图片加载器
+class ImageLoader: ObservableObject {
+    @Published var image: UIImage?
+    @Published var isLoading = false
+    private var cancellable: AnyCancellable?
+    
+    func loadImage(from urlString: String) {
+        guard let url = URL(string: urlString) else { return }
+        
+        isLoading = true
+        cancellable = URLSession.shared.dataTaskPublisher(for: url)
+            .map { UIImage(data: $0.data) }
+            .replaceError(with: nil)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] loadedImage in
+                self?.image = loadedImage
+                self?.isLoading = false
+            }
+    }
+}
+
+// MARK: - 辅助工具：读取视图尺寸
+struct SizePreferenceKey: PreferenceKey {
+    static var defaultValue: CGSize = .zero
+    static func reduce(value: inout CGSize, nextValue: () -> CGSize) {}
+}
+
+extension View {
+    func readSize(onChange: @escaping (CGSize) -> Void) -> some View {
+        background(
+            GeometryReader { geometryProxy in
+                Color.clear
+                    .preference(key: SizePreferenceKey.self, value: geometryProxy.size)
+            }
+        )
+        .onPreferenceChange(SizePreferenceKey.self, perform: onChange)
+    }
+}
+
+
+// MARK: - 预览
 #Preview {
     AudioLibraryView(selectedTab: .constant(0))
-        .environmentObject(GuardianController.shared)
-} 
+        .preferredColorScheme(.dark)
+}

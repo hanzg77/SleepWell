@@ -29,6 +29,13 @@
 "category.story" = "Story";
 "category.music" = "Music";
 "category.nature" = "Nature";
+"category.work" = "Work";
+"category.study" = "Study";
+"category.calm" = "Calm";
+"category.relax" = "Relax";
+"category.coffee" = "Coffee";
+"category.yoga" = "Yoga";
+"category.baby" = "Baby Sleep";
 
 // MARK: - Resource Details
 "resource.duration" = "%d min";
@@ -87,7 +94,13 @@
 "player.background_volume" = "Background Volume";
 "player.voice_volume" = "Voice Volume";
 
-// MARK: - Sleep Record
+/* MARK: - Player Navigation */
+"player.navigation.first_resource" = "Reached the first resource";
+"player.navigation.last_resource" = "Reached the last resource";
+"player.navigation.loading_more" = "Loading more resources...";
+"player.navigation.no_more_resources" = "No more resources available";
+
+/* MARK: - Sleep Record */
 "sleep.title" = "Sleep Record";
 "sleep.start" = "Start Sleep";
 "sleep.end" = "End Sleep";

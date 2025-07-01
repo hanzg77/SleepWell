@@ -29,6 +29,13 @@
 "category.story" = "故事";
 "category.music" = "音樂";
 "category.nature" = "自然";
+"category.work" = "工作";
+"category.study" = "學習";
+"category.calm" = "平靜";
+"category.relax" = "放鬆";
+"category.coffee" = "咖啡";
+"category.yoga" = "瑜伽";
+"category.baby" = "寶寶哄睡";
 
 // MARK: - Resource Details
 "resource.duration" = "%d 分鐘";
@@ -85,7 +92,13 @@
 "player.background_volume" = "背景音量";
 "player.voice_volume" = "人聲音量";
 
-// MARK: - Sleep Record
+/* MARK: - Player Navigation */
+"player.navigation.first_resource" = "已到達第一個資源";
+"player.navigation.last_resource" = "已到達最後一個資源";
+"player.navigation.loading_more" = "正在載入更多資源...";
+"player.navigation.no_more_resources" = "沒有更多資源了";
+
+/* MARK: - Sleep Record */
 "sleep.title" = "睡眠記錄";
 "sleep.start" = "開始睡眠";
 "sleep.end" = "結束睡眠";

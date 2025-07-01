@@ -9,7 +9,7 @@ struct AdminView: View {
     
     // 假设这些是所有可用的标签
   //  let availableTags = ["白噪声", "冥想", "故事", "音乐", "自然", "放松", "睡眠"]
-    let availableTags = ["white_noise", "meditation", "story", "music", "nature"]
+    let availableTags = ["white_noise", "meditation", "story", "music", "nature","work","study","clam","relax"]
     var body: some View {
         NavigationView {
             List {

@@ -124,6 +124,22 @@ class SleepLogManager: ObservableObject {
         }
         saveLogs()
         objectWillChange.send()
+        
+        // 记录心情日志
+        var logData: [String: Any] = [
+            "mood": mood.displayName,
+            "recordContent": notes
+        ]
+        
+        // 如果有播放的资源，添加到日志中
+        if let currentResource = DualStreamPlayerController.shared.currentResource {
+            logData["playedResource"] = currentResource.resourceId
+        }
+        
+        LogService.shared.sendLogEvent(
+            eventType: "MoodRecord",
+            data: logData
+        )
     }
     
 }

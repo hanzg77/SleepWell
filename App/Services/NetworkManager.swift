@@ -98,9 +98,10 @@ class NetworkManager: NSObject, URLSessionDelegate, ObservableObject {
         print("NetworkManager 当前资源数量：", self.resources.count)
     }
     
-    func loadMoreResources(pageSize: Int = 20, category: String? = nil, searchQuery: String? = nil) {
-        guard !isLoading, hasMore else { return }
-        fetchResources(page: currentPage + 1, pageSize: pageSize, category: category, searchQuery: searchQuery, isRefresh: false)
+    /// 加载更多资源（用于播放列表导航）
+    func loadMoreResources(pageSize: Int, category: String?, searchQuery: String?) {
+        let nextPage = currentPage + 1
+        fetchResources(page: nextPage, pageSize: pageSize, category: category, searchQuery: searchQuery, isRefresh: false)
     }
     
     private func fetchResources(page: Int, pageSize: Int, category: String?, searchQuery: String?, isRefresh: Bool) {

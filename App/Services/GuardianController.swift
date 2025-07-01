@@ -94,6 +94,16 @@ class GuardianController: ObservableObject {
         // 发送守护模式改变通知
         print("📢 发送 guardianModeDidChange 通知")
         NotificationCenter.default.post(name: .guardianModeDidChange, object: nil)
+        
+        // 记录守护开始日志
+        let resourceId = DualStreamPlayerController.shared.currentResource?.resourceId ?? "unknown"
+        LogService.shared.sendLogEvent(
+            eventType: "GuardianStart",
+            data: [
+                "guardianMode": mode.displayTitle,
+                "resourceId": resourceId
+            ]
+        )
     }
     
     
@@ -117,6 +127,16 @@ class GuardianController: ObservableObject {
                 resource: DualStreamPlayerController.shared.currentResource
             )
             SleepLogManager.shared.addEntry(entry)
+            
+            // 记录守护结束日志
+            let resourceId = DualStreamPlayerController.shared.currentResource?.resourceId ?? "unknown"
+            LogService.shared.sendLogEvent(
+                eventType: "GuardianEnd",
+                data: [
+                    "guardianDuration": Int(duration),
+                    "resourceId": resourceId
+                ]
+            )
         }
         
         sessionStartTime = nil // 重置会话开始时间

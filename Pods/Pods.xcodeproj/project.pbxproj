@@ -17,6 +17,7 @@
 				04C457E389ABC6D4868033EA02A134B9 /* PBXTargetDependency */,
 			);
 			name = UMCommon;
+			productName = UMCommon;
 		};
 		CEB9AD2C3CFC208BFBE1F22F5EC3E1FC /* UMDevice */ = {
 			isa = PBXAggregateTarget;
@@ -27,6 +28,7 @@
 			dependencies = (
 			);
 			name = UMDevice;
+			productName = UMDevice;
 		};
 		F1E09035B7675D89EC69B16728E2833E /* UMAPM */ = {
 			isa = PBXAggregateTarget;
@@ -38,6 +40,7 @@
 				0E7677E8FC48B161C7C0824C733FFBC7 /* PBXTargetDependency */,
 			);
 			name = UMAPM;
+			productName = UMAPM;
 		};
 /* End PBXAggregateTarget section */
 
@@ -123,7 +126,7 @@
 		01D9C0E80E2B436270C9BE8F4155E033 /* Pods-SleepWell-SleepWellUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SleepWell-SleepWellUITests-dummy.m"; sourceTree = "<group>"; };
 		09255FE98D427DBAEF326979E72AF97D /* Pods-SleepWell-SleepWellUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SleepWell-SleepWellUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		0A8DEB1DDE8D0E3FA1E393E1A4B8C016 /* Pods-SleepWell-SleepWellUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SleepWell-SleepWellUITests.release.xcconfig"; sourceTree = "<group>"; };
-		0A90A8348A5BBD1A6785DCEF31578828 /* Pods-SleepWell */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-SleepWell"; path = Pods_SleepWell.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A90A8348A5BBD1A6785DCEF31578828 /* Pods_SleepWell.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SleepWell.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0ED8C75703116C8126826807CA8C8DEB /* Pods-SleepWellTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SleepWellTests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		1399CCB22D25A2D7F64C13268A1217A5 /* Pods-SleepWell-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SleepWell-dummy.m"; sourceTree = "<group>"; };
 		148A7CDCBE625561F0FB2C015B9D3B60 /* Pods-SleepWell-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SleepWell-acknowledgements.plist"; sourceTree = "<group>"; };
@@ -138,22 +141,22 @@
 		6CA91DD8303D765B4FBE2D95D0C86839 /* Pods-SleepWell-SleepWellUITests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SleepWell-SleepWellUITests-Info.plist"; sourceTree = "<group>"; };
 		77B6A29769227EE91E386A17CA985959 /* Pods-SleepWell-SleepWellUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-SleepWell-SleepWellUITests.modulemap"; sourceTree = "<group>"; };
 		7AF59590C0CC8C9FEE84AEF0397451F7 /* Pods-SleepWell-SleepWellUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SleepWell-SleepWellUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		873EC85E0057D1F526341A3CC6A4EC10 /* UMAPM.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; name = UMAPM.xcframework; path = UMAPM_2.0.4/UMAPM.xcframework; sourceTree = "<group>"; };
+		873EC85E0057D1F526341A3CC6A4EC10 /* UMAPM.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.xcframework; name = UMAPM.xcframework; path = UMAPM_2.0.4/UMAPM.xcframework; sourceTree = "<group>"; };
 		8AA41296422E0938915AB28E8AFB9524 /* Pods-SleepWell-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SleepWell-Info.plist"; sourceTree = "<group>"; };
 		8D03C886B7A67C94B4D14F9A94C09157 /* UMDevice.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = UMDevice.release.xcconfig; sourceTree = "<group>"; };
 		8EB2CA32B2A8E230213CAC1FB6AB3BF6 /* Pods-SleepWell-SleepWellUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SleepWell-SleepWellUITests-umbrella.h"; sourceTree = "<group>"; };
-		91F446DB902714F299B7DCFDD5AE73F2 /* UMCommon.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; name = UMCommon.xcframework; path = UMCommon_7.5.2/UMCommon.xcframework; sourceTree = "<group>"; };
-		958613E469964D76B65C7C76A529ACAC /* UMDevice.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; name = UMDevice.xcframework; path = UMDevice_3.4.0/UMDevice.xcframework; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		91F446DB902714F299B7DCFDD5AE73F2 /* UMCommon.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.xcframework; name = UMCommon.xcframework; path = UMCommon_7.5.2/UMCommon.xcframework; sourceTree = "<group>"; };
+		958613E469964D76B65C7C76A529ACAC /* UMDevice.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.xcframework; name = UMDevice.xcframework; path = UMDevice_3.4.0/UMDevice.xcframework; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A51D70D05B733AACDB6272A4F565B019 /* Pods-SleepWell.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-SleepWell.modulemap"; sourceTree = "<group>"; };
 		A6DE18991592CAF47B9CEC84223DEBC8 /* Pods-SleepWell-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SleepWell-umbrella.h"; sourceTree = "<group>"; };
 		AC1B09F49949B53F7047E31BCD479F34 /* Pods-SleepWellTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SleepWellTests.release.xcconfig"; sourceTree = "<group>"; };
 		BE75FE9D8DA0300153EB68BA596B5F3B /* Pods-SleepWellTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SleepWellTests-Info.plist"; sourceTree = "<group>"; };
 		C1453C3AE68389A783606C526DB6F16D /* Pods-SleepWell.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SleepWell.debug.xcconfig"; sourceTree = "<group>"; };
-		C47F602A563F77DA9967E3ABB3D3919A /* Pods-SleepWell-SleepWellUITests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-SleepWell-SleepWellUITests"; path = Pods_SleepWell_SleepWellUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C47F602A563F77DA9967E3ABB3D3919A /* Pods_SleepWell_SleepWellUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SleepWell_SleepWellUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C94BA2F0C9A288B5C9873E139042B4AC /* Pods-SleepWell.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SleepWell.release.xcconfig"; sourceTree = "<group>"; };
 		D75E5B4B96E778680891213B7057BBD4 /* UMAPM-xcframeworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "UMAPM-xcframeworks.sh"; sourceTree = "<group>"; };
-		DF2F54B8D5689A30FC7C607B340D5119 /* Pods-SleepWellTests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-SleepWellTests"; path = Pods_SleepWellTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF2F54B8D5689A30FC7C607B340D5119 /* Pods_SleepWellTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SleepWellTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1B122A79C44DCF82223BB5D479530E4 /* Pods-SleepWellTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SleepWellTests-acknowledgements.plist"; sourceTree = "<group>"; };
 		E7D70ADE3FCC66A40EDEF4B0A98C5267 /* UMAPM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = UMAPM.release.xcconfig; sourceTree = "<group>"; };
 		ED4E4B314E0D84A60718DDA3FDA64C2F /* UMAPM.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = UMAPM.debug.xcconfig; sourceTree = "<group>"; };
@@ -258,7 +261,6 @@
 				83E37EDEF5B32FCB98B8102997BABDBB /* Frameworks */,
 				B36F058BF9852B1F45CC8E73214A4B27 /* Support Files */,
 			);
-			name = UMDevice;
 			path = UMDevice;
 			sourceTree = "<group>";
 		};
@@ -268,16 +270,15 @@
 				0B950BB319B128FCC7DA3B3C34A24CA7 /* Frameworks */,
 				4EA167BC28F9E70CCA17CCE658792F47 /* Support Files */,
 			);
-			name = UMAPM;
 			path = UMAPM;
 			sourceTree = "<group>";
 		};
 		43EBA7AC836BF6CEECF9F734C3A5E5B2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0A90A8348A5BBD1A6785DCEF31578828 /* Pods-SleepWell */,
-				C47F602A563F77DA9967E3ABB3D3919A /* Pods-SleepWell-SleepWellUITests */,
-				DF2F54B8D5689A30FC7C607B340D5119 /* Pods-SleepWellTests */,
+				0A90A8348A5BBD1A6785DCEF31578828 /* Pods_SleepWell.framework */,
+				C47F602A563F77DA9967E3ABB3D3919A /* Pods_SleepWell_SleepWellUITests.framework */,
+				DF2F54B8D5689A30FC7C607B340D5119 /* Pods_SleepWellTests.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -331,7 +332,6 @@
 				4B5EA9DCD6173B586B5523E4A4874D4E /* Frameworks */,
 				0A81573B6E3831F0552620C9FD5E5B0E /* Support Files */,
 			);
-			name = UMCommon;
 			path = UMCommon;
 			sourceTree = "<group>";
 		};
@@ -429,7 +429,7 @@
 			);
 			name = "Pods-SleepWellTests";
 			productName = Pods_SleepWellTests;
-			productReference = DF2F54B8D5689A30FC7C607B340D5119 /* Pods-SleepWellTests */;
+			productReference = DF2F54B8D5689A30FC7C607B340D5119 /* Pods_SleepWellTests.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		33608B50FFDDD91FE11FF10A6D90C437 /* Pods-SleepWell-SleepWellUITests */ = {
@@ -450,7 +450,7 @@
 			);
 			name = "Pods-SleepWell-SleepWellUITests";
 			productName = Pods_SleepWell_SleepWellUITests;
-			productReference = C47F602A563F77DA9967E3ABB3D3919A /* Pods-SleepWell-SleepWellUITests */;
+			productReference = C47F602A563F77DA9967E3ABB3D3919A /* Pods_SleepWell_SleepWellUITests.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		DF43EDC6CA59934E8EE9E7D82CA24E5C /* Pods-SleepWell */ = {
@@ -471,7 +471,7 @@
 			);
 			name = "Pods-SleepWell";
 			productName = Pods_SleepWell;
-			productReference = 0A90A8348A5BBD1A6785DCEF31578828 /* Pods-SleepWell */;
+			productReference = 0A90A8348A5BBD1A6785DCEF31578828 /* Pods_SleepWell.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -492,8 +492,6 @@
 				en,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
-			minimizedProjectReferenceProxies = 0;
-			preferredProjectObjectVersion = 77;
 			productRefGroup = 43EBA7AC836BF6CEECF9F734C3A5E5B2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -541,9 +539,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/UMCommon/UMCommon-xcframeworks-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy XCFrameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/UMCommon/UMCommon-xcframeworks-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -558,9 +560,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/UMAPM/UMAPM-xcframeworks-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy XCFrameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/UMAPM/UMAPM-xcframeworks-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -575,9 +581,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/UMDevice/UMDevice-xcframeworks-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy XCFrameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/UMDevice/UMDevice-xcframeworks-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -678,7 +688,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -696,7 +706,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -792,7 +802,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -955,7 +965,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -973,7 +983,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1030,7 +1040,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

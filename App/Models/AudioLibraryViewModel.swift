@@ -18,7 +18,7 @@ class AudioLibraryViewModel: ObservableObject {
     @Published var showingResourceDetail = false
     @Published var selectedResource: Resource?
     
-    let categories = ["all", "white_noise", "meditation", "story", "music", "nature"]
+    let categories = ["all", "white_noise", "nature", "music", "meditation","story"]
     
     // 获取所有可用的标签
     var availableTags: [String] {

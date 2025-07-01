@@ -26,9 +26,17 @@
 "category.all" = "全部";
 "category.white_noise" = "白噪音";
 "category.meditation" = "冥想";
-"category.story" = "故事";
+"category.story" = "有声书";
 "category.music" = "音乐";
 "category.nature" = "自然";
+"category.work" = "工作";
+"category.study" = "学习";
+"category.calm" = "平静";
+"category.relax" = "放松";
+"category.coffee" = "咖啡";
+"category.yoga" = "瑜伽";
+"category.baby" = "宝宝哄睡";
+
 
 // MARK: - Resource Details
 "resource.duration" = "%d 分钟";
@@ -37,7 +45,7 @@
 "resource.pause" = "暂停";
 "resource.stop" = "停止";
 "resource.delete" = "删除";
-"resource.delete.confirm" = "您确定要删除“%@”吗？";
+"resource.delete.confirm" = "您确定要删除\"%@\"吗？";
 "resource.delete.success" = "资源删除成功";
 "resource.delete.failed" = "资源删除失败";
 
@@ -87,7 +95,13 @@
 "player.background_volume" = "背景音量";
 "player.voice_volume" = "人声音量";
 
-// MARK: - Sleep Record
+/* MARK: - Player Navigation */
+"player.navigation.first_resource" = "已到达第一个资源";
+"player.navigation.last_resource" = "已到达最后一个资源";
+"player.navigation.loading_more" = "正在加载更多资源...";
+"player.navigation.no_more_resources" = "没有更多资源了";
+
+/* MARK: - Sleep Record */
 "sleep.title" = "睡眠记录";
 "sleep.start" = "开始睡眠";
 "sleep.end" = "结束睡眠";
