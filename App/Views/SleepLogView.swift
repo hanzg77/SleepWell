@@ -17,22 +17,18 @@ struct SleepLogView: View {
 
     // MARK: - Body
     var body: some View {
-        // STYLE: 使用 NavigationStack 以获得更现代的导航行为。
-        // 如果您需要支持旧版 iOS，可以换回 NavigationView。
-        NavigationStack {
-            SleepLogContentView(
-                logManager: logManager,
-                playerController: playerController,
-                networkManager: networkManager,
-                selectedTab: $selectedTab,
-                showingNotesDetail: $showingNotesDetail,
-                selectedLog: $selectedLog,
-                onCardTap: { dailyLog in
-                    selectedLog = dailyLog
-                    showingNotesDetail = true
-                }
-            )
-        }
+        SleepLogContentView(
+            logManager: logManager,
+            playerController: playerController,
+            networkManager: networkManager,
+            selectedTab: $selectedTab,
+            showingNotesDetail: $showingNotesDetail,
+            selectedLog: $selectedLog,
+            onCardTap: { dailyLog in
+                selectedLog = dailyLog
+                showingNotesDetail = true
+            }
+        )
         // STYLE: 将 .sheet 和 .task 修饰符放在 NavigationStack 外层，结构更清晰。
         .sheet(isPresented: $showingNotesDetail) {
             if let log = selectedLog {
@@ -101,7 +97,7 @@ struct SleepLogContentView: View {
         ScrollViewReader { proxy in
             ScrollView {
                 // STYLE: LazyVStack 的间距稍微拉大，让卡片更有呼吸感。
-                LazyVStack(spacing: 24) {
+                LazyVGrid(columns: [GridItem(.adaptive(minimum: 320), spacing: 24)], spacing: 24) {
                     ForEach(logManager.dailyLogs) { dailyLog in
                         DailyLogCardView(log: dailyLog, entries: dailyLog.entries, onNotesTapped: {
                             selectedLog = dailyLog

@@ -15,18 +15,21 @@ struct SleepWellApp: App {
         registerBackgroundTasks()
         _ = LocalizationManager.shared
         _ = DynamicIslandManager.shared // 初始化灵动岛管理器
+        _ = OrientationManager.shared // 初始化方向管理器
     }
     
     var body: some Scene {
         WindowGroup {
-            MainTabView()
-                .environmentObject(themeManager.networkManager)
-                .environmentObject(themeManager.guardianManager)
-                .environmentObject(themeManager.playlistController)
-                .environmentObject(themeManager.dualStreamPlayerController)
- //               .environmentObject(themeManager.sleepMonitorController)
-                .environmentObject(themeManager.sleepLogManager)
-                .preferredColorScheme(.dark)
+            NavigationStack { // Wrap MainTabView in a NavigationStack for proper iPad Tab Bar placement
+                MainTabView()
+                    .environmentObject(themeManager.networkManager)
+                    .environmentObject(themeManager.guardianManager)
+                    .environmentObject(themeManager.playlistController)
+                    .environmentObject(themeManager.dualStreamPlayerController)
+    //               .environmentObject(themeManager.sleepMonitorController)
+                    .environmentObject(themeManager.sleepLogManager)
+                    .preferredColorScheme(.dark)
+            }
         }
     }
     
@@ -105,6 +108,13 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
         print("友盟 SDK 初始化完成")
         
+        // Force Tab Bar to bottom on iPad
+        if #available(iOS 15.0, *) {
+            let appearance = UITabBarAppearance()
+            appearance.configureWithTransparentBackground() // Use transparent background for translucency
+            UITabBar.appearance().standardAppearance = appearance
+            UITabBar.appearance().scrollEdgeAppearance = appearance
+        }
 
         
         return true

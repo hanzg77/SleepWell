@@ -176,7 +176,6 @@ struct DualStreamPlayerView: View {
     @State private var startPanning: Bool = false
     @State private var dragOffset: CGFloat = 0
     @State private var autoHideTimer: Timer?
-    @State private var autoPanOffsetX: CGFloat = 0 // 自动平移动画的偏移量
 
     // Journaling State
     @State private var showingMoodBanner: Bool = false
@@ -215,50 +214,6 @@ struct DualStreamPlayerView: View {
             .onChange(of: playerController.showControls, perform: handleShowControlsChange)
             .onChange(of: playerController.isPlaying, perform: handleIsPlayingChange)
         }
-        // --- 新增：监听 isVideoReady，视频准备好时再启动动画 ---
-        .onChange(of: playerController.isVideoReady) { isReady in
-            if isReady {
-                startOrStopAutoPan()
-            } else {
-                autoPanOffsetX = 0
-            }
-        }
-        // --- 新增：监听 isPlaying，播放时启动动画，暂停时停止动画 ---
-        .onChange(of: playerController.isPlaying) { isPlaying in
-            startOrStopAutoPan()
-        }
-    }
-
-    // 自动平移动画控制
-    private func startOrStopAutoPan() {
-        let videoSize = playerController.videoPlayer.currentItem?.presentationSize ?? .zero
-        let screenWidth = UIScreen.main.bounds.width
-        let screenHeight = UIScreen.main.bounds.height
-        let videoAspectRatio = videoSize.height > 0 ? videoSize.width / videoSize.height : (16.0/9.0)
-        let screenAspectRatio = screenHeight > 0 ? screenWidth / screenHeight : (16.0/9.0)
-        let panDistance: CGFloat = {
-            if videoAspectRatio > screenAspectRatio {
-                let h = screenHeight
-                let w = h * videoAspectRatio
-                return max(0, w - screenWidth)
-            } else {
-                let w = screenWidth
-                let h = w / videoAspectRatio
-                return max(0, h - screenHeight)
-            }
-        }()
-        // 只在播放时启动动画，暂停时保持当前位置
-        if playerController.isPlaying && playerController.isVideoReady && panDistance > 0 {
-            // 计算剩余距离和剩余动画时长，实现从当前位置继续平移
-            let currentOffset = autoPanOffsetX
-            let remainingDistance = abs(currentOffset + panDistance)
-            let totalDistance = panDistance
-            let remainingDuration = max(1.0, 30.0 * (remainingDistance / totalDistance))
-            withAnimation(Animation.linear(duration: remainingDuration).repeatForever(autoreverses: true)) {
-                autoPanOffsetX = -panDistance
-            }
-        }
-        // 暂停时不归零 offset，只停止动画
     }
 }
 
@@ -271,37 +226,40 @@ extension DualStreamPlayerView {
     private func videoLayer(geometry: GeometryProxy) -> some View {
         let screenWidth = geometry.size.width
         let screenHeight = geometry.size.height
+        
         if playerController.videoPlayer.currentItem != nil {
-            let videoSize = playerController.videoPlayer.currentItem?.presentationSize ?? .zero
-            let videoAspectRatio = videoSize.height > 0 ? videoSize.width / videoSize.height : (16.0/9.0)
-            let screenAspectRatio = screenHeight > 0 ? screenWidth / screenHeight : (16.0/9.0)
-            let (calculatedVideoWidth, calculatedVideoHeight, panDistance): (CGFloat, CGFloat, CGFloat) = {
-                if videoAspectRatio > screenAspectRatio {
-                    let h = screenHeight
-                    let w = h * videoAspectRatio
-                    let pan = max(0, w - screenWidth)
-                 //   print("[VideoPan] 宽屏: videoWidth=\(w), screenWidth=\(screenWidth), panDistance=\(pan)")
-                    return (w, h, pan)
-                } else {
-                    let w = screenWidth
-                    let h = w / videoAspectRatio
-                    let pan = max(0, h - screenHeight)
-                    print("[VideoPan] 高屏: videoHeight=\(h), screenHeight=\(screenHeight), panDistance=\(pan)")
-                    return (w, h, pan)
-                }
-            }()
+            let videoWidth = screenHeight * (16/9)
+            let totalPanDistance = max(0, videoWidth - screenWidth)
+            
             VideoPlayerView(player: playerController.videoPlayer)
-                .id(playerController.videoPlayer.currentItem)
-                .frame(width: calculatedVideoWidth, height: calculatedVideoHeight)
+                .frame(width: max(videoWidth, screenWidth), height: screenHeight)
                 .ignoresSafeArea()
                 .clipped()
                 .opacity(videoOpacity)
-                .offset(x: autoPanOffsetX)
+                .offset(x: startPanning ? -totalPanDistance : 0)
+                .animation(
+                    startPanning ? .linear(duration: 30).repeatForever(autoreverses: true) : .default,
+                    value: startPanning
+                )
+                .id(playerController.videoPlayer.currentItem) // Recreates view on item change
+                .onAppear {
+                    // Start panning animation if it's not already running
+                    if !self.startPanning {
+                        DispatchQueue.main.async { self.startPanning = true }
+                    }
+                }
+                .onChange(of: playerController.videoPlayer.currentItem) { _ in
+                    // Reset animation when video changes
+                    self.startPanning = false
+                }
         } else {
             PlayerPlaceholderView()
                 .frame(width: screenWidth, height: screenHeight)
                 .onAppear {
-                    autoPanOffsetX = 0
+                    // Ensure panning is stopped when there's no video
+                    if self.startPanning {
+                       self.startPanning = false
+                    }
                 }
         }
     }
@@ -427,31 +385,28 @@ extension DualStreamPlayerView {
     private var topLeftStatusView: some View {
         VStack(alignment: .leading, spacing: 6) {
             if playerController.videoPlayer.currentItem == nil {
-                VStack(alignment: .leading, spacing: 6) { // Wrap multiple Text views in a VStack
-                    Text("guardian.emptyPrompt.line1".localized)
-                        .font(.system(size: 20, weight: .light))
-                        .foregroundColor(.white.opacity(0.80))
-                    Text("guardian.emptyPrompt.brand".localized)
-                        .font(.system(size: 20, weight: .medium))
-                        .foregroundColor(.white.opacity(0.95))
-                    Text("guardian.emptyPrompt.line2Suffix".localized)
-                        .font(.system(size: 20, weight: .regular))
-                        .foregroundColor(.white.opacity(0.85))
-                }
+                // Use a single Text view with AttributedString for different styles if needed,
+                // or a VStack for simplicity.
+                Text("guardian.emptyPrompt.line1".localized)
+                    .font(.system(size: 20, weight: .light))
+                    .foregroundColor(.white.opacity(0.80))
+                Text("guardian.emptyPrompt.brand".localized)
+                    .font(.system(size: 20, weight: .medium))
+                    .foregroundColor(.white.opacity(0.95))
+                Text("guardian.emptyPrompt.line2Suffix".localized)
+                    .font(.system(size: 20, weight: .regular))
+                    .foregroundColor(.white.opacity(0.85))
+                
             } else if guardianController.currentMode == .unlimited {
-                VStack(alignment: .leading, spacing: 6) { // Wrap multiple Text views in a VStack
-                    Text("guardian.status.accompany".localized)
-                        .font(.system(size: 24, weight: .light))
-                    if let name = playerController.currentResource?.name { Text(name).lineLimit(1).truncationMode(.tail) }
-                    Text("guardian.status.allNight".localized)
-                }
+                Text("guardian.status.accompany".localized)
+                    .font(.system(size: 24, weight: .light))
+                if let name = playerController.currentResource?.name { Text(name).lineLimit(1).truncationMode(.tail) }
+                Text("guardian.status.allNight".localized)
             } else {
-                VStack(alignment: .leading, spacing: 6) { // Wrap multiple Text views in a VStack
-                    Text("guardian.status.accompany".localized)
-                        .font(.system(size: 24, weight: .light))
-                    if let name = playerController.currentResource?.name { Text(name).lineLimit(1).truncationMode(.tail) }
-                    if guardianController.countdown > 0 { Text(formatCountdown(guardianController.countdown)) }
-                }
+                Text("guardian.status.accompany".localized)
+                    .font(.system(size: 24, weight: .light))
+                if let name = playerController.currentResource?.name { Text(name).lineLimit(1).truncationMode(.tail) }
+                if guardianController.countdown > 0 { Text(formatCountdown(guardianController.countdown)) }
             }
         }
         .font(.system(size: 18, weight: .light))

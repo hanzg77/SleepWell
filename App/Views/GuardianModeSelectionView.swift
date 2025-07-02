@@ -37,7 +37,7 @@ struct GuardianModeSelectionView: View {
                 .padding(.top, 16)
             
             ScrollView {
-                VStack(spacing: 20) {
+                LazyVGrid(columns: [GridItem(.adaptive(minimum: 250), spacing: 20)], spacing: 20) {
                     // 模式选择按钮
                     ForEach(GuardianMode.allCases, id: \.self) { mode in
                         Button(action: {

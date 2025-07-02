@@ -20,6 +20,8 @@
 		331CE70F2E0D2BA6004778BB /* LogService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331CE70E2E0D2BA6004778BB /* LogService.swift */; };
 		331CE7112E1284FF004778BB /* CacheResourceLoaderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331CE7102E1284FF004778BB /* CacheResourceLoaderDelegate.swift */; };
 		331CE7132E13EFE8004778BB /* SleepRecordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331CE7122E13EFE8004778BB /* SleepRecordViewModel.swift */; };
+		331CE7152E150991004778BB /* ResponsiveLayoutView 2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331CE7142E150991004778BB /* ResponsiveLayoutView 2.swift */; };
+		331CE7172E1509D1004778BB /* OrientationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331CE7162E1509D1004778BB /* OrientationManager.swift */; };
 		38A4652218CB5164223F8857 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		3B4E679A4158BB25543D53D5 /* Pods_SleepWell_SleepWellUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E74E847B3435AF9E24991A40 /* Pods_SleepWell_SleepWellUITests.framework */; };
 		3D029B0E95343DD8B0751676 /* AudioLibraryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BA35DD0320F9A2719706CC /* AudioLibraryViewModel.swift */; };
@@ -105,6 +107,8 @@
 		331CE70E2E0D2BA6004778BB /* LogService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogService.swift; sourceTree = "<group>"; };
 		331CE7102E1284FF004778BB /* CacheResourceLoaderDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheResourceLoaderDelegate.swift; sourceTree = "<group>"; };
 		331CE7122E13EFE8004778BB /* SleepRecordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepRecordViewModel.swift; sourceTree = "<group>"; };
+		331CE7142E150991004778BB /* ResponsiveLayoutView 2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ResponsiveLayoutView 2.swift"; sourceTree = "<group>"; };
+		331CE7162E1509D1004778BB /* OrientationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrientationManager.swift; sourceTree = "<group>"; };
 		3459CC16F89FC7FD72A5CF10 /* MoodNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodNoteView.swift; sourceTree = "<group>"; };
 		350B7B3EAE512400348C271C /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		3989D61AEA4470DC0B9AB63D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -191,6 +195,7 @@
 		040537A39CCBF1E1F6502A3D /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				331CE7162E1509D1004778BB /* OrientationManager.swift */,
 				331CE7102E1284FF004778BB /* CacheResourceLoaderDelegate.swift */,
 				331CE70E2E0D2BA6004778BB /* LogService.swift */,
 				A5377884C720F834C87CCD23 /* AudioController.swift */,
@@ -328,6 +333,7 @@
 		D42AFB08312A5D6881B1A899 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				331CE7142E150991004778BB /* ResponsiveLayoutView 2.swift */,
 				4C2A9EAD9223ACB23FC64A7D /* AdminView.swift */,
 				C12FEAC93FF13BE83AC09C34 /* AudioLibraryView.swift */,
 				E5D94F60BE13FED7E5F48375 /* CoverImageView.swift */,
@@ -592,6 +598,8 @@
 				C92024D04B5E53684F694637 /* LocalizationManager.swift in Sources */,
 				DDE5E3DCC31976352E739645 /* MainTabView.swift in Sources */,
 				08CC7E520C665C374ACBA903 /* MediaPlayerController.swift in Sources */,
+				331CE7152E150991004778BB /* ResponsiveLayoutView 2.swift in Sources */,
+				331CE7172E1509D1004778BB /* OrientationManager.swift in Sources */,
 				A96B8A0DF708FA45F2C34281 /* MoodNoteView.swift in Sources */,
 				2D6FA53CBC832E0BB0DF96E3 /* MoodSelectionBannerView.swift in Sources */,
 				759423CEF2EDDD210E63B0B3 /* NetworkManager.swift in Sources */,
@@ -766,7 +774,6 @@
 				INFOPLIST_KEY_CFBundleShortVersionString = 1.0;
 				INFOPLIST_KEY_CFBundleVersion = 1;
 				INFOPLIST_KEY_NSAppTransportSecurity_NSAllowsArbitraryLoads = YES;
-				
 				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_NSSupportsLiveActivitiesFrequentUpdates = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_UIApplicationSupportsMultipleScenes = NO;
@@ -788,7 +795,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -891,7 +898,6 @@
 				INFOPLIST_KEY_CFBundleShortVersionString = 1.0;
 				INFOPLIST_KEY_CFBundleVersion = 1;
 				INFOPLIST_KEY_NSAppTransportSecurity_NSAllowsArbitraryLoads = YES;
-				
 				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_NSSupportsLiveActivitiesFrequentUpdates = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_UIApplicationSupportsMultipleScenes = NO;
@@ -913,7 +919,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

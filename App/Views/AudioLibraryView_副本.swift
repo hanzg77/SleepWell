@@ -37,55 +37,58 @@ struct AudioLibraryView: View {
     @State private var lastScrollOffset: CGFloat = 0
 
     var body: some View {
-        ZStack(alignment: .top) {
-            Color.black.edgesIgnoringSafeArea(.all)
-            
-            ScrollView {
-                GeometryReader { proxy -> Color in
-                    let currentOffset = proxy.frame(in: .global).minY
-                    DispatchQueue.main.async {
-                        self.updateHeaderOffset(currentOffset: currentOffset)
-                    }
-                    return Color.clear
-                }
-                .frame(height: 0)
+        NavigationView {
+            ZStack(alignment: .top) {
+                Color.black.edgesIgnoringSafeArea(.all)
                 
-                VStack(spacing: 0) {
-                    contentView
+                ScrollView {
+                    GeometryReader { proxy -> Color in
+                        let currentOffset = proxy.frame(in: .global).minY
+                        DispatchQueue.main.async {
+                            self.updateHeaderOffset(currentOffset: currentOffset)
+                        }
+                        return Color.clear
+                    }
+                    .frame(height: 0)
+                    
+                    VStack(spacing: 0) {
+                        contentView
+                    }
+                    .padding(.top, headerHeight)
                 }
-                .padding(.top, headerHeight)
-            }
-            .refreshable {
-                print("🔄 正在更新资源列表...")
-                viewModel.refreshResources()
-            }
+                .refreshable {
+                    print("🔄 正在更新資源列表...")
+                    viewModel.refreshResources()
+                }
 
-            HeaderView(
-                searchQuery: $viewModel.searchQuery,
-                categories: viewModel.categories,
-                selectedCategory: $viewModel.selectedCategory,
-                onSearch: { viewModel.loadResources() }
-            )
-            .readSize { size in
-                if self.headerHeight == 0 {
-                    self.headerHeight = size.height
+                HeaderView(
+                    searchQuery: $viewModel.searchQuery,
+                    categories: viewModel.categories,
+                    selectedCategory: $viewModel.selectedCategory,
+                    onSearch: { viewModel.loadResources() }
+                )
+                .readSize { size in
+                    if self.headerHeight == 0 {
+                        self.headerHeight = size.height
+                    }
+                }
+                .offset(y: headerOffset)
+            }
+            .edgesIgnoringSafeArea(.top)
+//            .sheet(isPresented: $showEpisodeList) {
+//                if let resource = viewModel.selectedResource {
+//                    EpisodeListView(resource: resource, selectedTab: $selectedTab)
+//                }
+//            }
+            .sheet(isPresented: $showAdminView) {
+                if let resource = selectedResource {
+                    AdminView(resource: resource)
                 }
             }
-            .offset(y: headerOffset)
+            .navigationTitle("")
+            .navigationBarHidden(true)
         }
-        .edgesIgnoringSafeArea(.top)
-//        .sheet(isPresented: $showEpisodeList) {
-//            if let resource = viewModel.selectedResource {
-//                EpisodeListView(resource: resource, selectedTab: $selectedTab)
-//            }
-//        }
-        .sheet(isPresented: $showAdminView) {
-            if let resource = selectedResource {
-                AdminView(resource: resource)
-            }
-        }
-        .navigationTitle("")
-        .navigationBarHidden(true)
+        .navigationViewStyle(StackNavigationViewStyle())
     }
     
     // MARK: - Header 位移計算邏輯
@@ -104,25 +107,9 @@ struct AudioLibraryView: View {
         self.lastScrollOffset = currentOffset
     }
 
-    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
-
     // MARK: - 子视图和事件处理
     @ViewBuilder
     private var contentView: some View {
-        // 先计算布局参数，避免在if/else里声明变量
-        let isPad = UIDevice.current.userInterfaceIdiom == .pad
-        let screenWidth = UIScreen.main.bounds.size.width
-        let screenHeight = UIScreen.main.bounds.size.height
-        let isLandscape = screenWidth > screenHeight
-        let minWidth: CGFloat = {
-            if isPad {
-                return isLandscape ? screenWidth / 3 - 32 : screenWidth / 2 - 32
-            } else {
-                return 180
-            }
-        }()
-        let columns: [GridItem] = [GridItem(.adaptive(minimum: minWidth), spacing: 24)]
-        
         if viewModel.isLoading {
             ProgressView()
                 .scaleEffect(1.5)
@@ -132,14 +119,12 @@ struct AudioLibraryView: View {
             emptyStateView
                 .padding(.top, 100)
         } else {
-            LazyVGrid(columns: columns, spacing: 24) {
-                ForEach(viewModel.resources) { resource in
-                    ResourceCard(resource: resource, onTap: {
-                        handleResourceTap(resource)
-                    }, viewModel: viewModel)
-                }
+            ResponsiveGridLayout(viewModel.resources) { resource in
+                ResourceCard(resource: resource, onTap: {
+                    handleResourceTap(resource)
+                }, viewModel: viewModel)
             }
-            .padding()
+            .responsiveSpacing()
         }
     }
     

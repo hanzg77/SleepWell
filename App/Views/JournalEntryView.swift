@@ -69,6 +69,8 @@ struct JournalEntryView: View {
                 )
                 .padding(.horizontal, 16)
                 .padding(.top, 20)
+                .frame(maxWidth: 700) // Limit width on iPad for better readability
+                .frame(maxWidth: .infinity) // Center the content horizontally
             }
             .onTapGesture {
                 isTextEditorFocused = false
