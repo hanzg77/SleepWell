@@ -104,6 +104,9 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         // UMConfigure.setAPMEnabled(true)
 
         print("友盟 SDK 初始化完成")
+        
+
+        
         return true
     }
 

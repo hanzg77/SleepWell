@@ -48,7 +48,7 @@ struct MainTabView: View {
                     .tag(2)
             }
             //hzg
-         //   .id(viewUpdater) // 🔥【关键修正】将 viewUpdater 应用为 TabView 的 id
+         .id(viewUpdater) // 🔥【关键修正】将 viewUpdater 应用为 TabView 的 id
             .environmentObject(logManager)
          //   .accentColor(.blue)
             // hzg
@@ -56,6 +56,7 @@ struct MainTabView: View {
             .onChange(of: playerController.isVideoReady) { isReady in
                 if isReady && selectedTab == 1 { // 只在伴你入眠页面时处理
                     playerController.isInitialShow = true
+                    // 移除强制显示控制条的逻辑，让 DualStreamPlayerView 内部管理
                     playerController.showControls = true
                 }
             }
@@ -87,10 +88,10 @@ struct MainTabView: View {
             .toolbarColorScheme(.dark, for: .tabBar)
 
             // 🔥【关键修正】当控制条显隐切换时，如果影响 TabBar，则强制刷新
-            .onChange(of: playerController.showControls) { _ in
+        /*    .onChange(of: playerController.showControls) { _ in
                 if selectedTab == 1 { // 仅当在“伴你入眠”页面，控制条变化会影响 TabBar 显隐时
                    //hzg
-                    // self.viewUpdater = UUID()
+                    self.viewUpdater = UUID()
                 }
             }
             .onReceive(NotificationCenter.default.publisher(for: Notification.Name("LanguageChanged"))) { _ in
@@ -98,6 +99,7 @@ struct MainTabView: View {
               //  objectWillChange.send()
                 self.viewUpdater = UUID()
             }
+         */
             .environment(\.globalSafeAreaInsets, geometry.safeAreaInsets) // 设置环境值
         }
       //  .ignoresSafeArea() // 让顶层 GeometryReader 获取到包括安全区域的完整尺寸

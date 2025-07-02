@@ -1,6 +1,7 @@
 import Foundation
 import Combine
 import Security
+import Network
 
 enum NetworkError: Error, LocalizedError {
     case invalidURL
@@ -55,6 +56,7 @@ class NetworkManager: NSObject, URLSessionDelegate, ObservableObject {
     private override init() {
         super.init()
         setupCertificateTrust()
+        setupNetworkMonitoring()
      //   loadCache()
     }
     
@@ -67,6 +69,41 @@ class NetworkManager: NSObject, URLSessionDelegate, ObservableObject {
         // 创建自定义的 URLSession
         let session = URLSession(configuration: sessionConfig, delegate: self, delegateQueue: nil)
         self.session = session
+    }
+    
+    // 首次启动网络权限检测
+    private var hasCheckedInitialPermission = false
+    
+    private func setupNetworkMonitoring() {
+        // 只在首次启动时检测网络权限
+        if !hasCheckedInitialPermission {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                self.checkInitialNetworkPermission()
+            }
+            hasCheckedInitialPermission = true
+        }
+    }
+    
+    // 首次启动时检测网络权限
+    private func checkInitialNetworkPermission() {
+        print("🔍 首次启动，检测网络权限")
+        guard let testURL = URL(string: "https://www.apple.com") else { return }
+        
+        let testTask = URLSession.shared.dataTask(with: testURL) { [weak self] data, response, error in
+            DispatchQueue.main.async {
+                if error == nil {
+                    print("✅ 网络权限正常，可以开始网络请求")
+                } else {
+                    print("❌ 网络权限可能有问题: \(error?.localizedDescription ?? "未知错误")")
+                }
+            }
+        }
+        testTask.resume()
+    }
+    
+    deinit {
+      //  networkMonitor.cancel()
+      //  print("🔌 NetworkManager 已销毁")
     }
     
     private var session: URLSession!
@@ -123,24 +160,33 @@ class NetworkManager: NSObject, URLSessionDelegate, ObservableObject {
         
         guard let url = components.url else { isLoading = false; return }
         print("🌐 NetworkManager: Requesting URL: \(url.absoluteString)")
+        
         session.dataTaskPublisher(for: url)
             .map(\ .data)
             .decode(type: APIResponse<[Resource]>.self, decoder: JSONDecoder())
             .map { $0.data }
-            .replaceError(with: [])
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] newResources in
-                guard let self = self else { return }
-                if isRefresh {
-                    self.resources = newResources
-                } else {
-                    self.resources += newResources
+            .sink(
+                receiveCompletion: { [weak self] completion in
+                    guard let self = self else { return }
+                    self.isLoading = false
+                    
+                    if case .failure(let error) = completion {
+                        print("❌ 请求失败: \(error.localizedDescription)")
+                    }
+                },
+                receiveValue: { [weak self] newResources in
+                    guard let self = self else { return }
+                    if isRefresh {
+                        self.resources = newResources
+                    } else {
+                        self.resources += newResources
+                    }
+                    self.currentPage = page
+                    self.hasMore = !newResources.isEmpty
+                    self.saveCache()
                 }
-                self.currentPage = page
-                self.hasMore = !newResources.isEmpty
-                self.saveCache()
-                self.isLoading = false
-            }
+            )
             .store(in: &cancellables)
     }
     
@@ -287,6 +333,7 @@ class NetworkManager: NSObject, URLSessionDelegate, ObservableObject {
     }
     
     // 获取睡眠数据
+    
     func getSleepData(for date: Date) -> AnyPublisher<SleepData, Error> {
         let urlString = "\(baseURL)/sleep-data"
         var components = URLComponents(string: urlString)!

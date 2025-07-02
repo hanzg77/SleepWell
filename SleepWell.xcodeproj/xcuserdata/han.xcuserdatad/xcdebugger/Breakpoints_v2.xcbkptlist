@@ -346,8 +346,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "80"
             endingLineNumber = "80"
-            landmarkName = "NetworkManager"
-            landmarkType = "3">
+            landmarkName = "setupNetworkMonitoring()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -362,7 +362,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "97"
             endingLineNumber = "97"
-            landmarkName = "refreshResources(pageSize:category:searchQuery:)"
+            landmarkName = "checkInitialNetworkPermission()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -378,7 +378,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "96"
             endingLineNumber = "96"
-            landmarkName = "refreshResources(pageSize:category:searchQuery:)"
+            landmarkName = "checkInitialNetworkPermission()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -442,7 +442,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "95"
             endingLineNumber = "95"
-            landmarkName = "refreshResources(pageSize:category:searchQuery:)"
+            landmarkName = "checkInitialNetworkPermission()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -698,7 +698,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "158"
             endingLineNumber = "158"
-            landmarkName = "loadCache()"
+            landmarkName = "fetchResources(page:pageSize:category:searchQuery:isRefresh:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -714,8 +714,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "159"
             endingLineNumber = "159"
-            landmarkName = "NetworkManager"
-            landmarkType = "3">
+            landmarkName = "fetchResources(page:pageSize:category:searchQuery:isRefresh:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -744,8 +744,8 @@
             filePath = "App/Views/MainTabView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -760,8 +760,8 @@
             filePath = "App/Views/MainTabView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -776,8 +776,8 @@
             filePath = "App/Views/MainTabView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -808,9 +808,9 @@
             filePath = "App/Services/NetworkManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "306"
-            endingLineNumber = "306"
-            landmarkName = "getSleepData(for:)"
+            startingLineNumber = "307"
+            endingLineNumber = "307"
+            landmarkName = "fetchEpisodes(resourceId:page:pageSize:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -824,10 +824,10 @@
             filePath = "App/Services/NetworkManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "320"
-            endingLineNumber = "320"
-            landmarkName = "getSleepData(for:)"
-            landmarkType = "7">
+            startingLineNumber = "321"
+            endingLineNumber = "321"
+            landmarkName = "NetworkManager"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -840,9 +840,9 @@
             filePath = "App/Services/NetworkManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "322"
-            endingLineNumber = "322"
-            landmarkName = "getSleepData(for:)"
+            startingLineNumber = "323"
+            endingLineNumber = "323"
+            landmarkName = "trackPlayback(resourceId:id:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

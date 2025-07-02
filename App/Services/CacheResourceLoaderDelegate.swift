@@ -258,13 +258,63 @@ class CacheResourceLoaderDelegate: NSObject, AVAssetResourceLoaderDelegate, URLS
     private func handleDataRequest(_ dataRequest: AVAssetResourceLoadingDataRequest, for loadingRequest: AVAssetResourceLoadingRequest) {
         let requestedOffset = dataRequest.requestedOffset
         let requestedLength = Int64(dataRequest.requestedLength)
-        
-        if isRangeFullyCached(start: requestedOffset, length: requestedLength) {
-            print("[CacheLoader] 数据请求命中缓存，范围: [\(requestedOffset)-\(requestedOffset + requestedLength - 1)]")
-            serveDataFromCache(for: dataRequest, loadingRequest: loadingRequest)
+        let requestedEnd = requestedOffset + requestedLength - 1
+
+        var currentOffset = requestedOffset
+
+        // Iterate through sorted and merged blocks to find what's cached
+        for block in cacheInfo.blocks {
+            // If the block is entirely before our current requested offset, skip
+            if block.end < currentOffset {
+                continue
+            }
+
+            // If the block starts after our current requested offset, we have a gap
+            if block.start > currentOffset {
+                // Found a gap. Fetch from network for this gap.
+                // The network request will fulfill the dataRequest from currentOffset up to block.start - 1
+                // or requestedEnd, whichever comes first.
+                fetchDataFromNetwork(for: dataRequest, loadingRequest: loadingRequest, startOffset: currentOffset, endOffset: min(block.start - 1, requestedEnd))
+                return // The rest of the request will be handled when network data arrives
+            }
+
+            // Block overlaps or contains currentOffset
+            if block.start <= currentOffset && block.end >= currentOffset {
+                // Calculate how much data we can serve from this block for the current request
+                let bytesToServe = min(block.end - currentOffset + 1, requestedEnd - currentOffset + 1)
+
+                if bytesToServe > 0 {
+                    do {
+                        let fileHandle = try FileHandle(forReadingFrom: cacheFileURL)
+                        defer { fileHandle.closeFile() }
+
+                        try fileHandle.seek(toOffset: UInt64(currentOffset))
+                        let data = try fileHandle.read(upToCount: Int(bytesToServe)) ?? Data()
+                        dataRequest.respond(with: data)
+                        currentOffset += bytesToServe
+                    } catch {
+                        print("[CacheLoader] 从缓存提供数据时出错: \(error)")
+                        loadingRequest.finishLoading(with: error)
+                        return
+                    }
+                }
+            }
+
+            // If we've fulfilled the entire original request, finish the loading request
+            if currentOffset > requestedEnd {
+                loadingRequest.finishLoading()
+                return
+            }
+        }
+
+        // If we reached here, it means there's still data missing from currentOffset to requestedEnd
+        // This happens if the requested range extends beyond all known cached blocks, or if there's no cache at all.
+        if currentOffset <= requestedEnd {
+            fetchDataFromNetwork(for: dataRequest, loadingRequest: loadingRequest, startOffset: currentOffset, endOffset: requestedEnd)
         } else {
-            print("[CacheLoader] 数据请求未命中，正在从网络获取范围: [\(requestedOffset)-\(requestedOffset + requestedLength - 1)]")
-            fetchDataFromNetwork(for: dataRequest, loadingRequest: loadingRequest)
+            // This case should ideally be covered by the `if currentOffset > requestedEnd` check inside the loop
+            // but as a fallback, if all data was served, finish the request.
+            loadingRequest.finishLoading()
         }
     }
 
@@ -305,20 +355,10 @@ class CacheResourceLoaderDelegate: NSObject, AVAssetResourceLoaderDelegate, URLS
     }
 
     /// Fetches data from the network when it's not available in the cache.
-    private func fetchDataFromNetwork(for dataRequest: AVAssetResourceLoadingDataRequest, loadingRequest: AVAssetResourceLoadingRequest) {
+    private func fetchDataFromNetwork(for dataRequest: AVAssetResourceLoadingDataRequest, loadingRequest: AVAssetResourceLoadingRequest, startOffset: Int64, endOffset: Int64) {
         var request = URLRequest(url: originalURL)
         
-        let requestedOffset = dataRequest.requestedOffset
-        let requestedToEnd = dataRequest.requestsAllDataToEndOfResource
-        
-        let rangeEnd: String
-        if requestedToEnd {
-            rangeEnd = ""
-        } else {
-            rangeEnd = "\(requestedOffset + Int64(dataRequest.requestedLength) - 1)"
-        }
-        
-        let rangeHeader = "bytes=\(requestedOffset)-\(rangeEnd)"
+        let rangeHeader = "bytes=\(startOffset)-\(endOffset)"
         request.setValue(rangeHeader, forHTTPHeaderField: "Range")
         
         guard let task = session?.dataTask(with: request) else {
